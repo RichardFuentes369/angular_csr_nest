@@ -77,7 +77,6 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   providers: [
     provideHttpClient(withFetch()),
-    provideClientHydration()
   ],
   bootstrap: [AppComponent]
 })
