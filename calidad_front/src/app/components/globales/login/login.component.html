@@ -1,0 +1,63 @@
+<div class="card align-items-center justify-contend-center">
+  <div class="p-4">
+    <div class="text-center">
+        <h1 class="h4 text-gray-900 mb-4">
+          {{ 'global-login.Welcome' | translate}} {{ this.isLoginAdmin ? 'admin' : '' }}
+        </h1>
+    </div>
+    <form class="user">
+        <div class="form-group">
+            <input
+              type="email"
+              class="form-control form-control-user"
+              id="exampleInputEmail"
+              aria-describedby="emailHelp"
+              placeholder="{{ 'global-login.Email_Msj' | translate}}"
+              [(ngModel)]="model.email"
+              name="model.email"
+            >
+        </div>
+        <div class="form-group">
+            <input
+              type="password"
+              class="form-control form-control-user"
+              id="exampleInputPassword"
+              placeholder="{{ 'global-login.Password_Msj' | translate}}"
+              [(ngModel)]="model.password"
+              name="model.password"
+            >
+        </div>
+        <div class="form-group" *ngIf="this.isLoginAdmin === false">
+            <div class="custom-control custom-checkbox small">
+                <input type="checkbox" class="custom-control-input" id="customCheck">
+                <label class="custom-control-label" for="customCheck">
+                  {{ 'global-login.Remember_Msj' | translate}}
+                </label>
+            </div>
+        </div>
+
+        @if(isPending){
+          <app-globales-loading></app-globales-loading>
+        }
+        @else {
+          <a class="btn btn-primary btn-user btn-block" *ngIf="this.isLoginAdmin === true" (click)="ingresar()">
+            {{ 'global-login.Login_Msj' | translate}}
+          </a>
+          <a class="btn btn-primary btn-user btn-block" *ngIf="this.isLoginAdmin === false" (click)="ingresar()">
+            {{ 'global-login.Login_Msj' | translate}}
+          </a>
+        }
+    </form>
+    <hr>
+    <div class="text-center" *ngIf="this.isLoginAdmin === false">
+        <a class="small">
+          {{ 'global-login.ForgotPassword_Msj' | translate}}
+        </a>
+    </div>
+    <div class="text-center" *ngIf="this.isLoginAdmin === false">
+        <a class="small">
+          {{ 'global-login.CreateAccount_Msj' | translate}}
+        </a>
+    </div>
+  </div>
+</div>

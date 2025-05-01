@@ -1,0 +1,36 @@
+<div class="">
+    @for (item of zona; track item; let  i = $index) {
+        <div class="col-xl-12 col-sm-12 row">
+            <div class="col-xl col-sm-12">
+                <div class="col-sm-12 row p-0">
+                    <div class="row form-group">
+                        <label for="exampleInputEmail1">
+                        {{ 'pages-zonaComun.Label.name' | translate}}
+                        </label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" value="{{item.nombre}}" aria-describedby="emailHelp">
+                        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                    </div>
+                    <div class="row form-group">
+                        <label for="exampleInputEmail1">
+                        {{ 'pages-zonaComun.Label.location' | translate}}
+                        </label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" value="{{item.ubicacion}}" aria-describedby="emailHelp">
+                        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                    </div>
+                    <div class="row form-group">
+                        <label for="exampleInputEmail1">
+                        {{ 'pages-zonaComun.Label.description' | translate}}
+                        </label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" value="{{item.descripcion}}" aria-describedby="emailHelp">
+                        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+  
+  </div>
+  
+  
+  
+  

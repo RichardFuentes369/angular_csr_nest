@@ -1,0 +1,17 @@
+<div class="">
+  <h1>{{ 'pages-modulos.Title.Module' | translate}}</h1>
+
+  <div class="card p-5">
+    <app-globales-tablecrud
+      [campoFiltro] = showcampoFiltro
+      [endPoint] = endPoint
+      [columnas] = columnas
+      [permisosAcciones] = permisos
+  
+      (verItem) = "verData($event)"
+      (crearNuevoItem) = "crearData($event)"
+      (eliminarItem) = "eliminarData($event)"
+    >
+    </app-globales-tablecrud>
+  </div>
+</div>

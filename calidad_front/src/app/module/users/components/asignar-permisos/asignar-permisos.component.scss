@@ -1,0 +1,38 @@
+@media only screen and (min-width: 1024px) and (orientation: landscape) {
+  .item {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0.5rem!important;
+    gap: 10px; /* Espacio entre las tarjetas */
+  }
+
+  .card {
+    flex: 1 1 calc(25% - 10px); /* 25% menos el espacio de gap para cada tarjeta */
+  }
+}
+@media only screen and (min-width: 1024px) and (orientation: portrait) {
+  .item {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0.5rem!important;
+    gap: 10px; /* Espacio entre las tarjetas */
+  }
+
+  .card {
+    flex: 1 1 calc(25% - 10px); /* 25% menos el espacio de gap para cada tarjeta */
+  }
+}
+
+@media only screen and (max-width: 1023px) and (orientation: landscape) {
+  .card {
+    margin-top: 0.5rem!important;
+    margin-bottom: 0.5rem!important;
+  }
+}
+@media only screen and (max-width: 1023px) and (orientation: portrait) {
+  .card {
+    margin-top: 0.5rem!important;
+    margin-bottom: 0.5rem!important;
+  }
+}
+

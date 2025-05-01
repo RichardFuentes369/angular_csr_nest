@@ -1,0 +1,9 @@
+{
+  "Title": {
+    "ComponentName": "Buscar"
+  },
+  "Buttons": {
+    "Filter": "Filtrar",
+    "Clear": "Limpiar"
+  }
+}

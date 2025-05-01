@@ -1,0 +1,36 @@
+{
+    "Title": {
+        "Module":"Common areas",
+        "CreateAreaWord":"Create area",
+        "EditAreaWord":"Edit area",
+        "SeeAreaWord":"See area"
+    },
+    "Label": {
+        "name": "Name",
+        "description": "Description",
+        "location": "Location"
+    },
+    "Placeholder": {
+        "name": "area of ...",
+        "description": "place de ...",
+        "location": "located in ..."
+    },
+    "Swal": {
+        "TitleAreYouSure": "Are you sure?",
+        "TitleWarnigRevert": "You won't be able to revert this!",
+        "TitleCreate": "Created",
+        "TitleCancel": "Cancel",
+        "TitleDelete": "Deleted!",
+        "TitleRegisterUpdated": "You register updated",
+        "TitleRegisterCreate": "You register created",
+        "TitleRegisterDeleted": "You register eliminated",
+        "TitleRegisterInactived": "You register inactived",
+        "TitleRegisterActived": "You register actived",
+        "TitleActived": "Actived",
+        "TitleInactived": "Inactived"
+    },
+    "Error": {
+        "name": "",
+        "description": ""
+    }
+}

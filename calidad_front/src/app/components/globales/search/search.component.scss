@@ -1,0 +1,53 @@
+.popover-container {
+  position: relative; /* Necesario para posicionar el popover-content */
+}
+
+.floating-button {
+  position: fixed;
+  right: 5px;
+  top: 23%;
+  transform: translateY(-50%); /* Centra verticalmente */
+  background-color: #3f51b5; /* Color primario de Angular Material (puedes personalizarlo) */
+  color: white;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
+              0 6px 10px 0 rgba(0, 0, 0, 0.14),
+              0 1px 18px 0 rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+
+  mat-icon {
+    font-size: 24px;
+  }
+
+  &:hover {
+    background-color: darken(#3f51b5, 10%);
+  }
+
+  &:focus {
+    outline: none; /* Opcional: personalizar el estilo del foco */
+  }
+}
+
+.popover-content {
+  position: absolute; /* Posiciona el popover relativamente al contenedor */
+  top: 50%; /* Alinea la parte superior del popover con la mitad del botón */
+  right: 65px; /* Ajusta para que no se superponga con el botón (ancho del botón + margen) */
+  transform: translateY(-50%); /* Centra verticalmente el popover */
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 2.2);
+  padding: 10px;
+  z-index: 1001; /* Asegura que esté por encima del botón */
+  min-width: 500px; /* Ancho mínimo del popover */
+  display: none; /* Oculto por defecto */
+}
+
+.popover-content.show {
+  display: block; /* Muestra el popover cuando isFilterVisible es true */
+}

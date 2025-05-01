@@ -1,0 +1,65 @@
+{
+  "Title": {
+    "pageUsersTitle":"Users",
+    "CreateAdminWord":"Create admin",
+    "EditAdminWord":"Edit admin",
+    "SeeAdminWord":"See admin",
+    "CreateUserFinalWord":"Create user finals",
+    "EditUserFinalWord":"Edit user final",
+    "SeeUserFinalWord":"See user final",
+    "PermissionsTitle": "Permissions"
+  },
+  "Index": {
+    "buttonAdmins":"Admins users",
+    "buttonFinals":"Finals users"
+  },
+  "Tipo": {
+    "AdminWord": "Admins",
+    "FinalWord": "Finals"
+  },
+  "Label": {
+    "firstName": "Names",
+    "lastName": "LastNames",
+    "email": "Email",
+    "password": "Password",
+    "statusUser": "Status"
+  },
+  "Placeholder": {
+    "firstName": "Juan Andres",
+    "lastName": "Lozano Fonseca",
+    "email": "email@example.es",
+    "password": "********",
+    "select": "Select please",
+    "isActive": "Active",
+    "isInactive": "Inactive"
+  },
+  "Error": {
+    "firstName": "",
+    "lastName": "",
+    "email": "",
+    "password": "",
+    "isActive": ""
+  },
+  "Buttons": {
+    "createUser": "Create user",
+    "editUser": "go to edit",
+    "updateUser": "Update user",
+    "back": "Back"
+  },
+  "Swal": {
+    "TitleAreYouSure": "Are you sure?",
+    "TitleWarnigRevert": "You won't be able to revert this!",
+    "TitleCreate": "Created",
+    "TitleCancel": "Cancel",
+    "TitleDelete": "Deleted!",
+    "TitleRegisterUpdated": "You register updated",
+    "TitleRegisterCreate": "You register created",
+    "TitleRegisterDeleted": "You register eliminated",
+    "TitleRegisterInactived": "You register inactived",
+    "TitleRegisterActived": "You register actived",
+    "TitleActived": "Actived",
+    "TitleInactived": "Inactived"
+  }
+}
+
+

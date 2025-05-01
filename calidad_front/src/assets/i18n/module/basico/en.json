@@ -1,0 +1,15 @@
+{
+  "Settings": {
+    "WordMenu": "Menu",
+    "WordProfile": "Profile",
+    "WordConfiguracion": "Settings"
+  },
+  "Menu": {
+    "WordMenu": "Menu",
+    "WordUsers": "Users",
+    "WordMaintenance": "Maintenances",
+    "WordSocialArea": "Common areas",
+    "WordSupplier": "Suppliers",
+    "WordModule": "Modules"
+  }
+}

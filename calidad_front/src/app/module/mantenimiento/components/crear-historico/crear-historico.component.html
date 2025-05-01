@@ -1,0 +1,55 @@
+<div class="">
+    <div class="col-xl-12 col-sm-12 row">
+        <div class="col-xl col-sm-12">
+            <div class="col-sm-12 row p-0">
+                <div class="col-sm-6 row">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">
+                        {{ 'pages-mantenimiento.Label.observation' | translate}}
+                        </label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.observacion"
+                        aria-describedby="emailHelp" placeholder="{{ 'pages-mantenimiento.Placeholder.observation' | translate}}">
+                        <!-- <small id="emailHelp" class="form-text text-muted">{{ 'pages-mantenimiento.Error.Descripcion' | translate}}</small> -->
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">
+                        {{ 'pages-mantenimiento.Label.price' | translate}}
+                        </label>
+                        <input type="number" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.precio" aria-describedby="emailHelp"
+                        placeholder="{{ 'pages-mantenimiento.Placeholder.price' | translate}}" min="0">
+                        <!-- <small id="emailHelp" class="form-text text-muted">{{ 'pages-mantenimiento.Error.price' | translate}}</small> -->
+                    </div>
+                </div>
+                <div class="col-sm-6 row">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">
+                        {{ 'pages-mantenimiento.Label.recommendation' | translate}}
+                        </label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.recomendacion"
+                        aria-describedby="emailHelp" placeholder="{{ 'pages-mantenimiento.Placeholder.recommendation' | translate}}">
+                        <!-- <small id="emailHelp" class="form-text text-muted">{{ 'pages-mantenimiento.Error.Descripcion' | translate}}</small> -->
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">
+                            {{ 'pages-mantenimiento.Label.proveedor' | translate}}
+                        </label>
+                        <select [(ngModel)]="model.proveedor_id" class="form-control">
+                            @for (proveedor of proveedor; track proveedor.id) {
+                                <option [ngValue]="proveedor.id">
+                                    {{ proveedor.razonSocial }}
+                                </option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 row p-0">
+        <div class="col-sm-12">
+            <button class="btn btn-sm btn-primary btnAction" (click)="crearHistory()">
+                {{ 'pages-mantenimiento.Buttons.createHistory' | translate}}
+            </button>
+        </div>
+    </div>
+</div>

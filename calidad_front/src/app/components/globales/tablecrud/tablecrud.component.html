@@ -1,0 +1,51 @@
+<div class="">
+
+  <div class="botoneria">
+    @if(tienePermiso('crear')){
+      <button class="btn btn-primary btn-sm mx-sm-1" (click)="newItem()" [disabled]="idSeleccionado">
+        {{ 'global-tablecrud.Options.Create' | translate}}
+      </button>
+    }
+    @if(tienePermiso('ver')){
+      <button class="btn btn-primary btn-sm mx-sm-1" (click)="seeItem()" [disabled]="!idSeleccionado">
+        {{ 'global-tablecrud.Options.See' | translate}}
+      </button>
+    }
+    @if(tienePermiso('editar')){
+      <button class="btn btn-primary btn-sm mx-sm-1" (click)="editItem()" [disabled]="!idSeleccionado">
+        {{ 'global-tablecrud.Options.Edit' | translate}}
+      </button>
+    }
+    @if(tienePermiso('eliminar')){
+      <button class="btn btn-primary btn-sm mx-sm-1" (click)="deleteItem()" [disabled]="!idSeleccionado">
+        {{ 'global-tablecrud.Options.Delete' | translate}}
+      </button>
+    }
+    @if(tienePermiso('asignar_permisos')){
+      <button class="btn btn-primary btn-sm mx-sm-1" (click)="assignItem()" [disabled]="!idSeleccionado">
+        {{ 'global-tablecrud.Options.Assign' | translate}}
+      </button>
+    }
+    @if(tienePermiso('activar_desactivar')){
+      <button class="btn btn-primary btn-sm mx-sm-1" (click)="activedItem()" [disabled]="!idSeleccionado">
+        {{ 'global-tablecrud.Options.Switch' | translate}}
+      </button>
+    }
+    @if(tienePermiso('historico')){
+      <button class="btn btn-primary btn-sm mx-sm-1" (click)="historyItem()" [disabled]="!idSeleccionado">
+        {{ 'global-tablecrud.Options.Historical' | translate}}
+      </button>
+    }
+    <button class="btn btn-primary btn-sm mx-sm-1" (click)="selectionClear()" [disabled]="!idSeleccionado">
+      {{ 'global-tablecrud.Options.Clean' | translate}}
+    </button>
+  </div>
+
+  <table
+    datatable
+    class="row-border hover tableDatatable"
+    [dtOptions]="dtOptions"
+  >
+  </table>
+
+</div>

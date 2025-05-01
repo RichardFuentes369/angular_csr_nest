@@ -1,0 +1,67 @@
+{
+  "Title": {
+    "Module":"Maintenance",
+    "pageMaintenanceTitle":"Maintenances",
+    "CreateMaintenanceWord":"Create Maintenance",
+    "EditMaintenanceWord":"Edit Maintenance",
+    "SeeMaintenanceWord":"See Maintenance",
+    "HistoryWord":"History"
+  },
+  "Swal": {
+    "TitleAreYouSure": "Are you sure?",
+    "TitleWarningRevert": "You will not be able to revert this change!",
+    "TitleCreate": "Created",
+    "TitleUpdate": "Updated",
+    "TitleCancel": "Cancel",
+    "TitleDelete": "Delete!",
+    "TitleRegisterUpdated": "Registration updated",
+    "TitleRegisterCreate": "Registration created",
+    "TitleRegisterDeleted": "Registration deleted",
+    "TitleRegisterInactived": "Registration disabled",
+    "TitleRegisterActived": "Registration enabled",
+    "TitleActived": "Activate",
+    "TitleInactived": "Inactivate"
+  },
+  "Label":{
+    "descripcion": "Descripction",
+    "serial": "Serial",
+    "estado": "Status",
+    "maintenanceDate": "Maintenance date",
+    "crateDate": "Create date",
+    "updateDate": "Update date",
+    "price": "Price",
+    "zona": "Area",
+    "proveedor": "Supplier",
+    "nameZone": "Name zone",
+    "descriptionZone": "Description zone",
+    "locationZone": "Location zone",
+    "observation": "Observation",
+    "recommendation": "Recommendation",
+    "ordernumber": "# Order"
+  },
+  "Placeholder": {
+    "descripcion": "Descripcion...",
+    "serial": "Serial",
+    "estado": "EnEspera",
+    "maintenanceDate": "2024-12-02",
+    "crateDate": "2024-12-02",
+    "updateDate": "2024-12-02",
+    "price": "000000",
+    "zona": "selected",
+    "observation": "Observacion...",
+    "recommendation": "Recomendacion...",
+    "ordernumber": "# Orden"
+  },
+  "Error": {
+    "zona": "",
+    "ordernumber": "",
+    "maintenanceDate": "",
+    "estado": "",
+    "crateDate": ""
+  },
+  "Buttons": {
+    "createOrder": "Create Order",
+    "updateOrder": "Update Order",
+    "createHistory": "Create History"
+  }
+}

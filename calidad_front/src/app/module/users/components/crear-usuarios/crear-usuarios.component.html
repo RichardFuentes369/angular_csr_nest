@@ -1,0 +1,67 @@
+<div class="">
+  <div class="col-xl-12 col-sm-12 row">
+    <div class="col-xl-3 col-sm-12 text-center my-auto">
+      <img src="https://icons.iconarchive.com/icons/custom-icon-design/flatastic-1/256/add-1-icon.png" width="100px" height="100px">
+    </div>
+    <div class="col-xl col-sm-12">
+      <div class="col-sm-12 row p-0">
+        <div class="col-sm-6 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'pages-usuarios.Label.firstName' | translate}}
+          </label>
+          <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.firstName" aria-describedby="emailHelp" placeholder="{{ 'pages-usuarios.Placeholder.firstName' | translate}}">
+          <small id="emailHelp" class="form-text text-muted">{{ 'pages-usuarios.Error.firstName' | translate}}</small>
+        </div>
+        <div class="col-sm-6 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'pages-usuarios.Label.lastName' | translate}}
+          </label>
+          <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.lastName" aria-describedby="emailHelp" placeholder="{{ 'pages-usuarios.Placeholder.lastName' | translate}}">
+          <small id="emailHelp" class="form-text text-muted">{{ 'pages-usuarios.Error.lastName' | translate}}</small>
+        </div>
+      </div>
+      <div class="col-sm-12 row p-0">
+        <div class="col-sm-6 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'pages-usuarios.Label.email' | translate}}
+          </label>
+          <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.email" aria-describedby="emailHelp" placeholder="{{ 'pages-usuarios.Placeholder.email' | translate}}">
+          <small id="emailHelp" class="form-text text-muted">{{ 'pages-usuarios.Error.email' | translate}}</small>
+        </div>
+        <div class="col-sm-6 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'pages-usuarios.Label.password' | translate}}
+          </label>
+          <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.password" aria-describedby="emailHelp" placeholder="{{ 'pages-usuarios.Placeholder.password' | translate}}">
+          <small id="emailHelp" class="form-text text-muted">{{ 'pages-usuarios.Error.password' | translate}}</small>
+        </div>
+      </div>
+      <div class="col-sm-12 row p-0">
+        <div class="col-sm-6 form-group">
+          <label for="exampleInputEmail1">
+            {{ 'pages-usuarios.Label.statusUser' | translate}}
+          </label>
+          <select [(ngModel)]="model.isActive" class="form-control">
+            <option [ngValue]="true">
+              {{ 'pages-usuarios.Placeholder.isActive' | translate}}
+            </option>
+            <option [ngValue]="false">
+              {{ 'pages-usuarios.Placeholder.isInactive' | translate}}
+            </option>
+          </select>
+          <small id="emailHelp" class="form-text text-muted">{{ 'pages-usuarios.Error.isActive' | translate}}</small>
+        </div>
+        <div class="col-sm-6 form-group">
+        </div>
+      </div>
+      <div class="col-sm-12 row p-0">
+        <div class="col-sm-12">
+          <button class="btn btn-sm btn-primary btnAction d-none" (click)="crearUsuario()">
+            {{ 'pages-usuarios.Buttons.createUser' | translate}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

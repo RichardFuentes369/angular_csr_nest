@@ -1,0 +1,23 @@
+<div class="">
+    <div class="col-xl col-sm-12 card">
+        <input type="text" class="d-none complementoRuta" value="">
+        <div class="row">
+            <div class="col-sm-6">
+                <label for="exampleInputEmail1">
+                    {{ 'pages-zonaComun.Label.name' | translate}}
+                </label>
+                <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.nombre" aria-describedby="emailHelp" placeholder="{{ 'pages-zonaComun.Placeholder.name' | translate}}">
+                <small id="emailHelp" class="form-text text-muted">{{ 'pages-zonaComun.Error.name' | translate}}</small>
+            </div>
+            <div class="col-sm-6">
+                <label for="exampleInputEmail1">
+                    {{ 'pages-zonaComun.Label.description' | translate}}
+                </label>
+                <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.descripcion" aria-describedby="emailHelp" placeholder="{{ 'pages-zonaComun.Placeholder.description' | translate}}">
+                <small id="emailHelp" class="form-text text-muted">{{ 'pages-zonaComun.Error.description' | translate}}</small>
+            </div>
+        </div>
+        <button class="d-none limpiar" (click)="limpiar()"></button>
+        <button class="d-none filtrar" (click)="filtrar()"></button>
+    </div>
+</div>

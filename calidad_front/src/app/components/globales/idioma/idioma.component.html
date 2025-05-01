@@ -1,0 +1,10 @@
+<div class="">
+  <select [(ngModel)]="languague" (change)="cambiarIdioma()" class="custom-select custom-select-sm my-lg-n1">
+    <option value="es">
+      {{ 'global-idioma.WordSpanish' | translate}}
+    </option>
+    <option value="en">
+      {{ 'global-idioma.WordEnglish' | translate}}
+    </option>
+  </select>
+</div>

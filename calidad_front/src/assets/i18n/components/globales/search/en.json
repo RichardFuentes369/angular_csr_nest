@@ -1,0 +1,9 @@
+{
+  "Title": {
+    "ComponentName": "Search"
+  },
+  "Buttons": {
+    "Filter": "Filter",
+    "Clear": "Clear"
+  }
+}
