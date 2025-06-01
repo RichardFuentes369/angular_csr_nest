@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import Swal from 'sweetalert2'
+import { ocultarModalOscura } from '@functions/System';
 
 interface AdministradorInterface {
   'id': number,
@@ -80,8 +81,17 @@ export class EditarUsuariosComponent implements OnInit{
 
   }
 
-  actualizarData(){
-    this.userPrincipalService.updateUser(
+  async actualizarData(){
+    let complemento = localStorage.getItem('profile')
+    let endPoint
+
+    if(complemento == 'admin'){
+      endPoint = this.userPrincipalService
+    }else{
+      endPoint = this.userFinalService
+    }
+
+    await endPoint.updateUser(
       {
         "firstName": this.model.firstName,
         "lastName": this.model.lastName,
@@ -91,10 +101,13 @@ export class EditarUsuariosComponent implements OnInit{
       },
       this.model.id
     ).then((response) =>{
+      ocultarModalOscura()
       this.translate.get('pages-usuarios.Swal.TitleAreYouSure').subscribe((translatedTitle: string) => {
-        Swal.fire(
-          this.translate.instant('pages-usuarios.Swal.TitleRegisterUpdated')
-        );
+        Swal.fire({
+          title: this.translate.instant('pages-usuarios.Swal.TitleUpdate'),
+          text: this.translate.instant('pages-usuarios.Swal.TitleRegisterUpdated'),
+          icon: "success"
+        });
       })
     }).catch(async error => {
       this.ngOnInit()

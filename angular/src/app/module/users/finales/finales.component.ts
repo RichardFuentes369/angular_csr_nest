@@ -137,12 +137,13 @@ export class FinalesComponent implements OnInit{
   }
 
   editarData (_id: string){
+    localStorage.setItem('profile', 'user')
     this.tamano = "xl"
     this.scrollable = false
     this.title = this.translate.instant('pages-usuarios.Title.EditUserFinalWord')
     this.save = false
     this.buttonSave = "Guardar"
-    this.edit = false
+    this.edit = true
     this.buttonEdit = "Editar"
     this.cancel = true
     this.buttonCancel = "Cancelar"

@@ -53,11 +53,16 @@
             <small id="emailHelp" class="form-text text-muted">{{ 'pages-usuarios.Error.isActive' | translate}}</small>
           </div>
         </div>
+        <div class="col-sm-12 row p-0">
+          <div class="col-sm-12">
+            <button class="btn btn-sm btn-primary btnAction d-none" (click)="actualizarData()">
+              {{ 'pages-usuarios.Buttons.updateUser' | translate}}
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-
   }
-
 </div>
 
 

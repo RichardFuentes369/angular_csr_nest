@@ -139,12 +139,13 @@ export class PrincipalComponent implements OnInit{
   }
 
   editarData (_id: string){
+    localStorage.setItem('profile', 'admin')
     this.tamano = "xl"
     this.scrollable = false
     this.title = this.translate.instant('pages-usuarios.Title.EditAdminWord')
     this.save = false
     this.buttonSave = "Guardar"
-    this.edit = false
+    this.edit = true
     this.buttonEdit = "Editar"
     this.cancel = true
     this.buttonCancel = "Cancelar"
