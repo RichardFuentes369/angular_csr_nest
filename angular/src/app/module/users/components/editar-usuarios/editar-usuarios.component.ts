@@ -30,8 +30,8 @@ export class EditarUsuariosComponent implements OnInit{
   constructor(
     private router: Router,
     private route :ActivatedRoute,
-    private userPrincipalService :PrincipalService,
-    private userFinalService :FinalService,
+    private principalService :PrincipalService,
+    private finalService :FinalService,
     private translate: TranslateService
   ) { }
 
@@ -51,13 +51,13 @@ export class EditarUsuariosComponent implements OnInit{
     this.user = []
 
     if(this.route.snapshot.queryParams?.['rol'] === 'admin'){
-      this.usuarioReal = await this.userFinalService.getDataUser(
+      this.usuarioReal = await this.finalService.getDataUser(
         this.route.snapshot.queryParams?.['id']
         )
       }
 
     if(this.route.snapshot.queryParams?.['rol'] === 'user'){
-      this.usuarioReal = await this.userPrincipalService.getDataUser(
+      this.usuarioReal = await this.principalService.getDataUser(
         this.route.snapshot.queryParams?.['id']
       )
     }
@@ -71,6 +71,8 @@ export class EditarUsuariosComponent implements OnInit{
     this.model.isActive = this.usuarioReal.data.isActive
   }
 
+  typefield = 'password'
+
   goTo (url: string, _id: number){
 
     if(_id != 0){
@@ -81,14 +83,19 @@ export class EditarUsuariosComponent implements OnInit{
 
   }
 
+  showPassword(){
+    this.typefield = (this.typefield === "password") ? "text" : "password"
+  }
+
   async actualizarData(){
+
     let complemento = localStorage.getItem('profile')
     let endPoint
 
     if(complemento == 'admin'){
-      endPoint = this.userPrincipalService
+      endPoint = this.principalService
     }else{
-      endPoint = this.userFinalService
+      endPoint = this.finalService
     }
 
     await endPoint.updateUser(

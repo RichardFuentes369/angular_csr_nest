@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
   isPending = false;
   isLoginAdmin = true
   urlPeticion = ''
+  typefield = 'password'
 
   model = {
     email: '',
@@ -48,6 +49,10 @@ export class LoginComponent implements OnInit {
       this.model.email = 'user1@gmail.com'
       this.model.password = 'Qwerty9601'
     }
+  }
+
+  showPassword(){
+    this.typefield = (this.typefield === "password") ? "text" : "password"
   }
 
   async ingresar(){

@@ -35,6 +35,8 @@ export class CrearUsuariosComponent {
     isActive: 0
   }
 
+  typefield = 'password'
+
   goTo (url: string, _id: number){
 
     if(_id != 0){
@@ -43,6 +45,10 @@ export class CrearUsuariosComponent {
       this.router.navigate([url]);
     }
 
+  }
+
+  showPassword(){
+    this.typefield = (this.typefield === "password") ? "text" : "password"
   }
 
   async crearUsuario(){
@@ -60,7 +66,6 @@ export class CrearUsuariosComponent {
     .then(response=>{
       ocultarModalOscura()
       this.translate.get('pages-usuarios.Swal.TitleAreYouSure').subscribe((translatedTitle: string) => {
-        localStorage.removeItem('profile')
         Swal.fire({
           title: this.translate.instant('pages-usuarios.Swal.TitleCreate'),
           text: this.translate.instant('pages-usuarios.Swal.TitleRegisterCreate'),

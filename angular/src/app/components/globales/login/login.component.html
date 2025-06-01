@@ -18,14 +18,21 @@
             >
         </div>
         <div class="form-group">
+          <div class="input-group">
             <input
-              type="password"
-              class="form-control form-control-user"
-              id="exampleInputPassword"
-              placeholder="{{ 'global-login.Password_Msj' | translate}}"
-              [(ngModel)]="model.password"
-              name="model.password"
+            [(type)]="typefield"
+            class="form-control form-control-user"
+            id="exampleInputPassword"
+            placeholder="{{ 'global-login.Password_Msj' | translate}}"
+            [(ngModel)]="model.password"
+            name="model.password"
             >
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input type="checkbox" aria-label="Checkbox for following text input" (click)="showPassword()" title="mostrar contraseña">
+              </div>
+            </div>
+          </div>
         </div>
         <div class="form-group" *ngIf="this.isLoginAdmin === false">
             <div class="custom-control custom-checkbox small">

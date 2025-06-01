@@ -33,7 +33,24 @@
             <label for="exampleInputEmail1">
               {{ 'pages-usuarios.Label.password' | translate}}
             </label>
-            <input type="text" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.password" aria-describedby="emailHelp">
+
+          <div class="input-group">
+            <input
+            [(type)]="typefield"
+            class="form-control form-control-user"
+            id="exampleInputPassword"
+            placeholder="{{ 'global-login.Password_Msj' | translate}}"
+            [(ngModel)]="model.password"
+            name="model.password"
+            >
+            <!--
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input type="checkbox" aria-label="Checkbox for following text input" (click)="showPassword()" title="mostrar contraseña">
+              </div>
+            </div>
+            -->
+          </div>
             <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
           </div>
         </div>
@@ -62,7 +79,9 @@
         </div>
       </div>
     </div>
+
   }
+
 </div>
 
 
