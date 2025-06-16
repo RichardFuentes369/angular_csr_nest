@@ -36,7 +36,7 @@ export class IndexComponent implements OnInit{
   }
 
   tienePermiso(nombre: string): boolean {
-    return this.menu.some((permiso) => permiso.permiso_nombre_permiso === nombre);
+    return this.menu.some((permiso) => permiso.permiso_permiso === nombre);
   }
 
   goTo(url: string){

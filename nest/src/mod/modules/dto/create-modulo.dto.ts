@@ -9,6 +9,14 @@ export class CreateModuloDto {
   
   @IsString()
   // @Transform(({value}) => value.trim())
-  readonly nombre_permiso;
+  readonly nombre;
+
+  @IsString()
+  // @Transform(({value}) => value.trim())
+  readonly permiso;
+
+  @IsString()
+  // @Transform(({value}) => value.trim())
+  readonly descripcion;
   
 }

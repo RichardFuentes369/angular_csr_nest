@@ -67,7 +67,7 @@ export class AsignarPermisosComponent implements OnInit{
 
   toggleCollapse(nombrePermiso: string, isToggle: boolean) {
 
-    const response  = this.permisos.find((e: any) => e.mpm_nombre_permiso == nombrePermiso)
+    const response  = this.permisos.find((e: any) => e.mpm_permiso == nombrePermiso)
     response.mpm_toogle = !isToggle
 
   }

@@ -7,7 +7,13 @@ export class Asignacion {
   id: number;
 
   @Column({ nullable: true })
-  nombre_permiso: string;
+  nombre: string;
+
+  @Column({ nullable: true })
+  permiso: string;
+
+  @Column({ nullable: true })
+  descripcion: string;
 
   @Column({ nullable: true })
   modulo_padre_id: number;

@@ -9,7 +9,15 @@ export class CreateAsignacionDto {
   
   @IsString()
   // @Transform(({value}) => value.trim())
-  readonly nombre_permiso;
+  readonly nombre;
+
+  @IsString()
+  // @Transform(({value}) => value.trim())
+  readonly permiso;
+
+  @IsString()
+  // @Transform(({value}) => value.trim())
+  readonly descripcion;
 
   @IsNumber()
   // @Transform(({value}) => value.trim())

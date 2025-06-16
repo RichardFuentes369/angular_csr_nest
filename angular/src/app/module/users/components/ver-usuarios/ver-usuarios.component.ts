@@ -60,7 +60,7 @@ export class VerUsuariosComponent implements OnInit{
   }
 
   tienePermiso(nombre: string): boolean {
-    return this.permisos.some((permiso) => permiso === nombre);
+    return this.permisos.some((permiso) => permiso.permiso_permiso === nombre);
   }
 
   goTo (url: string, _id: number){

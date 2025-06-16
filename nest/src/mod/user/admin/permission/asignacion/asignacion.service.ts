@@ -22,14 +22,14 @@ export class AsignacionService {
     if(moduloId == 0){
       return this.asignacionRepository.findOne({
         where: {
-          nombre_permiso: nombrePermiso,
+          permiso: nombrePermiso,
           user_id: userId
         },
       });
     }else{
       return this.asignacionRepository.findOne({
         where: {
-          nombre_permiso: nombrePermiso,
+          permiso: nombrePermiso,
           modulo_padre_id: moduloId,
           user_id: userId
         },
@@ -42,7 +42,7 @@ export class AsignacionService {
 
     if(permiso != ''){
       const Permiso = await this.moduloRepository.createQueryBuilder('modulo')
-      .where('modulo.nombre_permiso = :permiso', { permiso:permiso })
+      .where('modulo.permiso = :permiso', { permiso:permiso })
       .getOne();
       
       const Modulos = await this.asignacionRepository.createQueryBuilder('permiso')
@@ -71,8 +71,10 @@ export class AsignacionService {
 
     if(opcion == 0){
       let model = {
-        'nombre_permiso': permisoMaestro.nombre_permiso,
+        'permiso': permisoMaestro.permiso,
         'modulo_padre_id':  (permisoMaestro.modulo_padre_id) ? permisoMaestro.modulo_padre_id : null,
+        'nombre':  permisoMaestro.nombre,
+        'descripcion':  permisoMaestro.descripcion,
         'user_id': idUser
       }
       
@@ -91,7 +93,7 @@ export class AsignacionService {
     if(permisoMaestro){
       const permisoAsignado = await this.asignacionRepository.findOne({
         where: {
-          'nombre_permiso': permisoMaestro.nombre_permiso,
+          'permiso': permisoMaestro.permiso,
           'modulo_padre_id': (permisoMaestro.modulo_padre_id) ? permisoMaestro.modulo_padre_id : null,
           'user_id': idUser
         },  

@@ -19,31 +19,6 @@ export class ModulosService {
     return metadata.columns.map((column) => column.propertyName);
   }
 
-  async findAll() {
-    const Modulos = await this.moduloRepository.createQueryBuilder('permiso')
-    .where('permiso.modulo_padre IS NULL')
-    .getRawMany();
-
-    const SubModulos = await Promise.all(Modulos.map(async (permisosModulos) => {
-      const permisosSubmodulos = await this.moduloRepository.createQueryBuilder('permiso')
-        .where('permiso.modulo_padre = :moduloPadreId', { moduloPadreId: permisosModulos.permiso_id })
-        .getMany();
-
-      const Acciones = await Promise.all(permisosSubmodulos.map(async (submodulo) => {
-        const permisosAcciones = await this.moduloRepository.createQueryBuilder('modulo')
-          .where('modulo.modulo_padre = :submoduloId', { submoduloId: submodulo.id })
-          .getMany();
-        
-        return { ...submodulo, permisosAcciones };
-      }));
-
-      return { ...permisosModulos, permisosSubmodulos: Acciones };
-    }));
-
-    return SubModulos;
-    
-  }
-
   organizarJerarquia(data) {
     // Crear un mapa de todos los elementos por ID para acceder fácilmente
     const map = new Map();
@@ -83,18 +58,20 @@ export class ModulosService {
     .select([
       'mpm.modulo_padre_id',
       'mpm.id',
-      'mpm.nombre_permiso',
+      'mpm.permiso',
+      'mpm.nombre',
+      'mpm.descripcion',
     ])
     .addSelect(subQuery => {
       return subQuery
-        .select('CASE WHEN mpma.nombre_permiso IS NOT NULL THEN 1 ELSE 0 END as asignado')
+        .select('CASE WHEN mpma.permiso IS NOT NULL THEN 1 ELSE 0 END as asignado')
         .from('mod_permisos_modulo_asignacion', 'mpma')
         .andWhere(`
           CASE WHEN mpm.modulo_padre_id IS NULL THEN
             mpma.modulo_padre_id IS NULL AND
-            mpma.nombre_permiso = mpm.nombre_permiso
+            mpma.permiso = mpm.permiso
           ELSE
-            mpma.nombre_permiso = mpm.nombre_permiso AND
+            mpma.permiso = mpm.permiso AND
             mpma.modulo_padre_id = mpm.modulo_padre_id
           END
         `)
@@ -102,18 +79,46 @@ export class ModulosService {
     }, 'asignado')
     .getRawMany();
 
+
+    console.log(query)
+
     const result = this.organizarJerarquia(query)
+
     return result;
   }
 
-  async findPermiso(moduloId: number, nombrePermiso: string, opcion?: string){
-
+  async findPermiso(moduloId?: number, permiso?: string, opcion?: string){
+    
     let consulta = []
+
+    if(isNaN(moduloId) && permiso == undefined && opcion == 'SEARCH'){
+      const Modulos = await this.moduloRepository.createQueryBuilder('permiso')
+      .where('permiso.modulo_padre IS NULL')
+      .getRawMany();
+
+      const SubModulos = await Promise.all(Modulos.map(async (permisosModulos) => {
+        const permisosSubmodulos = await this.moduloRepository.createQueryBuilder('permiso')
+          .where('permiso.modulo_padre = :moduloPadreId', { moduloPadreId: permisosModulos.permiso_id })
+          .getMany();
+
+        const Acciones = await Promise.all(permisosSubmodulos.map(async (submodulo) => {
+          const permisosAcciones = await this.moduloRepository.createQueryBuilder('modulo')
+            .where('modulo.modulo_padre = :submoduloId', { submoduloId: submodulo.id })
+            .getMany();
+          
+          return { ...submodulo, permisosAcciones };
+        }));
+
+        return { ...permisosModulos, permisosSubmodulos: Acciones };
+      }));
+
+      return SubModulos;
+    }
 
     if(moduloId == 0 && opcion == 'CREATE'){
       consulta = await this.moduloRepository.createQueryBuilder("modulo")
       .where("modulo.modulo_padre_id IS NULL")
-      .andWhere("modulo.nombre_permiso  = :nombrePermiso", { nombrePermiso: nombrePermiso })
+      .andWhere("modulo.permiso  = :permiso", { permiso: permiso })
       .getMany();
       
       if(consulta.length > 0) throw new NotFoundException(
@@ -131,7 +136,7 @@ export class ModulosService {
 
       consulta = await this.moduloRepository.createQueryBuilder("modulo")
       .where("modulo.modulo_padre_id = :idPadre", { idPadre: moduloId })
-      .andWhere("modulo.nombre_permiso = :nombrePermiso", { nombrePermiso: nombrePermiso })
+      .andWhere("modulo.permiso = :permiso", { permiso: permiso })
       .getMany();
 
       if(consulta.length > 0) throw new NotFoundException(
@@ -140,10 +145,9 @@ export class ModulosService {
     }
     
     if(moduloId == 0 && opcion == 'DELETE'){
-      
       consulta = await this.moduloRepository.createQueryBuilder("modulo")
       .where("modulo.modulo_padre_id IS NULL")
-      .andWhere("modulo.nombre_permiso = :nombrePermiso", { nombrePermiso: nombrePermiso })
+      .andWhere("modulo.permiso = :permiso", { permiso: permiso })
       .getMany();
         
       if(consulta.length == 0) throw new NotFoundException(
@@ -157,7 +161,6 @@ export class ModulosService {
       if(consulta2.length > 0) throw new NotFoundException(
         this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_TIENE_PERMISOS_HIJOS') }
       )
-
     }
     if(moduloId != 0 && opcion == 'DELETE'){
       consulta = await this.moduloRepository.createQueryBuilder("modulo")
@@ -178,7 +181,36 @@ export class ModulosService {
 
       consulta = await this.moduloRepository.createQueryBuilder("modulo")
       .where("modulo.modulo_padre_id = :idPadre", { idPadre: moduloId })
-      .andWhere("modulo.nombre_permiso = :nombrePermiso", { nombrePermiso: nombrePermiso })
+      .andWhere("modulo.nombre_permiso = :permiso", { permiso: permiso })
+      .getMany();
+
+      if(consulta.length == 0) throw new NotFoundException(
+        this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE') }
+      )
+    }
+
+    if(moduloId == 0 && opcion == 'SEARCH'){
+      consulta = await this.moduloRepository.createQueryBuilder("modulo")
+      .where("modulo.modulo_padre_id IS NULL")
+      .andWhere("modulo.permiso  = :permiso", { permiso: permiso })
+      .getMany();
+
+      if(consulta.length == 0) throw new NotFoundException(
+        this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE') }
+      )
+    }
+    if(moduloId != 0 && opcion == 'SEARCH'){
+      consulta = await this.moduloRepository.createQueryBuilder("modulo")
+      .where("modulo.id = :idPadre", { idPadre: moduloId })
+      .getMany();
+
+      if(consulta.length == 0) throw new NotFoundException(
+        this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_PADRE_NO_EXISTENTE') }
+      )
+
+      consulta = await this.moduloRepository.createQueryBuilder("modulo")
+      .where("modulo.modulo_padre_id = :idPadre", { idPadre: moduloId })
+      .andWhere("modulo.permiso = :permiso", { permiso: permiso })
       .getMany();
 
       if(consulta.length == 0) throw new NotFoundException(
@@ -190,17 +222,17 @@ export class ModulosService {
   }
 
   async create(createModuleDto: CreateModuloDto) {
-    
-    let busquedaPermiso = await this.findPermiso(createModuleDto.modulo_padre_id, createModuleDto.nombre_permiso, 'CREATE')
-
     try {
+      await this.findPermiso(createModuleDto.modulo_padre_id, createModuleDto.permiso, 'CREATE')
 
       let model = {
         'modulo_padre_id': (createModuleDto.modulo_padre_id == 0) ? null : createModuleDto.modulo_padre_id,
-        'nombre_permiso': createModuleDto.nombre_permiso,
+        'nombre': createModuleDto.nombre,
+        'permiso': createModuleDto.permiso,
+        'descripcion': createModuleDto.descripcion,
       }
 
-      const crearModulo = await this.moduloRepository.save(model);
+      await this.moduloRepository.save(model);
 
       return {
         'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE'),
@@ -208,14 +240,17 @@ export class ModulosService {
         'status': 200,
       }
     } catch (error) {
-      console.log(error)
+      return {
+        'title': error.response.message,
+        'message': error.response.error,
+        'status': 404,
+      }
     }
-
   }
 
   async delete(query: any){
 
-    let idRegistro = await this.findPermiso(query.idModulo, query.nombre, 'DELETE')
+    let idRegistro = await this.findPermiso(query.idModulo, query.permiso, 'DELETE')
     const elimiarModulo = this.moduloRepository.delete(idRegistro[0].id);
     
     return {
