@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5688457f-9c22-40fb-9b1c-253ce2819217",
+		"_postman_id": "1e197694-2d49-4841-b9c9-8d41cac90a3c",
 		"name": "Core",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "7819792"
@@ -10,7 +10,165 @@
 			"name": "modules",
 			"item": [
 				{
-					"name": "getPermisosPorUsuario",
+					"name": "CrudPersimosGeneral",
+					"item": [
+						{
+							"name": "postModuloPermiso",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"modulo_padre_id\": 0,\r\n    \"nombre\": \"Modulos\",\r\n    \"permiso\": \"modulos\",\r\n    \"descripcion\": \"Habilita el modulo modulos\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/modulos/postModuloPermiso",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"modulos",
+										"postModuloPermiso"
+									]
+								},
+								"description": "Este enpoint servira para crear Modulos y permisos disponibles en la aplicacion.\n\nPara crear modulos el modulo_padre_id debe ser 0, si no lo tomara como un submodulo o permiso."
+							},
+							"response": []
+						},
+						{
+							"name": "deleteModuloPermiso",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/modulos/deleteModuloPermiso?idModulo=0&permiso=configuracion",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"modulos",
+										"deleteModuloPermiso"
+									],
+									"query": [
+										{
+											"key": "idModulo",
+											"value": "0"
+										},
+										{
+											"key": "permiso",
+											"value": "configuracion"
+										}
+									]
+								},
+								"description": "Este enpoint servira para eliminar Modulos y permisos disponibles en la aplicacion.\n\nPara eliminar modulos el modulo_padre_id debe ser 0, si no lo tomara como un submodulo o permiso."
+							},
+							"response": []
+						},
+						{
+							"name": "getModuloPermisoEspecificos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/modulos/getModuloPermisoExistente?idModulo=0&permiso=usuarios",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"modulos",
+										"getModuloPermisoExistente"
+									],
+									"query": [
+										{
+											"key": "idModulo",
+											"value": "0"
+										},
+										{
+											"key": "permiso",
+											"value": "usuarios"
+										}
+									]
+								},
+								"description": "Este enpoint servira para filtrar los modulos o permisos individualmente disponibles en la aplicacion"
+							},
+							"response": []
+						},
+						{
+							"name": "getModuloPermiso",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/modulos/getModuloPermisoExistente",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"modulos",
+										"getModuloPermisoExistente"
+									]
+								},
+								"description": "Este enpoint servira para listar modulos submodulos y permisos disponibles en la aplicacion"
+							},
+							"response": []
+						},
+						{
+							"name": "getPermisosSobrePadre",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/modulos/getPermisosSobrePadre/0?page=1&limit=10&field=id&order=asc",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"modulos",
+										"getPermisosSobrePadre",
+										"0"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "field",
+											"value": "id"
+										},
+										{
+											"key": "order",
+											"value": "asc"
+										}
+									]
+								},
+								"description": "Este enpoint servira para listar los hijos disponibles de la aplicacion, es importante el id luego de getPermisosSobrePadre"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "getPermisosAsignadosAUsuarios",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -31,180 +189,8 @@
 									"value": "1"
 								}
 							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "postModuloPermiso",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"modulo_padre_id\": 0,\r\n    \"nombre_permiso\": \"zzz\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
 						},
-						"url": {
-							"raw": "localhost:3000/api/modulos/postModuloPermiso",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"modulos",
-								"postModuloPermiso"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "deleteModuloPermiso",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/api/modulos/deleteModuloPermiso?idModulo=0&nombre=zzz",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"modulos",
-								"deleteModuloPermiso"
-							],
-							"query": [
-								{
-									"key": "idModulo",
-									"value": "0"
-								},
-								{
-									"key": "nombre",
-									"value": "zzz"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getPermisoExistente",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:3000/api/modulos/getPermisoExistente?idModulo=0&nombre=zzxz",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"modulos",
-								"getPermisoExistente"
-							],
-							"query": [
-								{
-									"key": "idModulo",
-									"value": "0"
-								},
-								{
-									"key": "nombre",
-									"value": "zzxz"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getPermisosSobrePadre",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/api/modulos/getPermisosSobrePadre/0?page=1&limit=10&field=id&order=asc",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"modulos",
-								"getPermisosSobrePadre",
-								"0"
-							],
-							"query": [
-								{
-									"key": "page",
-									"value": "1"
-								},
-								{
-									"key": "limit",
-									"value": "10"
-								},
-								{
-									"key": "field",
-									"value": "id"
-								},
-								{
-									"key": "order",
-									"value": "asc"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getPermisosSobreModulo",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/api/modulos/getPermisosSobreModulo/",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"modulos",
-								"getPermisosSobreModulo",
-								""
-							]
-						}
+						"description": "Este enpoint servira para armar un merge entre los permisos disponibles y los que tiene el usuario habilitado para posteriormente asignar o no"
 					},
 					"response": []
 				}

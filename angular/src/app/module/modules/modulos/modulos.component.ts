@@ -40,13 +40,17 @@ export class ModulosComponent implements OnInit{
   showcampoFiltro = true
   endPoint = 'modulos/getPermisosSobrePadre/0'
   columnas = [
-    {
-      title: 'ID',
-      data: 'id',
+     {
+      title: 'Permission name',
+      data: 'nombre',
     },
     {
-      title: 'First name',
-      data: 'nombre_permiso',
+      title: 'Permission',
+      data: 'permiso',
+    },
+    {
+      title: 'Description',
+      data: 'descripcion',
     }
   ]
   permisosAcciones = this.permisos

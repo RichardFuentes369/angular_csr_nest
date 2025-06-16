@@ -50,12 +50,16 @@ export class PermisosComponent implements OnInit{
   endPoint = `modulos/getPermisosSobrePadre/${localStorage.getItem('submodulo')}`
   columnas = [
     {
-      title: 'ID',
-      data: 'id',
+      title: 'Permission name',
+      data: 'nombre',
     },
     {
-      title: 'First name',
-      data: 'nombre_permiso',
+      title: 'Permission',
+      data: 'permiso',
+    },
+    {
+      title: 'Description',
+      data: 'descripcion',
     }
   ]
   permisosAcciones = this.permisos

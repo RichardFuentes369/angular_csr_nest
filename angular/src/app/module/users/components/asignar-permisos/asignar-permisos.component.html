@@ -50,14 +50,15 @@
           <br>
         } @else {
           <div class="card">
-            <div class="card-header pl-5">
+            <div class="card-header text-center">
               @if(modulos.asignado == "1"){
                 <input class="form-check-input" (click)="actualizarPermiso(modulos)" type="checkbox" checked>
               }@else{
                 <input class="form-check-input" (click)="actualizarPermiso(modulos)" type="checkbox">
               }
-              <a class="btn btn-link collapsed btn-block text-left p-0" (click)="toggleCollapse(modulos.mpm_permiso, modulos.mpm_toogle)" style="text-decoration: none">
-                {{modulos.mpm_permiso}}
+              <a class="btn btn-link collapsed text-left p-0" (click)="toggleCollapse(modulos.mpm_permiso, modulos.mpm_toogle)" style="text-decoration: none">
+                {{modulos.mpm_nombre}}
+                <i class="form-text fa fa-info-circle" style="cursor: pointer;" :title="{{modulos.mpm_descripcion}}"></i><br>
               </a>
             </div>
           </div>
@@ -85,3 +86,4 @@
   </div>
 
 </div>
+
