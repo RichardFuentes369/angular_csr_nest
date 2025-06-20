@@ -221,6 +221,21 @@ export class ModulosService {
     return consulta
   }
 
+  async getHasSubmodule(moduloId?: number){
+    
+    let consulta = []
+
+    consulta = await this.moduloRepository.createQueryBuilder("modulo")
+    .where("modulo.id  = :moduloId", { moduloId: moduloId })
+    .getMany();
+
+    if(consulta.length == 0) throw new NotFoundException(
+      this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE') }
+    )
+
+    return consulta
+  }
+
   async create(createModuleDto: CreateModuloDto) {
     try {
       await this.findPermiso(createModuleDto.modulo_padre_id, createModuleDto.permiso, 'CREATE')

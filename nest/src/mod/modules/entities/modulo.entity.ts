@@ -12,6 +12,9 @@ export class Modulo {
   @Column({ nullable: true })
   permiso: string;
 
+  @Column({ default: false })
+  hijos: boolean;
+
   @Column({ nullable: true })
   descripcion: string;
 

@@ -164,6 +164,66 @@
 								"description": "Este enpoint servira para listar los hijos disponibles de la aplicacion, es importante el id luego de getPermisosSobrePadre"
 							},
 							"response": []
+						},
+						{
+							"name": "getHasSubmodule",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/modulos/getHasSubmodule?idModulo=1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"modulos",
+										"getHasSubmodule"
+									],
+									"query": [
+										{
+											"key": "idModulo",
+											"value": "1"
+										}
+									]
+								},
+								"description": "Este enpoint servira para saber si tiene submodulos o no \"hijos\""
+							},
+							"response": []
+						},
+						{
+							"name": "getHasSubmodule",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/modulos/getHasSubmodule?idModulo=1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"modulos",
+										"getHasSubmodule"
+									],
+									"query": [
+										{
+											"key": "idModulo",
+											"value": "1"
+										}
+									]
+								},
+								"description": "Este enpoint servira para saber si tiene submodulos o no \"hijos\""
+							},
+							"response": []
 						}
 					]
 				},

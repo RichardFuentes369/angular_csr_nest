@@ -7,6 +7,7 @@ import { PermisosService } from '@service/globales/permisos/permisos.service';
 import Swal from 'sweetalert2'
 
 import { Permisos } from '@functions/System'
+import { ModulosService } from '../service/modulos.service';
 
 @Component({
   selector: 'app-modulos',
@@ -21,6 +22,7 @@ export class ModulosComponent implements OnInit{
     private router: Router,
     private userService :AuthService,
     private permisosService :PermisosService,
+    private modulosService :ModulosService,
     private translate: TranslateService,
     private route: ActivatedRoute
   ) { }
@@ -56,8 +58,9 @@ export class ModulosComponent implements OnInit{
   permisosAcciones = this.permisos
   // fin datos que envio al componente
 
-  verData (_id: string){
-    if(_id == '17'){
+  async verData (_id: string){
+    const hasChildren = await this.modulosService.getHasSubmodule(+_id)
+    if(hasChildren.data[0].hijos == false){
       localStorage.setItem('submodulo', _id)
       this.router.navigate([`/admin/menu/index-modulos/index-submodulos/index-permisos`]);
     }else{

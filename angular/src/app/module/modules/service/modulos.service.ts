@@ -9,6 +9,13 @@ export class ModulosService {
 
   constructor() { }
 
+  async getHasSubmodule(id: number){
+    let complemento = `modulos/getHasSubmodule?idModulo=${id}`
+    let urlCopleta = environment.apiUrl+complemento
+    const data = axios.get(urlCopleta)
+    return data
+  }  
+
   async listaPermisos(id: number){
     let complemento = `modulos/getPermisosPorUsuario?userId=${id}`
     let urlCopleta = environment.apiUrl+complemento
