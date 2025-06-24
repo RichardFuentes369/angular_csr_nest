@@ -62,8 +62,8 @@ export class ModulosComponent implements OnInit{
       data: 'descripcion',
     },
     {
-      title: 'SubModules',
-      data: 'hijos',
+      title: 'Submodules',
+      data: 'tiene_submodulos',
     }
   ]
   permisosAcciones = this.permisos
@@ -87,7 +87,7 @@ export class ModulosComponent implements OnInit{
 
   async verData (_id: string){
     const hasChildren = await this.modulosService.getHasSubmodule(+_id)
-    if(hasChildren.data[0].hijos == false){
+    if(hasChildren.data[0].tiene_submodulos == false){
       localStorage.setItem('submodulo', _id)
       this.router.navigate([`/admin/menu/index-modulos/index-permisos/`]);
     }else{

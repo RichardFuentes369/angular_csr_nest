@@ -1,4 +1,4 @@
-import { IsNumber, IsOptional, IsString } from "class-validator";
+import { IsBoolean, IsNumber, IsOptional, IsString } from "class-validator";
 
 export class CreateModuloDto {
 
@@ -9,7 +9,11 @@ export class CreateModuloDto {
   
   @IsString()
   // @Transform(({value}) => value.trim())
-  readonly nombre;
+  readonly nombre;  
+  
+  @IsBoolean()
+  // @Transform(({value}) => value.trim())
+  readonly tiene_submodulos;
 
   @IsString()
   // @Transform(({value}) => value.trim())

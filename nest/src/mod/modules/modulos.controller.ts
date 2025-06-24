@@ -25,10 +25,10 @@ export class ModulosController {
   findOne(@Query() query) {
     return this.modulosService.findPermiso(+query.idModulo, query.permiso, 'SEARCH');
   }
-  
+
   @ApiTags('permisos_modulos')
   @Get('getHasSubmodule')
-  findHijos(@Query() query) {
+  findSubmodules(@Query() query) {
     return this.modulosService.getHasSubmodule(+query.idModulo);
   }
 

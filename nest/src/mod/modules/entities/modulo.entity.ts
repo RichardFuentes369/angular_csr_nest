@@ -13,7 +13,7 @@ export class Modulo {
   permiso: string;
 
   @Column({ default: false })
-  hijos: boolean;
+  tiene_submodulos: boolean;
 
   @Column({ nullable: true })
   descripcion: string;

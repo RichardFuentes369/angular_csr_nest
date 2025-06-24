@@ -242,6 +242,7 @@ export class ModulosService {
 
       let model = {
         'modulo_padre_id': (createModuleDto.modulo_padre_id == 0) ? null : createModuleDto.modulo_padre_id,
+        'tiene_submodulos': createModuleDto.tiene_submodulos,
         'nombre': createModuleDto.nombre,
         'permiso': createModuleDto.permiso,
         'descripcion': createModuleDto.descripcion,
