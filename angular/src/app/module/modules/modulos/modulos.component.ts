@@ -118,26 +118,22 @@ export class ModulosComponent implements OnInit{
   }
   editarData (_id: string){
     // localStorage.setItem('profile', 'user')
-    // this.tamano = "xl"
-    // this.scrollable = false
-    // this.title = this.translate.instant('pages-usuarios.Title.EditUserFinalWord')
-    // this.save = false
-    // this.buttonSave = "Guardar"
-    // this.edit = true
-    // this.buttonEdit = "Editar"
-    // this.cancel = true
-    // this.buttonCancel = "Cancelar"
-    // this.componentePrecargado = "EditarUsuariosComponent"
+    this.tamano = "xl"
+    this.scrollable = false
+    this.title = this.translate.instant('pages-modulos.Title.EditModule')
+    this.save = false
+    this.buttonSave = "Guardar"
+    this.edit = true
+    this.buttonEdit = "Editar"
+    this.cancel = true
+    this.buttonCancel = "Cancelar"
+    this.componentePrecargado = "EditarModuloPermisoComponent"
 
-    // const idButton = document.getElementById('miBoton')
-    // if(idButton){
-    //   this.router.navigate([], {
-    //     queryParams: { rol: 'admin', id: _id },
-    //   });
-    //   idButton.setAttribute('componente', this.componentePrecargado);
-    //   idButton.click()
-    // }
-    console.log("editarData "+_id)
+    const idButton = document.getElementById('miBoton')
+    if(idButton){
+      idButton.setAttribute('componente', this.componentePrecargado);
+      idButton.click()
+    }
   }
 
   @ViewChild(TablecrudComponent)

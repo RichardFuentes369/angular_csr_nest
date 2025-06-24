@@ -114,25 +114,23 @@ export class SubmodulosComponent implements OnInit{
   }
   editarData (_id: string){
     // localStorage.setItem('profile', 'user')
-    // this.tamano = "xl"
-    // this.scrollable = false
-    // this.title = this.translate.instant('pages-usuarios.Title.EditUserFinalWord')
-    // this.save = false
-    // this.buttonSave = "Guardar"
-    // this.edit = true
-    // this.buttonEdit = "Editar"
-    // this.cancel = true
-    // this.buttonCancel = "Cancelar"
-    // this.componentePrecargado = "EditarUsuariosComponent"
+    this.tamano = "xl"
+    this.scrollable = false
+    this.title = this.translate.instant('pages-modulos.Title.EditSubModule')
+    this.save = true
+    this.buttonSave = "Guardar"
+    this.edit = false
+    this.buttonEdit = "Editar"
+    this.cancel = true
+    this.buttonCancel = "Cancelar"
+    this.cierreModal = "true"
+    this.componentePrecargado = "EditarModuloPermisoComponent"
 
-    // const idButton = document.getElementById('miBoton')
-    // if(idButton){
-    //   this.router.navigate([], {
-    //     queryParams: { rol: 'admin', id: _id },
-    //   });
-    //   idButton.setAttribute('componente', this.componentePrecargado);
-    //   idButton.click()
-    // }
+    const idButton = document.getElementById('miBoton')
+    if(idButton){
+      idButton.setAttribute('componente', this.componentePrecargado);
+      idButton.click()
+    }
     console.log("editarData "+_id)
   }
 

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -15,17 +15,32 @@ import { ocultarModalOscura } from '@functions/System'
   templateUrl: './crear-modulo-permiso.component.html',
   styleUrl: './crear-modulo-permiso.component.scss'
 })
-export class CrearModuloPermisoComponent {
+export class CrearModuloPermisoComponent implements OnInit{
 
   constructor(
     private router: Router,
     private translate: TranslateService
   ){}
 
+  mostrarCheck = false
+
   model = {
-    namePermission: '',
-    nickPermission: '',
-    descriptionPermission: ''
+    nombre: '',
+    permiso: '',
+    descripcion: '',
+    tiene_submodulos: false
+  }
+
+  async ngOnInit() {
+    if(localStorage.getItem('modulo') && localStorage.getItem('submodulo')){
+      this.mostrarCheck = false
+    }
+    if(localStorage.getItem('modulo') && !localStorage.getItem('submodulo')){
+      this.mostrarCheck = false
+    }
+    if(!localStorage.getItem('modulo') && !localStorage.getItem('submodulo')){
+      this.mostrarCheck = true
+    }
   }
 
   crearModuloPermiso(){

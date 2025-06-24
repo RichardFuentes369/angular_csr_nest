@@ -4,8 +4,14 @@
     "Submodules": "Submodulos",
     "Permissions": "Permissions",
     "CreateModule": "Create module",
+    "EditModule": "Edit module",
+    "SeeModule": "See module",
     "CreateSubModule": "Crear submodulo",
-    "CreatePermission": "Create permission"
+    "EditSubModule": "Edit submodule",
+    "SeeSubModule": "See submodule",
+    "CreatePermission": "Create permission",
+    "EditPermission": "Edit permission",
+    "SeePermission": "See permission"
   },
   "Label": {
     "namePermission": "Permission name",
