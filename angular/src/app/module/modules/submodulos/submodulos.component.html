@@ -9,14 +9,27 @@
       [permisosAcciones] = permisos
   
       (verItem) = "verData($event)"
+      (crearNuevoItem) = "crearData($event)"
+      (editarItem) = "editarData($event)"
+      (eliminarItem) = "eliminarData($event)"
     >
     </app-globales-tablecrud>
   </div>
+
+  <app-globales-modal-boostrap
+    [tamano]="tamano"
+    [scrollable]="scrollable"
+    [title]="title"
+    [save]="save"
+    [buttonSave]="buttonSave"
+    [edit]="edit"
+    [buttonEdit]="buttonEdit"
+    [cancel]="cancel"
+    [buttonCancel]="buttonCancel"
+    [componentePrecargado]="componentePrecargado"
+    [cierreModal]="cierreModal"
+    (actualizarTabla)="refrescarTabla()"
+  >
+  </app-globales-modal-boostrap>
+
 </div>
-
-
-<!--
-(crearNuevoItem) = "crearData($event)"
-(editarItem) = "editarData($event)"
-(eliminarItem) = "eliminarData($event)"
--->

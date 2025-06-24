@@ -2,6 +2,27 @@
   "Title": {
     "Module": "Modules",
     "Submodules": "Submodulos",
-    "Permissions": "Permissions"
+    "Permissions": "Permissions",
+    "CreateModule": "Create module",
+    "CreateSubModule": "Crear submodulo",
+    "CreatePermission": "Create permission"
+  },
+  "Label": {
+    "namePermission": "Permission name",
+    "nickPermission": "Permission",
+    "descriptionPermission": "Description"
+  },
+  "Placeholder": {
+    "namePermission": "",
+    "nickPermission": "",
+    "descriptionPermission": ""
+  },
+  "Error": {
+    "namePermission": "",
+    "nickPermission": "",
+    "descriptionPermission": ""
+  },
+  "Buttons": {
+    "createModuloPermiso": "Create module/permission"
   }
 }

@@ -8,11 +8,18 @@ import Swal from 'sweetalert2'
 
 import { Permisos } from '@functions/System'
 import { ModulosService } from '../service/modulos.service';
+import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
+import { LoadingComponent } from '@component/globales/loading/loading.component';
 
 @Component({
   selector: 'app-modulos',
   standalone: true,
-  imports: [TranslateModule, TablecrudComponent],
+  imports: [
+    TranslateModule, 
+    TablecrudComponent,
+    ModalBoostrapComponent,
+    LoadingComponent
+  ],
   templateUrl: './modulos.component.html',
   styleUrl: './modulos.component.scss'
 })
@@ -53,10 +60,30 @@ export class ModulosComponent implements OnInit{
     {
       title: 'Description',
       data: 'descripcion',
+    },
+    {
+      title: 'SubModules',
+      data: 'hijos',
     }
   ]
   permisosAcciones = this.permisos
   // fin datos que envio al componente
+
+  tamano = ""
+  scrollable = false
+  title = ""
+  save = true
+  buttonSave = "Guardar"
+  edit = true
+  buttonEdit = "Editar"
+  cancel = true
+  buttonCancel = "Cancelar"
+  cierreModal = "true"
+  componentePrecargado = ""
+  
+  search = true
+  buttonSearch = "Buscar"
+  iconFilter="fa fa-filter"
 
   async verData (_id: string){
     const hasChildren = await this.modulosService.getHasSubmodule(+_id)
@@ -68,8 +95,49 @@ export class ModulosComponent implements OnInit{
       this.router.navigate([`/admin/menu/index-modulos/index-submodulos/`]);
     }
   }
+  
   crearData (_id: string){
-    console.log("crearData "+_id)
+    // localStorage.setItem('profile', 'user')
+    this.tamano = "xl"
+    this.scrollable = false
+    this.title = this.translate.instant('pages-modulos.Title.CreateModule')
+    this.save = true
+    this.buttonSave = "Guardar"
+    this.edit = false
+    this.buttonEdit = "Editar"
+    this.cancel = true
+    this.buttonCancel = "Cancelar"
+    this.cierreModal = "true"
+    this.componentePrecargado = "CrearModuloPermisoComponent"
+
+    const idButton = document.getElementById('miBoton')
+    if(idButton){
+      idButton.setAttribute('componente', this.componentePrecargado);
+      idButton.click()
+    }
+  }
+  editarData (_id: string){
+    // localStorage.setItem('profile', 'user')
+    // this.tamano = "xl"
+    // this.scrollable = false
+    // this.title = this.translate.instant('pages-usuarios.Title.EditUserFinalWord')
+    // this.save = false
+    // this.buttonSave = "Guardar"
+    // this.edit = true
+    // this.buttonEdit = "Editar"
+    // this.cancel = true
+    // this.buttonCancel = "Cancelar"
+    // this.componentePrecargado = "EditarUsuariosComponent"
+
+    // const idButton = document.getElementById('miBoton')
+    // if(idButton){
+    //   this.router.navigate([], {
+    //     queryParams: { rol: 'admin', id: _id },
+    //   });
+    //   idButton.setAttribute('componente', this.componentePrecargado);
+    //   idButton.click()
+    // }
+    console.log("editarData "+_id)
   }
 
   @ViewChild(TablecrudComponent)
@@ -99,5 +167,12 @@ export class ModulosComponent implements OnInit{
       });
     });
   }
+
+  async refrescarTabla (){
+    setTimeout(async () => {
+      await this.someInput.reload()
+    }, 100);
+  }
+
 
 }
