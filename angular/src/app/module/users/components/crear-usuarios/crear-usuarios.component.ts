@@ -62,25 +62,24 @@ export class CrearUsuariosComponent {
       endPoint = this.finalService
     }
 
-    await endPoint.createUser(this.model)
-    .then(response=>{
+    const response = await endPoint.createUser(this.model)
+    if(response.data.status == 404){
       ocultarModalOscura()
-      this.translate.get('pages-usuarios.Swal.TitleAreYouSure').subscribe((translatedTitle: string) => {
-        Swal.fire({
-          title: this.translate.instant('pages-usuarios.Swal.TitleCreate'),
-          text: this.translate.instant('pages-usuarios.Swal.TitleRegisterCreate'),
-          icon: "success"
-        });
-      });
-    }).catch(err =>{
-      console.log(err)
       Swal.fire({
-        title: err.response.data.message,
-        text: err.response.data.error,
+        title: response.data.message,
+        text: response.data.error,
         icon: 'error',
         confirmButtonText: 'Cool'
       })
-    })
+    }
+    if(response.data.status == 200){
+      ocultarModalOscura()
+      Swal.fire({
+        title: this.translate.instant('pages-usuarios.Swal.TitleCreate'),
+        text: this.translate.instant('pages-usuarios.Swal.TitleRegisterCreate'),
+        icon: "success"
+      });
+    }
 
   }
 

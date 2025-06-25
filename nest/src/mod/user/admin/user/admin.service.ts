@@ -5,23 +5,39 @@ import { UpdateAdminDto } from './dto/update-admin.dto';
 import { Like, Repository } from 'typeorm';
 import { Admin } from './entities/admin.entity';
 import { FilterUserDto } from '@module/user/dto/filter-user.dto';
+import { I18nService } from 'nestjs-i18n';
 
 @Injectable()
 export class AdminService {
   constructor(
     @Inject('ADMIN_REPOSITORY')
     private adminRepository: Repository<Admin>,
+    private i18n: I18nService
   ) {}
 
   async create(createAdminDto: CreateAdminDto) {
+    try {
+      const encontrarCorreo = await this.findUsernameEmail(createAdminDto.email)
+  
+      if(encontrarCorreo) throw new NotFoundException(`
+        Este correo ${createAdminDto.email}, ya esta registrado en nuestra base de datos
+      `)
+  
+      this.adminRepository.save(createAdminDto);
+      return {
+        'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE'),
+        'message': this.i18n.t('modulo.MSJ_PERMISO_CREADO_OK'),
+        'status': 200,
+      }
 
-    const encontrarCorreo = await this.findUsernameEmail(createAdminDto.email)
-
-    if(encontrarCorreo) throw new NotFoundException(`
-      Este correo ${createAdminDto.email}, ya esta registrado en nuestra base de datos
-    `)
-
-    return this.adminRepository.save(createAdminDto);
+    } catch (error) {
+      return {
+        'title': error.response.error,
+        'text': error.response.error,
+        'message': error.response.message,
+        'status': 404,
+      }
+    }
   }
   
   listarPropiedadesTabla(T) {

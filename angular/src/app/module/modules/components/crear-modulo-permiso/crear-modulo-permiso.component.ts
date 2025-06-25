@@ -7,6 +7,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
 import { ocultarModalOscura } from '@functions/System'
+import { ModulosService } from '@module/modules/service/modulos.service';
 
 @Component({
   selector: 'app-crear-modulo-permiso',
@@ -19,12 +20,14 @@ export class CrearModuloPermisoComponent implements OnInit{
 
   constructor(
     private router: Router,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private modulosService :ModulosService,
   ){}
 
   mostrarCheck = false
 
   model = {
+    modulo_padre_id: 0,
     nombre: '',
     permiso: '',
     descripcion: '',
@@ -32,19 +35,45 @@ export class CrearModuloPermisoComponent implements OnInit{
   }
 
   async ngOnInit() {
-    if(localStorage.getItem('modulo') && localStorage.getItem('submodulo')){
+    if(localStorage.getItem('modulo') && !localStorage.getItem('submodulo')){
+      this.model.modulo_padre_id = parseInt(localStorage.getItem('modulo') ?? '0', 10)
       this.mostrarCheck = false
     }
-    if(localStorage.getItem('modulo') && !localStorage.getItem('submodulo')){
+    if(!localStorage.getItem('modulo') && localStorage.getItem('submodulo')){
+      this.model.modulo_padre_id = parseInt(localStorage.getItem('submodulo') ?? '0', 10)
+      this.mostrarCheck = false
+    }
+    if(localStorage.getItem('modulo') && localStorage.getItem('submodulo')){
+      this.model.modulo_padre_id = parseInt(localStorage.getItem('submodulo') ?? '0', 10)
       this.mostrarCheck = false
     }
     if(!localStorage.getItem('modulo') && !localStorage.getItem('submodulo')){
+      this.model.modulo_padre_id = 0
       this.mostrarCheck = true
     }
   }
 
-  crearModuloPermiso(){
-
+  async crearModuloPermiso(){
+    const response = await this.modulosService.crearPermiso(this.model)
+    if(response.data.status == 404){
+      ocultarModalOscura()
+      Swal.fire({
+        title: response.data.message,
+        text: response.data.error,
+        icon: 'error',
+        confirmButtonText: 'Cool'
+      })
+    }
+    if(response.data.status == 200){
+      ocultarModalOscura()
+      this.translate.get('pages-modulos.Swal.TitleAreYouSure').subscribe((translatedTitle: string) => {
+        Swal.fire({
+          title: this.translate.instant('pages-modulos.Swal.TitleCreate'),
+          text: this.translate.instant('pages-modulos.Swal.TitleRegisterCreate'),
+          icon: "success"
+        });
+      });
+    }
   }
 
 }

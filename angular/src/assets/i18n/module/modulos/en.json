@@ -13,10 +13,26 @@
     "EditPermission": "Edit permission",
     "SeePermission": "See permission"
   },
+  "Swal": {
+    "TitleAreYouSure": "Are you sure?",
+    "TitleWarningRevert": "You will not be able to revert this change!",
+    "TitleCreate": "Created",
+    "TitleUpdate": "Updated",
+    "TitleCancel": "Cancel",
+    "TitleDelete": "Delete!",
+    "TitleRegisterUpdated": "Registration updated",
+    "TitleRegisterCreate": "Registration created",
+    "TitleRegisterDeleted": "Registration deleted",
+    "TitleRegisterInactived": "Registration disabled",
+    "TitleRegisterActived": "Registration enabled",
+    "TitleActived": "Activate",
+    "TitleInactived": "Inactivate"
+  },
   "Label": {
     "namePermission": "Permission name",
     "nickPermission": "Permission",
-    "descriptionPermission": "Description"
+    "descriptionPermission": "Description",
+    "hasModules": "Will have modules"
   },
   "Placeholder": {
     "namePermission": "",

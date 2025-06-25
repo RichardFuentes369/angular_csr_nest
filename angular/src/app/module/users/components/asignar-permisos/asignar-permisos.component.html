@@ -9,9 +9,9 @@
           <div class="card">
             <div class="card-header text-center">
                 @if(modulos.asignado == "1"){
-                  <input class="form-check-input" (click)="actualizarPermiso(modulos)" type="checkbox" checked>
+                  <input class="form-check-input" (click)="asignarPermiso(modulos)" type="checkbox" checked>
                 }@else{
-                  <input class="form-check-input" (click)="actualizarPermiso(modulos)" type="checkbox">
+                  <input class="form-check-input" (click)="asignarPermiso(modulos)" type="checkbox">
                 }
                 <a class="btn btn-link collapsed text-left p-0" (click)="toggleCollapse(modulos.mpm_permiso, modulos.mpm_toogle)" style="text-decoration: none">
                   {{modulos.mpm_nombre}} 
@@ -25,9 +25,9 @@
                 <div class="card">
                   <div class="card-header text-center">
                     @if(subModulos.asignado == "1"){
-                      <input class="form-check-input" type="checkbox" (click)="actualizarPermiso(subModulos)" checked>
+                      <input class="form-check-input" type="checkbox" (click)="asignarPermiso(subModulos)" checked>
                     }@else{
-                      <input class="form-check-input" type="checkbox" (click)="actualizarPermiso(subModulos)">
+                      <input class="form-check-input" type="checkbox" (click)="asignarPermiso(subModulos)">
                     }
                     {{subModulos.mpm_nombre}}
                     <i class="form-text fa fa-info-circle" style="cursor: pointer;" :title="{{subModulos.mpm_descripcion}}"></i><br>
@@ -35,9 +35,9 @@
                   <div class="card-body pl-5">
                     @for (acciones of subModulos.children; track $index) {
                       @if(acciones.asignado == "1"){
-                        <input class="form-check-input" type="checkbox" (click)="actualizarPermiso(acciones)" checked>
+                        <input class="form-check-input" type="checkbox" (click)="asignarPermiso(acciones)" checked>
                       }@else{
-                        <input class="form-check-input" type="checkbox" (click)="actualizarPermiso(acciones)">
+                        <input class="form-check-input" type="checkbox" (click)="asignarPermiso(acciones)">
                       }
                       {{acciones.mpm_nombre}}  
                       <i class="form-text fa fa-info-circle" style="cursor: pointer;" :title="{{acciones.mpm_descripcion}}"></i><br>
@@ -52,9 +52,9 @@
           <div class="card">
             <div class="card-header text-center">
               @if(modulos.asignado == "1"){
-                <input class="form-check-input" (click)="actualizarPermiso(modulos)" type="checkbox" checked>
+                <input class="form-check-input" (click)="asignarPermiso(modulos)" type="checkbox" checked>
               }@else{
-                <input class="form-check-input" (click)="actualizarPermiso(modulos)" type="checkbox">
+                <input class="form-check-input" (click)="asignarPermiso(modulos)" type="checkbox">
               }
               <a class="btn btn-link collapsed text-left p-0" (click)="toggleCollapse(modulos.mpm_permiso, modulos.mpm_toogle)" style="text-decoration: none">
                 {{modulos.mpm_nombre}}
@@ -68,9 +68,9 @@
                 <div class="card-body pl-5">
                   @for (subModulos of modulos.children; track $index) {
                     @if(subModulos.asignado == "1"){
-                      <input class="form-check-input" (click)="actualizarPermiso(subModulos)" type="checkbox" checked>
+                      <input class="form-check-input" (click)="asignarPermiso(subModulos)" type="checkbox" checked>
                     }@else{
-                      <input class="form-check-input" (click)="actualizarPermiso(subModulos)" type="checkbox">
+                      <input class="form-check-input" (click)="asignarPermiso(subModulos)" type="checkbox">
                     }
                     {{subModulos.mpm_nombre}}
                     <i class="form-text fa fa-info-circle" :title="{{subModulos.mpm_descripcion}}"></i><br>

@@ -45,7 +45,7 @@ export class AsignarPermisosComponent implements OnInit{
     this.permisos = modulo.data
   }
 
-  async actualizarPermiso(item: any){
+  async asignarPermiso(item: any){
     let userId = this.route.snapshot.queryParams['id']
 
     let opcion = ''
@@ -57,7 +57,7 @@ export class AsignarPermisosComponent implements OnInit{
       opcion = '1'
     }
 
-    await this.modulosService.actualizarPermiso(item.mpm_id, item.mpm_modulo_padre_id, opcion, userId)
+    await this.modulosService.asignarPermiso(item.mpm_id, item.mpm_modulo_padre_id, opcion, userId)
     .then(response=>{
       swalert(response.data.title, response.data.message, 'success')
     }).catch(err =>{

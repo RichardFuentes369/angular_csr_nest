@@ -6,21 +6,38 @@ import { Like, Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { PaginationDto } from '@global/dto/pagination.dto';
 import { FilterUserDto } from '@module/user/dto/filter-user.dto';
+import { I18nService } from 'nestjs-i18n';
 
 @Injectable()
 export class UserService {
   constructor(
     @Inject('USER_REPOSITORY')
     private userRepository: Repository<User>,
+    private i18n: I18nService
   ) {}
 
-  async create(createUserDto: CreateUserDto) {
-    const encontrarCorreo = await this.findUsernameEmail(createUserDto.email)
+ async create(createUserDto: CreateUserDto) {
+    try{
+      const encontrarCorreo = await this.findUsernameEmail(createUserDto.email)
+  
+      if(encontrarCorreo) throw new NotFoundException(`
+        Este correo ${createUserDto.email}, ya esta registrado en nuestra base de datos
+      `)
+      await this.userRepository.save(createUserDto);
 
-    if(encontrarCorreo) throw new NotFoundException(`
-      Este correo ${createUserDto.email}, ya esta registrado en nuestra base de datos
-    `)
-    return this.userRepository.save(createUserDto);
+      return {
+        'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE'),
+        'message': this.i18n.t('modulo.MSJ_PERMISO_CREADO_OK'),
+        'status': 200,
+      }
+    } catch (error) {
+      return {
+        'title': error.response.error,
+        'text': error.response.error,
+        'message': error.response.message,
+        'status': 404,
+      }
+    }
   }
   
   listarPropiedadesTabla(T) {

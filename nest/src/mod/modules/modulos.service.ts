@@ -238,6 +238,10 @@ export class ModulosService {
 
   async create(createModuleDto: CreateModuloDto) {
     try {
+      if(!createModuleDto.nombre) throw new NotFoundException(this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE') })
+      if(!createModuleDto.descripcion) throw new NotFoundException(this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE') })
+      if(!createModuleDto.permiso) throw new NotFoundException(this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE') })
+      
       await this.findPermiso(createModuleDto.modulo_padre_id, createModuleDto.permiso, 'CREATE')
 
       let model = {

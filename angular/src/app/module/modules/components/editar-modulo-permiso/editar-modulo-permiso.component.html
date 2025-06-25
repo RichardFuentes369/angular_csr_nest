@@ -12,7 +12,7 @@
         <label for="exampleInputEmail1">
           {{ 'pages-modulos.Label.nickPermission' | translate}}
         </label>
-        <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.permiso" aria-describedby="emailHelp" placeholder="{{ 'pages-modulos.Placeholder.nickPermission' | translate}}">
+        <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.permiso" aria-describedby="emailHelp" placeholder="{{ 'pages-modulos.Placeholder.nickPermission' | translate}}" readonly>
         <small id="emailHelp" class="form-text text-muted">{{ 'pages-modulos.Error.nickPermission' | translate}}</small>
       </div>
       <div class="col-sm-12 form-group">
@@ -25,7 +25,7 @@
       @if(mostrarCheck){
         <div class="col-sm-12 form-group">
           <label for="exampleInputEmail1">
-            {{ 'pages-modulos.Label.descriptionPermission' | translate}}
+            {{ 'pages-modulos.Label.hasModules' | translate}}
           </label>
           <input type="checkbox" [(ngModel)]="model.tiene_submodulos">
         </div>
