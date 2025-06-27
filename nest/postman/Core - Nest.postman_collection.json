@@ -19,7 +19,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"modulo_padre_id\": 0,\r\n    \"nombre\": \"Modulos\",\r\n    \"permiso\": \"modulos\",\r\n    \"descripcion\": \"Habilita el modulo modulos\"\r\n}",
+									"raw": "{\r\n    \"modulo_padre_id\": 0,\r\n    \"tiene_submodulos\": false,\r\n    \"nombre\": \"Modulos\",\r\n    \"permiso\": \"modulos\",\r\n    \"descripcion\": \"Habilita el modulo modulos\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -48,7 +48,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "localhost:3000/api/modulos/deleteModuloPermiso?idModulo=0&permiso=configuracion",
+									"raw": "localhost:3000/api/modulos/deleteModuloPermiso?idPermiso=0",
 									"host": [
 										"localhost"
 									],
@@ -60,12 +60,8 @@
 									],
 									"query": [
 										{
-											"key": "idModulo",
+											"key": "idPermiso",
 											"value": "0"
-										},
-										{
-											"key": "permiso",
-											"value": "configuracion"
 										}
 									]
 								},
@@ -196,32 +192,10 @@
 							"response": []
 						},
 						{
-							"name": "getHasSubmodule",
+							"name": "editModuloPermiso",
 							"request": {
-								"auth": {
-									"type": "noauth"
-								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "localhost:3000/api/modulos/getHasSubmodule?idModulo=1",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"api",
-										"modulos",
-										"getHasSubmodule"
-									],
-									"query": [
-										{
-											"key": "idModulo",
-											"value": "1"
-										}
-									]
-								},
-								"description": "Este enpoint servira para saber si tiene submodulos o no \"hijos\""
+								"method": "PUT",
+								"header": []
 							},
 							"response": []
 						}

@@ -268,9 +268,9 @@ export class ModulosService {
     }
   }
 
-  async delete(query: any){
+  async update(query: any){
 
-    let idRegistro = await this.findPermiso(query.idModulo, query.permiso, 'DELETE')
+    let idRegistro = await this.findPermiso(query.idModulo, query.permiso, 'SEARCH')
     const elimiarModulo = this.moduloRepository.delete(idRegistro[0].id);
     
     return {
@@ -279,6 +279,24 @@ export class ModulosService {
       'status': 200,
     }
     
+  }
+
+  async remove(idPermiso: number){
+    try {
+      const elimiarModulo = await this.moduloRepository.delete(+idPermiso);
+
+      return {
+        'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE'),
+        'message': this.i18n.t('modulo.MSN_PERMISO_REMOVIDO_OK'),
+        'status': 200,
+      }
+    } catch (error) {
+      return {
+        'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE'),
+        'message': this.i18n.t('modulo.MSJ_ERROR_PERMISO_TIENE_PERMISOS_HIJOS'),
+        'status': 404,
+      }
+    }
   }
 
   async findPaginada(padreId:number, paginationDto: PaginationDto){

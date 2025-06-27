@@ -139,24 +139,31 @@ export class ModulosComponent implements OnInit{
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
   eliminarData (_id: string){
-    console.log("eliminarData "+_id)
-    this.translate.get('pages-usuarios.Swal.TitleAreYouSure').subscribe((translatedTitle: string) => {
+    this.translate.get('pages-modulos.Swal.TitleAreYouSure').subscribe((translatedTitle: string) => {
       Swal.fire({
         title: translatedTitle,
-        text: this.translate.instant('pages-usuarios.Swal.TitleWarnigRevert'),
+        text: this.translate.instant('pages-modulos.Swal.TitleWarnigRevert'),
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: this.translate.instant('pages-usuarios.Swal.TitleDelete'),
-        cancelButtonText: this.translate.instant('pages-usuarios.Swal.TitleCancel')
+        confirmButtonText: this.translate.instant('pages-modulos.Swal.TitleDelete'),
+        cancelButtonText: this.translate.instant('pages-modulos.Swal.TitleCancel')
       }).then(async (result) => {
         if (result.isConfirmed) {
-            if (result.isConfirmed) {
-              // await this.principalService.deleteUser(_id)
-              await this.someInput.reload()
+            let response = await this.modulosService.eliminarPermiso(_id)
+            await this.someInput.reload()
+
+            if(response.data.status == 200){
               Swal.fire({
-                title: this.translate.instant('pages-usuarios.Swal.TitleDelete'),
-                text: this.translate.instant('pages-usuarios.Swal.TitleRegisterDeleted'),
+                title: this.translate.instant('pages-modulos.Swal.TitleDelete'),
+                text: this.translate.instant('pages-modulos.Swal.TitleRegisterDeleted'),
                 icon: "success"
+              });
+            }
+            if(response.data.status == 404){
+              Swal.fire({
+                title: this.translate.instant('pages-modulos.Swal.TitleDelete'),
+                text: response.data.message,
+                icon: "error"
               });
             }
         }

@@ -29,6 +29,7 @@ export class PermisosComponent implements OnInit{
     private route: ActivatedRoute,
     private userService :AuthService,
     private permisosService :PermisosService,
+    private modulosService :ModulosService,
     private translate: TranslateService,
     private module: ModulosService,
   ) { }
@@ -48,7 +49,7 @@ export class PermisosComponent implements OnInit{
     const modulo = await this.permisosService.permisos(userData.data.id,'modulos')
 
     for (const permiso of modulo.data) {
-      if(permiso.permiso_nombre_permiso != 'ver'){
+      if(permiso.permiso_permiso != 'ver'){
         this.permisos.push(permiso)
       }
     }
@@ -90,28 +91,6 @@ export class PermisosComponent implements OnInit{
   search = true
   buttonSearch = "Buscar"
   iconFilter="fa fa-filter"
-
-  verData (_id: string){
-    // localStorage.setItem('profile', 'user')
-    this.tamano = "xl"
-    this.scrollable = false
-    this.title = this.translate.instant('pages-modulos.Title.SeePermission')
-    this.save = true
-    this.buttonSave = "Guardar"
-    this.edit = false
-    this.buttonEdit = "Editar"
-    this.cancel = true
-    this.buttonCancel = "Cancelar"
-    this.cierreModal = "true"
-    this.componentePrecargado = "VerModuloPermisoComponent"
-
-    const idButton = document.getElementById('miBoton')
-    if(idButton){
-      idButton.setAttribute('componente', this.componentePrecargado);
-      idButton.click()
-    }
-    console.log("editarData "+_id)
-  }
 
   crearData (_id: string){
     // localStorage.setItem('profile', 'user')
@@ -160,24 +139,31 @@ export class PermisosComponent implements OnInit{
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
   eliminarData (_id: string){
-    console.log("eliminarData "+_id)
-    this.translate.get('pages-usuarios.Swal.TitleAreYouSure').subscribe((translatedTitle: string) => {
+   this.translate.get('pages-modulos.Swal.TitleAreYouSure').subscribe((translatedTitle: string) => {
       Swal.fire({
         title: translatedTitle,
-        text: this.translate.instant('pages-usuarios.Swal.TitleWarnigRevert'),
+        text: this.translate.instant('pages-modulos.Swal.TitleWarnigRevert'),
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: this.translate.instant('pages-usuarios.Swal.TitleDelete'),
-        cancelButtonText: this.translate.instant('pages-usuarios.Swal.TitleCancel')
+        confirmButtonText: this.translate.instant('pages-modulos.Swal.TitleDelete'),
+        cancelButtonText: this.translate.instant('pages-modulos.Swal.TitleCancel')
       }).then(async (result) => {
         if (result.isConfirmed) {
-            if (result.isConfirmed) {
-              // await this.principalService.deleteUser(_id)
-              await this.someInput.reload()
+            let response = await this.modulosService.eliminarPermiso(_id)
+            await this.someInput.reload()
+
+            if(response.data.status == 200){
               Swal.fire({
-                title: this.translate.instant('pages-usuarios.Swal.TitleDelete'),
-                text: this.translate.instant('pages-usuarios.Swal.TitleRegisterDeleted'),
+                title: this.translate.instant('pages-modulos.Swal.TitleDelete'),
+                text: this.translate.instant('pages-modulos.Swal.TitleRegisterDeleted'),
                 icon: "success"
+              });
+            }
+            if(response.data.status == 404){
+              Swal.fire({
+                title: this.translate.instant('pages-modulos.Swal.TitleDelete'),
+                text: response.data.message,
+                icon: "error"
               });
             }
         }

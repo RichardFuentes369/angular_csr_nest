@@ -54,4 +54,15 @@ export class ModulosService {
     })
   }
 
+  async eliminarPermiso(id: any){
+
+    let complemento = `modulos/deleteModuloPermiso`
+    let urlCopleta = environment.apiUrl+complemento+'?idPermiso='+id
+
+    return await axios.request({
+      method: 'delete',
+      url: urlCopleta,
+    })
+  }
+
 }

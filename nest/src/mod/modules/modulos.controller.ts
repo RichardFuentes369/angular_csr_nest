@@ -38,9 +38,16 @@ export class ModulosController {
     return this.modulosService.create(createModuloDto);
   }
 
+
+  @ApiTags('permisos_modulos')
+  @Patch('updateModuloPermiso')
+  update(@Query() queryParams) {
+    return this.modulosService.update(queryParams);
+  }
+
   @ApiTags('permisos_modulos')
   @Delete('deleteModuloPermiso')
-  delete(@Query() queryParams) {
-    return this.modulosService.delete(queryParams);
+  remove(@Query('idPermiso') idPermiso: string) {
+    return this.modulosService.remove(+idPermiso);
   }
 }
