@@ -70,6 +70,16 @@ export class FinalesComponent implements OnInit{
     {
       title: 'Status',
       data: 'isActive',
+      render: function (data: any, type: any, row: any) {
+        if (type === 'display') {
+          if (data === true) {
+            return 'Active'
+          } else {
+            return 'Inactive'
+          }
+        }
+        return data;
+      }
     }
   ]
   permisosAcciones = this.permisos

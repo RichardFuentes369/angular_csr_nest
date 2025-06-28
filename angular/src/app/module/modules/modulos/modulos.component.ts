@@ -64,6 +64,16 @@ export class ModulosComponent implements OnInit{
     {
       title: 'Submodules',
       data: 'tiene_submodulos',
+      render: function (data: any, type: any, row: any) {
+        if (type === 'display') {
+          if (data === true) {
+            return 'Yes'
+          } else {
+            return 'No'
+          }
+        }
+        return data;
+      }
     }
   ]
   permisosAcciones = this.permisos
