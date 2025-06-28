@@ -5,14 +5,62 @@ import { IsNull, Repository } from 'typeorm';
 import { Modulo } from './entities/modulo.entity';
 import { PaginationDto } from '@global/dto/pagination.dto';
 import { I18nService } from 'nestjs-i18n';
+import { Asignacion } from '@module/user/admin/permission/asignacion/entities/asignacion.entity';
 
 @Injectable()
 export class ModulosService {
   constructor(
     @Inject('PERMISO_MODULO_REPOSITORY')
     private moduloRepository: Repository<Modulo>,
+    @Inject('PERMISO_ASIGNACION_REPOSITORY')
+    private asignacionRepository: Repository<Asignacion>,
     private i18n: I18nService
   ) {}
+
+    async remove(idPermiso: number){
+    try {
+      const selectPermisoModulo = await this.moduloRepository.find({
+        where: {
+          id: idPermiso
+        }
+      });
+
+      const nombrePermiso = await selectPermisoModulo[0].nombre
+      const permiso = await selectPermisoModulo[0].permiso
+      const padre_id = await selectPermisoModulo[0].modulo_padre_id
+
+      const selectPermisosAsignados = await this.asignacionRepository.find({
+        where: {
+          nombre: nombrePermiso,
+          permiso: permiso,
+          modulo_padre_id: padre_id
+        }
+      })
+
+      if(selectPermisosAsignados.length > 0){
+        return {
+          'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE'),
+          'message': this.i18n.t('modulo.MSJ_ERROR_PERMISO_TIENE_IS_ASSIGNED'),
+          'status': 404,
+        }
+      }
+
+      const elimiarModulo = await this.moduloRepository.delete(+idPermiso);
+
+      return {
+        'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE'),
+        'message': this.i18n.t('modulo.MSN_PERMISO_REMOVIDO_OK'),
+        'status': 200,
+      }
+    } catch (error) {
+      return {
+        'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE'),
+        'message': this.i18n.t('modulo.MSJ_ERROR_PERMISO_TIENE_PERMISOS_HIJOS'),
+        'status': 404,
+      }
+    }
+  }
+
   
   listarPropiedadesTabla(T) {
     const metadata = T.metadata;
@@ -281,23 +329,6 @@ export class ModulosService {
     
   }
 
-  async remove(idPermiso: number){
-    try {
-      const elimiarModulo = await this.moduloRepository.delete(+idPermiso);
-
-      return {
-        'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE'),
-        'message': this.i18n.t('modulo.MSN_PERMISO_REMOVIDO_OK'),
-        'status': 200,
-      }
-    } catch (error) {
-      return {
-        'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE'),
-        'message': this.i18n.t('modulo.MSJ_ERROR_PERMISO_TIENE_PERMISOS_HIJOS'),
-        'status': 404,
-      }
-    }
-  }
 
   async findPaginada(padreId:number, paginationDto: PaginationDto){
 

@@ -6,13 +6,17 @@ import { asignacionProviders } from './entities/asignacion.provider';
 import { GlobalModule } from '@global/global.module';
 
 @Module({
-  imports: [GlobalModule],
+  imports: [
+    GlobalModule,
+  ],
   controllers: [AsignacionController],
   providers: [
     ...moduloProviders,
     ...asignacionProviders,
     AsignacionService
   ],
-  exports: [AsignacionService]
+  exports: [
+    AsignacionService,
+  ]
 })
 export class AsignacionModule {}

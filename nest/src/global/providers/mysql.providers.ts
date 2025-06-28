@@ -15,6 +15,7 @@ export const mysqlProviders = [
           __dirname + '/../../**/*.entity{.ts,.js}',
         ],
         synchronize: true,
+        logging: false, 
       });
 
       return dataSource.initialize();

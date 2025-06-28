@@ -117,6 +117,7 @@ export class ModulosComponent implements OnInit{
     }
   }
   editarData (_id: string){
+    console.log(_id)
     // localStorage.setItem('profile', 'user')
     this.tamano = "xl"
     this.scrollable = false
