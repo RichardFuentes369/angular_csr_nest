@@ -21,6 +21,7 @@ export type I18nTranslations = {
         "MSJ_ERROR_PERMISO_EXISTENTE": string;
         "MSJ_ERROR_PERMISO_PADRE_NO_EXISTENTE": string;
         "MSJ_ERROR_PERMISO_TIENE_PERMISOS_HIJOS": string;
+        "MSJ_ERROR_PERMISO_TIENE_IS_ASSIGNED": string;
         "MSJ_ERROR_PERMISO_NO_EXISTENTE": string;
     };
     "user": {
