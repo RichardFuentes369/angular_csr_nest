@@ -3,7 +3,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { PipesModule } from '@pipe/pipes.module';
 import { AuthService } from '@guard/service/auth.service';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
 

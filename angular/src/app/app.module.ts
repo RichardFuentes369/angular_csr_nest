@@ -59,9 +59,9 @@ export function createTranslateLoader(http: HttpClient) {
 
 @NgModule({
   declarations: [
-    AppComponent,
   ],
   imports: [
+    AppComponent,
     BrowserModule,
     HttpClientModule,
     TranslateModule.forRoot({
@@ -71,12 +71,12 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       },
     }),
-    RouterModule,
     FormsModule,
     AppRoutingModule,
   ],
   providers: [
     provideHttpClient(withFetch()),
+    provideClientHydration() // Si lo estás usando
   ],
   bootstrap: [AppComponent]
 })
