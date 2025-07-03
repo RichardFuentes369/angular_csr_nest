@@ -16,7 +16,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class AppComponent implements OnInit {
 
-  title = 'template01';
+  title = 'template01';                                                                                                         
 
   constructor(
     private translate: TranslateService,
