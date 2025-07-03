@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, ViewChild, ViewContainerRef, ComponentFactoryResolver, OnInit, Output, EventEmitter } from '@angular/core';
-import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { ListaComponentes } from '@module/lista-componentes'
@@ -11,8 +10,7 @@ import { ListaComponentes } from '@module/lista-componentes'
   standalone: true,
   imports: [
     TranslateModule,
-    CommonModule,
-    LoadingComponent
+    CommonModule
   ],
   templateUrl: './boostrap.component.html',
   styleUrl: './boostrap.component.scss'

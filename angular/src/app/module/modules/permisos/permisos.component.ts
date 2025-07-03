@@ -9,7 +9,6 @@ import Swal from 'sweetalert2'
 
 import { Permisos } from '@functions/System'
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
-import { LoadingComponent } from '@component/globales/loading/loading.component';
 @Component({
   selector: 'app-permisos',
   standalone: true,
@@ -17,7 +16,6 @@ import { LoadingComponent } from '@component/globales/loading/loading.component'
     TranslateModule, 
     TablecrudComponent,
     ModalBoostrapComponent,
-    LoadingComponent
   ],
   templateUrl: './permisos.component.html',
   styleUrl: './permisos.component.scss'

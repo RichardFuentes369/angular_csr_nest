@@ -10,7 +10,6 @@ import Swal from 'sweetalert2'
 
 import { TablecrudComponent } from '@component/globales/tablecrud/tablecrud.component';
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
-import { LoadingComponent } from '@component/globales/loading/loading.component';
 
 import { PrincipalService } from './service/principal.service';
 import { SearchComponent } from '@component/globales/search/search.component';
@@ -23,7 +22,6 @@ import { SearchComponent } from '@component/globales/search/search.component';
     SearchComponent,
     TablecrudComponent,
     ModalBoostrapComponent,
-    LoadingComponent
   ],
   templateUrl: './principal.component.html',
   styleUrl: './principal.component.scss'

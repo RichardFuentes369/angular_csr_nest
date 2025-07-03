@@ -8,8 +8,6 @@ import { AuthService } from '@guard/service/auth.service';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { TablecrudComponent } from '@component/globales/tablecrud/tablecrud.component';
 
-import { Permisos } from '@functions/System'
-import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { FinalService } from './service/final.service';
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
 import { SearchComponent } from '@component/globales/search/search.component';
@@ -22,7 +20,6 @@ import { SearchComponent } from '@component/globales/search/search.component';
     SearchComponent,
     TablecrudComponent,
     ModalBoostrapComponent,
-    LoadingComponent
   ],
   templateUrl: './finales.component.html',
   styleUrl: './finales.component.scss'
