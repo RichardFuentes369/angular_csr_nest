@@ -10,7 +10,7 @@
         <div class="form-group">
           <p-floatlabel variant="on">
             <p-iconfield>
-              <input id="username" pInputText (ngModel)="model.email" pSize="small" />
+              <input id="username" pInputText [(ngModel)]="model.email" pSize="small" name="model.email" />
               <label for="username">{{ 'global-login.Email_Msj' | translate}}</label>
               <p-inputicon class="pi pi-at" />
             </p-iconfield>
@@ -18,7 +18,7 @@
         </div>
         <div class="form-group">
           <p-floatlabel variant="on">
-            <p-password (ngModel)="model.password" [toggleMask]="true" size="small"  [feedback]="false" />
+            <p-password [(ngModel)]="model.password" [toggleMask]="true" size="small"  [feedback]="false" name="model.password" />
             <label for="over_label">{{ 'global-login.Password_Msj' | translate}}</label>
           </p-floatlabel>
         </div>

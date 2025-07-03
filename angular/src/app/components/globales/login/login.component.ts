@@ -56,23 +56,14 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.urlPeticion = this.router.url
     this.isLoginAdmin = this.urlPeticion.split('/').find(e => e == 'admin') ? true : false
-
-    if(this.isLoginAdmin){
-      this.model.email = 'admin1@correo.com'
-      this.model.password = 'Qwerty9601'
-    }else{
-      this.model.email = 'user1@gmail.com'
-      this.model.password = 'Qwerty9601'
-    }
-  }
-
-  showPassword(){
-    this.typefield = (this.typefield === "password") ? "text" : "password"
   }
 
   async ingresar(){
     this.isPending = true;
     let rol = this.urlPeticion.split('/').find(e => e == 'admin') ? 0 : 1
+
+    
+
     let data = {
       'email': this.model.email,
       'pass': this.model.password,
