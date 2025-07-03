@@ -5,9 +5,18 @@ import { swalert } from '@functions/System'
 import { LoginServiceService } from './service/login-service.service'
 
 import { CommonModule } from '@angular/common';
+
+import { FloatLabelModule } from "primeng/floatlabel"
+import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
+import { InputIcon } from 'primeng/inputicon';
+import { InputIconModule } from 'primeng/inputicon';
+import { PasswordModule } from 'primeng/password';
+import { IconField } from 'primeng/iconfield';
+
 import { TranslateModule } from '@ngx-translate/core';
 import { LoadingComponent } from '../loading/loading.component';
+
 
 @Component({
   selector: 'app-globales-login',
@@ -16,7 +25,13 @@ import { LoadingComponent } from '../loading/loading.component';
     CommonModule,
     FormsModule,
     TranslateModule,
-    LoadingComponent
+    LoadingComponent,
+    FloatLabelModule,
+    InputTextModule,
+    InputIcon,
+    InputIconModule,
+    IconField,
+    PasswordModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'

@@ -4,6 +4,11 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 // Paquete para peticiones http
 import { HttpClient, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 
+import { ApplicationConfig } from '@angular/core';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeng/themes/aura';
+
 // Paquete para traducción
 import {
   TranslateModule,
@@ -76,7 +81,13 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   providers: [
     provideHttpClient(withFetch()),
-    provideClientHydration() // Si lo estás usando
+    provideClientHydration(),
+    provideAnimationsAsync(),
+    providePrimeNG({
+        theme: {
+            preset: Aura
+        }
+    })
   ],
   bootstrap: [AppComponent]
 })
