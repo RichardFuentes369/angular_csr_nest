@@ -9,14 +9,14 @@
           <label for="exampleInputEmail1">
             {{ 'pages-usuarios.Label.firstName' | translate}}
           </label>
-          <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.firstName" aria-describedby="emailHelp" placeholder="{{ 'pages-usuarios.Placeholder.firstName' | translate}}">
+          <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.firstName" maxlength [maxlength]="20" aria-describedby="emailHelp" placeholder="{{ 'pages-usuarios.Placeholder.firstName' | translate}}">
           <small id="emailHelp" class="form-text text-muted">{{ 'pages-usuarios.Error.firstName' | translate}}</small>
         </div>
         <div class="col-sm-6 form-group">
           <label for="exampleInputEmail1">
             {{ 'pages-usuarios.Label.lastName' | translate}}
           </label>
-          <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.lastName" aria-describedby="emailHelp" placeholder="{{ 'pages-usuarios.Placeholder.lastName' | translate}}">
+          <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.lastName" maxlength [maxlength]="20" aria-describedby="emailHelp" placeholder="{{ 'pages-usuarios.Placeholder.lastName' | translate}}">
           <small id="emailHelp" class="form-text text-muted">{{ 'pages-usuarios.Error.lastName' | translate}}</small>
         </div>
       </div>
@@ -25,7 +25,7 @@
           <label for="exampleInputEmail1">
             {{ 'pages-usuarios.Label.email' | translate}}
           </label>
-          <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.email" aria-describedby="emailHelp" placeholder="{{ 'pages-usuarios.Placeholder.email' | translate}}">
+          <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.email" maxlength [maxlength]="20" aria-describedby="emailHelp" placeholder="{{ 'pages-usuarios.Placeholder.email' | translate}}">
           <small id="emailHelp" class="form-text text-muted">{{ 'pages-usuarios.Error.email' | translate}}</small>
         </div>
         <div class="col-sm-6 form-group">

@@ -24,8 +24,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 
-import { RouterModule } from '@angular/router';
-
 export function createTranslateLoader(http: HttpClient) {
   const baseTranslateUrl = './assets/i18n';
   const options: IModuleTranslationOptions = {

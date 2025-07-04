@@ -45,7 +45,8 @@
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/@popperjs/core/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/datatables.net/js/dataTables.min.js"
+              "node_modules/datatables.net/js/dataTables.min.js",
+              "node_modules/bootstrap-maxlength/src/bootstrap-maxlength.js"
             ]
           },
           "configurations": {
