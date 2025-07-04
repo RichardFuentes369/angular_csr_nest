@@ -9,12 +9,11 @@ import { PrincipalService } from '../../principal/service/principal.service';
 import { Router } from '@angular/router';
 import { ocultarModalOscura } from '@functions/System'
 import { FinalService } from '@module/users/finales/service/final.service';
-import { MaxlengthDirective } from '../../../../directives/Maxlength/maxlength.directive';
 
 @Component({
   selector: 'app-crear-usuarios',
   standalone: true,
-  imports: [TranslateModule, CommonModule, FormsModule, MaxlengthDirective],
+  imports: [TranslateModule, CommonModule, FormsModule],
   templateUrl: './crear-usuarios.component.html',
   styleUrl: './crear-usuarios.component.scss'
 })
