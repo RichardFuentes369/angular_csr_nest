@@ -194,8 +194,35 @@
 						{
 							"name": "editModuloPermiso",
 							"request": {
-								"method": "PUT",
-								"header": []
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nombre\": \"Prueba\",\n    \"permiso\": \"prueba\",\n    \"descripcion\": \"prueba\",\n    \"tiene_submodulos\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/modulos/editModuloPermiso?idPermiso=43",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"modulos",
+										"editModuloPermiso"
+									],
+									"query": [
+										{
+											"key": "idPermiso",
+											"value": "43"
+										}
+									]
+								}
 							},
 							"response": []
 						}
