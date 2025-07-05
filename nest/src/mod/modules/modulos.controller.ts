@@ -3,6 +3,7 @@ import { ModulosService } from './modulos.service'
 import { CreateModuloDto } from './dto/create-modulo.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { PaginationDto } from '@global/dto/pagination.dto';
+import { EditModuloDto } from './dto/edit-modulo.dto';
 
 @Controller('modulos')
 export class ModulosController {
@@ -38,7 +39,12 @@ export class ModulosController {
     return this.modulosService.create(createModuloDto);
   }
 
-
+  @ApiTags('permisos_modulos')
+  @Patch('editModuloPermiso')
+  updateModuloPermiso(@Query() queryParams, @Body() editModuloDto: EditModuloDto) {
+    return this.modulosService.updateModulePermiso(queryParams, editModuloDto);
+  }  
+  
   @ApiTags('permisos_modulos')
   @Patch('updateModuloPermiso')
   update(@Query() queryParams) {
