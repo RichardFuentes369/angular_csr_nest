@@ -1,11 +1,12 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateModuloDto } from './dto/create-modulo.dto';
 
-import { IsNull, Repository } from 'typeorm';
+import { IsNull, Repository, UpdateResult } from 'typeorm';
 import { Modulo } from './entities/modulo.entity';
 import { PaginationDto } from '@global/dto/pagination.dto';
 import { I18nService } from 'nestjs-i18n';
 import { Asignacion } from '@module/user/admin/permission/asignacion/entities/asignacion.entity';
+import { EditModuloDto } from './dto/edit-modulo.dto';
 
 @Injectable()
 export class ModulosService {
@@ -327,6 +328,95 @@ export class ModulosService {
       'status': 200,
     }
     
+  }  
+
+  async getPermisoModulo(permisoId?: number){
+    let consulta = []
+
+    consulta = await this.moduloRepository.createQueryBuilder("modulo")
+    .andWhere("modulo.id  = :permiso", { permiso: permisoId })
+    .getRawOne();
+    
+    if(!consulta) throw new NotFoundException(
+      this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE') }
+    )
+
+    return consulta
+
+  }
+
+  async getPermisoModuloAsignacion(modulo?: object){
+    const cuentaAsignados = await this.asignacionRepository.count({
+      where: {
+        nombre: modulo['modulo_nombre'],
+        permiso: modulo['modulo_permiso'],
+        descripcion: modulo['modulo_descripcion'],
+        modulo_padre_id: modulo['modulo_modulo_padre_id']
+      }
+    })
+    return cuentaAsignados
+  }
+
+  async updateModulePermiso(query: any, editModuloDto: EditModuloDto){
+    // query.idPermiso sera el id de la tabla mod_permisos_modulo
+    let modulo = await this.getPermisoModulo(query.idPermiso)
+    let asignacion = await this.getPermisoModuloAsignacion(modulo)  
+
+    // actualizar en mod_permisos_modulo
+    const moduloPermiso = await this.moduloRepository.findOne({
+      where: {
+        id: query.idPermiso,
+      }
+    });
+    const updateResult: UpdateResult = await this.moduloRepository.update(
+        {
+          // WHERE
+          nombre: moduloPermiso.nombre,
+          permiso: moduloPermiso.permiso,
+          descripcion: moduloPermiso.descripcion
+        },
+        {
+          // SET
+          nombre: editModuloDto.nombre,
+          permiso: editModuloDto.permiso,
+          descripcion: editModuloDto.descripcion
+        }
+    );
+
+    // actualizar en mod_permisos_modulo_asignacion
+    if(asignacion > 0){
+      const asignacion = await this.asignacionRepository.find({
+        where: {
+          nombre: moduloPermiso.nombre,
+          permiso: moduloPermiso.permiso,
+          descripcion: moduloPermiso.descripcion
+        }
+      });
+      if(asignacion.length > 0){
+        const updateResult: UpdateResult = await this.asignacionRepository.update(
+          {
+            // WHERE
+            nombre: moduloPermiso.nombre,
+            permiso: moduloPermiso.permiso,
+            descripcion: moduloPermiso.descripcion
+          },
+          {
+            //SET
+            nombre: editModuloDto.nombre,
+            permiso: editModuloDto.permiso,
+            descripcion: editModuloDto.descripcion
+          }
+      );
+      }
+    }
+    
+  
+
+    return {
+      'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE'),
+      'message': this.i18n.t('modulo.MSN_PERMISO_UPDATED_OK'),
+      'status': 200,
+    }
   }
 
 
