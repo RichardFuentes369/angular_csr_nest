@@ -85,7 +85,10 @@ export function createTranslateLoader(http: HttpClient) {
     provideAnimationsAsync(),
     providePrimeNG({
         theme: {
-            preset: Aura
+          preset: Aura,
+          options: {
+            darkModeSelector: false || 'none'
+          }
         }
     })
   ],
