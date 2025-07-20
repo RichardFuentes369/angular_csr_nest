@@ -37,6 +37,7 @@ export function createTranslateLoader(http: HttpClient) {
       { baseTranslateUrl, moduleName: 'components/globales/modal', namespace: 'global-modal' },
       { baseTranslateUrl, moduleName: 'components/globales/notfound', namespace: 'global-notfound' },
       { baseTranslateUrl, moduleName: 'components/globales/tablecrud', namespace: 'global-tablecrud' },
+      { baseTranslateUrl, moduleName: 'components/globales/dropzone', namespace: 'global-dropzone' },
       // fin globales
 
       // inicio layout
