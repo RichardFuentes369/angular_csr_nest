@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 
 import Swal from 'sweetalert2'
 import { ocultarModalOscura } from '@functions/System';
+import { AvatarComponent } from '@component/globales/avatar/avatar.component';
 
 interface AdministradorInterface {
   'id': number,
@@ -21,7 +22,7 @@ interface AdministradorInterface {
 @Component({
   selector: 'app-editar-usuarios',
   standalone: true,
-  imports: [CommonModule, TranslateModule, FormsModule],
+  imports: [CommonModule, TranslateModule, FormsModule, AvatarComponent],
   templateUrl: './editar-usuarios.component.html',
   styleUrl: './editar-usuarios.component.scss'
 })

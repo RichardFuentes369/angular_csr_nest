@@ -8,6 +8,7 @@ import { AuthService } from '@guard/service/auth.service';
 
 import { Permisos } from '@functions/System'
 import { FinalService } from '../../finales/service/final.service';
+import { AvatarComponent } from '@component/globales/avatar/avatar.component';
 
 interface AdministradorInterface {
   'id': number,
@@ -21,7 +22,7 @@ interface AdministradorInterface {
 @Component({
   selector: 'app-ver-usuarios',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule, AvatarComponent],
   templateUrl: './ver-usuarios.component.html',
   styleUrl: './ver-usuarios.component.scss'
 })
