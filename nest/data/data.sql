@@ -17,7 +17,6 @@ INSERT INTO `mod_permisos_modulo` (`id`,`modulo_padre_id`,`nombre`,`permiso`,`ti
 (16, 13,'Editar', 'editar', 0, 'permiso'),
 (17, 13,'Eliminar', 'eliminar', 0, 'permiso');
 
-
 INSERT INTO `core_csr`.`mod_usuarios_admin` (`firstName`, `lastName`, `email`, `password`) VALUES ('Administrador', 'principal', 'admin1@correo.com', 'Qwerty9601');
 
 INSERT INTO `mod_permisos_modulo_asignacion` (`id`,`modulo_padre_id`,`user_id`,`nombre`,`permiso`,`descripcion`) VALUES
