@@ -1,3 +1,4 @@
+
 INSERT INTO `mod_permisos_modulo` (`id`,`modulo_padre_id`,`nombre`,`permiso`,`tiene_submodulos`,`descripcion`) VALUES
 (1, null, 'Usuarios', 'usuarios', 1, 'Modulo usuarios'),
 (2, 1,'Administradores', 'administradores', 0, 'Submodulo usuarios administradores'),
