@@ -30,6 +30,9 @@ export type I18nTranslations = {
         "MSN_PERMISO_ASIGNADO_TITTLE": string;
         "MSN_PERMISO_ASIGNADO_MESSAGE": string;
         "MSN_PERMISO_REMOVIDO_MESSAGE": string;
+        "MSN_USUARIO_TITTLE": string;
+        "MSN_USUARIO_CREADO_EXITOSAMENTE_TITTLE": string;
+        "MSN_USUARIO_REMOVIDO_EXITOSAMENTE_TITTLE": string;
     };
 };
 /* prettier-ignore */

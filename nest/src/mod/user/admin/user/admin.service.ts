@@ -25,8 +25,8 @@ export class AdminService {
   
       this.adminRepository.save(createAdminDto);
       return {
-        'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE'),
-        'message': this.i18n.t('modulo.MSJ_PERMISO_CREADO_OK'),
+        'title': this.i18n.t('user.MSN_USUARIO_TITTLE'),
+        'message': this.i18n.t('user.MSN_USUARIO_CREADO_EXITOSAMENTE_TITTLE'),
         'status': 200,
       }
 

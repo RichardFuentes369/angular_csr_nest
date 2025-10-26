@@ -1,16 +1,14 @@
 <div class="">
   <h1>{{ 'pages-usuarios.Tipo.AdminWord' | translate}}</h1>
 
-  <app-globales-search
-    [icon]="iconFilter" 
-    [componente]="componenteFilter"
-    (filtroItem) = "filtroData()"
-  >
-  </app-globales-search>
-
-  <br>
-  
   <div class="card p-5">
+    <app-globales-search
+      [icon]="iconFilter" 
+      [componente]="componenteFilter"
+      (filtroItem) = "filtroData()"
+    >
+    </app-globales-search>
+
     <app-globales-tablecrud
       [campoFiltro] = showcampoFiltro
       [endPoint] = endPoint

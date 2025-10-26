@@ -37,11 +37,11 @@ export class SearchComponent{
     
     if(componente){
       const factory = await this.resolver.resolveComponentFactory(componente.componente);
-      this.contenedorDinamico.clear()
-      this.contenedorDinamico.createComponent(factory);
       
       this.clickeado = !this.clickeado
       if(this.clickeado == true){
+        this.contenedorDinamico.clear()
+        this.contenedorDinamico.createComponent(factory);
         this.isFilterVisible = true
       }else{
         this.filtroItem.emit()

@@ -1,17 +1,28 @@
-.popover-container {
-  position: relative; /* Necesario para posicionar el popover-content */
+/* Muestra una posición del boton */
+.absolute-search-button {
+  position: absolute; 
+  right: -25px;
+  top: 25%; 
+  transform: translateY(-50%);
+  z-index: 10;
+  :host ::ng-deep .floating-button {
+    position: static; 
+    right: auto;
+    top: auto;
+  }
 }
 
+/* Estilo del botón flotante */
 .floating-button {
   position: fixed;
   right: 5px;
-  top: 23%;
+  top: 40%!important;
   transform: translateY(-50%); /* Centra verticalmente */
   background-color: #3f51b5; /* Color primario de Angular Material (puedes personalizarlo) */
   color: white;
   border-radius: 50%;
-  width: 56px;
-  height: 56px;
+  width: 30px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,20 +45,30 @@
   }
 }
 
-.popover-content {
-  position: absolute; /* Posiciona el popover relativamente al contenedor */
-  top: 50%; /* Alinea la parte superior del popover con la mitad del botón */
-  right: 65px; /* Ajusta para que no se superponga con el botón (ancho del botón + margen) */
-  transform: translateY(-50%); /* Centra verticalmente el popover */
+
+.animated-card {
+  position: fixed; /* O 'absolute', dependiendo del flujo de tu página */
+  top: 4rem;
+  right: 0;
+  width: 300px; /* Ancho deseado de la card */
+  height: auto; /* O la altura que necesites */
   background-color: white;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 2.2);
-  padding: 10px;
-  z-index: 1001; /* Asegura que esté por encima del botón */
-  min-width: 500px; /* Ancho mínimo del popover */
-  display: none; /* Oculto por defecto */
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  z-index: 100; /* Asegura que esté por encima de otros elementos */
+
+  // **TRANSITION:** Hace que el cambio de estado (la posición) sea suave
+  transition: transform 0.4s ease-out; 
+
+  // **ESTADO INICIAL (OCULTO):** // Mueve la card completamente hacia la derecha, fuera de la vista.
+  // El 100% significa el 100% de su propio ancho.
+  transform: translateX(100%); 
 }
 
-.popover-content.show {
-  display: block; /* Muestra el popover cuando isFilterVisible es true */
+.animated-card.is-visible {
+  // **ESTADO FINAL (VISIBLE):**
+  // Devuelve la card a su posición original (0) en la pantalla.
+  transform: translateX(0); 
 }
+
+
