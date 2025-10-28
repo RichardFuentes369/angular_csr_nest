@@ -50,3 +50,34 @@ export function swalert(
   })
 }
 
+
+/*
+* Metodos para obtener, setear y remover storage
+* Session Storage Helper
+*/
+export function SessionHelper(key: string, value: string, action: string){
+  if(action == 'get'){
+    return sessionStorage.getItem(key)
+  }
+  if(action == 'set'){
+    return sessionStorage.setItem(key, value)
+  }
+  if(action == 'remove'){
+    return sessionStorage.removeItem(key)
+  }
+}
+
+export function LocalHelper(key: string, value: string, action: string){
+  if(action == 'get'){
+    return localStorage.getItem(key)
+  }
+  if(action == 'set'){
+    return localStorage.setItem(key, value)
+  }
+  if(action == 'remove'){
+    return localStorage.removeItem(key)
+  }
+}
+
+
+

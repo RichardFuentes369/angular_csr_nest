@@ -43,6 +43,11 @@ export class PrincipalComponent implements OnInit{
     const userData = await this.userService.getUser('authadmin');
     const modulo = await this.permisosService.permisos(userData.data.id,'administradores')
     this.permisos = modulo.data
+
+    sessionStorage.removeItem('email')
+    sessionStorage.removeItem('firstName')
+    sessionStorage.removeItem('lastName')
+    sessionStorage.removeItem('isActive')
   }
 
   // inicio datos que envio al componente tabla
@@ -250,8 +255,6 @@ export class PrincipalComponent implements OnInit{
     let filtros = await $('.complementoRuta').val();
     if(typeof filtros === 'string'){
       this.filters = filtros
-    }else{
-      this.filters = ''
     }
   }
 
