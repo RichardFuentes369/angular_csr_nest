@@ -1,0 +1,20 @@
+<div class="">
+  <label class="hoverable" for="fileInput">
+    <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'">
+
+    <div class="row">
+      @if (!url) {
+        <div class="hover-text bg-primary text-center mt-4 p-4">Choose file</div>
+      }
+      @if (url) {
+        <div class="hover-text bg-danger text-center mt-4 p-4" (click)="delete()">Delete file</div>
+      }
+    </div>
+
+    <div class="background"></div>
+  </label>
+  <br />
+  @if (!urlToResetInput) {
+    <input #fileInput id="fileInput" type='file' (change)="onSelectFile($event)">
+  }
+</div>

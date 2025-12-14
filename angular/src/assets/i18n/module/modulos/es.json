@@ -1,0 +1,50 @@
+{
+  "Title": {
+    "Module": "Modulos",
+    "Submodules": "Submodulos",
+    "Permissions": "Permisos",
+    "CreateModule": "Crear modulo",
+    "EditModule": "Editar modulo",
+    "SeeModule": "Ver modulo",
+    "CreateSubModule": "Crear submodulo",
+    "EditSubModule": "Editar submodulo",
+    "SeeSubModule": "Ver submodulo",
+    "CreatePermission": "Crear permiso",
+    "EditPermission": "Editar permiso",
+    "SeePermission": "Ver permiso"
+  },
+  "Swal": {
+    "TitleAreYouSure": "Estas seguro?",
+    "TitleWarnigRevert": "No podras reviertir este cambio!",
+    "TitleCreate": "Creado",
+    "TitleUpdate": "Actualizado",
+    "TitleCancel": "Cancelar",
+    "TitleDelete": "Eliminar!",
+    "TitleRegisterUpdated": "Registro actualizado",
+    "TitleRegisterCreate": "Registro creado",
+    "TitleRegisterDeleted": "Registro eliminado",
+    "TitleRegisterInactived": "Registro desactivado",
+    "TitleRegisterActived": "Registro activado",
+    "TitleActived": "Activar",
+    "TitleInactived": "Inactivar"
+  },
+  "Label": {
+    "namePermission": "Nombre permiso",
+    "nickPermission": "Permiso",
+    "descriptionPermission": "Descripción",
+    "hasModules": "Tendra submódulos"
+  },
+  "Placeholder": {
+    "namePermission": "",
+    "nickPermission": "",
+    "descriptionPermission": ""
+  },
+  "Error": {
+    "namePermission": "",
+    "nickPermission": "",
+    "descriptionPermission": ""
+  },
+  "Buttons": {
+    "createModuloPermiso": "Crear modulo permiso"
+  }
+}

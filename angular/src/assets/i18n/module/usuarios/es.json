@@ -1,0 +1,64 @@
+{
+  "Title": {
+    "pageUsersTitle":"Usuarios",
+    "CreateAdminWord":"Crear administrador",
+    "EditAdminWord":"Editar administrador",
+    "SeeAdminWord":"Ver administrador",
+    "CreateUserFinalWord":"Crear usuario final",
+    "EditUserFinalWord":"Editar usuario final",
+    "SeeUserFinalWord":"Ver usuario final",
+    "PermissionsTitle": "Permisos"
+  },
+  "Index": {
+    "buttonAdmins":"Usuarios administradores",
+    "buttonFinals":"Usuarios finales"
+  },
+  "Tipo": {
+    "AdminWord": "Administradores",
+    "FinalWord": "Finales"
+  },
+  "Label": {
+    "firstName": "Nombres",
+    "lastName": "Apellidos",
+    "email": "Correo",
+    "password": "Contraseña",
+    "statusUser": "Estado"
+  },
+  "Placeholder": {
+    "firstName": "Juan Andres",
+    "lastName": "Lozano Fonseca",
+    "email": "email@example.es",
+    "password": "********",
+    "select": "Seleccione por favor",
+    "isActive": "Activo",
+    "isInactive": "Inactivo"
+  },
+  "Error": {
+    "firstName": "",
+    "lastName": "",
+    "email": "",
+    "password": "",
+    "isActive": ""
+  },
+  "Buttons": {
+    "createUser": "Crear usuario",
+    "editUser": "Ir a editar",
+    "updateUser": "Actualizar usuario",
+    "back": "Volver"
+  },
+  "Swal": {
+    "TitleAreYouSure": "Estas seguro?",
+    "TitleWarnigRevert": "No podras reviertir este cambio!",
+    "TitleUpdate": "Actualizado",
+    "TitleCreate": "Creado",
+    "TitleCancel": "Cancelar",
+    "TitleDelete": "Eliminar!",
+    "TitleRegisterUpdated": "Registro actualizado",
+    "TitleRegisterCreate": "Registro creado",
+    "TitleRegisterDeleted": "Registro eliminado",
+    "TitleRegisterInactived": "Registro desactivado",
+    "TitleRegisterActived": "Registro activado",
+    "TitleActived": "Activar",
+    "TitleInactived": "Inactivar"
+  }
+}

@@ -1,0 +1,40 @@
+<div class="custom-dropzone">
+  <ngx-dropzone
+    [multiple] = "true"
+    [accept]="'*'"
+    [disabled]="false"
+    [expandable]="false"
+    (change)="onSelect($event)"
+    >
+    <ngx-dropzone-label>
+      {{ 'global-dropzone.Label.wordUpload' | translate}}
+    </ngx-dropzone-label>
+
+    @for (f of files; track f) {
+      <ngx-dropzone-preview
+        [removable]="true"
+        (removed)="onRemove(f)"
+        >
+        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+      </ngx-dropzone-preview>
+    }
+
+    <!-- <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+  </ngx-dropzone-preview>
+  <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+  </ngx-dropzone-image-preview>
+  <ngx-dropzone-video-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+  </ngx-dropzone-video-preview> -->
+</ngx-dropzone>
+</div>
+
+<!--
+ngx-dropzone =>
+[disabled] = "false" (habilita o inhabilita el dropzone)
+[multiple] = "true" (escoger mas de un elemento a la vez)
+[accept]="'*'"  (formato permitido ej image/jpeg,image/jpg,image/png,image/gif)
+[maxFileSize] = "1" (peso en bytes)
+-->

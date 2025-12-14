@@ -1,0 +1,35 @@
+<div class="">
+  <h1>{{ 'pages-modulos.Title.Module' | translate}}</h1>
+
+  <div class="card p-5">
+    <app-globales-tablecrud
+      [campoFiltro] = showcampoFiltro
+      [endPoint] = endPoint
+      [columnas] = columnas
+      [permisosAcciones] = permisos
+  
+      (verItem) = "verData($event)"
+      (crearNuevoItem) = "crearData($event)"
+      (editarItem) = "editarData($event)"
+      (eliminarItem) = "eliminarData($event)"
+    >
+    </app-globales-tablecrud>
+  </div>
+
+  <app-globales-modal-boostrap
+    [tamano]="tamano"
+    [scrollable]="scrollable"
+    [title]="title"
+    [save]="save"
+    [buttonSave]="buttonSave"
+    [edit]="edit"
+    [buttonEdit]="buttonEdit"
+    [cancel]="cancel"
+    [buttonCancel]="buttonCancel"
+    [componentePrecargado]="componentePrecargado"
+    [cierreModal]="cierreModal"
+    (actualizarTabla)="refrescarTabla()"
+  >
+  </app-globales-modal-boostrap>
+
+</div>

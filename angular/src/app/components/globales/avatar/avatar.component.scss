@@ -1,0 +1,90 @@
+p {
+  font-family: Lato;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+}
+
+.hoverable {
+  position: relative; /* Muy importante para posicionar elementos hijos absolutamente */
+  display: block;
+  cursor: pointer;
+  height: 200px;
+  width: 200px;
+  border: 5px solid #000;
+  border-radius: 50%;
+  overflow: hidden; /* Oculta cualquier cosa que se desborde del círculo */
+}
+
+.hoverable .hover-text {
+  position: absolute;
+  display: none;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  color: white; /* Mejorar visibilidad del texto */
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.7); /* Sombra para el texto */
+}
+
+.hoverable .background {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Oscurecer más para que el texto y botón resalten */
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.hoverable:hover .hover-text {
+  display: block;
+}
+
+.hoverable:hover .background {
+  display: block;
+}
+
+/* Estilos para el botón de eliminación */
+.delete-button-container {
+  position: absolute; /* Posicionamiento absoluto dentro de .hoverable */
+  top: 0px; /* Ajusta la posición verticalmente */
+  right: 0px; /* Ajusta la posición horizontalmente */
+  z-index: 3; /* Asegura que esté por encima de la imagen y los otros elementos de hover */
+  display: none; /* Oculto por defecto */
+}
+
+.hoverable:hover .delete-button-container {
+  display: block; /* Muestra el botón al hacer hover en .hoverable */
+}
+
+.delete-button {
+  background-color: #f44336; /* Color de fondo rojo para "delete" */
+  color: white; /* Texto blanco */
+  border: none;
+  border-radius: 50%; /* Botón redondo */
+  width: 40px; /* Ancho del botón */
+  height: 40px; /* Alto del botón */
+  font-size: 14px;
+  cursor: pointer;
+  display: flex; /* Para centrar el texto "delete" */
+  justify-content: center;
+  align-items: center;
+  padding: 0; /* Eliminar padding por defecto */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Sombra ligera para el botón */
+}
+
+.delete-button:hover {
+  background-color: #da190b; /* Color un poco más oscuro al hacer hover en el botón */
+}
+
+#fileInput {
+  display: none; /* Sigue ocultando el input de archivo */
+}

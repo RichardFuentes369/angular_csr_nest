@@ -1,0 +1,86 @@
+<div class="">
+
+  <h3>{{ 'pages-basico.Menu.WordMenu' | translate }}</h3>
+
+  <!-- <app-global-loading [tiempo]="tiempoCarga"></app-global-loading> -->
+
+  <div class="parent">
+
+    @if(tienePermiso('usuarios')){
+      <div class="item" (click)="goTo('/index-usuarios')" style="cursor: pointer;">
+        <div class="card">
+          <div class="card-body text-center p-0 pb-3 pt-3">
+            <img src="https://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/256/Actions-user-group-new-icon.png" width="80px">
+          </div>
+          <div class="card-footer text-center bg-white">
+            <span>
+              {{ 'pages-basico.Menu.WordUsers' | translate}}
+            </span>
+          </div>
+        </div>
+      </div>
+    }
+
+    @if(tienePermiso('mantenimiento')){
+      <div class="item" (click)="goTo('/index-mantenimiento')" style="cursor: pointer;">
+        <div class="card">
+          <div class="card-body text-center p-0 pb-3 pt-3">
+            <img src="https://icons.iconarchive.com/icons/double-j-design/ravenna-3d/256/Tools-icon.png" width="80px">
+          </div>
+          <div class="card-footer text-center bg-white">
+            <span>
+              {{ 'pages-basico.Menu.WordMaintenance' | translate}}
+            </span>
+          </div>
+        </div>
+      </div>
+    }
+
+    @if(tienePermiso('zona_comun')){
+      <div class="item" (click)="goTo('/index-zona-comun')" style="cursor: pointer;">
+        <div class="card">
+          <div class="card-body text-center p-0 pb-3 pt-3">
+            <img src="https://icons.iconarchive.com/icons/pixelkit/flat-jewels/256/Location-icon.png" width="80px">
+          </div>
+          <div class="card-footer text-center bg-white">
+            <span>
+              {{ 'pages-basico.Menu.WordSocialArea' | translate}}
+            </span>
+          </div>
+        </div>
+      </div>
+    }
+
+    @if(tienePermiso('proveedor')){
+      <div class="item" (click)="goTo('/index-proveedor')" style="cursor: pointer;">
+        <div class="card">
+          <div class="card-body text-center p-0 pb-3 pt-3">
+            <img src="https://icons.iconarchive.com/icons/streamlineicons/streamline-ux-free/256/delivery-truck-icon.png" width="100px">
+          </div>
+          <div class="card-footer text-center bg-white">
+            <span>
+              {{ 'pages-basico.Menu.WordSupplier' | translate}}
+            </span>
+          </div>
+        </div>
+      </div>
+    }
+
+    @if(tienePermiso('modulos')){
+      <div class="item" (click)="goTo('/index-modulos')" style="cursor: pointer;">
+        <div class="card">
+          <div class="card-body text-center p-0 pb-3 pt-3">
+            <img src="https://icons.iconarchive.com/icons/double-j-design/super-mono-3d/128/modules-icon.png" width="80px">
+          </div>
+          <div class="card-footer text-center bg-white">
+            <span>
+              {{ 'pages-basico.Menu.WordModule' | translate}}
+            </span>
+          </div>
+        </div>
+      </div>
+    }
+
+  </div>
+
+</div>

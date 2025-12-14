@@ -1,0 +1,23 @@
+<div class="">
+  <button class="floating-button btn-sm btn btn-primary" id="miBotonF" componentef="" (click)="openFilter()">
+    <i [ngClass]="icon"></i>
+  </button>
+
+  <div class="animated-card" [class.is-visible]="isFilterVisible">
+    <h3 class="text-bg-primary">
+      {{ 'global-search.Title.ComponentName' | translate}}
+    </h3>
+
+    <div class="card-body pl-0 pr-0">
+      <div #contenedorFilter></div>
+    </div>
+
+    <button (click)="$event.stopPropagation(); limpiar()" class="btn-secondary btn btn-sm mt-2">
+      {{ 'global-search.Buttons.Clear' | translate}}
+    </button>
+    <button (click)="$event.stopPropagation(); filtrar()" class="btn-primary btn btn-sm mt-2 mx-sm-2">
+      {{ 'global-search.Buttons.Filter' | translate}}
+    </button>
+  </div>
+
+</div>

@@ -1,0 +1,50 @@
+{
+  "Title": {
+    "Module": "Modules",
+    "Submodules": "Submodulos",
+    "Permissions": "Permissions",
+    "CreateModule": "Create module",
+    "EditModule": "Edit module",
+    "SeeModule": "See module",
+    "CreateSubModule": "Crear submodulo",
+    "EditSubModule": "Edit submodule",
+    "SeeSubModule": "See submodule",
+    "CreatePermission": "Create permission",
+    "EditPermission": "Edit permission",
+    "SeePermission": "See permission"
+  },
+  "Swal": {
+    "TitleAreYouSure": "Are you sure?",
+    "TitleWarningRevert": "You will not be able to revert this change!",
+    "TitleCreate": "Created",
+    "TitleUpdate": "Updated",
+    "TitleCancel": "Cancel",
+    "TitleDelete": "Delete!",
+    "TitleRegisterUpdated": "Registration updated",
+    "TitleRegisterCreate": "Registration created",
+    "TitleRegisterDeleted": "Registration deleted",
+    "TitleRegisterInactived": "Registration disabled",
+    "TitleRegisterActived": "Registration enabled",
+    "TitleActived": "Activate",
+    "TitleInactived": "Inactivate"
+  },
+  "Label": {
+    "namePermission": "Permission name",
+    "nickPermission": "Permission",
+    "descriptionPermission": "Description",
+    "hasModules": "Will have modules"
+  },
+  "Placeholder": {
+    "namePermission": "",
+    "nickPermission": "",
+    "descriptionPermission": ""
+  },
+  "Error": {
+    "namePermission": "",
+    "nickPermission": "",
+    "descriptionPermission": ""
+  },
+  "Buttons": {
+    "createModuloPermiso": "Create module/permission"
+  }
+}

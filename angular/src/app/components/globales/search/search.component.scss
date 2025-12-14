@@ -1,0 +1,74 @@
+/* Muestra una posición del boton */
+.absolute-search-button {
+  position: absolute; 
+  right: -25px;
+  top: 25%; 
+  transform: translateY(-50%);
+  z-index: 10;
+  :host ::ng-deep .floating-button {
+    position: static; 
+    right: auto;
+    top: auto;
+  }
+}
+
+/* Estilo del botón flotante */
+.floating-button {
+  position: fixed;
+  right: 5px;
+  top: 40%!important;
+  transform: translateY(-50%); /* Centra verticalmente */
+  background-color: #3f51b5; /* Color primario de Angular Material (puedes personalizarlo) */
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
+              0 6px 10px 0 rgba(0, 0, 0, 0.14),
+              0 1px 18px 0 rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+
+  mat-icon {
+    font-size: 24px;
+  }
+
+  &:hover {
+    background-color: darken(#3f51b5, 10%);
+  }
+
+  &:focus {
+    outline: none; /* Opcional: personalizar el estilo del foco */
+  }
+}
+
+
+.animated-card {
+  position: fixed; /* O 'absolute', dependiendo del flujo de tu página */
+  top: 4rem;
+  right: 0;
+  width: 300px; /* Ancho deseado de la card */
+  height: auto; /* O la altura que necesites */
+  background-color: white;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  z-index: 100; /* Asegura que esté por encima de otros elementos */
+
+  // **TRANSITION:** Hace que el cambio de estado (la posición) sea suave
+  transition: transform 0.4s ease-out; 
+
+  // **ESTADO INICIAL (OCULTO):** // Mueve la card completamente hacia la derecha, fuera de la vista.
+  // El 100% significa el 100% de su propio ancho.
+  transform: translateX(100%); 
+}
+
+.animated-card.is-visible {
+  // **ESTADO FINAL (VISIBLE):**
+  // Devuelve la card a su posición original (0) en la pantalla.
+  transform: translateX(0); 
+}
+
+

@@ -1,0 +1,23 @@
+table {
+  cursor: pointer;
+}
+
+.botoneria {
+  display: flex;
+  justify-content: flex-end; /* Alinea los botones a la derecha */
+  gap: 8px; /* Espaciado entre los botones */
+  margin-bottom: 10px; /* Espacio entre la botonera y la tabla */
+}
+
+/* Estilos para pantallas pequeñas (responsive) */
+@media (max-width: 768px) { /* Ajusta el ancho según tus necesidades */
+  .botoneria {
+    justify-content: center; /* Centra los botones en pantallas pequeñas */
+    flex-wrap: wrap; /* Permite que los botones pasen a la siguiente línea si no hay suficiente espacio */
+  }
+
+  .botoneria button {
+    margin-bottom: 5px; /* Espacio entre los botones apilados */
+    width: auto; /* Permite que el ancho del botón se ajuste al contenido */
+  }
+}

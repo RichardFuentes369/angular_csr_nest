@@ -1,0 +1,13 @@
+{
+  "ERROR": "Error!",
+  "MSJ_PERMISO_TITTLE": "Permiso",
+  "MSJ_ERROR_PERMISO_NO_EXISTENTE": "Este permiso no existe en nuestra base de datos.",
+  "MSJ_PERMISO_CREADO_OK": "creado exitosamente",
+  "MSN_PERMISO_REMOVIDO_OK": "eliminado exitosamente",
+  "MSN_PERMISO_UPDATED_OK": "actualizado exitosamente",
+
+  "MSJ_ERROR_PERMISO_EXISTENTE": "Este permiso, ya existe en nuestra base de datos.",
+  "MSJ_ERROR_PERMISO_PADRE_NO_EXISTENTE": "No se puede realizar ninguna accion, el padre no existe en nuestra base de datos.",
+  "MSJ_ERROR_PERMISO_TIENE_PERMISOS_HIJOS": "No se puede realizar ninguna accion, este permiso contiene permisos hijos.",
+  "MSJ_ERROR_PERMISO_TIENE_IS_ASSIGNED": "No se puede realizar ninguna accion, este permiso está asignado"
+}
