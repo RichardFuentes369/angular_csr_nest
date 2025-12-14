@@ -207,9 +207,7 @@ export class PrincipalComponent implements OnInit{
   }
 
   async refrescarTabla (){
-    setTimeout(async () => {
-      await this.someInput.reload()
-    }, 100);
+    await this.someInput.reload()
   }
 
   activarData (_id: string){

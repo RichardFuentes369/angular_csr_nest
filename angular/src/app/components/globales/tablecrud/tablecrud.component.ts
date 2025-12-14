@@ -33,7 +33,7 @@ export class TablecrudComponent implements OnInit {
   permisosAcciones: any[] = [];
 
   url = environment.apiUrl
-  idSeleccionado: string = '';
+  idsSeleccionados: any[] = [];
 
   constructor(
     private tableCrudService: TablecrudService,
@@ -69,25 +69,16 @@ export class TablecrudComponent implements OnInit {
         const page = parseInt(dataTablesParameters.start) / parseInt(dataTablesParameters.length) + 1;
         dataTablesParameters.PageNo = page.toString();
         dataTablesParameters.NoOfRows = dataTablesParameters.length.toString();
-        // dataTablesParameters.SearchValue = dataTablesParameters.search.value;
-        // dataTablesParameters.sortHeader = this.sortHeader;
-        // dataTablesParameters.sortOrder = dataTablesParameters.order[0].dir;
 
         this.http.get<any[]>(
             `${this.url}${this.endPoint}?page=${page}&limit=${dataTablesParameters.length}&field=id&order=asc${this.filters}`
         ).subscribe((post) => {
           const recordsTotal = post[0].pagination.totalRecord;
-          const recordsFiltered = post.length;
-
-          function capitalizeFirstLetter(texto: string) {
-            return texto.charAt(0).toUpperCase() + texto.slice(1);
-          }
-
-
-          this.idSeleccionado = ''
+          
           const data: any = [];
 
           for (const item of post[0].result) {
+            (this.idsSeleccionados.find(obj => obj == item.id)) ? item.selection = true : item.selection = false
             data.push(item);
           }
 
@@ -124,25 +115,43 @@ export class TablecrudComponent implements OnInit {
       },
       columns: this.columnas,
       rowCallback: (row: Node, data: any | Object, index: number) => {
-        const self = this;
-        $('td', row).on('click', () => {
-          this.idSeleccionado = ''
-          $('tr').css({'background-color':'','color':'black'});
 
-          this.idSeleccionado = data.id
-          $('tr').eq(index+2).css({'background-color':'red','color':'white'});
+        const self = $(this);
+
+        if (data.selection === true) {
+          self.css({'background-color': 'red', 'color': 'white'});
+        } else {
+          self.css({'background-color': '', 'color': 'black'}); 
+        }
+
+        $('td', row).on('click', () => {
+
+          const exist = this.idsSeleccionados.find(obj => obj == data.id)
+          const existIndex = this.idsSeleccionados.findIndex(obj => obj == data.id)
+
+          if(exist){
+            this.idsSeleccionados.splice(existIndex,1)
+            $('tr').eq(index+2).css({'background-color':'','color':'black'});
+          }
+          
+          if(!exist){
+            this.idsSeleccionados.push(data.id)
+            $('tr').eq(index+2).css({'background-color':'red','color':'white'});
+          }
         });
+      
         return row;
       }
     };
   }
 
   limpiarSeleccion(){
-    this.idSeleccionado = ''
+    this.idsSeleccionados = []
     $('tr').css({'background-color':'','color':'black'});
   }
 
   reload(){
+    this.limpiarSeleccion()
     this.datatableElement.dtInstance.then((dtInstance: any) => {
       dtInstance.ajax.reload();
     });
@@ -151,47 +160,51 @@ export class TablecrudComponent implements OnInit {
   @Output()
   verItem = new EventEmitter<string>()
   seeItem (){
-    this.verItem.emit(this.idSeleccionado)
+    if(this.idsSeleccionados.length == 1){
+      this.verItem.emit(this.idsSeleccionados[0])
+    }
   }
 
   @Output()
   crearNuevoItem = new EventEmitter<string>()
   newItem (){
-    this.crearNuevoItem.emit(this.idSeleccionado)
+    if(this.idsSeleccionados.length == 0){
+      this.crearNuevoItem.emit()
+    }
   }
 
   @Output()
   editarItem = new EventEmitter<string>()
   editItem (){
-    this.editarItem.emit(this.idSeleccionado)
+    if(this.idsSeleccionados.length == 1){
+      this.editarItem.emit(this.idsSeleccionados[0])
+    }
   }
 
   @Output()
   eliminarItem = new EventEmitter<string>()
   deleteItem (){
-    this.eliminarItem.emit(this.idSeleccionado)
+    if(this.idsSeleccionados.length == 1){
+      this.eliminarItem.emit(this.idsSeleccionados[0])
+    }
   }
 
   @Output()
   activarItem = new EventEmitter<string>()
   activedItem (){
-    this.activarItem.emit(this.idSeleccionado)
+    if(this.idsSeleccionados.length == 1){
+      this.activarItem.emit(this.idsSeleccionados[0])
+    }
   }
 
   @Output()
   asignar = new EventEmitter<string>()
   assignItem (){
-    this.asignar.emit(this.idSeleccionado)
-  }
-
-  @Output()
-  historicoItem = new EventEmitter<string>()
-  historyItem (){
-    this.historicoItem.emit(this.idSeleccionado)
+    this.asignar.emit(this.idsSeleccionados[0])
   }
   
   selectionClear (){
-    this.idSeleccionado = ''
+    this.idsSeleccionados = []
     $('tr').css({'background-color':'','color':'black'});
   }
 
