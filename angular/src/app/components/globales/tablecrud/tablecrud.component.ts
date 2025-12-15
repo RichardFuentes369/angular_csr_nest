@@ -182,18 +182,18 @@ export class TablecrudComponent implements OnInit {
   }
 
   @Output()
-  eliminarItem = new EventEmitter<string>()
+  eliminarItem = new EventEmitter<string[]>()
   deleteItem (){
-    if(this.idsSeleccionados.length == 1){
-      this.eliminarItem.emit(this.idsSeleccionados[0])
+    if(this.idsSeleccionados.length > 0){
+      this.eliminarItem.emit(this.idsSeleccionados)
     }
   }
 
   @Output()
-  activarItem = new EventEmitter<string>()
+  activarItem = new EventEmitter<string[]>()
   activedItem (){
-    if(this.idsSeleccionados.length == 1){
-      this.activarItem.emit(this.idsSeleccionados[0])
+    if(this.idsSeleccionados.length > 0){
+      this.activarItem.emit(this.idsSeleccionados)
     }
   }
 

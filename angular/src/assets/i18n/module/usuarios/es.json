@@ -49,6 +49,7 @@
   "Swal": {
     "TitleAreYouSure": "Estas seguro?",
     "TitleWarnigRevert": "No podras reviertir este cambio!",
+    "TitleWarnigSuspend": "Inactivara el/los usuarios seleccionados!",
     "TitleUpdate": "Actualizado",
     "TitleCreate": "Creado",
     "TitleCancel": "Cancelar",
@@ -59,6 +60,7 @@
     "TitleRegisterInactived": "Registro desactivado",
     "TitleRegisterActived": "Registro activado",
     "TitleActived": "Activar",
-    "TitleInactived": "Inactivar"
+    "TitleInactived": "Inactivar",
+    "MsjErrorSelected": "Necesitas seleccionar una opción"
   }
 }

@@ -8,6 +8,7 @@ import { FilterUserDto } from '@module/user/dto/filter-user.dto';
 
 import { AdminGuard } from '@guard/admin/admin.guard';
 import { ApiTags } from '@nestjs/swagger';
+import { UpdateStatusDto } from './dto/update-status.dto';
 
 @Controller('admin')
 export class AdminController {
@@ -39,8 +40,16 @@ export class AdminController {
   }
 
   @ApiTags('admin')
+  @Patch('actualizar-estado-admininistrador')
+  updateStatus(@Body() upsateStatus: UpdateStatusDto) {
+    const option = (upsateStatus.option == '1') ? true : false
+    return this.adminService.updateStatus(upsateStatus.id, option);
+  }
+
+  @ApiTags('admin')
   @Delete('eliminar-admininistrador/:id')
   remove(@Param('id') id: string) {
-    return this.adminService.remove(+id);
+    const idsNumeros: number[] = id.split(',').map(str => parseInt(str.trim(), 10));
+    return this.adminService.remove(idsNumeros);
   }
 }

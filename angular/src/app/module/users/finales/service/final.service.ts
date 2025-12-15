@@ -42,7 +42,23 @@ export class FinalService {
     })
   }
 
-  async deleteUser(id: string){
+  async updatestatusUser(id: string[], option: string){
+    let complemento = 'user/actualizar-estado-admininistrador/'
+    let urlCopleta = environment.apiUrl+complemento
+
+    let data = {
+      'id': id,
+      'option': option,
+    }
+
+    return await axios.request({
+      method: 'patch',
+      url: urlCopleta,
+      data: data
+    })
+  }
+
+  async deleteUser(id: string[]){
     let complemento = 'user/eliminar-usuario/'
     let urlCopleta = environment.apiUrl+complemento+id
 

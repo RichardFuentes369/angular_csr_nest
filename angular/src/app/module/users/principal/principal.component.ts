@@ -180,7 +180,7 @@ export class PrincipalComponent implements OnInit{
 
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
-  eliminarData (_id: string){
+  eliminarData (_id: string[]){
     console.log("eliminarData "+_id)
     this.translate.get('pages-usuarios.Swal.TitleAreYouSure').subscribe((translatedTitle: string) => {
       Swal.fire({
@@ -192,16 +192,16 @@ export class PrincipalComponent implements OnInit{
         cancelButtonText: this.translate.instant('pages-usuarios.Swal.TitleCancel')
       }).then(async (result) => {
         if (result.isConfirmed) {
-            if (result.isConfirmed) {
-              await this.principalService.deleteUser(_id)
-              await this.someInput.reload()
-              Swal.fire({
-                title: this.translate.instant('pages-usuarios.Swal.TitleDelete'),
-                text: this.translate.instant('pages-usuarios.Swal.TitleRegisterDeleted'),
-                icon: "success"
-              });
-            }
-        }
+          if (result.isConfirmed) {
+            await this.principalService.deleteUser(_id)
+            await this.someInput.reload()
+            Swal.fire({
+              title: this.translate.instant('pages-usuarios.Swal.TitleDelete'),
+              text: this.translate.instant('pages-usuarios.Swal.TitleRegisterDeleted'),
+              icon: "success"
+            });
+          }
+       }
       });
     });
   }
@@ -209,43 +209,40 @@ export class PrincipalComponent implements OnInit{
   async refrescarTabla (){
     await this.someInput.reload()
   }
-
-  activarData (_id: string){
+  
+  activarData (_id: string[]){
     console.log("activarData "+_id)
-    this.translate.get('pages-usuarios.Swal.TitleAreYouSure').subscribe((translatedTitle: string) => {
-      Swal.fire({
-        title: this.translate.instant('pages-usuarios.Swal.TitleAreYouSure'),
-        showDenyButton: true,
+
+    let opcionesSelect = {
+      1: this.translate.instant('pages-usuarios.Swal.TitleActived'),
+      0: this.translate.instant('pages-usuarios.Swal.TitleInactived'),
+    };
+
+    Swal.fire({
+        title: this.translate.instant('pages-usuarios.Label.statusUser'),
+        input: 'select',
+        inputOptions: opcionesSelect,
+        inputPlaceholder: this.translate.instant('pages-usuarios.Placeholder.select'),
         showCancelButton: true,
-        confirmButtonText: this.translate.instant('pages-usuarios.Swal.TitleActived'),
-        cancelButtonText: this.translate.instant('pages-usuarios.Swal.TitleCancel'),
-        denyButtonText: this.translate.instant('pages-usuarios.Swal.TitleInactived')
-      }).then(async (result) => {
-        /* Read more about isConfirmed, isDenied below */
+        inputValidator: (value) => {
+            return new Promise((resolve) => {
+                if (value === '') {
+                    resolve(this.translate.instant('pages-usuarios.Swal.MsjErrorSelected'));
+                } else {
+                    resolve();
+                }
+            });
+        }
+    }).then(async (result) => {
         if (result.isConfirmed) {
-          await this.principalService.updateUser(
-            {"isActive": true},
-            _id
-          )
+          await this.principalService.updatestatusUser(_id, result.value)
           await this.someInput.reload()
           Swal.fire({
-            title: this.translate.instant('pages-usuarios.Swal.TitleActived'),
-            text: this.translate.instant('pages-usuarios.Swal.TitleRegisterActived'),
-            icon: "success"
-          });
-        } else if (result.isDenied) {
-          await this.principalService.updateUser(
-            {"isActive": false},
-            _id
-          )
-          await this.someInput.reload()
-          Swal.fire({
-            title: this.translate.instant('pages-usuarios.Swal.TitleInactived'),
-            text: this.translate.instant('pages-usuarios.Swal.TitleRegisterInactived'),
+            title: this.translate.instant('pages-usuarios.Swal.TitleUpdate'),
+            text: this.translate.instant('pages-usuarios.Swal.TitleRegisterUpdated'),
             icon: "success"
           });
         }
-      });
     });
   }
 

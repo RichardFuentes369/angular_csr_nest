@@ -2,7 +2,7 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
-import { Like, Repository } from 'typeorm';
+import { In, Like, Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { PaginationDto } from '@global/dto/pagination.dto';
 import { FilterUserDto } from '@module/user/dto/filter-user.dto';
@@ -146,8 +146,15 @@ export class UserService {
     });
   }
 
-  remove(id: number) {
-    return this.userRepository.delete(id);
+  updateStatus(id: number[], isActiveo: boolean) {
+    return this.userRepository.update(
+        { id: In(id) },
+        { isActive: isActiveo } 
+    );
+  }  
+
+  remove(id: number[]) {
+    return this.userRepository.delete({id: In(id)})
   }
 
   async findUsernameEmail(username: string): Promise<User>{

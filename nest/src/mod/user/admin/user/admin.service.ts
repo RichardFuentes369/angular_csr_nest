@@ -2,7 +2,7 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateAdminDto } from './dto/create-admin.dto';
 import { UpdateAdminDto } from './dto/update-admin.dto';
 
-import { Like, Repository } from 'typeorm';
+import { In, Like, Repository } from 'typeorm';
 import { Admin } from './entities/admin.entity';
 import { FilterUserDto } from '@module/user/dto/filter-user.dto';
 import { I18nService } from 'nestjs-i18n';
@@ -146,8 +146,15 @@ export class AdminService {
     });
   }
 
-  remove(id: number) {
-    return this.adminRepository.delete(id);
+  updateStatus(id: number[], isActiveo: boolean) {
+    return this.adminRepository.update(
+        { id: In(id) },
+        { isActive: isActiveo } 
+    );
+  }  
+  
+  remove(id: number[]) {
+    return this.adminRepository.delete({id: In(id)})
   }
 
   async findUsernameEmail(username: string): Promise<Admin>{

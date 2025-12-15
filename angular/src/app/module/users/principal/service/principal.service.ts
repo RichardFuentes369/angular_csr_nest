@@ -41,7 +41,23 @@ export class PrincipalService {
     })
   }
 
-  async deleteUser(id: string){
+  async updatestatusUser(id: string[], option: string){
+    let complemento = 'admin/actualizar-estado-admininistrador/'
+    let urlCopleta = environment.apiUrl+complemento
+
+    let data = {
+      'id': id,
+      'option': option,
+    }
+
+    return await axios.request({
+      method: 'patch',
+      url: urlCopleta,
+      data: data
+    })
+  }
+
+  async deleteUser(id: string[]){
     let complemento = 'admin/eliminar-admininistrador/'
     let urlCopleta = environment.apiUrl+complemento+id
 
