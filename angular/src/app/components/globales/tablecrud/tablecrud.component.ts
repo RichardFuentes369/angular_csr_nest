@@ -33,6 +33,7 @@ export class TablecrudComponent implements OnInit {
   permisosAcciones: any[] = [];
 
   url = environment.apiUrl
+  idSeleccionado: string = '';
   idsSeleccionados: any[] = [];
 
   constructor(
