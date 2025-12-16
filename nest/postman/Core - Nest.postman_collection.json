@@ -570,7 +570,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"firstName\": \"AdminName11\",\r\n    \"lastName\": \"AdminLastname11\",\r\n    \"password\": \"Qwerty9601\",\r\n    \"email\": \"admin11@correo.com\",\r\n    \"isActive\": true\r\n}",
+											"raw": "{\r\n    \"firstName\": \"AdminName14\",\r\n    \"lastName\": \"AdminLastname14\",\r\n    \"password\": \"Qwerty9601\",\r\n    \"email\": \"admin14@correo.com\",\r\n    \"isActive\": true\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -598,7 +598,7 @@
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "localhost:3000/api/admin/eliminar-admininistrador/1",
+											"raw": "localhost:3000/api/admin/eliminar-admininistrador/17",
 											"host": [
 												"localhost"
 											],
@@ -607,7 +607,7 @@
 												"api",
 												"admin",
 												"eliminar-admininistrador",
-												"1"
+												"17"
 											]
 										}
 									},
