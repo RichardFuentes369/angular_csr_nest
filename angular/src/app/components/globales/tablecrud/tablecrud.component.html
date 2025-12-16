@@ -16,8 +16,8 @@
         {{ 'global-tablecrud.Options.Edit' | translate}}
       </button>
     }
-    @if(tienePermiso('eliminar_individual')){
-      <button class="btn btn-primary btn-sm mx-sm-1" (click)="deleteItem()" [disabled]="idsSeleccionados.length === 0">
+    @if(!tienePermiso('eliminar_multiple') && tienePermiso('eliminar_individual')){
+      <button class="btn btn-primary btn-sm mx-sm-1" (click)="deleteItem()" [disabled]="idsSeleccionados.length !== 1">
         {{ 'global-tablecrud.Options.Delete' | translate}} 
       </button>
     }
@@ -26,7 +26,7 @@
         {{ 'global-tablecrud.Options.Delete' | translate}} ({{idsSeleccionados.length}})
       </button>
     }
-    @if(tienePermiso('estado')){
+    @if(tienePermiso('estado_usuario')){
       <button class="btn btn-primary btn-sm mx-sm-1" (click)="activedItem()" [disabled]="idsSeleccionados.length === 0">
         {{ 'global-tablecrud.Options.Suspend' | translate}} ({{idsSeleccionados.length}})
       </button>
