@@ -207,8 +207,11 @@ export class PrincipalComponent implements OnInit{
   }
 
   async refrescarTabla (){
-    await this.someInput.reload()
+    setTimeout(async () => {
+      await this.someInput.reload()
+    }, 100);
   }
+
   
   activarData (_id: string[]){
     console.log("activarData "+_id)
