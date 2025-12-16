@@ -136,8 +136,8 @@ export class PermisosComponent implements OnInit{
 
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
-  eliminarData (_id: string){
-   this.translate.get('pages-modulos.Swal.TitleAreYouSure').subscribe((translatedTitle: string) => {
+  eliminarData (_id: string[]){
+    this.translate.get('pages-modulos.Swal.TitleAreYouSure').subscribe((translatedTitle: string) => {
       Swal.fire({
         title: translatedTitle,
         text: this.translate.instant('pages-modulos.Swal.TitleWarnigRevert'),
@@ -147,23 +147,23 @@ export class PermisosComponent implements OnInit{
         cancelButtonText: this.translate.instant('pages-modulos.Swal.TitleCancel')
       }).then(async (result) => {
         if (result.isConfirmed) {
-            let response = await this.modulosService.eliminarPermiso(_id)
-            await this.someInput.reload()
+          let response = await this.modulosService.eliminarPermiso(_id)
+          await this.someInput.reload()
 
-            if(response.data.status == 200){
-              Swal.fire({
-                title: this.translate.instant('pages-modulos.Swal.TitleDelete'),
-                text: this.translate.instant('pages-modulos.Swal.TitleRegisterDeleted'),
-                icon: "success"
-              });
-            }
-            if(response.data.status == 404){
-              Swal.fire({
-                title: this.translate.instant('pages-modulos.Swal.TitleDelete'),
-                text: response.data.message,
-                icon: "error"
-              });
-            }
+          if (response.data.status == 200) {
+            Swal.fire({
+              title: this.translate.instant('pages-modulos.Swal.TitleDelete'),
+              text: this.translate.instant('pages-modulos.Swal.TitleRegisterDeleted'),
+              icon: "success"
+            });
+          }
+          if (response.data.status == 404) {
+            Swal.fire({
+              title: this.translate.instant('pages-modulos.Swal.TitleDelete'),
+              text: response.data.message,
+              icon: "error"
+            });
+          }
         }
       });
     });

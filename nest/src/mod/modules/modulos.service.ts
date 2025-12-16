@@ -18,7 +18,7 @@ export class ModulosService {
     private i18n: I18nService
   ) {}
 
-    async remove(idPermiso: number){
+  async remove(idPermiso: number){
     try {
       const selectPermisoModulo = await this.moduloRepository.find({
         where: {

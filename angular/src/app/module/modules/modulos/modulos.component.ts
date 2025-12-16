@@ -147,7 +147,7 @@ export class ModulosComponent implements OnInit{
 
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
-  eliminarData (_id: string){
+  eliminarData (_id: string[]){
     this.translate.get('pages-modulos.Swal.TitleAreYouSure').subscribe((translatedTitle: string) => {
       Swal.fire({
         title: translatedTitle,
