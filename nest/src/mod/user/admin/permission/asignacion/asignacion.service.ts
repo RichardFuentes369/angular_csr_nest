@@ -81,12 +81,12 @@ export class AsignacionService {
       try {
         const guardarAsignacion = this.asignacionRepository.save(model)
         return {
-          'title': this.i18n.t('user.MSN_PERMISO_ASIGNADO_TITTLE'),
-          'message': this.i18n.t('user.MSN_PERMISO_ASIGNADO_MESSAGE'),
+          'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE'),
+          'message': this.i18n.t('modulo.MSJ_PERMISO_ASIGNADO_MESSAGE'),
           'status': 200,
         }
       } catch (error) {
-        throw new NotFoundException(this.i18n.t('user.ERROR'), { cause: new Error(), description: this.i18n.t('user.MSN_IS_DESACTIVED') });
+        throw new NotFoundException(this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('user.MSJ_IS_DESACTIVED') });
       }
     }
     
@@ -102,12 +102,12 @@ export class AsignacionService {
       try {
         const actualizarAsignacion = this.asignacionRepository.delete(permisoAsignado.id);
         return {
-          'title': this.i18n.t('user.MSN_PERMISO_ASIGNADO_TITTLE'),
-          'message': this.i18n.t('user.MSN_PERMISO_REMOVIDO_MESSAGE'),
+          'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE'),
+          'message': this.i18n.t('modulo.MSJ_PERMISO_REMOVIDO_MESSAGE'),
           'status': 200,
         }
       } catch (error) {
-        throw new NotFoundException(this.i18n.t('user.ERROR'), { cause: new Error(), description: this.i18n.t('user.MSN_IS_DESACTIVED') });
+        throw new NotFoundException(this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('user.MSJ_IS_DESACTIVED') });
       }
     }
 

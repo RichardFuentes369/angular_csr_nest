@@ -1,6 +1,6 @@
 {
   "ERROR": "Error!",
-  "MSN_PERMISO_ASIGNADO_TITTLE": "Permission",
-  "MSN_PERMISO_ASIGNADO_MESSAGE": "assigned, correctly",
-  "MSN_PERMISO_REMOVIDO_MESSAGE": "removed, correctly"
+  "MSJ_USUARIO_TITTLE": "Usuario",
+  "MSJ_USUARIO_CREADO_EXITOSAMENTE_TITTLE": "creado, exitosamente",
+  "MSJ_USUARIO_REMOVIDO_EXITOSAMENTE_TITTLE": "removido, exitosamente"
 }

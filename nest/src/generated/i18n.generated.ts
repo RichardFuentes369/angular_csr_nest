@@ -23,16 +23,15 @@ export type I18nTranslations = {
         "MSJ_ERROR_PERMISO_PADRE_NO_EXISTENTE": string;
         "MSJ_ERROR_PERMISO_TIENE_PERMISOS_HIJOS": string;
         "MSJ_ERROR_PERMISO_TIENE_IS_ASSIGNED": string;
+        "MSJ_PERMISO_ASIGNADO_MESSAGE": string;
+        "MSJ_PERMISO_REMOVIDO_MESSAGE": string;
         "MSJ_ERROR_PERMISO_NO_EXISTENTE": string;
     };
     "user": {
         "ERROR": string;
-        "MSN_PERMISO_ASIGNADO_TITTLE": string;
-        "MSN_PERMISO_ASIGNADO_MESSAGE": string;
-        "MSN_PERMISO_REMOVIDO_MESSAGE": string;
-        "MSN_USUARIO_TITTLE": string;
-        "MSN_USUARIO_CREADO_EXITOSAMENTE_TITTLE": string;
-        "MSN_USUARIO_REMOVIDO_EXITOSAMENTE_TITTLE": string;
+        "MSJ_USUARIO_TITTLE": string;
+        "MSJ_USUARIO_CREADO_EXITOSAMENTE_TITTLE": string;
+        "MSJ_USUARIO_REMOVIDO_EXITOSAMENTE_TITTLE": string;
     };
 };
 /* prettier-ignore */

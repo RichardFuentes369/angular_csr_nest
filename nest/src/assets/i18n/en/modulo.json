@@ -9,5 +9,8 @@
   "MSJ_ERROR_PERMISO_EXISTENTE": "This permission already exists in our database.",
   "MSJ_ERROR_PERMISO_PADRE_NO_EXISTENTE": "No action can be taken, the parent does not exist in our database.",
   "MSJ_ERROR_PERMISO_TIENE_PERMISOS_HIJOS": "No action can be taken, this permission contains child permissions.",
-  "MSJ_ERROR_PERMISO_TIENE_IS_ASSIGNED": "No action, this permission is assigned."
+  "MSJ_ERROR_PERMISO_TIENE_IS_ASSIGNED": "No action, this permission is assigned.",
+
+  "MSJ_PERMISO_ASIGNADO_MESSAGE": "assigned, correctly",
+  "MSJ_PERMISO_REMOVIDO_MESSAGE": "removed, correctly"
 }

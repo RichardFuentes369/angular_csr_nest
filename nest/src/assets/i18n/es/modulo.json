@@ -9,5 +9,8 @@
   "MSJ_ERROR_PERMISO_EXISTENTE": "Este permiso, ya existe en nuestra base de datos.",
   "MSJ_ERROR_PERMISO_PADRE_NO_EXISTENTE": "No se puede realizar ninguna accion, el padre no existe en nuestra base de datos.",
   "MSJ_ERROR_PERMISO_TIENE_PERMISOS_HIJOS": "No se puede realizar ninguna accion, este permiso contiene permisos hijos.",
-  "MSJ_ERROR_PERMISO_TIENE_IS_ASSIGNED": "No se puede realizar ninguna accion, este permiso está asignado"
+  "MSJ_ERROR_PERMISO_TIENE_IS_ASSIGNED": "No se puede realizar ninguna accion, este permiso está asignado",
+
+  "MSJ_PERMISO_ASIGNADO_MESSAGE": "asignado, correctamente",
+  "MSJ_PERMISO_REMOVIDO_MESSAGE": "removido, correctamente"
 }
