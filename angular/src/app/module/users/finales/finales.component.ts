@@ -11,6 +11,7 @@ import { TablecrudComponent } from '@component/globales/tablecrud/tablecrud.comp
 import { FinalService } from './service/final.service';
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
 import { SearchComponent } from '@component/globales/search/search.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-menu-usuarios-finales',
@@ -26,6 +27,7 @@ import { SearchComponent } from '@component/globales/search/search.component';
 })
 export class FinalesComponent implements OnInit{
 
+  // construcator
   constructor(
     private router: Router,
     private userService :AuthService,
@@ -34,21 +36,17 @@ export class FinalesComponent implements OnInit{
     private translate: TranslateService
   ) { }
 
+  private langSub: Subscription | undefined;
   permisos: any[] = []
 
-  async ngOnInit() {
-    await this.userService.refreshToken('authadmin');
-    const userData = await this.userService.getUser('authadmin');
-    const modulo = await this.permisosService.permisos(userData.data.id,'finales')
-    this.permisos = modulo.data
+  // inicio datos envio al filtro  
+  search = true
+  buttonSearch = "Buscar"
+  iconFilter="fa fa-filter"
+  componenteFilter="FiltroUsuariosComponent"
+  // fin datos envio al filtro
 
-    sessionStorage.removeItem('email')
-    sessionStorage.removeItem('firstName')
-    sessionStorage.removeItem('lastName')
-    sessionStorage.removeItem('isActive')
-  }
-
-  // inicio datos que envio al componente
+  // inicio datos que envio al componente tabla
   showcampoFiltro = false
   endPoint = 'user'
   filters = ''
@@ -85,8 +83,9 @@ export class FinalesComponent implements OnInit{
     }
   ]
   permisosAcciones = this.permisos
-  // fin datos que envio al componente
+  // fin datos que envio al componente tabla
 
+  // inicio datos envio al modal
   tamano = ""
   scrollable = false
   title = ""
@@ -98,11 +97,63 @@ export class FinalesComponent implements OnInit{
   buttonCancel = "Cancelar"
   cierreModal = "true"
   componentePrecargado = ""
+  // fin datos envio al modal
 
-  search = true
-  buttonSearch = "Buscar"
-  iconFilter="fa fa-filter"
-  componenteFilter="FiltroUsuariosComponent"
+  // metodos Init, Destroy
+  async ngOnInit() {
+    await this.userService.refreshToken('authadmin');
+    const userData = await this.userService.getUser('authadmin');
+    const modulo = await this.permisosService.permisos(userData.data.id,'administradores')
+    this.permisos = modulo.data
+    sessionStorage.removeItem('email')
+    sessionStorage.removeItem('firstName')
+    sessionStorage.removeItem('lastName')
+    sessionStorage.removeItem('isActive')
+
+    this.langSub = this.translate.onLangChange.subscribe(() => {
+      setTimeout(() => {
+        this.listar();
+      }, 100); 
+    });
+  } 
+  ngOnDestroy() {
+    if (this.langSub) {
+      this.langSub.unsubscribe();
+    }
+  }
+
+  // metodos Componente
+  listar(){
+    this.columnas = [
+      {
+        title: this.translate.instant('pages-usuarios.Column.Id'),
+        data: 'id',
+      },
+      {
+        title: this.translate.instant('pages-usuarios.Column.Email'),
+        data: 'email',
+      },
+      {
+        title: this.translate.instant('pages-usuarios.Column.Names'),
+        data: 'firstName',
+      },
+      {
+        title: this.translate.instant('pages-usuarios.Column.Surnames'),
+        data: 'lastName',
+      },
+      {
+        title: this.translate.instant('pages-usuarios.Column.Status'),
+        data: 'isActive',
+        render: (data: any, type: any) => {
+          if (type === 'display') {
+            const statusKey = data ? this.translate.instant('pages-usuarios.Column.Actived') : this.translate.instant('pages-usuarios.Column.Inactived');
+            return this.translate.instant(statusKey);
+          }
+          return data;
+        }
+      }
+    ]
+  }
 
   crearData (_id: string){
     localStorage.setItem('profile', 'user')
@@ -199,18 +250,12 @@ export class FinalesComponent implements OnInit{
     });
   }
 
-  async refrescarTabla (){
-    setTimeout(async () => {
-      await this.someInput.reload()
-    }, 100);
-  }
-
   activarData (_id: string[]){
     console.log("activarData "+_id)
 
     let opcionesSelect = {
-      1: this.translate.instant('pages-usuarios.Swal.TitleActived'),
       0: this.translate.instant('pages-usuarios.Swal.TitleInactived'),
+      1: this.translate.instant('pages-usuarios.Swal.TitleActived'),
     };
 
     Swal.fire({
@@ -241,7 +286,6 @@ export class FinalesComponent implements OnInit{
     });
   }
 
-
   async filtroData(){
     let filtros = await $('.complementoRuta').val();
     if(typeof filtros === 'string'){
@@ -251,5 +295,10 @@ export class FinalesComponent implements OnInit{
     }
   }
 
+  async refrescarTabla (){
+    setTimeout(async () => {
+      await this.someInput.reload()
+    }, 100);
+  }
 
 }

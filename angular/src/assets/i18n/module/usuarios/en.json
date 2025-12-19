@@ -62,6 +62,15 @@
     "TitleActived": "Actived",
     "TitleInactived": "Inactived",
     "MsjErrorSelected": "You need to select an option"
+  },
+  "Column": {
+   "Id": "Id",
+   "Email": "E-mail",
+   "Names": "Names", 
+   "Surnames": "Surnames", 
+   "Status": "Status",
+   "Actived": "Actived",
+   "Inactived": "Inactived"
   }
 }
 

@@ -41,11 +41,12 @@
     </button> 
   </div>
 
+  @if(cargandoTabla){
   <table
     datatable
     class="row-border hover tableDatatable"
     [dtOptions]="dtOptions"
   >
   </table>
-
+  }
 </div>

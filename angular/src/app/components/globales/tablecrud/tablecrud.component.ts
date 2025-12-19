@@ -8,7 +8,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '@environment/environment';
 
 import { DataTableDirective, DataTablesModule } from 'angular-datatables';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-globales-tablecrud',
@@ -36,9 +37,13 @@ export class TablecrudComponent implements OnInit {
   idSeleccionado: string = '';
   idsSeleccionados: any[] = [];
 
+  private langSub: Subscription | undefined;
+  cargandoTabla = true;
+
   constructor(
     private tableCrudService: TablecrudService,
-    private http: HttpClient
+    private http: HttpClient,
+    private translate: TranslateService
   ) {}
 
   @ViewChild(DataTableDirective, { static: false }) datatableElement!: DataTableDirective;
@@ -46,11 +51,13 @@ export class TablecrudComponent implements OnInit {
 
   ngOnInit() {
     this.listar();
-  }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.datatableElement.dtInstance.then((dtInstance: any) => {
-      dtInstance.ajax.reload();
+    this.langSub = this.translate.onLangChange.subscribe(() => {
+      this.cargandoTabla = false;
+      setTimeout(() => {
+        this.cargandoTabla = true;
+        this.listar();
+      }, 100); 
     });
   }
 
@@ -208,5 +215,7 @@ export class TablecrudComponent implements OnInit {
     this.idsSeleccionados = []
     $('tr').css({'background-color':'','color':'black'});
   }
+
+
 
 }

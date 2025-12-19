@@ -1,5 +1,5 @@
 
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -13,6 +13,7 @@ import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boost
 
 import { PrincipalService } from './service/principal.service';
 import { SearchComponent } from '@component/globales/search/search.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-principal',
@@ -26,8 +27,9 @@ import { SearchComponent } from '@component/globales/search/search.component';
   templateUrl: './principal.component.html',
   styleUrl: './principal.component.scss'
 })
-export class PrincipalComponent implements OnInit{
+export class PrincipalComponent implements OnInit, OnDestroy{
 
+  // construcator
   constructor(
     private router: Router,
     private userService :AuthService,
@@ -36,59 +38,53 @@ export class PrincipalComponent implements OnInit{
     private translate: TranslateService
   ) { }
 
+  private langSub: Subscription | undefined;
   permisos: any[] = []
 
-  async ngOnInit() {
-    await this.userService.refreshToken('authadmin');
-    const userData = await this.userService.getUser('authadmin');
-    const modulo = await this.permisosService.permisos(userData.data.id,'administradores')
-    this.permisos = modulo.data
-
-    sessionStorage.removeItem('email')
-    sessionStorage.removeItem('firstName')
-    sessionStorage.removeItem('lastName')
-    sessionStorage.removeItem('isActive')
-  }
+  // inicio datos envio al filtro
+  search = true
+  buttonSearch = "Buscar"
+  iconFilter="fa fa-filter"
+  componenteFilter="FiltroUsuariosComponent"
+  // fin datos envio al filtro
 
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
   endPoint = 'admin'
   filters = ''
-  columnas = [
+  columnas: any[] = [
     {
-      title: 'ID',
+      title: this.translate.instant('pages-usuarios.Column.Id'),
       data: 'id',
     },
     {
-      title: 'Email',
+      title: this.translate.instant('pages-usuarios.Column.Email'),
       data: 'email',
     },
     {
-      title: 'First name',
+      title: this.translate.instant('pages-usuarios.Column.Names'),
       data: 'firstName',
     },
     {
-      title: 'Last name',
+      title: this.translate.instant('pages-usuarios.Column.Surnames'),
       data: 'lastName',
     },
     {
-      title: 'Status',
+      title: this.translate.instant('pages-usuarios.Column.Status'),
       data: 'isActive',
-      render: function (data: any, type: any, row: any) {
+      render: (data: any, type: any) => {
         if (type === 'display') {
-          if (data === true) {
-            return 'Active'
-          } else {
-            return 'Inactive'
-          }
+          const statusKey = data ? this.translate.instant('pages-usuarios.Column.Actived') : this.translate.instant('pages-usuarios.Column.Inactived');
+          return this.translate.instant(statusKey);
         }
         return data;
       }
     }
-  ]
+  ];
   permisosAcciones = this.permisos
   // fin datos que envio al componente tabla
 
+  // inicio datos envio al modal
   tamano = ""
   scrollable = false
   title = ""
@@ -100,11 +96,64 @@ export class PrincipalComponent implements OnInit{
   buttonCancel = "Cancelar"
   cierreModal = "true"
   componentePrecargado = ""
-  
-  search = true
-  buttonSearch = "Buscar"
-  iconFilter="fa fa-filter"
-  componenteFilter="FiltroUsuariosComponent"
+  // fin datos envio al modal
+
+  // metodos Init, Destroy
+  async ngOnInit() {
+    await this.userService.refreshToken('authadmin');
+    const userData = await this.userService.getUser('authadmin');
+    const modulo = await this.permisosService.permisos(userData.data.id,'administradores')
+    this.permisos = modulo.data
+    sessionStorage.removeItem('email')
+    sessionStorage.removeItem('firstName')
+    sessionStorage.removeItem('lastName')
+    sessionStorage.removeItem('isActive')
+
+    this.langSub = this.translate.onLangChange.subscribe(() => {
+      setTimeout(() => {
+        this.listar();
+      }, 100); 
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.langSub) {
+      this.langSub.unsubscribe();
+    }
+  }
+
+  // metodos Componente
+  listar(){
+    this.columnas = [
+      {
+        title: this.translate.instant('pages-usuarios.Column.Id'),
+        data: 'id',
+      },
+      {
+        title: this.translate.instant('pages-usuarios.Column.Email'),
+        data: 'email',
+      },
+      {
+        title: this.translate.instant('pages-usuarios.Column.Names'),
+        data: 'firstName',
+      },
+      {
+        title: this.translate.instant('pages-usuarios.Column.Surnames'),
+        data: 'lastName',
+      },
+      {
+        title: this.translate.instant('pages-usuarios.Column.Status'),
+        data: 'isActive',
+        render: (data: any, type: any) => {
+          if (type === 'display') {
+            const statusKey = data ? this.translate.instant('pages-usuarios.Column.Actived') : this.translate.instant('pages-usuarios.Column.Inactived');
+            return this.translate.instant(statusKey);
+          }
+          return data;
+        }
+      }
+    ]
+  }
 
   crearData (_id: string){
     localStorage.setItem('profile', 'admin')
@@ -173,11 +222,6 @@ export class PrincipalComponent implements OnInit{
     }
   }
 
-  asignarData (_id: string){
-    console.log("asignarData "+_id)
-    this.router.navigate(['/admin/menu/index-usuarios/administradores/asignar-administrador/'], { queryParams: { id: _id } });
-  }
-
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
   eliminarData (_id: string[]){
@@ -205,20 +249,13 @@ export class PrincipalComponent implements OnInit{
       });
     });
   }
-
-  async refrescarTabla (){
-    setTimeout(async () => {
-      await this.someInput.reload()
-    }, 100);
-  }
-
   
   activarData (_id: string[]){
     console.log("activarData "+_id)
 
     let opcionesSelect = {
-      1: this.translate.instant('pages-usuarios.Swal.TitleActived'),
       0: this.translate.instant('pages-usuarios.Swal.TitleInactived'),
+      1: this.translate.instant('pages-usuarios.Swal.TitleActived'),
     };
 
     Swal.fire({
@@ -249,11 +286,22 @@ export class PrincipalComponent implements OnInit{
     });
   }
 
+  asignarData (_id: string){
+    console.log("asignarData "+_id)
+    this.router.navigate(['/admin/menu/index-usuarios/administradores/asignar-administrador/'], { queryParams: { id: _id } });
+  }
+
   async filtroData(){
     let filtros = await $('.complementoRuta').val();
     if(typeof filtros === 'string'){
       this.filters = filtros
     }
+  }
+
+  async refrescarTabla (){
+    setTimeout(async () => {
+      await this.someInput.reload()
+    }, 100);
   }
 
 }
