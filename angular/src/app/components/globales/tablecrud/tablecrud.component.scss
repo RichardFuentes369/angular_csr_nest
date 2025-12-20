@@ -37,3 +37,19 @@ table {
 ::ng-deep .tableDatatable tbody tr {
   transition: background-color 0.2s ease;
 }
+
+/* Cambiar color de fondo y texto del encabezado */
+::ng-deep .tableDatatable thead th {
+    background-color: #1f68b1 !important; /* Azul oscuro (cámbialo al color que desees) */
+    color: #ffffff !important;           /* Texto blanco */
+    text-align: center;                  /* Centrar títulos */
+    padding: 12px 10px !important;       /* Espaciado interno */
+    border-bottom: 2px solid #1a252f !important; /* Línea divisoria inferior */
+}
+
+/* Opcional: Estilo para las flechas de ordenamiento (si las habilitas luego) */
+::ng-deep .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background: #2c3e50 !important;
+    color: white !important;
+    border: 1px solid #2c3e50 !important;
+}
