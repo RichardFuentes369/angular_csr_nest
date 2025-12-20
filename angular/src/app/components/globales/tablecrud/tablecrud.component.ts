@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 
 import { Config } from 'datatables.net';
 
@@ -21,7 +21,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './tablecrud.component.html',
   styleUrl: './tablecrud.component.scss',
 })
-export class TablecrudComponent implements OnInit {
+export class TablecrudComponent implements OnInit, OnDestroy {
   @Input()
   campoFiltro: boolean = false;
   @Input()
@@ -59,6 +59,12 @@ export class TablecrudComponent implements OnInit {
         this.listar();
       }, 100); 
     });
+  }
+
+  ngOnDestroy() {
+    if (this.langSub) {
+      this.langSub.unsubscribe();
+    }
   }
 
   tienePermiso(nombre: string): boolean {
@@ -100,7 +106,7 @@ export class TablecrudComponent implements OnInit {
       language: {
         "searchPlaceholder": "Buscar..",
         "processing": "Procesando...",
-        "lengthMenu": "Mostrar _MENU_ registros",
+        "lengthMenu": `${this.translate.instant('global-tablecrud.Info.Show')} _MENU_ ${this.translate.instant('global-tablecrud.Info.Records')}`,
         "zeroRecords": "No se encontraron resultados",
         "emptyTable": "Ningún dato disponible en esta tabla",
         "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
@@ -119,7 +125,7 @@ export class TablecrudComponent implements OnInit {
         },
         "decimal": ",",
         "thousands": ".",
-        "info": "Mostrando _START_ a _END_ de _TOTAL_ registros",
+        "info": `${this.translate.instant('global-tablecrud.Info.Showing')} _START_ ${this.translate.instant('global-tablecrud.Info.To')} _END_ ${this.translate.instant('global-tablecrud.Info.Of')} _TOTAL_ ${this.translate.instant('global-tablecrud.Info.Entries')}`,
       },
       columns: this.columnas,
       rowCallback: (row: Node, data: any | Object, index: number) => {

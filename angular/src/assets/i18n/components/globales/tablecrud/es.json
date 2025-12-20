@@ -7,5 +7,13 @@
     "Assign":"Asignar",
     "Clean":"Limpiar",
     "Suspend":"Suspender"
+  },
+  "Info": {
+    "Show": "Mostrar",
+    "Records": "registros",
+    "Showing": "Mostrando",
+    "To": "a",
+    "Of": "de",
+    "Entries": "entradas"
   }
 }
