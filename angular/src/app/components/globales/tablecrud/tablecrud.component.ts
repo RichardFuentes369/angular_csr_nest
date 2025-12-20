@@ -114,22 +114,20 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
       },
       columns: this.columnas,
       rowCallback: (row: Node, data: any, index: number) => {
-        // Manejo de estilos de selección
-        if (data.selection) {
-          $(row).css({'background-color': 'red', 'color': 'white'});
+        const $row = $(row);
+        if (this.idsSeleccionados.includes(data.id)) {
+          $row.addClass('selected-row');
         } else {
-          $(row).css({'background-color': '', 'color': 'black'}); 
+          $row.removeClass('selected-row');
         }
-
         $('td', row).off('click').on('click', () => {
           const existIndex = this.idsSeleccionados.indexOf(data.id);
-
           if (existIndex !== -1) {
             this.idsSeleccionados.splice(existIndex, 1);
-            $(row).css({'background-color': '', 'color': 'black'});
+            $row.removeClass('selected-row');
           } else {
             this.idsSeleccionados.push(data.id);
-            $(row).css({'background-color': 'red', 'color': 'white'});
+            $row.addClass('selected-row');
           }
         });
         return row;
@@ -146,7 +144,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
 
   limpiarSeleccion() {
     this.idsSeleccionados = [];
-    $('.tableDatatable tr').css({'background-color': '', 'color': 'black'});
+    $('.tableDatatable tbody tr').removeClass('selected-row');
   }
 
   tienePermiso(nombre: string): boolean {

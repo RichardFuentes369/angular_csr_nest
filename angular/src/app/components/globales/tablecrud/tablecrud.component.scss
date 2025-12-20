@@ -22,14 +22,18 @@ table {
   }
 }
 
-/* Cambiar el color de fondo del encabezado */
-::ng-deep .tableDatatable thead th {
-    background-color: #2c3e50;
-    color: white;
-    border-bottom: 2px solid #1a252f;
+/* Clase para la fila seleccionada */
+::ng-deep .tableDatatable tbody tr.selected-row {
+  background-color: #e74c3c !important; /* Rojo */
+  color: white !important;
+
+  td {
+    background-color: transparent !important;
+    color: inherit !important;
+  }
 }
 
-/* Cambiar el color de la fila cuando pasas el ratón */
-// ::ng-deep .tableDatatable tbody tr:hover {
-//     background-color: #f1f1f1 !important;
-// }
+/* Opcional: transición para que el color no cambie de golpe */
+::ng-deep .tableDatatable tbody tr {
+  transition: background-color 0.2s ease;
+}
