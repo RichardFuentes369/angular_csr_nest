@@ -1,52 +1,40 @@
-<div class="">
-
-  <div class="botoneria">
+<div class="table-container">
+  <div class="botoneria mb-3">
     @if(tienePermiso('crear')){
-      <button class="btn btn-primary btn-sm mx-sm-1" (click)="newItem()" [disabled]="idsSeleccionados.length >= 1">
+      <button class="btn btn-primary btn-sm mx-1" (click)="newItem()" [disabled]="idsSeleccionados.length >= 1">
         {{ 'global-tablecrud.Options.Create' | translate}}
       </button>
     }
     @if(tienePermiso('ver')){
-      <button class="btn btn-primary btn-sm mx-sm-1" (click)="seeItem()" [disabled]="idsSeleccionados.length != 1">
+      <button class="btn btn-primary btn-sm mx-1" (click)="seeItem()" [disabled]="idsSeleccionados.length != 1">
         {{ 'global-tablecrud.Options.See' | translate}}
       </button>
-      }
+    }
     @if(tienePermiso('editar')){
-      <button class="btn btn-primary btn-sm mx-sm-1" (click)="editItem()" [disabled]="idsSeleccionados.length != 1">
+      <button class="btn btn-primary btn-sm mx-1" (click)="editItem()" [disabled]="idsSeleccionados.length != 1">
         {{ 'global-tablecrud.Options.Edit' | translate}}
       </button>
     }
-    @if(!tienePermiso('eliminar_multiple') && tienePermiso('eliminar_individual')){
-      <button class="btn btn-primary btn-sm mx-sm-1" (click)="deleteItem()" [disabled]="idsSeleccionados.length !== 1">
-        {{ 'global-tablecrud.Options.Delete' | translate}} 
-      </button>
-    }
     @if(tienePermiso('eliminar_multiple')){
-      <button class="btn btn-primary btn-sm mx-sm-1" (click)="deleteItem()" [disabled]="idsSeleccionados.length === 0">
+      <button class="btn btn-primary btn-sm mx-1" (click)="deleteItem()" [disabled]="idsSeleccionados.length === 0">
         {{ 'global-tablecrud.Options.Delete' | translate}} ({{idsSeleccionados.length}})
       </button>
     }
     @if(tienePermiso('estado_usuario')){
-      <button class="btn btn-primary btn-sm mx-sm-1" (click)="activedItem()" [disabled]="idsSeleccionados.length === 0">
+      <button class="btn btn-primary btn-sm mx-1" (click)="activedItem()" [disabled]="idsSeleccionados.length === 0">
         {{ 'global-tablecrud.Options.Suspend' | translate}} ({{idsSeleccionados.length}})
       </button>
     }
-    @if(tienePermiso('asignar_permisos')){
-      <button class="btn btn-primary btn-sm mx-sm-1" (click)="assignItem()" [disabled]="idsSeleccionados.length != 1">
-        {{ 'global-tablecrud.Options.Assign' | translate}}
-      </button>
-    }
-    <button class="btn btn-primary btn-sm mx-sm-1" (click)="selectionClear()" [disabled]="idsSeleccionados.length === 0">
+    <button class="btn btn-secondary btn-sm mx-1" (click)="selectionClear()" [disabled]="idsSeleccionados.length === 0">
       {{ 'global-tablecrud.Options.Clean' | translate}} ({{idsSeleccionados.length}})
     </button> 
   </div>
 
-  @if(cargandoTabla){
   <table
     datatable
-    class="row-border hover tableDatatable"
     [dtOptions]="dtOptions"
+    [dtTrigger]="dtTrigger"
+    class="row-border hover tableDatatable table w-100"
   >
   </table>
-  }
 </div>

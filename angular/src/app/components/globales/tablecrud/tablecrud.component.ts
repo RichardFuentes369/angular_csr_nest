@@ -1,15 +1,11 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
-
-import { Config } from 'datatables.net';
-
-import { TablecrudService } from './service/tablecrud.service';
-
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, SimpleChanges, ViewChild, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@environment/environment';
-
 import { DataTableDirective, DataTablesModule } from 'angular-datatables';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
+import { Config } from 'datatables.net';
+import { TablecrudService } from './service/tablecrud.service';
 
 @Component({
   selector: 'app-globales-tablecrud',
@@ -21,24 +17,21 @@ import { Subscription } from 'rxjs';
   templateUrl: './tablecrud.component.html',
   styleUrl: './tablecrud.component.scss',
 })
-export class TablecrudComponent implements OnInit, OnDestroy {
-  @Input()
-  campoFiltro: boolean = false;
-  @Input()
-  endPoint: string = '';
-  @Input()
-  filters: string = '';
-  @Input()
-  columnas: any;
-  @Input()
-  permisosAcciones: any[] = [];
+export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
+  @Input() campoFiltro: boolean = false;
+  @Input() endPoint: string = '';
+  @Input() filters: string = '';
+  @Input() columnas: any;
+  @Input() permisosAcciones: any[] = [];
 
-  url = environment.apiUrl
-  idSeleccionado: string = '';
+  @ViewChild(DataTableDirective, { static: false }) datatableElement!: DataTableDirective;
+  
+  url = environment.apiUrl;
   idsSeleccionados: any[] = [];
-
+  dtOptions: Config = {};
+  dtTrigger: Subject<any> = new Subject<any>(); 
+  
   private langSub: Subscription | undefined;
-  cargandoTabla = true;
 
   constructor(
     private tableCrudService: TablecrudService,
@@ -46,29 +39,35 @@ export class TablecrudComponent implements OnInit, OnDestroy {
     private translate: TranslateService
   ) {}
 
-  @ViewChild(DataTableDirective, { static: false }) datatableElement!: DataTableDirective;
-  dtOptions: Config = {};
-
   ngOnInit() {
     this.listar();
 
     this.langSub = this.translate.onLangChange.subscribe(() => {
-      this.cargandoTabla = false;
-      setTimeout(() => {
-        this.cargandoTabla = true;
-        this.listar();
-      }, 100); 
+      this.recargarIdioma();
     });
   }
 
-  ngOnDestroy() {
-    if (this.langSub) {
-      this.langSub.unsubscribe();
+  ngAfterViewInit(): void {
+    this.dtTrigger.next(null);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['filters'] && !changes['filters'].firstChange) {
+      this.reload();
     }
   }
 
-  tienePermiso(nombre: string): boolean {
-    return this.permisosAcciones.some((permiso) => permiso.permiso_permiso === nombre);
+  ngOnDestroy() {
+    if (this.langSub) this.langSub.unsubscribe();
+    this.dtTrigger.unsubscribe();
+  }
+
+  recargarIdioma() {
+    this.datatableElement.dtInstance.then((dtInstance: any) => {
+      dtInstance.destroy();
+      this.listar();
+      this.dtTrigger.next(null);
+    });
   }
 
   listar() {
@@ -78,23 +77,18 @@ export class TablecrudComponent implements OnInit, OnDestroy {
       ordering: false,
       processing: true,
       searching: false,
-      serverSide: true, // Set the flag
+      serverSide: true,
       ajax: (dataTablesParameters: any, callback) => {
-        const page = parseInt(dataTablesParameters.start) / parseInt(dataTablesParameters.length) + 1;
-        dataTablesParameters.PageNo = page.toString();
-        dataTablesParameters.NoOfRows = dataTablesParameters.length.toString();
-
+        const page = Math.floor(dataTablesParameters.start / dataTablesParameters.length) + 1;
+        
         this.http.get<any[]>(
             `${this.url}${this.endPoint}?page=${page}&limit=${dataTablesParameters.length}&field=id&order=asc${this.filters}`
         ).subscribe((post) => {
           const recordsTotal = post[0].pagination.totalRecord;
-          
-          const data: any = [];
-
-          for (const item of post[0].result) {
-            (this.idsSeleccionados.find(obj => obj == item.id)) ? item.selection = true : item.selection = false
-            data.push(item);
-          }
+          const data = post[0].result.map((item: any) => {
+            item.selection = this.idsSeleccionados.includes(item.id);
+            return item;
+          });
 
           callback({
             recordsTotal: recordsTotal,
@@ -104,124 +98,74 @@ export class TablecrudComponent implements OnInit, OnDestroy {
         });
       },
       language: {
-        "searchPlaceholder": "Buscar..",
         "processing": "Procesando...",
         "lengthMenu": `${this.translate.instant('global-tablecrud.Info.Show')} _MENU_ ${this.translate.instant('global-tablecrud.Info.Records')}`,
         "zeroRecords": "No se encontraron resultados",
-        "emptyTable": "Ningún dato disponible en esta tabla",
-        "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-        "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-        "search": "Buscar:",
-        "loadingRecords": "Cargando...",
+        "emptyTable": `${this.translate.instant('global-tablecrud.Info.NoInfo')}`,
+        "info": `${this.translate.instant('global-tablecrud.Info.Showing')} _START_ ${this.translate.instant('global-tablecrud.Info.To')} _END_ ${this.translate.instant('global-tablecrud.Info.Of')} _TOTAL_ ${this.translate.instant('global-tablecrud.Info.Entries')}`,
         "paginate": {
-            "first": "Primero",
-            "last": "Último",
-            "next": "Siguiente",
-            "previous": "Anterior"
-        },
-        "aria": {
-            // "sortAscending": ": Activar para ordenar la columna de manera ascendente",
-            // "sortDescending": ": Activar para ordenar la columna de manera descendente"
+            "first": `${this.translate.instant('global-tablecrud.Info.First')}`,
+            "last": `${this.translate.instant('global-tablecrud.Info.Last')}`,
+            "next": `${this.translate.instant('global-tablecrud.Info.Next')}`,
+            "previous": `${this.translate.instant('global-tablecrud.Info.Previous')}`
         },
         "decimal": ",",
-        "thousands": ".",
-        "info": `${this.translate.instant('global-tablecrud.Info.Showing')} _START_ ${this.translate.instant('global-tablecrud.Info.To')} _END_ ${this.translate.instant('global-tablecrud.Info.Of')} _TOTAL_ ${this.translate.instant('global-tablecrud.Info.Entries')}`,
+        "thousands": "."
       },
       columns: this.columnas,
-      rowCallback: (row: Node, data: any | Object, index: number) => {
-
-        const self = $(this);
-
-        if (data.selection === true) {
-          self.css({'background-color': 'red', 'color': 'white'});
+      rowCallback: (row: Node, data: any, index: number) => {
+        // Manejo de estilos de selección
+        if (data.selection) {
+          $(row).css({'background-color': 'red', 'color': 'white'});
         } else {
-          self.css({'background-color': '', 'color': 'black'}); 
+          $(row).css({'background-color': '', 'color': 'black'}); 
         }
 
-        $('td', row).on('click', () => {
+        $('td', row).off('click').on('click', () => {
+          const existIndex = this.idsSeleccionados.indexOf(data.id);
 
-          const exist = this.idsSeleccionados.find(obj => obj == data.id)
-          const existIndex = this.idsSeleccionados.findIndex(obj => obj == data.id)
-
-          if(exist){
-            this.idsSeleccionados.splice(existIndex,1)
-            $('tr').eq(index+2).css({'background-color':'','color':'black'});
-          }
-          
-          if(!exist){
-            this.idsSeleccionados.push(data.id)
-            $('tr').eq(index+2).css({'background-color':'red','color':'white'});
+          if (existIndex !== -1) {
+            this.idsSeleccionados.splice(existIndex, 1);
+            $(row).css({'background-color': '', 'color': 'black'});
+          } else {
+            this.idsSeleccionados.push(data.id);
+            $(row).css({'background-color': 'red', 'color': 'white'});
           }
         });
-      
         return row;
       }
     };
   }
 
-  limpiarSeleccion(){
-    this.idsSeleccionados = []
-    $('tr').css({'background-color':'','color':'black'});
-  }
-
-  reload(){
-    this.limpiarSeleccion()
+  reload() {
+    this.limpiarSeleccion();
     this.datatableElement.dtInstance.then((dtInstance: any) => {
       dtInstance.ajax.reload();
     });
   }
 
-  @Output()
-  verItem = new EventEmitter<string>()
-  seeItem (){
-    if(this.idsSeleccionados.length == 1){
-      this.verItem.emit(this.idsSeleccionados[0])
-    }
+  limpiarSeleccion() {
+    this.idsSeleccionados = [];
+    $('.tableDatatable tr').css({'background-color': '', 'color': 'black'});
   }
 
-  @Output()
-  crearNuevoItem = new EventEmitter<string>()
-  newItem (){
-    if(this.idsSeleccionados.length == 0){
-      this.crearNuevoItem.emit()
-    }
+  tienePermiso(nombre: string): boolean {
+    return this.permisosAcciones?.some((permiso) => permiso.permiso_permiso === nombre);
   }
 
-  @Output()
-  editarItem = new EventEmitter<string>()
-  editItem (){
-    if(this.idsSeleccionados.length == 1){
-      this.editarItem.emit(this.idsSeleccionados[0])
-    }
-  }
+  // Outputs y métodos Emitters (abreviados para el ejemplo)
+  @Output() verItem = new EventEmitter<string>();
+  @Output() crearNuevoItem = new EventEmitter<string>();
+  @Output() editarItem = new EventEmitter<string>();
+  @Output() eliminarItem = new EventEmitter<string[]>();
+  @Output() activarItem = new EventEmitter<string[]>();
+  @Output() asignar = new EventEmitter<string>();
 
-  @Output()
-  eliminarItem = new EventEmitter<string[]>()
-  deleteItem (){
-    if(this.idsSeleccionados.length > 0){
-      this.eliminarItem.emit(this.idsSeleccionados)
-    }
-  }
-
-  @Output()
-  activarItem = new EventEmitter<string[]>()
-  activedItem (){
-    if(this.idsSeleccionados.length > 0){
-      this.activarItem.emit(this.idsSeleccionados)
-    }
-  }
-
-  @Output()
-  asignar = new EventEmitter<string>()
-  assignItem (){
-    this.asignar.emit(this.idsSeleccionados[0])
-  }
-  
-  selectionClear (){
-    this.idsSeleccionados = []
-    $('tr').css({'background-color':'','color':'black'});
-  }
-
-
-
+  newItem() { if(this.idsSeleccionados.length === 0) this.crearNuevoItem.emit(); }
+  seeItem() { if(this.idsSeleccionados.length === 1) this.verItem.emit(this.idsSeleccionados[0]); }
+  editItem() { if(this.idsSeleccionados.length === 1) this.editarItem.emit(this.idsSeleccionados[0]); }
+  deleteItem() { if(this.idsSeleccionados.length > 0) this.eliminarItem.emit(this.idsSeleccionados); }
+  activedItem() { if(this.idsSeleccionados.length > 0) this.activarItem.emit(this.idsSeleccionados); }
+  assignItem() { if(this.idsSeleccionados.length === 1) this.asignar.emit(this.idsSeleccionados[0]); }
+  selectionClear() { this.limpiarSeleccion(); }
 }

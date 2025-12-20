@@ -14,6 +14,11 @@
     "Showing": "Mostrando",
     "To": "a",
     "Of": "de",
-    "Entries": "entradas"
+    "Entries": "entradas",
+    "NoInfo": "No se encontraron registros",
+    "First": "Primero",
+    "Last": "Ultimo",
+    "Next": "Siguiente",
+    "Previous": "Anterior"
   }
 }
