@@ -22,7 +22,12 @@ INSERT INTO `core_csr`.`mod_permisos_modulo` (`id`, `nombre`, `permiso`, `tiene_
 	(20, 'Editar', 'editar', 0, 'Permiso editar, modulo modulos', 17),
 	(21, 'Eliminar (individual)', 'eliminar_individual', 0, 'Permiso eliminar_individual, modulo modulos', 17);
 
-INSERT INTO `core_csr`.`mod_usuarios_admin` (`firstName`, `lastName`, `email`, `password`) VALUES ('Administrador', 'principal', 'admin1@correo.com', 'Qwerty9601');
+-- Volcando datos para la tabla core_csr.mod_usuarios_admin: ~4 rows (aproximadamente)
+INSERT INTO `mod_usuarios_admin` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
+	(1, 'Administrador', 'principal', 'admin1@correo.com', 'Qwerty9601', 1),
+	(2, 'admin2', 'admin2', 'admin2@correo.com', 'Qwerty9601', 1),
+	(3, 'admin3', 'admin3', 'admin3@correo.com', 'Qwerty9601', 1),
+	(4, 'Admin4', 'Admin4', 'admin4@gmail.com', 'Qwerty9601', 1);
 
 -- Volcando datos para la tabla core_csr.mod_permisos_modulo_asignacion: ~18 rows (aproximadamente)
 INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descripcion`, `modulo_padre_id`, `user_id`) VALUES
@@ -45,3 +50,56 @@ INSERT INTO `mod_permisos_modulo_asignacion` (`id`, `nombre`, `permiso`, `descri
 	(18, 'Crear', 'crear', 'Permiso crear, modulo modulos', 17, 1),
 	(19, 'Editar', 'editar', 'Permiso editar, modulo modulos', 17, 1),
 	(20, 'Eliminar (individual)', 'eliminar_individual', 'Permiso eliminar_individual, modulo modulos', 17, 1);
+
+
+-- Volcando datos para la tabla core_csr.mod_usuarios_user: ~44 rows (aproximadamente)
+INSERT INTO `mod_usuarios_user` (`id`, `firstName`, `lastName`, `email`, `password`, `isActive`) VALUES
+	(1, 'final1', 'final1', 'final1@gmail.com', 'Qwerty9601.', 1),
+	(2, 'final2', 'final2', 'final2@gmail.com', 'Qwerty9601.', 1),
+	(3, 'final3', 'final3', 'final3@gmail.com', 'Qwerty9601.', 1),
+	(4, 'final4', 'final4', 'final4@gmail.com', 'Qwerty9601', 1),
+	(5, 'final5', 'final5', 'final5@gmail.com', 'Qwerty9601', 1),
+	(6, 'final6', 'final6', 'final6@gmail.com', 'Qwerty9601', 1),
+	(7, 'final7', 'final7', 'final7@gmail.com', 'Qwerty9601', 1),
+	(8, 'final8', 'final8', 'final8@gmail.com', 'Qwerty9601', 1),
+	(9, 'final9', 'final9', 'final9@gmail.com', 'Qwerty9601', 1),
+	(10, 'final10', 'final10', 'final10@gmail.com', 'Qwerty9601', 1),
+	(11, 'final11', 'final11', 'final11@gmail.com', 'Qwerty9601', 0),
+	(12, 'final12', 'final12', 'final12@gmail.com', 'Qwerty9601', 0),
+	(14, 'final13', 'final13', '13@gmail.com', 'Qwerty9601', 1),
+	(15, 'final14', 'final14', '14@gmail.com', 'Qwerty9601', 1),
+	(16, 'final15', 'final15', '15@gmail.com', 'Qwerty9601', 1),
+	(17, 'final16', 'final16', '16@gmail.com', 'Qwerty9601', 1),
+	(18, 'final17', 'final17', '17@gmail.com', 'Qwerty9601', 1),
+	(19, 'final18', 'final18', '18@gmail.com', 'Qwerty9601', 1),
+	(20, 'final19', 'final19', '19@gmail.com', 'Qwerty9601', 1),
+	(21, 'final20', 'final20', '20@gmail.com', 'Qwerty9601', 1),
+	(22, 'final21', 'final21', '21@gmail.com', 'Qwerty9601', 1),
+	(23, 'final22', 'final22', '22@gmail.com', 'Qwerty9601', 1),
+	(24, 'final23', 'final23', '23@gmail.com', 'Qwerty9601', 1),
+	(25, 'final24', 'final24', '24@gmail.com', 'Qwerty9601', 1),
+	(26, 'final25', 'final25', '25@gmail.com', 'Qwerty9601', 1),
+	(27, 'final26', 'final26', '26@gmail.com', 'Qwerty9601', 1),
+	(28, 'final28', 'final28', '28@gmail.com', 'Qwerty9601', 1),
+	(29, 'final29', 'final29', '29@gmail.com', 'Qwerty9601', 1),
+	(30, 'final30', 'final30', '30@gmail.com', 'Qwerty9601', 1),
+	(31, 'final31', 'final31', '31@gmail.com', 'Qwerty9601', 1),
+	(32, 'final32', 'final32', '32@gmail.com', 'Qwerty9601', 1),
+	(33, 'final33', 'final33', '33@gmail.com', 'Qwerty9601', 1),
+	(34, 'final34', 'final34', '34@gmail.com', 'Qwerty9601', 1),
+	(35, 'final35', 'final35', '35@gmail.com', 'Qwerty9601', 1),
+	(36, 'final36', 'final36', '36@gmail.com', 'Qwerty9601', 1),
+	(37, 'final37', 'final37', '37@gmail.com', 'Qwerty9601', 1),
+	(38, 'final38', 'final38', '38@gmail.com', 'Qwerty9601', 1),
+	(39, 'final39', 'final39', '39@gmail.com', 'Qwerty9601', 1),
+	(40, 'final40', 'final40', '40@gmail.com', 'Qwerty9601', 1),
+	(41, 'final41', 'final41', '41@gmail.com', 'Qwerty9601', 1),
+	(42, 'final42', 'final42', '42@gmail.com', 'Qwerty9601', 1),
+	(43, 'final43', 'final43', '43@gmail.com', 'Qwerty9601', 1),
+	(44, 'final44', 'final44', '44@gmail.com', 'Qwerty9601', 1),
+	(45, 'final45', 'final45', '45@gmail.com', 'Qwerty9601', 1),
+	(46, 'final46', 'final46', '46@gmail.com', 'Qwerty9601', 1),
+	(47, 'final47', 'final47', '47@gmail.com', 'Qwerty9601', 1),
+	(48, 'final48', 'final48', '48@gmail.com', 'Qwerty9601', 1),
+	(49, 'final49', 'final49', '49@gmail.com', 'Qwerty9601', 1),
+	(50, 'final50', 'final50', '50@gmail.com', 'Qwerty9601', 1);
