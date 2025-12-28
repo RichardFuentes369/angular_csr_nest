@@ -6,7 +6,7 @@ import { adminGuard } from '@guard/roles/admin/admin.guard'
 import { PerfilComponent } from '@module/basic/principal/admin/perfil/perfil.component'
 import { ConfiguracionComponent } from '@module/basic/principal/admin/configuracion/configuracion.component'
 import { MenuComponent } from '@module/basic/principal/admin/menu/menu.component'
-import { NotfoundComponent } from '@module/basic/principal/admin/notfound/notfound.component';
+import { AdminPermissionComponent } from '@component/globales/permission/admin/admin.component';
 
 
 export const AdminLayoutRoutes: Routes = [
@@ -36,9 +36,9 @@ export const AdminLayoutRoutes: Routes = [
     ]
   },  
   {
-    path: 'notfound',
-    title: 'NotFound',
-    component: NotfoundComponent,
+    path: 'permiso',
+    title: 'Sin permiso',
+    component: AdminPermissionComponent,
     canActivate: [
       adminGuard
     ]

@@ -5,7 +5,7 @@ import { finalGuard } from '@guard/roles/final/final.guard';
 //componentes
 import { PerfilComponent } from '@module/basic/principal/user/perfil/perfil.component'
 import { ConfiguracionComponent } from '@module/basic/principal/user/configuracion/configuracion.component'
-import { NotfoundComponent } from '@module/basic/principal/user/notfound/notfound.component';
+import { UsernotFoundComponent } from '@component/globales/notfound/user/user.component';
 
 export const UserLayoutRoutes: Routes = [
   {
@@ -25,14 +25,6 @@ export const UserLayoutRoutes: Routes = [
     path: 'configuracion',
     title: 'Configuracion',
     component: ConfiguracionComponent,
-    canActivate: [
-      finalGuard
-    ]
-  },
-  {
-    path: 'notfound',
-    title: 'NotFound',
-    component: NotfoundComponent,
     canActivate: [
       finalGuard
     ]

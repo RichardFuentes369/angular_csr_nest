@@ -33,7 +33,7 @@ export class IndexComponent implements OnInit{
     const submodulo = await this.permisosService.permisoPage(0,'usuarios',userData.data.id)
     console.log(submodulo)
     if (submodulo.data === "") {
-      this.router.navigate(['/admin/notfound']);
+      this.router.navigate(['/admin/permiso']);
     } 
 
     const modulo = await this.permisosService.permisos(userData.data.id,'usuarios')

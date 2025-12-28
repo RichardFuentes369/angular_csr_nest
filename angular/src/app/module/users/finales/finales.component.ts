@@ -106,7 +106,7 @@ export class FinalesComponent implements OnInit{
 
     const submodulo = await this.permisosService.permisoPage(1,'finales',userData.data.id)
     if (submodulo.data === "") {
-      this.router.navigate(['/admin/notfound']);
+      this.router.navigate(['/admin/permiso']);
     } 
 
     const permisos = await this.permisosService.permisos(userData.data.id,'finales')

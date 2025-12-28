@@ -47,7 +47,7 @@ export class PermisosComponent implements OnInit{
 
     const submodulo = await this.permisosService.permisoPage(0,'modulos',userData.data.id)
     if (submodulo.data === "") {
-      this.router.navigate(['/admin/notfound']);
+      this.router.navigate(['/admin/permiso']);
     } 
 
     const modulo = await this.permisosService.permisos(userData.data.id,'modulos')
