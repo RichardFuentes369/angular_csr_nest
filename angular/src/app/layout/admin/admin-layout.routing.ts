@@ -6,6 +6,7 @@ import { adminGuard } from '@guard/roles/admin/admin.guard'
 import { PerfilComponent } from '@module/basic/principal/admin/perfil/perfil.component'
 import { ConfiguracionComponent } from '@module/basic/principal/admin/configuracion/configuracion.component'
 import { MenuComponent } from '@module/basic/principal/admin/menu/menu.component'
+import { NotfoundComponent } from '@module/basic/principal/admin/notfound/notfound.component';
 
 
 export const AdminLayoutRoutes: Routes = [
@@ -30,6 +31,14 @@ export const AdminLayoutRoutes: Routes = [
     path: 'configuracion',
     title: 'Configuracion',
     component: ConfiguracionComponent,
+    canActivate: [
+      adminGuard
+    ]
+  },  
+  {
+    path: 'notfound',
+    title: 'NotFound',
+    component: NotfoundComponent,
     canActivate: [
       adminGuard
     ]

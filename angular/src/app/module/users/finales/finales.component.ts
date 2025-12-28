@@ -103,8 +103,14 @@ export class FinalesComponent implements OnInit{
   async ngOnInit() {
     await this.userService.refreshToken('authadmin');
     const userData = await this.userService.getUser('authadmin');
-    const modulo = await this.permisosService.permisos(userData.data.id,'administradores')
-    this.permisos = modulo.data
+
+    const submodulo = await this.permisosService.permisoPage(1,'finales',userData.data.id)
+    if (submodulo.data === "") {
+      this.router.navigate(['/admin/notfound']);
+    } 
+
+    const permisos = await this.permisosService.permisos(userData.data.id,'finales')
+    this.permisos = permisos.data
     sessionStorage.removeItem('email')
     sessionStorage.removeItem('firstName')
     sessionStorage.removeItem('lastName')

@@ -102,8 +102,15 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   async ngOnInit() {
     await this.userService.refreshToken('authadmin');
     const userData = await this.userService.getUser('authadmin');
-    const modulo = await this.permisosService.permisos(userData.data.id,'administradores')
-    this.permisos = modulo.data
+
+    const submodulo = await this.permisosService.permisoPage(1,'administradores',userData.data.id)
+    console.log(submodulo)
+    if (submodulo.data === "") {
+      this.router.navigate(['/admin/notfound']);
+    } 
+
+    const permisos = await this.permisosService.permisos(userData.data.id,'administradores')
+    this.permisos = permisos.data
     sessionStorage.removeItem('email')
     sessionStorage.removeItem('firstName')
     sessionStorage.removeItem('lastName')
@@ -114,6 +121,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
         this.listar();
       }, 100); 
     });
+
   }
 
   ngOnDestroy() {

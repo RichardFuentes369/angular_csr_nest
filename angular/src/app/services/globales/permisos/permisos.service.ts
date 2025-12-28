@@ -22,4 +22,12 @@ export class PermisosService {
     return data
   }
 
+  async permisoPage(idModulo: number | null, nombre: string, idUser: number){
+    let complemento = ''
+    complemento += `asignacion/getAsignacionMePertenece?idModulo=${idModulo}&nombre=${nombre}&idUser=${idUser}`
+    let urlCopleta = environment.apiUrl+complemento
+    const data = axios.get(urlCopleta)
+    return data
+  }
+
 }

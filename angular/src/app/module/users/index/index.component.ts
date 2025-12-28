@@ -30,6 +30,12 @@ export class IndexComponent implements OnInit{
 
   async ngOnInit() {
     const userData = await this.userService.getUser('authadmin')
+    const submodulo = await this.permisosService.permisoPage(0,'usuarios',userData.data.id)
+    console.log(submodulo)
+    if (submodulo.data === "") {
+      this.router.navigate(['/admin/notfound']);
+    } 
+
     const modulo = await this.permisosService.permisos(userData.data.id,'usuarios')
     this.menu = modulo.data
   }

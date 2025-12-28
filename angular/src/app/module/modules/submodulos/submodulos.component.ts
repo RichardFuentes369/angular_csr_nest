@@ -45,6 +45,12 @@ export class SubmodulosComponent implements OnInit{
 
     await this.userService.refreshToken('authadmin');
     const userData = await this.userService.getUser('authadmin');
+
+    const submodulo = await this.permisosService.permisoPage(0,'modulos',userData.data.id)
+    if (submodulo.data === "") {
+      this.router.navigate(['/admin/notfound']);
+    } 
+
     const modulo = await this.permisosService.permisos(userData.data.id,'modulos')
     this.permisos = modulo.data
   }
