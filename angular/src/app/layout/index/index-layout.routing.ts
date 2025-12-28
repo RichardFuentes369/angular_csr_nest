@@ -20,14 +20,6 @@ export const IndexLayoutRoutes: Routes = [
       indexGuard
     ]
   },
-  // {
-  //   path: 'publicaciones',
-  //   title: 'Publicaciones',
-  //   component: IndexPublicaciones,
-  //   canActivate: [
-  //     indexGuard
-  //   ]
-  // },
   {
     path: 'ingreso/user',
     title: 'Ingreso',
