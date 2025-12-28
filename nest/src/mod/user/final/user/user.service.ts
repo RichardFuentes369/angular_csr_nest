@@ -26,8 +26,8 @@ export class UserService {
       await this.userRepository.save(createUserDto);
 
       return {
-        'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE'),
-        'message': this.i18n.t('modulo.MSJ_PERMISO_CREADO_OK'),
+        'title': this.i18n.t('user.MSJ_USUARIO_TITTLE'),
+        'message': this.i18n.t('user.MSJ_USUARIO_CREADO_EXITOSAMENTE_TITTLE'),
         'status': 200,
       }
     } catch (error) {

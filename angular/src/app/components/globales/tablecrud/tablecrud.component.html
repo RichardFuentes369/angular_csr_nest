@@ -20,6 +20,11 @@
         {{ 'global-tablecrud.Options.Delete' | translate}} ({{idsSeleccionados.length}})
       </button>
     }
+    @if(tienePermiso('asignar_permisos')){
+      <button class="btn btn-primary btn-sm mx-1" (click)="assignItem()" [disabled]="idsSeleccionados.length !== 1">
+        {{ 'global-tablecrud.Options.Assign' | translate}} ({{idsSeleccionados.length}})
+      </button>
+    }
     @if(tienePermiso('estado_usuario')){
       <button class="btn btn-primary btn-sm mx-1" (click)="activedItem()" [disabled]="idsSeleccionados.length === 0">
         {{ 'global-tablecrud.Options.Suspend' | translate}} ({{idsSeleccionados.length}})
