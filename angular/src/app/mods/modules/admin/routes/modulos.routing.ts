@@ -8,14 +8,14 @@ import { ModulosComponent as ModulosIndex } from '@mod/modules/admin/pages/modul
 export const ModulosRoutes: Routes = [
   {
     path: '',
-    data: { breadcrumb: 'Index' },
+    data: { breadcrumb: null },
     canActivate: [
       adminGuard
     ],
     component: ModulosIndex,
   },
   {
-    path: 'index-submodulos',
+    path: 'submodules',
     title: 'Submodulos',
     canActivate: [
       adminGuard
@@ -24,7 +24,7 @@ export const ModulosRoutes: Routes = [
     loadChildren: () => import('./submodulos.routing').then(x=>x.SubModulosRoutes)
   },
   {
-    path: 'index-permisos',
+    path: 'permissions',
     title: 'Permisos',
     canActivate: [
       adminGuard

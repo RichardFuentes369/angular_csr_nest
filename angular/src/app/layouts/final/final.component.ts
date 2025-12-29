@@ -3,6 +3,10 @@ import { Router, RouterModule } from '@angular/router'
 import { TranslateModule, TranslateService } from '@ngx-translate/core'
 
 import { IdiomaComponent } from '@component/globales/idioma/idioma.component';
+
+import { STORAGE_KEY_TOKEN } from '@const/app.const';
+import { LAYOUT_FINAL_PAGE_LOGOUT } from '@layout/const/layouts.const';
+
 @Component({
   selector: 'app-layout-final',
   standalone: true,
@@ -16,6 +20,8 @@ import { IdiomaComponent } from '@component/globales/idioma/idioma.component';
 })
 export class FinalComponent {
 
+  public CURRENT_YEAR = new Date().getFullYear();
+
   constructor(
     private router: Router,
     private translate: TranslateService
@@ -26,8 +32,8 @@ export class FinalComponent {
   }
 
   cerrarSession(){
-    localStorage.removeItem('token')
-    this.router.navigate(['/home/ingreso/final']);
+    localStorage.removeItem(STORAGE_KEY_TOKEN)
+    this.router.navigate([LAYOUT_FINAL_PAGE_LOGOUT]);
   }
 
 }

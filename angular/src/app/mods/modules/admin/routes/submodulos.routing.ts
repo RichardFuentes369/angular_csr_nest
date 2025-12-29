@@ -8,14 +8,14 @@ import { SubmodulosComponent as SubmoduloIndex } from '@mod/modules/admin/pages/
 export const SubModulosRoutes: Routes = [
   {
     path: '',
-    data: { breadcrumb: 'Index' },
+    data: { breadcrumb: null },
     canActivate: [
       adminGuard
     ],
     component: SubmoduloIndex,
   },
   {
-    path: 'index-permisos',
+    path: 'permissions',
     title: 'Permisos',
     canActivate: [
       adminGuard

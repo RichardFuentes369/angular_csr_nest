@@ -76,8 +76,8 @@ export class CrearUsuariosComponent {
     if(response.data.status == 200){
       ocultarModalOscura()
       Swal.fire({
-        title: this.translate.instant('pages-usuarios.Swal.TitleCreate'),
-        text: this.translate.instant('pages-usuarios.Swal.TitleRegisterCreate'),
+        title: this.translate.instant('mod-users.Swal.TitleCreate'),
+        text: this.translate.instant('mod-users.Swal.TitleRegisterCreate'),
         icon: "success"
       });
     }

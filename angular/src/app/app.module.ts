@@ -40,15 +40,16 @@ export function createTranslateLoader(http: HttpClient) {
       // fin globales
 
       // inicio layout
+      { baseTranslateUrl, moduleName: 'layout/home', namespace: 'layout-home' },
       { baseTranslateUrl, moduleName: 'layout/admin', namespace: 'layout-admin' },
-      { baseTranslateUrl, moduleName: 'layout/index', namespace: 'layout-index' },
-      { baseTranslateUrl, moduleName: 'layout/user', namespace: 'layout-user' },
+      { baseTranslateUrl, moduleName: 'layout/final', namespace: 'layout-final' },
       // fin layout
 
       // inicio modulos
-      { baseTranslateUrl, moduleName: 'module/basico', namespace: 'pages-basico'},
-      { baseTranslateUrl, moduleName: 'module/usuarios', namespace: 'pages-usuarios'},
-      { baseTranslateUrl, moduleName: 'module/modulos', namespace: 'pages-modulos'},
+      { baseTranslateUrl, moduleName: 'mods/main', namespace: 'mod-main'},
+      { baseTranslateUrl, moduleName: 'mods/me', namespace: 'mod-me'},
+      { baseTranslateUrl, moduleName: 'mods/users', namespace: 'mod-users'},
+      { baseTranslateUrl, moduleName: 'mods/modules', namespace: 'mod-modules'},
       // fin modulos
     ]
   };

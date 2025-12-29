@@ -187,16 +187,16 @@
                               aria-labelledby="userDropdown">
                               <a class="dropdown-item"  routerLink="perfil" routerLinkActive="active" routerLink="me/perfil">
                                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                  {{ 'layout-user.Profile' | translate}}
+                                  {{ 'layout-final.Profile' | translate}}
                               </a>
                               <a class="dropdown-item" routerLink="configuracion" routerLinkActive="active" routerLink="me/configuracion">
                                   <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                  {{ 'layout-user.Setting' | translate}}
+                                  {{ 'layout-final.Setting' | translate}}
                               </a>
                               <div class="dropdown-divider"></div>
                               <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal" (click)="cerrarSession()" style="cursor: pointer;">
                                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                  {{ 'layout-user.Logout' | translate}}
+                                  {{ 'layout-final.Logout' | translate}}
                               </a>
                           </div>
                       </li>
@@ -234,7 +234,7 @@
           <footer class="sticky-footer bg-white">
               <div class="container my-auto">
                   <div class="copyright text-center my-auto">
-                      <span>Copyright &copy; Your Website 2024</span>
+                      <span>Copyright &copy; {{CURRENT_YEAR}}</span>
                   </div>
               </div>
           </footer>

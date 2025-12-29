@@ -7,30 +7,30 @@
       <div class="col-sm-12 row p-0">
         <div class="col-sm-6 form-group">
           <label for="exampleInputEmail1">
-            {{ 'pages-usuarios.Label.firstName' | translate}}
+            {{ 'mod-users.Label.firstName' | translate}}
           </label>
-          <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.firstName" aria-describedby="emailHelp" placeholder="{{ 'pages-usuarios.Placeholder.firstName' | translate}}">
-          <small id="emailHelp" class="form-text text-muted">{{ 'pages-usuarios.Error.firstName' | translate}}</small>
+          <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.firstName" aria-describedby="emailHelp" placeholder="{{ 'mod-users.Placeholder.firstName' | translate}}">
+          <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.Error.firstName' | translate}}</small>
         </div>
         <div class="col-sm-6 form-group">
           <label for="exampleInputEmail1">
-            {{ 'pages-usuarios.Label.lastName' | translate}}
+            {{ 'mod-users.Label.lastName' | translate}}
           </label>
-          <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.lastName" aria-describedby="emailHelp" placeholder="{{ 'pages-usuarios.Placeholder.lastName' | translate}}">
-          <small id="emailHelp" class="form-text text-muted">{{ 'pages-usuarios.Error.lastName' | translate}}</small>
+          <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.lastName" aria-describedby="emailHelp" placeholder="{{ 'mod-users.Placeholder.lastName' | translate}}">
+          <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.Error.lastName' | translate}}</small>
         </div>
       </div>
       <div class="col-sm-12 row p-0">
         <div class="col-sm-6 form-group">
           <label for="exampleInputEmail1">
-            {{ 'pages-usuarios.Label.email' | translate}}
+            {{ 'mod-users.Label.email' | translate}}
           </label>
-          <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.email" aria-describedby="emailHelp" placeholder="{{ 'pages-usuarios.Placeholder.email' | translate}}">
-          <small id="emailHelp" class="form-text text-muted">{{ 'pages-usuarios.Error.email' | translate}}</small>
+          <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.email" aria-describedby="emailHelp" placeholder="{{ 'mod-users.Placeholder.email' | translate}}">
+          <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.Error.email' | translate}}</small>
         </div>
         <div class="col-sm-6 form-group">
           <label for="exampleInputEmail1">
-            {{ 'pages-usuarios.Label.password' | translate}}
+            {{ 'mod-users.Label.password' | translate}}
           </label>
           <div class="input-group">
             <input
@@ -47,23 +47,23 @@
               </div>
             </div>
           </div>
-          <small id="emailHelp" class="form-text text-muted">{{ 'pages-usuarios.Error.password' | translate}}</small>
+          <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.Error.password' | translate}}</small>
         </div>
       </div>
       <div class="col-sm-12 row p-0">
         <div class="col-sm-6 form-group">
           <label for="exampleInputEmail1">
-            {{ 'pages-usuarios.Label.statusUser' | translate}}
+            {{ 'mod-users.Label.statusUser' | translate}}
           </label>
           <select [(ngModel)]="model.isActive" class="form-control">
             <option [ngValue]="true">
-              {{ 'pages-usuarios.Placeholder.isActive' | translate}}
+              {{ 'mod-users.Placeholder.isActive' | translate}}
             </option>
             <option [ngValue]="false">
-              {{ 'pages-usuarios.Placeholder.isInactive' | translate}}
+              {{ 'mod-users.Placeholder.isInactive' | translate}}
             </option>
           </select>
-          <small id="emailHelp" class="form-text text-muted">{{ 'pages-usuarios.Error.isActive' | translate}}</small>
+          <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.Error.isActive' | translate}}</small>
         </div>
         <div class="col-sm-6 form-group">
         </div>
@@ -71,7 +71,7 @@
       <div class="col-sm-12 row p-0">
         <div class="col-sm-12">
           <button class="btn btn-sm btn-primary btnAction d-none" (click)="crearUsuario()">
-            {{ 'pages-usuarios.Buttons.createUser' | translate}}
+            {{ 'mod-users.Buttons.createUser' | translate}}
           </button>
         </div>
       </div>

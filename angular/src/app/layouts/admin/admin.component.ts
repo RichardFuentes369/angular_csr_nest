@@ -6,6 +6,9 @@ import { BreadcrumbsComponent } from '@component/globales/breadcrumb/breadcrumb.
 import { IdiomaComponent } from '@component/globales/idioma/idioma.component';
 import { CommonModule } from '@angular/common';
 
+import { STORAGE_KEY_TOKEN } from '@const/app.const'
+import { NAME_PAGE, LAYOUT_ADMIN_PAGE_PROFILE, LAYOUT_ADMIN_PAGE_MOD, LAYOUT_ADMIN_PAGE_LOGOUT } from '@layout/const/layouts.const'
+
 @Component({
   selector: 'app-layout-admin',
   standalone: true,
@@ -20,6 +23,11 @@ import { CommonModule } from '@angular/common';
   styleUrl: './admin.component.scss'
 })
 export class AdminComponent implements OnInit {
+
+  public NAME_PAGE = NAME_PAGE;
+  public LAYOUT_ADMIN_PAGE_PROFILE = LAYOUT_ADMIN_PAGE_PROFILE;
+  public LAYOUT_ADMIN_PAGE_MOD = LAYOUT_ADMIN_PAGE_MOD;
+  public CURRENT_YEAR = new Date().getFullYear();
 
   constructor(
     private router: Router,
@@ -42,8 +50,8 @@ export class AdminComponent implements OnInit {
   }
 
   cerrarSession(){
-    localStorage.removeItem('token')
-    this.router.navigate(['/home/ingreso/admin']);
+    localStorage.removeItem(STORAGE_KEY_TOKEN)
+    this.router.navigate([LAYOUT_ADMIN_PAGE_LOGOUT]);
   }
 
   mostrarMenuLateral(){

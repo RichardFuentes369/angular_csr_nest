@@ -7,7 +7,7 @@ import { PermisosComponent } from '@mod/modules/admin/pages/permisos/permisos.co
 export const PermisosRoutes: Routes = [
   {
     path: '',
-    data: { breadcrumb: 'Index' },
+    data: { breadcrumb: null },
     canActivate: [
       adminGuard
     ],

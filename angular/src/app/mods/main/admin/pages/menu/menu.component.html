@@ -1,35 +1,33 @@
 <div class="">
 
-  <h3>{{ 'pages-basico.Menu.WordMenu' | translate }}</h3>
-
-  <!-- <app-global-loading [tiempo]="tiempoCarga"></app-global-loading> -->
+  <h3>{{ 'mod-main.Title.Menu' | translate }}</h3>
 
   <div class="parent">
 
-    @if(tienePermiso('usuarios')){
-      <div class="item" (click)="goTo('/users')" style="cursor: pointer;">
+    @if(tienePermiso(ADMIN_PAGE_MENU_PERSMISSION_USERS)){
+      <div class="item" (click)="goTo(LAYOUT_ADMIN_PAGE_USERS)" style="cursor: pointer;">
         <div class="card">
           <div class="card-body text-center p-0 pb-3 pt-3">
             <img src="https://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/256/Actions-user-group-new-icon.png" width="80px">
           </div>
           <div class="card-footer text-center bg-white">
             <span>
-              {{ 'pages-basico.Menu.WordUsers' | translate}}
+              {{ 'mod-main.Pages.Users' | translate}}
             </span>
           </div>
         </div>
       </div>
     }
 
-    @if(tienePermiso('modulos')){
-      <div class="item" (click)="goTo('/modules')" style="cursor: pointer;">
+    @if(tienePermiso(ADMIN_PAGE_MENU_PERSMISSION_MODULES)){
+      <div class="item" (click)="goTo(LAYOUT_ADMIN_PAGE_MODULES)" style="cursor: pointer;">
         <div class="card">
           <div class="card-body text-center p-0 pb-3 pt-3">
             <img src="https://icons.iconarchive.com/icons/double-j-design/super-mono-3d/128/modules-icon.png" width="80px">
           </div>
           <div class="card-footer text-center bg-white">
             <span>
-              {{ 'pages-basico.Menu.WordModule' | translate}}
+              {{ 'mod-main.Pages.Modules' | translate}}
             </span>
           </div>
         </div>

@@ -1,7 +1,11 @@
 {
-  "Profile": "Profile",
-  "Setting": "Settings",
-  "Logout": "Logout",
+  "DradropdowMenu": {
+    "Profile": "Profile",
+    "Setting": "Settings",
+    "Logout": "Logout"
+  },
   "Modules": "Modules",
-  "Menu": "Menu"
+  "OptionsModules": {
+    "Menu": "Menu"
+  }
 }

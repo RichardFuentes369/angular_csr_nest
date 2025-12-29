@@ -9,7 +9,7 @@
         <app-globales-idioma (cambioIdiomaEmitt)="idiomaCambiar($event)"></app-globales-idioma>
       </div>
       <div class="p-2 bd-highlight">
-        <div class="sidebar-brand-text">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text"> {{NAME_PAGE}} </div>
       </div>
     </div>
   </div>
@@ -36,15 +36,15 @@
           <div class="navbarPersonalizado">
             <div class="col p-1">
               <li routerLinkActive="activo">
-                <a class="nav-link text-center menuIndex borde-menu" routerLink="inicio">
-                  {{ 'layout-index.Start' | translate}}
+                <a class="nav-link text-center menuIndex borde-menu" routerLink="{{LAYOUT_HOME_PAGE_START}}">
+                  {{ 'layout-home.Tab.Start' | translate}}
                 </a>
               </li>
             </div>
             <div class="col p-1">
               <li routerLinkActive="activo">
-                <a class="nav-link text-center menuIndex borde-menu" routerLink="ingreso/final">
-                  {{ 'layout-index.Login' | translate}}
+                <a class="nav-link text-center menuIndex borde-menu" routerLink="{{LAYOUT_HOME_PAGE_LOGIN_FINAL}}">
+                  {{ 'layout-home.Tab.Login' | translate}}
                 </a>
               </li>
             </div>

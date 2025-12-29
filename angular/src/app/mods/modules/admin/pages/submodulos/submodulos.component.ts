@@ -40,7 +40,7 @@ export class SubmodulosComponent implements OnInit{
     this.moduloPadre = localStorage.getItem('modulo')
 
     if(!this.moduloPadre){
-      this.router.navigate([`/admin/menu/index-modulos`]);
+      this.router.navigate([`/admin/mod/modules`]);
     }
 
     await this.userService.refreshToken('authadmin');
@@ -94,7 +94,7 @@ export class SubmodulosComponent implements OnInit{
   verData (_id: string){
     console.log("verData "+_id)
     localStorage.setItem('submodulo', _id)
-    this.router.navigate([`/admin/menu/index-modulos/index-submodulos/index-permisos`]);
+    this.router.navigate([`/admin/mod/modules/submodules/permissions`]);
   }
 
   crearData (_id: string){

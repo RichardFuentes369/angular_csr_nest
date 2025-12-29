@@ -24,7 +24,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('@layout/home/home.routing').then(x=>x.HomeLayoutRoutes)
+        loadChildren: () => import('@layout/routes/home.routing').then(x=>x.HomeLayoutRoutes)
       },
       {
         path: '**',
@@ -38,7 +38,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('@layout/admin/admin.routing').then(x=>x.AdminLayoutRoutes)
+        loadChildren: () => import('@layout/routes/admin.routing').then(x=>x.AdminLayoutRoutes)
       },
       {
         path: 'mod',
@@ -61,7 +61,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('@layout/final/final.routing').then(x=>x.FinalLayoutRoutes)
+        loadChildren: () => import('@layout/routes/final.routing').then(x=>x.FinalLayoutRoutes)
       },
       {
         path: '**',

@@ -54,27 +54,27 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   filters = ''
   columnas: any[] = [
     {
-      title: this.translate.instant('pages-usuarios.Column.Id'),
+      title: this.translate.instant('mod-users.Column.Id'),
       data: 'id',
     },
     {
-      title: this.translate.instant('pages-usuarios.Column.Email'),
+      title: this.translate.instant('mod-users.Column.Email'),
       data: 'email',
     },
     {
-      title: this.translate.instant('pages-usuarios.Column.Names'),
+      title: this.translate.instant('mod-users.Column.Names'),
       data: 'firstName',
     },
     {
-      title: this.translate.instant('pages-usuarios.Column.Surnames'),
+      title: this.translate.instant('mod-users.Column.Surnames'),
       data: 'lastName',
     },
     {
-      title: this.translate.instant('pages-usuarios.Column.Status'),
+      title: this.translate.instant('mod-users.Column.Status'),
       data: 'isActive',
       render: (data: any, type: any) => {
         if (type === 'display') {
-          const statusKey = data ? this.translate.instant('pages-usuarios.Column.Actived') : this.translate.instant('pages-usuarios.Column.Inactived');
+          const statusKey = data ? this.translate.instant('mod-users.Column.Actived') : this.translate.instant('mod-users.Column.Inactived');
           return this.translate.instant(statusKey);
         }
         return data;
@@ -134,27 +134,27 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   listar(){
     this.columnas = [
       {
-        title: this.translate.instant('pages-usuarios.Column.Id'),
+        title: this.translate.instant('mod-users.Column.Id'),
         data: 'id',
       },
       {
-        title: this.translate.instant('pages-usuarios.Column.Email'),
+        title: this.translate.instant('mod-users.Column.Email'),
         data: 'email',
       },
       {
-        title: this.translate.instant('pages-usuarios.Column.Names'),
+        title: this.translate.instant('mod-users.Column.Names'),
         data: 'firstName',
       },
       {
-        title: this.translate.instant('pages-usuarios.Column.Surnames'),
+        title: this.translate.instant('mod-users.Column.Surnames'),
         data: 'lastName',
       },
       {
-        title: this.translate.instant('pages-usuarios.Column.Status'),
+        title: this.translate.instant('mod-users.Column.Status'),
         data: 'isActive',
         render: (data: any, type: any) => {
           if (type === 'display') {
-            const statusKey = data ? this.translate.instant('pages-usuarios.Column.Actived') : this.translate.instant('pages-usuarios.Column.Inactived');
+            const statusKey = data ? this.translate.instant('mod-users.Column.Actived') : this.translate.instant('mod-users.Column.Inactived');
             return this.translate.instant(statusKey);
           }
           return data;
@@ -167,7 +167,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     localStorage.setItem('profile', 'admin')
     this.tamano = "xl"
     this.scrollable = false
-    this.title = this.translate.instant('pages-usuarios.Title.CreateAdminWord')
+    this.title = this.translate.instant('mod-users.Title.CreateAdminWord')
     this.save = true
     this.buttonSave = "Guardar"
     this.edit = false
@@ -187,7 +187,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   verData (_id: string){
     this.tamano = "xl"
     this.scrollable = false
-    this.title = this.translate.instant('pages-usuarios.Title.SeeAdminWord')
+    this.title = this.translate.instant('mod-users.Title.SeeAdminWord')
     this.save = false
     this.buttonSave = "Guardar"
     this.edit = false
@@ -211,7 +211,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     localStorage.setItem('profile', 'admin')
     this.tamano = "xl"
     this.scrollable = false
-    this.title = this.translate.instant('pages-usuarios.Title.EditAdminWord')
+    this.title = this.translate.instant('mod-users.Title.EditAdminWord')
     this.save = false
     this.buttonSave = "Guardar"
     this.edit = true
@@ -234,22 +234,22 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   someInput!: TablecrudComponent
   eliminarData (_id: string[]){
     console.log("eliminarData "+_id)
-    this.translate.get('pages-usuarios.Swal.TitleAreYouSure').subscribe((translatedTitle: string) => {
+    this.translate.get('mod-users.Swal.TitleAreYouSure').subscribe((translatedTitle: string) => {
       Swal.fire({
         title: translatedTitle,
-        text: this.translate.instant('pages-usuarios.Swal.TitleWarnigRevert'),
+        text: this.translate.instant('mod-users.Swal.TitleWarnigRevert'),
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: this.translate.instant('pages-usuarios.Swal.TitleDelete'),
-        cancelButtonText: this.translate.instant('pages-usuarios.Swal.TitleCancel')
+        confirmButtonText: this.translate.instant('mod-users.Swal.TitleDelete'),
+        cancelButtonText: this.translate.instant('mod-users.Swal.TitleCancel')
       }).then(async (result) => {
         if (result.isConfirmed) {
           if (result.isConfirmed) {
             await this.principalService.deleteUser(_id)
             await this.someInput.reload()
             Swal.fire({
-              title: this.translate.instant('pages-usuarios.Swal.TitleDelete'),
-              text: this.translate.instant('pages-usuarios.Swal.TitleRegisterDeleted'),
+              title: this.translate.instant('mod-users.Swal.TitleDelete'),
+              text: this.translate.instant('mod-users.Swal.TitleRegisterDeleted'),
               icon: "success"
             });
           }
@@ -262,20 +262,20 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     console.log("activarData "+_id)
 
     let opcionesSelect = {
-      0: this.translate.instant('pages-usuarios.Swal.TitleInactived'),
-      1: this.translate.instant('pages-usuarios.Swal.TitleActived'),
+      0: this.translate.instant('mod-users.Swal.TitleInactived'),
+      1: this.translate.instant('mod-users.Swal.TitleActived'),
     };
 
     Swal.fire({
-        title: this.translate.instant('pages-usuarios.Label.statusUser'),
+        title: this.translate.instant('mod-users.Label.statusUser'),
         input: 'select',
         inputOptions: opcionesSelect,
-        inputPlaceholder: this.translate.instant('pages-usuarios.Placeholder.select'),
+        inputPlaceholder: this.translate.instant('mod-users.Placeholder.select'),
         showCancelButton: true,
         inputValidator: (value) => {
             return new Promise((resolve) => {
                 if (value === '') {
-                    resolve(this.translate.instant('pages-usuarios.Swal.MsjErrorSelected'));
+                    resolve(this.translate.instant('mod-users.Swal.MsjErrorSelected'));
                 } else {
                     resolve();
                 }
@@ -286,8 +286,8 @@ export class PrincipalComponent implements OnInit, OnDestroy{
           await this.principalService.updatestatusUser(_id, result.value)
           await this.someInput.reload()
           Swal.fire({
-            title: this.translate.instant('pages-usuarios.Swal.TitleUpdate'),
-            text: this.translate.instant('pages-usuarios.Swal.TitleRegisterUpdated'),
+            title: this.translate.instant('mod-users.Swal.TitleUpdate'),
+            text: this.translate.instant('mod-users.Swal.TitleRegisterUpdated'),
             icon: "success"
           });
         }

@@ -103,10 +103,10 @@ export class ModulosComponent implements OnInit{
     const hasChildren = await this.modulosService.getHasSubmodule(+_id)
     if(hasChildren.data[0].tiene_submodulos == false){
       localStorage.setItem('submodulo', _id)
-      this.router.navigate([`/admin/menu/index-modulos/index-permisos/`]);
+      this.router.navigate([`/admin/mod/modules/permissions/`]);
     }else{
       localStorage.setItem('modulo', _id)
-      this.router.navigate([`/admin/menu/index-modulos/index-submodulos/`]);
+      this.router.navigate([`/admin/mod/modules/submodules/`]);
     }
   }
   

@@ -23,6 +23,9 @@
       "@component/*": [
         "./src/app/components/*"
       ],
+      "@const/*": [
+        "./src/app/const/*"
+      ],
       "@function/*": [
         "./src/app/functions/*"
       ],

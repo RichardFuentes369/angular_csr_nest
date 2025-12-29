@@ -3,6 +3,8 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core'
 import { IdiomaComponent } from '@component/globales/idioma/idioma.component';
 import { RouterModule } from '@angular/router';
 
+import { NAME_PAGE, LAYOUT_HOME_PAGE_START, LAYOUT_HOME_PAGE_LOGIN_FINAL } from '@layout/const/layouts.const';
+
 @Component({
   selector: 'app-layout-home',
   standalone: true,
@@ -15,6 +17,11 @@ import { RouterModule } from '@angular/router';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+
+  public NAME_PAGE = NAME_PAGE;
+  public LAYOUT_HOME_PAGE_START = LAYOUT_HOME_PAGE_START;
+  public LAYOUT_HOME_PAGE_LOGIN_FINAL = LAYOUT_HOME_PAGE_LOGIN_FINAL;
+
   constructor(private renderer: Renderer2, private translate: TranslateService,) {}
 
   @HostListener('window:resize', ['$event'])
