@@ -9,7 +9,7 @@ export const adminGuard: CanActivateFn = async(route, state) => {
   if(await authService.isAuth('authadmin')){
     return true
   }else{
-    const url = router.navigate(['/inicio/ingreso/admin']);
+    const url = router.navigate(['/home/ingreso/admin']);
     return url;
   }
 };

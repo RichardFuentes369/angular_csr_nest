@@ -21,7 +21,6 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
 // Plantillas
-
 import { AppComponent } from './app.component';
 
 export function createTranslateLoader(http: HttpClient) {

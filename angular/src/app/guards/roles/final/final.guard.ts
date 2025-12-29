@@ -9,7 +9,7 @@ export const finalGuard: CanActivateFn = async(route, state) => {
   if(await authService.isAuth('authuser')){
     return true
   }else{
-    const url = router.navigate(['/inicio/ingreso/user']);
+    const url = router.navigate(['/home/ingreso/user']);
     return url;
   }
 };

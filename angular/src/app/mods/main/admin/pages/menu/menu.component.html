@@ -1,0 +1,41 @@
+<div class="">
+
+  <h3>{{ 'pages-basico.Menu.WordMenu' | translate }}</h3>
+
+  <!-- <app-global-loading [tiempo]="tiempoCarga"></app-global-loading> -->
+
+  <div class="parent">
+
+    @if(tienePermiso('usuarios')){
+      <div class="item" (click)="goTo('/users')" style="cursor: pointer;">
+        <div class="card">
+          <div class="card-body text-center p-0 pb-3 pt-3">
+            <img src="https://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/256/Actions-user-group-new-icon.png" width="80px">
+          </div>
+          <div class="card-footer text-center bg-white">
+            <span>
+              {{ 'pages-basico.Menu.WordUsers' | translate}}
+            </span>
+          </div>
+        </div>
+      </div>
+    }
+
+    @if(tienePermiso('modulos')){
+      <div class="item" (click)="goTo('/modules')" style="cursor: pointer;">
+        <div class="card">
+          <div class="card-body text-center p-0 pb-3 pt-3">
+            <img src="https://icons.iconarchive.com/icons/double-j-design/super-mono-3d/128/modules-icon.png" width="80px">
+          </div>
+          <div class="card-footer text-center bg-white">
+            <span>
+              {{ 'pages-basico.Menu.WordModule' | translate}}
+            </span>
+          </div>
+        </div>
+      </div>
+    }
+
+  </div>
+
+</div>

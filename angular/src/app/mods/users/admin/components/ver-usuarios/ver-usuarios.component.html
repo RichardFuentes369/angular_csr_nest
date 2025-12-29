@@ -1,0 +1,57 @@
+<div class="">
+  
+  @for (item of user; track item; let  i = $index) {
+    <div class="col-xl-12 col-sm-12 row">
+      <div class="col-xl-3 col-sm-12 text-center my-auto">
+        <app-globales-avatar></app-globales-avatar>
+      </div>
+      <div class="col-xl col-sm-12">
+        <div class="col-sm-12 row p-0">
+          <div class="col-sm-6 form-group">
+            <label for="exampleInputEmail1">
+              {{ 'pages-usuarios.Label.firstName' | translate}}
+            </label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.firstName}}" readonly>
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          </div>
+          <div class="col-sm-6 form-group">
+            <label for="exampleInputEmail1">
+              {{ 'pages-usuarios.Label.lastName' | translate}}
+            </label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.lastName}}" readonly>
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          </div>
+        </div>
+        <div class="col-sm-12 row p-0">
+          <div class="col-sm-6 form-group">
+            <label for="exampleInputEmail1">
+              {{ 'pages-usuarios.Label.email' | translate}}
+            </label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.email}}" readonly>
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          </div>
+          <div class="col-sm-6 form-group">
+            <label for="exampleInputEmail1">
+              {{ 'pages-usuarios.Label.password' | translate}}
+            </label>
+            <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.password}}" readonly>
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          </div>
+        </div>
+        <div class="col-sm-12 row p-0">
+          <div class="col-sm-6 form-group">
+            <label for="exampleInputEmail1">
+              {{ 'pages-usuarios.Label.statusUser' | translate}}
+            </label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{item.isActive}}" readonly>
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+</div>
+
+
+

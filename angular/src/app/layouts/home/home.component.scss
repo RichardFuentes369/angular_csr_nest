@@ -1,0 +1,68 @@
+$navbarPrincipal: #007bff;
+$textoColor: #ffffff;
+
+$opcionNavbarActiva: #008000;
+$opcionNavbarSelect: #008000;
+$fondoNavbar: #e0e0e0;
+
+$fondoFooter: #008000;
+
+$bordeColor: coral;
+
+.fondo-encabezado {
+  background-color: $navbarPrincipal;
+  color: $textoColor;
+}
+
+.borde-menu {
+  border-left-style: solid;
+  border-left-color: $bordeColor;
+}
+
+.arrastrarSeccion1 {
+  position: sticky;
+  position: -webkit-sticky; /* Safari */
+  top: 0px;
+  z-index: 5;
+}
+.mantenerSeccion2 {
+  position: sticky;
+  top: 40px;
+  z-index: 5;
+}
+.arrastrarSeccion3 {
+  position: sticky;
+  position: -webkit-sticky; /* Safari */
+  top: 40px;
+  z-index: 5;
+}
+
+/* navbar */
+.menu {
+  background-color: $fondoNavbar;
+  color: $textoColor;
+  // top: 0;
+  a:hover {
+    background-color: $opcionNavbarSelect;
+    color: $textoColor;
+  }
+}
+
+.activo {
+  background-color: $opcionNavbarActiva;
+  .nav-link {
+    color: $textoColor
+  }
+  .borde-menu {
+    border-left-style: inset;
+  }
+}
+/* fin navbar */
+
+/* contenido */
+.contenido{
+  margin-top: 2rem!important;
+  position: sticky;
+  z-index: 1;
+}
+ /* fin contenido */

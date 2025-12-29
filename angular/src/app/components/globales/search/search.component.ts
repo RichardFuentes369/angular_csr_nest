@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, ViewChild, ViewContainerRef, ComponentFactoryResolver, OnInit, Output, EventEmitter, ElementRef, AfterViewInit } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { ListaComponentes } from '@module/lista-componentes'
+import { ListaComponentes } from '@mod/lista-componentes'
 
 @Component({
   selector: 'app-globales-search',

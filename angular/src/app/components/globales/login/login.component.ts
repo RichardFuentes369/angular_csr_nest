@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 
-import { swalert } from '@functions/System'
+import { swalert } from '@function/System'
 import { LoginServiceService } from './service/login-service.service'
 
 
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
       this.model.email = 'admin1@correo.com'
       this.model.password = 'Qwerty9601'
     }else{
-      this.model.email = 'user1@gmail.com'
+      this.model.email = 'final1@gmail.com'
       this.model.password = 'Qwerty9601'
     }
   }
@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/admin']);
       }else{
         this.isPending = false;
-        this.router.navigate(['/user']);
+        this.router.navigate(['/final']);
       }
     }).catch(err =>{
       this.isPending = false;

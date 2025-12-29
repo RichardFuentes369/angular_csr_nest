@@ -1,33 +1,34 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { IndexComponent } from './layout/index/index.component'
-import { AdminComponent  } from './layout/admin/admin.component'
-import { UserComponent } from './layout/user/user.component'
+import { HomeComponent } from '@layout/home/home.component'
+import { AdminComponent  } from '@layout/admin/admin.component'
+import { FinalComponent } from '@layout/final/final.component'
 
-import { adminGuard } from './guards/roles/admin/admin.guard'
-import { finalGuard } from './guards/roles/final/final.guard';
-import { IndexnotFoundComponent } from './components/globales/notfound/index/index.component'
-import { AdminnotFoundComponent } from './components/globales/notfound/admin/admin.component'
-import { UsernotFoundComponent } from './components/globales/notfound/user/user.component'
+import { adminGuard } from '@guard/roles/admin/admin.guard'
+import { finalGuard } from '@guard/roles/final/final.guard';
+
+import { HomeNotFoundComponent  } from '@component/globales/notfound/home/home.component'
+import { AdminNotFoundComponent } from '@component/globales/notfound/admin/admin.component'
+import { FinalNotFoundComponent } from '@component/globales/notfound/final/final.component'
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'inicio',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
   {
-    path: 'inicio',
-    component: IndexComponent,
+    path: 'home',
+    component: HomeComponent,
     children: [
       {
         path: '',
-        loadChildren: () => import('./layout/index/index-layout.routing').then(x=>x.IndexLayoutRoutes)
+        loadChildren: () => import('@layout/home/home.routing').then(x=>x.HomeLayoutRoutes)
       },
       {
         path: '**',
-        component: IndexnotFoundComponent,
+        component: HomeNotFoundComponent,
       },
     ]
   },
@@ -37,16 +38,16 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('./layout/admin/admin-layout.routing').then(x=>x.AdminLayoutRoutes)
+        loadChildren: () => import('@layout/admin/admin.routing').then(x=>x.AdminLayoutRoutes)
       },
       {
-        path: 'menu',
+        path: 'mod',
         data: { breadcrumb: 'Menu' },
-        loadChildren: () => import('./module/basic/principal/admin/routes/menu.routing').then(x=>x.MenuRoutes)
+        loadChildren: () => import('@mod/main/admin/routes/menu.routing').then(x=>x.MenuRoutes)
       },
       {
         path: '**',
-        component: AdminnotFoundComponent,
+        component: AdminNotFoundComponent,
         canActivate: [
           adminGuard
         ]
@@ -54,17 +55,17 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'user',
+    path: 'final',
     data: { breadcrumb: 'Menu' },
-    component: UserComponent,
+    component: FinalComponent,
     children: [
       {
         path: '',
-        loadChildren: () => import('./layout/user/user-layout.routing').then(x=>x.UserLayoutRoutes)
+        loadChildren: () => import('@layout/final/final.routing').then(x=>x.FinalLayoutRoutes)
       },
       {
         path: '**',
-        component: UsernotFoundComponent,
+        component: FinalNotFoundComponent,
         canActivate: [
           finalGuard
         ]

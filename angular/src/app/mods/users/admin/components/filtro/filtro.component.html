@@ -1,0 +1,39 @@
+<div class="">
+    <div class="col-xl col-sm-12 card">
+        <input type="text" class="d-none complementoRuta" value="">
+        <div class="col-sm-12">
+            <label for="exampleInputEmail1">
+                {{ 'pages-usuarios.Label.email' | translate}}
+            </label>
+            <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.email" aria-describedby="emailHelp" placeholder="{{ 'pages-usuarios.Placeholder.email' | translate}}">
+            <small id="emailHelp" class="form-text text-muted">{{ 'pages-usuarios.Error.email' | translate}}</small>
+        </div>
+        <div class="col-sm-12">
+            <label for="exampleInputEmail1">
+                {{ 'pages-usuarios.Label.firstName' | translate}}
+            </label>
+            <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.firstName" aria-describedby="emailHelp" placeholder="{{ 'pages-usuarios.Placeholder.firstName' | translate}}">
+            <small id="emailHelp" class="form-text text-muted">{{ 'pages-usuarios.Error.firstName' | translate}}</small>
+        </div>
+        <div class="col-sm-12">
+            <label for="exampleInputEmail1">
+                {{ 'pages-usuarios.Label.lastName' | translate}}
+            </label>
+            <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.lastName" aria-describedby="emailHelp" placeholder="{{ 'pages-usuarios.Placeholder.lastName' | translate}}">
+            <small id="emailHelp" class="form-text text-muted">{{ 'pages-usuarios.Error.isActive' | translate}}</small>
+        </div>
+        <div class="col-sm-12">
+            <label for="exampleInputEmail1">
+                {{ 'pages-usuarios.Label.statusUser' | translate}}
+            </label>
+            <select name="" id="" class="form-control" [(ngModel)]="model.isActive">
+                <option value="">{{ 'pages-usuarios.Placeholder.select' | translate}}</option>
+                <option value="0">Inactivo</option>
+                <option value="1">Activo</option>
+            </select>
+            <small id="emailHelp" class="form-text text-muted">{{ 'pages-usuarios.Error.isActive' | translate}}</small>
+        </div>
+        <button class="d-none limpiar" (click)="limpiar()"></button>
+        <button class="d-none filtrar" (click)="filtrar()"></button>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="">
+
+  <h1>{{ 'pages-usuarios.Tipo.FinalWord' | translate}}</h1>
+  
+  <div class="card p-5">
+    <app-globales-search
+      [icon]="iconFilter" 
+      [componente]="componenteFilter"
+      (filtroItem) = "filtroData()"
+    >
+    </app-globales-search>
+
+    <app-globales-tablecrud
+      [campoFiltro] = showcampoFiltro
+      [endPoint] = endPoint
+      [columnas] = columnas
+      [permisosAcciones] = permisos
+      [filters] = filters
+
+      (verItem) = "verData($event)"
+      (crearNuevoItem) = "crearData($event)"
+      (editarItem) = "editarData($event)"
+      (activarItem) = "activarData($event)"
+      (eliminarItem) = "eliminarData($event)"
+    >
+    </app-globales-tablecrud>
+  </div>
+
+  <app-globales-modal-boostrap
+    [tamano]="tamano"
+    [scrollable]="scrollable"
+    [title]="title"
+    [save]="save"
+    [buttonSave]="buttonSave"
+    [edit]="edit"
+    [buttonEdit]="buttonEdit"
+    [cancel]="cancel"
+    [buttonCancel]="buttonCancel"
+    [componentePrecargado]="componentePrecargado"
+    [cierreModal]="cierreModal"
+    (actualizarTabla)="refrescarTabla()"
+  >
+  </app-globales-modal-boostrap>
+
+</div>

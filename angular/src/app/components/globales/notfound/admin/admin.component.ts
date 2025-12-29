@@ -4,7 +4,7 @@ import { Router } from '@angular/router'
 import { TranslateModule, TranslateService } from '@ngx-translate/core'
 
 @Component({
-  selector: 'app-admin',
+  selector: 'app-globales-admin-not-found',
   standalone: true,
   imports: [
     TranslateModule
@@ -12,7 +12,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core'
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'
 })
-export class AdminnotFoundComponent {
+export class AdminNotFoundComponent {
 
   constructor(
     private router: Router,

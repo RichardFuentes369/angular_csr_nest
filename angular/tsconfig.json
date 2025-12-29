@@ -23,24 +23,27 @@
       "@component/*": [
         "./src/app/components/*"
       ],
-      "@functions/*": [
+      "@function/*": [
         "./src/app/functions/*"
       ],
       "@guard/*": [
         "./src/app/guards/*"
       ],
+      "@layout/*": [
+        "./src/app/layouts/*"
+      ],
+      "@mod/*": [
+        "./src/app/mods/*"
+      ],
+      "@pipe/*": [
+        "./src/app/pipes/*"
+      ],
       "@service/*": [
         "./src/app/services/*"
-      ],
-      "@module/*": [
-        "./src/app/module/*"
       ],
       "@environment/*": [
         "./src/environments/*"
       ],
-      "@pipe/*": [
-        "./src/app/pipes/*"
-      ]
     }
   },
   "angularCompilerOptions": {
