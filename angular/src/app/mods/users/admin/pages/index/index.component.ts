@@ -9,6 +9,7 @@ import { Permisos } from '@function/System'
 
 import { AuthService } from '@guard/service/auth.service';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
+import { STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
 
 
 @Component({
@@ -29,7 +30,7 @@ export class IndexComponent implements OnInit{
   menu: any[] = []
 
   async ngOnInit() {
-    const userData = await this.userService.getUser('authadmin')
+    const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH)
     const submodulo = await this.permisosService.permisoPage(0,'usuarios',userData.data.id)
     console.log(submodulo)
     if (submodulo.data === "") {

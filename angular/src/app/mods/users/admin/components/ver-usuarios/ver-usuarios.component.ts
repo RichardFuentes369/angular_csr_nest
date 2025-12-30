@@ -9,6 +9,7 @@ import { AuthService } from '@guard/service/auth.service';
 import { Permisos } from '@function/System'
 import { FinalService } from '@mod/users/admin/pages/finales/service/final.service';
 import { AvatarComponent } from '@component/globales/avatar/avatar.component';
+import { STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
 
 interface AdministradorInterface {
   'id': number,
@@ -42,7 +43,7 @@ export class VerUsuariosComponent implements OnInit{
   usuarioReal: any
 
   async ngOnInit() {
-    await this.userService.refreshToken('authadmin');
+    await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
 
     switch (this.route.snapshot.queryParams?.['rol']) {
       case 'admin':

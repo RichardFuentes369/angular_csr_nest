@@ -9,6 +9,7 @@ import Swal from 'sweetalert2'
 
 import { Permisos } from '@function/System'
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
+import { STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
 @Component({
   selector: 'app-submodulos',
   standalone: true,
@@ -43,8 +44,8 @@ export class SubmodulosComponent implements OnInit{
       this.router.navigate([`/admin/mod/modules`]);
     }
 
-    await this.userService.refreshToken('authadmin');
-    const userData = await this.userService.getUser('authadmin');
+    await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
+    const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
 
     const submodulo = await this.permisosService.permisoPage(0,'modulos',userData.data.id)
     if (submodulo.data === "") {
@@ -94,7 +95,7 @@ export class SubmodulosComponent implements OnInit{
   verData (_id: string){
     console.log("verData "+_id)
     localStorage.setItem('submodulo', _id)
-    this.router.navigate([`/admin/mod/modules/submodules/permissions`]);
+    this.router.navigate([`/admin/mod/modules/permissions/`]);
   }
 
   crearData (_id: string){

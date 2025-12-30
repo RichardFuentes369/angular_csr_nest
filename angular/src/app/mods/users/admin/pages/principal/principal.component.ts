@@ -14,6 +14,7 @@ import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boost
 import { PrincipalService } from './service/principal.service';
 import { SearchComponent } from '@component/globales/search/search.component';
 import { Subscription } from 'rxjs';
+import { STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
 
 @Component({
   selector: 'app-principal',
@@ -100,8 +101,8 @@ export class PrincipalComponent implements OnInit, OnDestroy{
 
   // metodos Init, Destroy
   async ngOnInit() {
-    await this.userService.refreshToken('authadmin');
-    const userData = await this.userService.getUser('authadmin');
+    await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
+    const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
 
     const submodulo = await this.permisosService.permisoPage(1,'administradores',userData.data.id)
     console.log(submodulo)

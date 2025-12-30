@@ -9,6 +9,7 @@ import Swal from 'sweetalert2'
 import { Permisos } from '@function/System'
 import { ModulosService } from '@mod/modules/admin/service/modulos.service';
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
+import { STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
 
 @Component({
   selector: 'app-modulos',
@@ -37,8 +38,8 @@ export class ModulosComponent implements OnInit{
   async ngOnInit() {
     localStorage.removeItem('modulo')
     localStorage.removeItem('submodulo')
-    await this.userService.refreshToken('authadmin');
-    const userData = await this.userService.getUser('authadmin');
+    await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
+    const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
 
     const submodulo = await this.permisosService.permisoPage(0,'modulos',userData.data.id)
     if (submodulo.data === "") {

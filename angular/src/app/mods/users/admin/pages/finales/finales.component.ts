@@ -12,6 +12,7 @@ import { FinalService } from './service/final.service';
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
 import { SearchComponent } from '@component/globales/search/search.component';
 import { Subscription } from 'rxjs';
+import { STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
 
 @Component({
   selector: 'app-menu-usuarios-finales',
@@ -101,8 +102,8 @@ export class FinalesComponent implements OnInit{
 
   // metodos Init, Destroy
   async ngOnInit() {
-    await this.userService.refreshToken('authadmin');
-    const userData = await this.userService.getUser('authadmin');
+    await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
+    const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
 
     const submodulo = await this.permisosService.permisoPage(1,'finales',userData.data.id)
     if (submodulo.data === "") {

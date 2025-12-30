@@ -6,6 +6,7 @@ import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 
 import { swalert } from '@function/System'
+import { STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
 
 @Component({
   selector: 'app-asignar-permisos',
@@ -37,8 +38,8 @@ export class AsignarPermisosComponent implements OnInit{
   ]
 
   async ngOnInit() {
-    await this.userService.refreshToken('authadmin');
-    const userData = await this.userService.getUser('authadmin');
+    await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
+    const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
     let userId = this.route.snapshot.queryParams['id']
     const modulo = await this.modulosService.listaPermisos(+userId)
     this.permisos = modulo.data

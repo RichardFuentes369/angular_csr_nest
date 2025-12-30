@@ -1,5 +1,6 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, CanMatchFn, Router } from '@angular/router';
+import { STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_FINAL_AUTH } from '@const/app.const';
 import { AuthService } from '@guard/service/auth.service';
 
 export const indexGuard: CanActivateFn = async(route, state) => {
@@ -10,10 +11,10 @@ export const indexGuard: CanActivateFn = async(route, state) => {
 
   if(token == null){
     return true
-  }else if(await authService.isAuth('authadmin')){
+  }else if(await authService.isAuth(STORAGE_KEY_ADMIN_AUTH)){
     const url = router.navigate(['/admin/perfil']);
     return url;
-  }else if(await authService.isAuth('authuser')){
+  }else if(await authService.isAuth(STORAGE_KEY_FINAL_AUTH)){
     const url = router.navigate(['/user/perfil']);
     return url;
   }else{
