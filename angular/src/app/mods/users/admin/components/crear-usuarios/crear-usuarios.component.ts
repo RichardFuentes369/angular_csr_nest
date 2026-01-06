@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { ocultarModalOscura } from '@function/System'
 import { FinalService } from '@mod/users/admin/pages/finales/service/final.service';
 import { AvatarComponent } from '@component/globales/avatar/avatar.component';
+import { STORAGE_KEY_PROFILE } from '@const/app.const';
 
 @Component({
   selector: 'app-crear-usuarios',
@@ -54,7 +55,7 @@ export class CrearUsuariosComponent {
 
   async crearUsuario(){
 
-    let complemento = localStorage.getItem('profile')
+    let complemento = localStorage.getItem(STORAGE_KEY_PROFILE)
     let endPoint
 
     if(complemento == 'admin'){

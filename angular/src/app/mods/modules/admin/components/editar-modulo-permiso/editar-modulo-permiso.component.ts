@@ -7,6 +7,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
 import { ocultarModalOscura } from '@function/System'
+import { STORAGE_KEY_MODULE, STORAGE_KEY_SUBMODULE } from '@mod/modules/const/modules.const';
 
 @Component({
   selector: 'app-editar-modulo-permiso',
@@ -32,13 +33,13 @@ export class EditarModuloPermisoComponent implements OnInit{
   }
 
   async ngOnInit() {
-    if(localStorage.getItem('modulo') && localStorage.getItem('submodulo')){
+    if(localStorage.getItem(STORAGE_KEY_MODULE) && localStorage.getItem(STORAGE_KEY_SUBMODULE)){
       this.mostrarCheck = false
     }
-    if(localStorage.getItem('modulo') && !localStorage.getItem('submodulo')){
+    if(localStorage.getItem(STORAGE_KEY_MODULE) && !localStorage.getItem(STORAGE_KEY_SUBMODULE)){
       this.mostrarCheck = false
     }
-    if(!localStorage.getItem('modulo') && !localStorage.getItem('submodulo')){
+    if(!localStorage.getItem(STORAGE_KEY_MODULE) && !localStorage.getItem(STORAGE_KEY_SUBMODULE)){
       this.mostrarCheck = true
     }
   }

@@ -101,7 +101,7 @@ export class PermisosComponent implements OnInit{
     // localStorage.setItem('profile', 'user')
     this.tamano = "xl"
     this.scrollable = false
-    this.title = this.translate.instant('pages-modulos.Title.CreatePermission')
+    this.title = this.translate.instant('mod-modules.Title.CreatePermission')
     this.save = true
     this.buttonSave = "Guardar"
     this.edit = false
@@ -122,7 +122,7 @@ export class PermisosComponent implements OnInit{
     // localStorage.setItem('profile', 'user')
     this.tamano = "xl"
     this.scrollable = false
-    this.title = this.translate.instant('pages-modulos.Title.EditPermission')
+    this.title = this.translate.instant('mod-modules.Title.EditPermission')
     this.save = true
     this.buttonSave = "Guardar"
     this.edit = false
@@ -144,14 +144,14 @@ export class PermisosComponent implements OnInit{
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
   eliminarData (_id: string[]){
-    this.translate.get('pages-modulos.Swal.TitleAreYouSure').subscribe((translatedTitle: string) => {
+    this.translate.get('mod-modules.Swal.TitleAreYouSure').subscribe((translatedTitle: string) => {
       Swal.fire({
         title: translatedTitle,
-        text: this.translate.instant('pages-modulos.Swal.TitleWarnigRevert'),
+        text: this.translate.instant('mod-modules.Swal.TitleWarnigRevert'),
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: this.translate.instant('pages-modulos.Swal.TitleDelete'),
-        cancelButtonText: this.translate.instant('pages-modulos.Swal.TitleCancel')
+        confirmButtonText: this.translate.instant('mod-modules.Swal.TitleDelete'),
+        cancelButtonText: this.translate.instant('mod-modules.Swal.TitleCancel')
       }).then(async (result) => {
         if (result.isConfirmed) {
           let response = await this.modulosService.eliminarPermiso(_id)
@@ -159,14 +159,14 @@ export class PermisosComponent implements OnInit{
 
           if (response.data.status == 200) {
             Swal.fire({
-              title: this.translate.instant('pages-modulos.Swal.TitleDelete'),
-              text: this.translate.instant('pages-modulos.Swal.TitleRegisterDeleted'),
+              title: this.translate.instant('mod-modules.Swal.TitleDelete'),
+              text: this.translate.instant('mod-modules.Swal.TitleRegisterDeleted'),
               icon: "success"
             });
           }
           if (response.data.status == 404) {
             Swal.fire({
-              title: this.translate.instant('pages-modulos.Swal.TitleDelete'),
+              title: this.translate.instant('mod-modules.Swal.TitleDelete'),
               text: response.data.message,
               icon: "error"
             });

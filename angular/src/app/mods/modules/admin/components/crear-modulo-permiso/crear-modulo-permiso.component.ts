@@ -8,6 +8,7 @@ import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
 import { ocultarModalOscura } from '@function/System'
 import { ModulosService } from '@mod/modules/admin/service/modulos.service';
+import { STORAGE_KEY_MODULE, STORAGE_KEY_SUBMODULE } from '@mod/modules/const/modules.const';
 
 @Component({
   selector: 'app-crear-modulo-permiso',
@@ -35,19 +36,19 @@ export class CrearModuloPermisoComponent implements OnInit{
   }
 
   async ngOnInit() {
-    if(localStorage.getItem('modulo') && !localStorage.getItem('submodulo')){
-      this.model.modulo_padre_id = parseInt(localStorage.getItem('modulo') ?? '0', 10)
+    if(localStorage.getItem(STORAGE_KEY_MODULE) && !localStorage.getItem(STORAGE_KEY_SUBMODULE)){
+      this.model.modulo_padre_id = parseInt(localStorage.getItem(STORAGE_KEY_MODULE) ?? '0', 10)
       this.mostrarCheck = false
     }
-    if(!localStorage.getItem('modulo') && localStorage.getItem('submodulo')){
-      this.model.modulo_padre_id = parseInt(localStorage.getItem('submodulo') ?? '0', 10)
+    if(!localStorage.getItem(STORAGE_KEY_MODULE) && localStorage.getItem(STORAGE_KEY_SUBMODULE)){
+      this.model.modulo_padre_id = parseInt(localStorage.getItem(STORAGE_KEY_SUBMODULE) ?? '0', 10)
       this.mostrarCheck = false
     }
-    if(localStorage.getItem('modulo') && localStorage.getItem('submodulo')){
-      this.model.modulo_padre_id = parseInt(localStorage.getItem('submodulo') ?? '0', 10)
+    if(localStorage.getItem(STORAGE_KEY_MODULE) && localStorage.getItem(STORAGE_KEY_SUBMODULE)){
+      this.model.modulo_padre_id = parseInt(localStorage.getItem(STORAGE_KEY_SUBMODULE) ?? '0', 10)
       this.mostrarCheck = false
     }
-    if(!localStorage.getItem('modulo') && !localStorage.getItem('submodulo')){
+    if(!localStorage.getItem(STORAGE_KEY_MODULE) && !localStorage.getItem(STORAGE_KEY_SUBMODULE)){
       this.model.modulo_padre_id = 0
       this.mostrarCheck = true
     }

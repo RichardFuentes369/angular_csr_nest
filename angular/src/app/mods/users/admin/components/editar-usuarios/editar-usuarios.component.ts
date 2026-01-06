@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2'
 import { ocultarModalOscura } from '@function/System';
 import { AvatarComponent } from '@component/globales/avatar/avatar.component';
+import { STORAGE_KEY_PROFILE } from '@const/app.const';
 
 interface AdministradorInterface {
   'id': number,
@@ -90,7 +91,7 @@ export class EditarUsuariosComponent implements OnInit{
 
   async actualizarData(){
 
-    let complemento = localStorage.getItem('profile')
+    let complemento = localStorage.getItem(STORAGE_KEY_PROFILE)
     let endPoint
 
     if(complemento == 'admin'){

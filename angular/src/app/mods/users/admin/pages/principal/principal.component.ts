@@ -14,7 +14,8 @@ import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boost
 import { PrincipalService } from './service/principal.service';
 import { SearchComponent } from '@component/globales/search/search.component';
 import { Subscription } from 'rxjs';
-import { STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
+import { STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE } from '@const/app.const';
+import { STORAGE_KEY_PROFILE_ADMIN } from '@mod/users/const/users.const'
 
 @Component({
   selector: 'app-principal',
@@ -165,7 +166,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   }
 
   crearData (_id: string){
-    localStorage.setItem('profile', 'admin')
+    localStorage.setItem(STORAGE_KEY_PROFILE, STORAGE_KEY_PROFILE_ADMIN)
     this.tamano = "xl"
     this.scrollable = false
     this.title = this.translate.instant('mod-users.Title.CreateAdminWord')

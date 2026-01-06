@@ -12,7 +12,8 @@ import { FinalService } from './service/final.service';
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
 import { SearchComponent } from '@component/globales/search/search.component';
 import { Subscription } from 'rxjs';
-import { STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
+import { STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE } from '@const/app.const';
+import { STORAGE_KEY_PROFILE_FINAL } from '@mod/users/const/users.const'
 
 @Component({
   selector: 'app-menu-usuarios-finales',
@@ -163,7 +164,7 @@ export class FinalesComponent implements OnInit{
   }
 
   crearData (_id: string){
-    localStorage.setItem('profile', 'user')
+    localStorage.setItem(STORAGE_KEY_PROFILE, STORAGE_KEY_PROFILE_FINAL)
     this.tamano = "xl"
     this.scrollable = false
     this.title = this.translate.instant('mod-users.Title.CreateUserFinalWord')

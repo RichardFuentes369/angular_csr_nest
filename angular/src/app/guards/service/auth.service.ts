@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router'
+import { STORAGE_KEY_TOKEN } from '@const/app.const';
 import { environment } from '@environment/environment';
 import axios from 'axios';
 
@@ -13,7 +14,7 @@ export class AuthService {
   ) {}
 
   getToken(){
-    return localStorage.getItem('token')
+    return localStorage.getItem(STORAGE_KEY_TOKEN)
   }
 
   async validarToken(rol: string){
@@ -31,7 +32,7 @@ export class AuthService {
   }
 
   async refreshToken(rol:string){
-    let token = localStorage.getItem('token')
+    let token = localStorage.getItem(STORAGE_KEY_TOKEN)
     let urlCopleta = environment.apiUrl+rol+'/refresh'
     let post = {
       'token': token
@@ -39,10 +40,10 @@ export class AuthService {
 
     try {
       let data = (await axios.post(urlCopleta, post)).data
-      localStorage.setItem('token', data);
+      localStorage.setItem(STORAGE_KEY_TOKEN, data);
       return data
     } catch(error) {
-      localStorage.removeItem('token');
+      localStorage.removeItem(STORAGE_KEY_TOKEN);
       return false
     }
   }
@@ -64,10 +65,10 @@ export class AuthService {
     let refreshTokenResponse = await this.refreshToken(rol)
 
     if(refreshTokenResponse){
-      localStorage.setItem('token', refreshTokenResponse);
+      localStorage.setItem(STORAGE_KEY_TOKEN, refreshTokenResponse);
       return true
     }else{
-      localStorage.removeItem('token');
+      localStorage.removeItem(STORAGE_KEY_TOKEN);
       return false
     }
 
@@ -78,7 +79,7 @@ export class AuthService {
     let urlCopleta = environment.apiUrl+rol+'/profile'
     const data = await axios.get(urlCopleta, {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
+        'Authorization': `Bearer ${localStorage.getItem(STORAGE_KEY_TOKEN)}`
       }
     });
 

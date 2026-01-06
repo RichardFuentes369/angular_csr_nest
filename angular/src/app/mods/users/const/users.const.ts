@@ -4,6 +4,9 @@ export const ADMIN_PAGE_MENU_PERSMISSION_MODULES = 'modulos';
 export const LAYOUT_ADMIN_PAGE_USERS = '/users';
 export const LAYOUT_ADMIN_PAGE_MODULES = '/modules';
 
+export const STORAGE_KEY_PROFILE_ADMIN = 'admin';
+export const STORAGE_KEY_PROFILE_FINAL = 'user';
+
 // Routes
 export const TITLE_PATH_USERS_INDEX = 'Usuarios';
 export const BREADCRUMB_PATH_USERS_INDEX = 'Index';

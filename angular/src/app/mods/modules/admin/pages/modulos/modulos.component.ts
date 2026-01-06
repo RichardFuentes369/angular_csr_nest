@@ -10,6 +10,7 @@ import { Permisos } from '@function/System'
 import { ModulosService } from '@mod/modules/admin/service/modulos.service';
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
 import { STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
+import { STORAGE_KEY_MODULE, STORAGE_KEY_SUBMODULE } from '@mod/modules/const/modules.const';
 
 @Component({
   selector: 'app-modulos',
@@ -36,8 +37,8 @@ export class ModulosComponent implements OnInit{
   permisos: any[] = []
 
   async ngOnInit() {
-    localStorage.removeItem('modulo')
-    localStorage.removeItem('submodulo')
+    localStorage.removeItem(STORAGE_KEY_MODULE)
+    localStorage.removeItem(STORAGE_KEY_SUBMODULE)
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
 
@@ -103,10 +104,10 @@ export class ModulosComponent implements OnInit{
   async verData (_id: string){
     const hasChildren = await this.modulosService.getHasSubmodule(+_id)
     if(hasChildren.data[0].tiene_submodulos == false){
-      localStorage.setItem('submodulo', _id)
+      localStorage.setItem(STORAGE_KEY_SUBMODULE, _id)
       this.router.navigate([`/admin/mod/modules/permissions/`]);
     }else{
-      localStorage.setItem('modulo', _id)
+      localStorage.setItem(STORAGE_KEY_MODULE, _id)
       this.router.navigate([`/admin/mod/modules/submodules/`]);
     }
   }
@@ -115,7 +116,7 @@ export class ModulosComponent implements OnInit{
     // localStorage.setItem('profile', 'user')
     this.tamano = "xl"
     this.scrollable = false
-    this.title = this.translate.instant('pages-modulos.Title.CreateModule')
+    this.title = this.translate.instant('mod-modules.Title.CreateModule')
     this.save = true
     this.buttonSave = "Guardar"
     this.edit = false
@@ -136,7 +137,7 @@ export class ModulosComponent implements OnInit{
     // localStorage.setItem('profile', 'user')
     this.tamano = "xl"
     this.scrollable = false
-    this.title = this.translate.instant('pages-modulos.Title.EditModule')
+    this.title = this.translate.instant('mod-modules.Title.EditModule')
     this.save = false
     this.buttonSave = "Guardar"
     this.edit = true
@@ -155,14 +156,14 @@ export class ModulosComponent implements OnInit{
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
   eliminarData (_id: string[]){
-    this.translate.get('pages-modulos.Swal.TitleAreYouSure').subscribe((translatedTitle: string) => {
+    this.translate.get('mod-modules.Swal.TitleAreYouSure').subscribe((translatedTitle: string) => {
       Swal.fire({
         title: translatedTitle,
-        text: this.translate.instant('pages-modulos.Swal.TitleWarnigRevert'),
+        text: this.translate.instant('mod-modules.Swal.TitleWarnigRevert'),
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: this.translate.instant('pages-modulos.Swal.TitleDelete'),
-        cancelButtonText: this.translate.instant('pages-modulos.Swal.TitleCancel')
+        confirmButtonText: this.translate.instant('mod-modules.Swal.TitleDelete'),
+        cancelButtonText: this.translate.instant('mod-modules.Swal.TitleCancel')
       }).then(async (result) => {
         if (result.isConfirmed) {
             let response = await this.modulosService.eliminarPermiso(_id)
@@ -170,14 +171,14 @@ export class ModulosComponent implements OnInit{
 
             if(response.data.status == 200){
               Swal.fire({
-                title: this.translate.instant('pages-modulos.Swal.TitleDelete'),
-                text: this.translate.instant('pages-modulos.Swal.TitleRegisterDeleted'),
+                title: this.translate.instant('mod-modules.Swal.TitleDelete'),
+                text: this.translate.instant('mod-modules.Swal.TitleRegisterDeleted'),
                 icon: "success"
               });
             }
             if(response.data.status == 404){
               Swal.fire({
-                title: this.translate.instant('pages-modulos.Swal.TitleDelete'),
+                title: this.translate.instant('mod-modules.Swal.TitleDelete'),
                 text: response.data.message,
                 icon: "error"
               });

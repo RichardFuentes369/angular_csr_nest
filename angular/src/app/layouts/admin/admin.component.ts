@@ -7,7 +7,8 @@ import { IdiomaComponent } from '@component/globales/idioma/idioma.component';
 import { CommonModule } from '@angular/common';
 
 import { STORAGE_KEY_TOKEN } from '@const/app.const'
-import { NAME_PAGE, LAYOUT_ADMIN_PAGE_PROFILE, LAYOUT_ADMIN_PAGE_MOD, LAYOUT_ADMIN_PAGE_LOGOUT } from '@layout/const/layouts.const'
+import { NAME_PAGE, LAYOUT_ADMIN_PAGE_LOGOUT } from '@layout/const/layouts.const'
+import { LAYOUT_ADMIN_PAGE_PROFILE, LAYOUT_ADMIN_PAGE_MOD } from '@mod/me/const/me.const'
 
 @Component({
   selector: 'app-layout-admin',
