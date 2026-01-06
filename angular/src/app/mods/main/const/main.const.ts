@@ -1,8 +1,8 @@
 export const ADMIN_PAGE_MENU_PERSMISSION_USERS = 'usuarios';
 export const ADMIN_PAGE_MENU_PERSMISSION_MODULES = 'modulos';
 
-export const LAYOUT_ADMIN_PAGE_USERS = '/users';
-export const LAYOUT_ADMIN_PAGE_MODULES = '/modules';
+export const LAYOUT_ADMIN_PAGE_USERS = '/admin/mod/users';
+export const LAYOUT_ADMIN_PAGE_MODULES = '/admin/mod/modules';
 
 
 // Routes

@@ -14,8 +14,8 @@ import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boost
 import { PrincipalService } from './service/principal.service';
 import { SearchComponent } from '@component/globales/search/search.component';
 import { Subscription } from 'rxjs';
-import { STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE } from '@const/app.const';
-import { STORAGE_KEY_PROFILE_ADMIN } from '@mod/users/const/users.const'
+import { MOD_USER_PAGE_PERMISO, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE } from '@const/app.const';
+import { MOD_USER_PAGE_ADMIN_ASSIGMENT, STORAGE_KEY_PROFILE_ADMIN } from '@mod/users/const/users.const'
 
 @Component({
   selector: 'app-principal',
@@ -108,7 +108,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     const submodulo = await this.permisosService.permisoPage(1,'administradores',userData.data.id)
     console.log(submodulo)
     if (submodulo.data === "") {
-      this.router.navigate(['/admin/permiso']);
+      this.router.navigate([MOD_USER_PAGE_PERMISO]);
     } 
 
     const permisos = await this.permisosService.permisos(userData.data.id,'administradores')
@@ -296,9 +296,13 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     });
   }
 
-  asignarData (_id: string){
-    console.log("asignarData "+_id)
-    this.router.navigate(['/admin/mod/users/administradores/asignar-administrador/'], { queryParams: { id: _id } });
+  asignarData (data: { id: string, ctrlKey: boolean }){
+    const url = `${MOD_USER_PAGE_ADMIN_ASSIGMENT}?id=${data.id}`;
+    if (data.ctrlKey) {
+      window.open(url, '_blank');
+    } else {
+      this.router.navigate([MOD_USER_PAGE_ADMIN_ASSIGMENT], { queryParams: { id: data.id } });
+    }
   }
 
   async filtroData(){

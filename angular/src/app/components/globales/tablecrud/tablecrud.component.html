@@ -26,7 +26,7 @@
       </button>
     }
     @if(tienePermiso('asignar_permisos')){
-      <button class="btn btn-primary btn-sm mx-1" (click)="assignItem()" [disabled]="idsSeleccionados.length !== 1">
+      <button class="btn btn-primary btn-sm mx-1" (click)="assignItem($event)" [disabled]="idsSeleccionados.length !== 1">
         {{ 'global-tablecrud.Options.Assign' | translate}} ({{idsSeleccionados.length}})
       </button>
     }

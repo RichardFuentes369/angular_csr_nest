@@ -25,19 +25,19 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() permisosAcciones: any[] = [];
 
   @ViewChild(DataTableDirective, { static: false }) datatableElement!: DataTableDirective;
-  
+
   url = environment.apiUrl;
   idsSeleccionados: any[] = [];
   dtOptions: Config = {};
-  dtTrigger: Subject<any> = new Subject<any>(); 
-  
+  dtTrigger: Subject<any> = new Subject<any>();
+
   private langSub: Subscription | undefined;
 
   constructor(
     private tableCrudService: TablecrudService,
     private http: HttpClient,
     private translate: TranslateService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.listar();
@@ -80,9 +80,9 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
       serverSide: true,
       ajax: (dataTablesParameters: any, callback) => {
         const page = Math.floor(dataTablesParameters.start / dataTablesParameters.length) + 1;
-        
+
         this.http.get<any[]>(
-            `${this.url}${this.endPoint}?page=${page}&limit=${dataTablesParameters.length}&field=id&order=asc${this.filters}`
+          `${this.url}${this.endPoint}?page=${page}&limit=${dataTablesParameters.length}&field=id&order=asc${this.filters}`
         ).subscribe((post) => {
           const recordsTotal = post[0].pagination.totalRecord;
           const data = post[0].result.map((item: any) => {
@@ -104,10 +104,10 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
         "emptyTable": `${this.translate.instant('global-tablecrud.Info.NoInfo')}`,
         "info": `${this.translate.instant('global-tablecrud.Info.Showing')} _START_ ${this.translate.instant('global-tablecrud.Info.To')} _END_ ${this.translate.instant('global-tablecrud.Info.Of')} _TOTAL_ ${this.translate.instant('global-tablecrud.Info.Entries')}`,
         "paginate": {
-            "first": `${this.translate.instant('global-tablecrud.Info.First')}`,
-            "last": `${this.translate.instant('global-tablecrud.Info.Last')}`,
-            "next": `${this.translate.instant('global-tablecrud.Info.Next')}`,
-            "previous": `${this.translate.instant('global-tablecrud.Info.Previous')}`
+          "first": `${this.translate.instant('global-tablecrud.Info.First')}`,
+          "last": `${this.translate.instant('global-tablecrud.Info.Last')}`,
+          "next": `${this.translate.instant('global-tablecrud.Info.Next')}`,
+          "previous": `${this.translate.instant('global-tablecrud.Info.Previous')}`
         },
         "decimal": ",",
         "thousands": "."
@@ -157,13 +157,20 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
   @Output() editarItem = new EventEmitter<string>();
   @Output() eliminarItem = new EventEmitter<string[]>();
   @Output() activarItem = new EventEmitter<string[]>();
-  @Output() asignar = new EventEmitter<string>();
+  @Output() asignar = new EventEmitter<{ id: string, ctrlKey: boolean }>();
 
-  newItem() { if(this.idsSeleccionados.length === 0) this.crearNuevoItem.emit(); }
-  seeItem() { if(this.idsSeleccionados.length === 1) this.verItem.emit(this.idsSeleccionados[0]); }
-  editItem() { if(this.idsSeleccionados.length === 1) this.editarItem.emit(this.idsSeleccionados[0]); }
-  deleteItem() { if(this.idsSeleccionados.length > 0) this.eliminarItem.emit(this.idsSeleccionados); }
-  activedItem() { if(this.idsSeleccionados.length > 0) this.activarItem.emit(this.idsSeleccionados); }
-  assignItem() { if(this.idsSeleccionados.length === 1) this.asignar.emit(this.idsSeleccionados[0]); }
+  newItem() { if (this.idsSeleccionados.length === 0) this.crearNuevoItem.emit(); }
+  seeItem() { if (this.idsSeleccionados.length === 1) this.verItem.emit(this.idsSeleccionados[0]); }
+  editItem() { if (this.idsSeleccionados.length === 1) this.editarItem.emit(this.idsSeleccionados[0]); }
+  deleteItem() { if (this.idsSeleccionados.length > 0) this.eliminarItem.emit(this.idsSeleccionados); }
+  activedItem() { if (this.idsSeleccionados.length > 0) this.activarItem.emit(this.idsSeleccionados); }
+  assignItem(event: MouseEvent) {
+    if (this.idsSeleccionados.length === 1) {
+      this.asignar.emit({
+        id: this.idsSeleccionados[0],
+        ctrlKey: event.ctrlKey || event.metaKey
+      });
+    }
+  }
   selectionClear() { this.limpiarSeleccion(); }
 }

@@ -3,32 +3,32 @@
 
   <div class="parent">
     @if(tienePermiso('administradores')){
-      <div class="item" (click)="goTo('/administradores')" style="cursor: pointer;">
-        <div class="card">
-          <div class="card-body text-center p-0 pb-3 pt-3">
-            <img src="https://icons.iconarchive.com/icons/aha-soft/free-large-boss/256/Admin-icon.png" width="80px">
-          </div>
-          <div class="card-footer text-center bg-white">
-            <span>
-              {{ 'mod-users.Index.buttonAdmins' | translate}}
-            </span>
-          </div>
+    <a [routerLink]="MOD_USER_PAGE_ADMIN" class="item" style="text-decoration: none; color: inherit; display: block;">
+      <div class="card">
+        <div class="card-body text-center p-0 pb-3 pt-3">
+          <img src="https://icons.iconarchive.com/icons/aha-soft/free-large-boss/256/Admin-icon.png" width="80px">
+        </div>
+        <div class="card-footer text-center bg-white">
+          <span>
+            {{ 'mod-users.Index.buttonAdmins' | translate}}
+          </span>
         </div>
       </div>
+    </a>
     }
     @if(tienePermiso('finales')){
-      <div class="item" (click)="goTo('/finales')" style="cursor: pointer;">
-        <div class="card">
-          <div class="card-body text-center p-0 pb-3 pt-3">
-            <img src="https://icons.iconarchive.com/icons/iconshock/real-vista-general/256/administrator-icon.png" width="80px">
-          </div>
-          <div class="card-footer text-center bg-white">
-            <span>
-              {{ 'mod-users.Index.buttonFinals' | translate}}
-            </span>
-          </div>
+    <a [routerLink]="MOD_USER_PAGE_FINAL" class="item" style="text-decoration: none; color: inherit; display: block;">
+      <div class="card">
+        <div class="card-body text-center p-0 pb-3 pt-3">
+          <img src="https://icons.iconarchive.com/icons/iconshock/real-vista-general/256/administrator-icon.png" width="80px">
+        </div>
+        <div class="card-footer text-center bg-white">
+          <span>
+            {{ 'mod-users.Index.buttonFinals' | translate}}
+          </span>
         </div>
       </div>
+    </a>
     }
   </div>
 

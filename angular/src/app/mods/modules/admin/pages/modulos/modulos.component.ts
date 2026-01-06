@@ -9,8 +9,8 @@ import Swal from 'sweetalert2'
 import { Permisos } from '@function/System'
 import { ModulosService } from '@mod/modules/admin/service/modulos.service';
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
-import { STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
-import { STORAGE_KEY_MODULE, STORAGE_KEY_SUBMODULE } from '@mod/modules/const/modules.const';
+import { MOD_USER_PAGE_PERMISO, STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
+import { MOD_MODULES_PAGE_PERMISSIONS, MOD_MODULES_PAGE_SUBMODULES, STORAGE_KEY_MODULE, STORAGE_KEY_SUBMODULE } from '@mod/modules/const/modules.const';
 
 @Component({
   selector: 'app-modulos',
@@ -44,7 +44,7 @@ export class ModulosComponent implements OnInit{
 
     const submodulo = await this.permisosService.permisoPage(0,'modulos',userData.data.id)
     if (submodulo.data === "") {
-      this.router.navigate(['/admin/permiso']);
+      this.router.navigate([MOD_USER_PAGE_PERMISO]);
     } 
 
     const modulo = await this.permisosService.permisos(userData.data.id,'modulos')
@@ -105,10 +105,10 @@ export class ModulosComponent implements OnInit{
     const hasChildren = await this.modulosService.getHasSubmodule(+_id)
     if(hasChildren.data[0].tiene_submodulos == false){
       localStorage.setItem(STORAGE_KEY_SUBMODULE, _id)
-      this.router.navigate([`/admin/mod/modules/permissions/`]);
+      this.router.navigate([MOD_MODULES_PAGE_PERMISSIONS]);
     }else{
       localStorage.setItem(STORAGE_KEY_MODULE, _id)
-      this.router.navigate([`/admin/mod/modules/submodules/`]);
+      this.router.navigate([MOD_MODULES_PAGE_SUBMODULES]);
     }
   }
   

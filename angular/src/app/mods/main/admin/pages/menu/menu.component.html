@@ -3,37 +3,31 @@
   <h3>{{ 'mod-main.Title.Menu' | translate }}</h3>
 
   <div class="parent">
-
     @if(tienePermiso(ADMIN_PAGE_MENU_PERSMISSION_USERS)){
-      <div class="item" (click)="goTo(LAYOUT_ADMIN_PAGE_USERS)" style="cursor: pointer;">
-        <div class="card">
-          <div class="card-body text-center p-0 pb-3 pt-3">
-            <img src="https://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/256/Actions-user-group-new-icon.png" width="80px">
-          </div>
-          <div class="card-footer text-center bg-white">
-            <span>
-              {{ 'mod-main.Pages.Users' | translate}}
-            </span>
-          </div>
+    <a [routerLink]="LAYOUT_ADMIN_PAGE_USERS" class="item" style="text-decoration: none; color: inherit; display: block;">
+      <div class="card">
+        <div class="card-body text-center p-0 pb-3 pt-3">
+          <img src="https://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/256/Actions-user-group-new-icon.png" width="80px">
+        </div>
+        <div class="card-footer text-center bg-white">
+          <span>{{ 'mod-main.Pages.Users' | translate }}</span>
         </div>
       </div>
+    </a>
     }
 
     @if(tienePermiso(ADMIN_PAGE_MENU_PERSMISSION_MODULES)){
-      <div class="item" (click)="goTo(LAYOUT_ADMIN_PAGE_MODULES)" style="cursor: pointer;">
-        <div class="card">
-          <div class="card-body text-center p-0 pb-3 pt-3">
-            <img src="https://icons.iconarchive.com/icons/double-j-design/super-mono-3d/128/modules-icon.png" width="80px">
-          </div>
-          <div class="card-footer text-center bg-white">
-            <span>
-              {{ 'mod-main.Pages.Modules' | translate}}
-            </span>
-          </div>
+    <a [routerLink]="LAYOUT_ADMIN_PAGE_MODULES" class="item" style="text-decoration: none; color: inherit; display: block;">
+      <div class="card">
+        <div class="card-body text-center p-0 pb-3 pt-3">
+          <img src="https://icons.iconarchive.com/icons/double-j-design/super-mono-3d/128/modules-icon.png" width="80px">
+        </div>
+        <div class="card-footer text-center bg-white">
+          <span>{{ 'mod-main.Pages.Modules' | translate }}</span>
         </div>
       </div>
+    </a>
     }
-
   </div>
 
 </div>

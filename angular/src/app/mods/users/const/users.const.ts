@@ -7,7 +7,6 @@ export const LAYOUT_ADMIN_PAGE_MODULES = '/modules';
 export const STORAGE_KEY_PROFILE_ADMIN = 'admin';
 export const STORAGE_KEY_PROFILE_FINAL = 'user';
 
-// Routes
 export const TITLE_PATH_USERS_INDEX = 'Usuarios';
 export const BREADCRUMB_PATH_USERS_INDEX = 'Index';
 
@@ -22,3 +21,7 @@ export const BREADCRUMB_PATH_FINAL_USERS = 'Finales';
 export const PATH_ASSIGN_ADMIN_USERS = 'asignar-administrador';
 export const TITLE_PATH_ASSIGN_ADMIN_USERS = 'Asignar usuario administrador';
 export const BREADCRUMB_PATH_ASSIGN_ADMIN_USERS = 'Asignar';
+
+export const MOD_USER_PAGE_ADMIN_ASSIGMENT =  '/admin/mod/users/administradores/asignar-administrador/';
+export const MOD_USER_PAGE_ADMIN =  '/admin/mod/users/administradores/';
+export const MOD_USER_PAGE_FINAL =  '/admin/mod/users/finales/';

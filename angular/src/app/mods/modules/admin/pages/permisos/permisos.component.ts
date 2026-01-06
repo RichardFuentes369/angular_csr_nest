@@ -9,7 +9,8 @@ import Swal from 'sweetalert2'
 
 import { Permisos } from '@function/System'
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
-import { STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
+import { MOD_USER_PAGE_PERMISO, STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
+import { MOD_MODULES_PAGE_MODULES, STORAGE_KEY_SUBMODULE } from '@mod/modules/const/modules.const';
 @Component({
   selector: 'app-permisos',
   standalone: true,
@@ -37,10 +38,10 @@ export class PermisosComponent implements OnInit{
   moduloPadre: any = 0
 
   async ngOnInit() {
-    this.moduloPadre = localStorage.getItem('submodulo')
+    this.moduloPadre = localStorage.getItem(STORAGE_KEY_SUBMODULE)
 
     if(!this.moduloPadre){
-      this.router.navigate([`/admin/mod/modules`]);
+      this.router.navigate([MOD_MODULES_PAGE_MODULES]);
     }
 
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
@@ -48,7 +49,7 @@ export class PermisosComponent implements OnInit{
 
     const submodulo = await this.permisosService.permisoPage(0,'modulos',userData.data.id)
     if (submodulo.data === "") {
-      this.router.navigate(['/admin/permiso']);
+      this.router.navigate([MOD_USER_PAGE_PERMISO]);
     } 
 
     const modulo = await this.permisosService.permisos(userData.data.id,'modulos')
@@ -63,7 +64,7 @@ export class PermisosComponent implements OnInit{
 
   // inicio datos que envio al componente
   showcampoFiltro = true
-  endPoint = `modulos/getPermisosSobrePadre/${localStorage.getItem('submodulo')}`
+  endPoint = `modulos/getPermisosSobrePadre/${localStorage.getItem(STORAGE_KEY_SUBMODULE)}`
   columnas = [
     {
       title: 'Permission name',

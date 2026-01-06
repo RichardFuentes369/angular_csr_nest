@@ -1,6 +1,7 @@
 
 import { Router } from '@angular/router'
 import { Component, OnInit, Pipe } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { AuthService } from '@guard/service/auth.service';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
@@ -13,6 +14,7 @@ import { ADMIN_PAGE_MENU_PERSMISSION_USERS, ADMIN_PAGE_MENU_PERSMISSION_MODULES,
   selector: 'app-mod-menu-admin',
   standalone: true,
   imports: [
+    RouterLink,
     TranslateModule
 ],
   templateUrl: './menu.component.html',
@@ -48,10 +50,6 @@ export class MenuAdminComponent implements OnInit{
 
   tienePermiso(nombre: string): boolean {
     return this.menu.some((permiso) => permiso.permiso_permiso === nombre);
-  }
-
-  goTo(url: string){
-    this.router.navigate([window.location.pathname+url]);
   }
 
 }
