@@ -1,6 +1,7 @@
 {
   "ERROR": "Error!",
-  "MSJ_USUARIO_TITTLE": "Usuario",
-  "MSJ_USUARIO_CREADO_EXITOSAMENTE_TITTLE": "creado, exitosamente",
-  "MSJ_USUARIO_REMOVIDO_EXITOSAMENTE_TITTLE": "removido, exitosamente"
+  "MSJ_USUARIO_TITTLE": "User",
+  "MSJ_USUARIO_CREADO_EXITOSAMENTE_TITTLE": "successfully created",
+  "MSJ_USUARIO_REMOVIDO_EXITOSAMENTE_TITTLE": "removido, exitosamente",
+  "MSJ_ERROR_USER_EXIST": "This user {correo} already exists in our records."
 }

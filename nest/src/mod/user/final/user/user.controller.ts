@@ -16,40 +16,79 @@ export class UserController {
 
   @ApiTags('user')
   @Post('crear-usuario')
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+  create(
+    @Query('lang') lang:string,
+    @Body() createUserDto: CreateUserDto
+  ) {
+    return this.userService.create(
+      createUserDto,
+      lang
+    );
   }
   
   @ApiTags('user')
   @Get()
-  findAll(@Query() filterUserDto: FilterUserDto) {
-    return this.userService.findAll(filterUserDto);
+  findAll(
+    @Query('lang') lang:string,
+    @Query() filterUserDto: FilterUserDto
+  ) {
+    return this.userService.findAll(
+      filterUserDto,
+      lang
+    );
   }
   
   @ApiTags('user')
   @Get('obtener-usuario/:id')
-  findOne(@Param('id') id: string) {
-    return this.userService.findOne(+id);
+  findOne(
+    @Query('lang') lang:string,
+    @Param('id') id: string
+  ) {
+    return this.userService.findOne(
+      +id,
+      lang
+    );
   }
   
   @ApiTags('user')
   @Patch('editar-usuario/:id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(+id, updateUserDto);
+  update(
+    @Query('lang') lang:string,
+    @Param('id') id: string, 
+    @Body() updateUserDto: UpdateUserDto
+  ) {
+    return this.userService.update(
+      +id, 
+      updateUserDto,
+      lang
+    );
   }
 
 
   @ApiTags('admin')
   @Patch('actualizar-estado-admininistrador')
-  updateStatus(@Body() upsateStatus: UpdateStatusDto) {
+  updateStatus(
+    @Query('lang') lang:string,
+    @Body() upsateStatus: UpdateStatusDto
+  ) {
     const option = (upsateStatus.option == '1') ? true : false
-    return this.userService.updateStatus(upsateStatus.id, option);
+    return this.userService.updateStatus(
+      upsateStatus.id, 
+      option,
+      lang
+    );
   }
   
   @ApiTags('user')
   @Delete('eliminar-usuario/:id')
-  remove(@Param('id') id: string) {
+  remove(
+    @Query('lang') lang:string,
+    @Param('id') id: string
+  ) {
     const idsNumeros: number[] = id.split(',').map(str => parseInt(str.trim(), 10));
-    return this.userService.remove(idsNumeros);
+    return this.userService.remove(
+      idsNumeros,
+      lang
+    );
   }
 }

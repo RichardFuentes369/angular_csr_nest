@@ -15,18 +15,22 @@ export class AdminService {
     private i18n: I18nService
   ) {}
 
-  async create(createAdminDto: CreateAdminDto) {
+  async create(
+    lang: string,
+    createAdminDto: CreateAdminDto
+  ) {
     try {
+
       const encontrarCorreo = await this.findUsernameEmail(createAdminDto.email)
-  
-      if(encontrarCorreo) throw new NotFoundException(`
-        Este correo ${createAdminDto.email}, ya esta registrado en nuestra base de datos
-      `)
+
+      if(encontrarCorreo) throw new NotFoundException(
+        this.i18n.t('user.MSJ_ERROR_USER_EXIST', { lang, args: { correo: createAdminDto.email } })
+      )      
   
       this.adminRepository.save(createAdminDto);
       return {
-        'title': this.i18n.t('user.MSJ_USUARIO_TITTLE'),
-        'message': this.i18n.t('user.MSJ_USUARIO_CREADO_EXITOSAMENTE_TITTLE'),
+        'title': this.i18n.t('user.MSJ_USUARIO_TITTLE', { lang }),
+        'message': this.i18n.t('user.MSJ_USUARIO_CREADO_EXITOSAMENTE_TITTLE', { lang }),
         'status': 200,
       }
 
@@ -45,7 +49,10 @@ export class AdminService {
     return metadata.columns.map((column) => column.propertyName);
   }
 
-  async findAll(filterUserDto: FilterUserDto) {
+  async findAll(
+    filterUserDto: FilterUserDto,
+    lang: string
+  ) {
 
     const { limit, page, field = 'id' , order = 'Asc' } = filterUserDto
     
@@ -114,14 +121,21 @@ export class AdminService {
     }]
   }
 
-  findOne(id: number) {
+  findOne(
+    lang: string,
+    id: number
+  ) {
     return this.adminRepository.findOne({
       where: [ {id : id}],
       order: { id: 'DESC' }
     });
   }
 
-  async update(id: number, updateAdminDto: UpdateAdminDto) {
+  async update(
+    lang: string, 
+    id: number, 
+    updateAdminDto: UpdateAdminDto
+  ) {
     const property = await this.adminRepository.findOne({
       where: { id }
     });
@@ -146,18 +160,27 @@ export class AdminService {
     });
   }
 
-  updateStatus(id: number[], isActiveo: boolean) {
+  updateStatus(
+    lang: string, 
+    id: number[], 
+    isActiveo: boolean
+  ) {
     return this.adminRepository.update(
         { id: In(id) },
         { isActive: isActiveo } 
     );
   }  
   
-  remove(id: number[]) {
+  remove(
+    lang: string,
+    id: number[]
+  ) {
     return this.adminRepository.delete({id: In(id)})
   }
 
-  async findUsernameEmail(username: string): Promise<Admin>{
+  async findUsernameEmail(
+    username: string
+  ): Promise<Admin>{
     return this.adminRepository.findOne({
       where: [ {email : username}]
     });

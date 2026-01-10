@@ -32,6 +32,7 @@ export type I18nTranslations = {
         "MSJ_USUARIO_TITTLE": string;
         "MSJ_USUARIO_CREADO_EXITOSAMENTE_TITTLE": string;
         "MSJ_USUARIO_REMOVIDO_EXITOSAMENTE_TITTLE": string;
+        "MSJ_ERROR_USER_EXIST": string;
     };
 };
 /* prettier-ignore */

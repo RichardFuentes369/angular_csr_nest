@@ -17,7 +17,12 @@ export class AsignacionService {
     private i18n: I18nService
   ) {}
 
-  async findOne(moduloId: number, nombrePermiso: string, userId: number): Promise<Asignacion>{
+  async findOne(
+    lang: string, 
+    moduloId: number,
+    nombrePermiso: string, 
+    userId: number
+  ): Promise<Asignacion>{
 
     if(moduloId == 0){
       return this.asignacionRepository.findOne({
@@ -38,7 +43,11 @@ export class AsignacionService {
 
   }
 
-  async findAll(userId: number, permiso: string) {
+  async findAll(
+    lang: string, 
+    userId: number, 
+    permiso: string
+  ) {
 
     if(permiso != ''){
       const Permiso = await this.moduloRepository.createQueryBuilder('modulo')
@@ -61,7 +70,13 @@ export class AsignacionService {
     return Modulos;
   }
 
-  async updateAsignacion(idPermiso: number, idPadre: string, opcion: number, idUser: number){
+  async updateAsignacion(
+    lang: string,
+    idPermiso: number, 
+    idPadre: string, 
+    opcion: number, 
+    idUser: number
+  ){
 
     const permisoMaestro = await this.moduloRepository.findOne({
       where: {
@@ -81,12 +96,12 @@ export class AsignacionService {
       try {
         const guardarAsignacion = this.asignacionRepository.save(model)
         return {
-          'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE'),
-          'message': this.i18n.t('modulo.MSJ_PERMISO_ASIGNADO_MESSAGE'),
+          'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE', { lang }),
+          'message': this.i18n.t('modulo.MSJ_PERMISO_ASIGNADO_MESSAGE', { lang }),
           'status': 200,
         }
       } catch (error) {
-        throw new NotFoundException(this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('user.MSJ_IS_DESACTIVED') });
+        throw new NotFoundException(this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('user.MSJ_IS_DESACTIVED', { lang }) });
       }
     }
     
@@ -102,16 +117,17 @@ export class AsignacionService {
       try {
         const actualizarAsignacion = this.asignacionRepository.delete(permisoAsignado.id);
         return {
-          'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE'),
-          'message': this.i18n.t('modulo.MSJ_PERMISO_REMOVIDO_MESSAGE'),
+          'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE', { lang }),
+          'message': this.i18n.t('modulo.MSJ_PERMISO_REMOVIDO_MESSAGE', { lang }),
           'status': 200,
         }
       } catch (error) {
-        throw new NotFoundException(this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('user.MSJ_IS_DESACTIVED') });
+        throw new NotFoundException(
+          this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('user.MSJ_IS_DESACTIVED', { lang }) }
+        );
       }
     }
 
   }
 
-  
 }

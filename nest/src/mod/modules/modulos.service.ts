@@ -18,7 +18,7 @@ export class ModulosService {
     private i18n: I18nService
   ) {}
 
-  async remove(idPermiso: number){
+  async remove(lang:string,idPermiso: number){
     try {
       const selectPermisoModulo = await this.moduloRepository.find({
         where: {
@@ -40,8 +40,8 @@ export class ModulosService {
 
       if(selectPermisosAsignados.length > 0){
         return {
-          'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE'),
-          'message': this.i18n.t('modulo.MSJ_ERROR_PERMISO_TIENE_IS_ASSIGNED'),
+          'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE', { lang }),
+          'message': this.i18n.t('modulo.MSJ_ERROR_PERMISO_TIENE_IS_ASSIGNED', { lang }),
           'status': 404,
         }
       }
@@ -49,14 +49,14 @@ export class ModulosService {
       const elimiarModulo = await this.moduloRepository.delete(+idPermiso);
 
       return {
-        'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE'),
-        'message': this.i18n.t('modulo.MSN_PERMISO_REMOVIDO_OK'),
+        'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE', { lang }),
+        'message': this.i18n.t('modulo.MSN_PERMISO_REMOVIDO_OK', { lang }),
         'status': 200,
       }
     } catch (error) {
       return {
-        'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE'),
-        'message': this.i18n.t('modulo.MSJ_ERROR_PERMISO_TIENE_PERMISOS_HIJOS'),
+        'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE', { lang }),
+        'message': this.i18n.t('modulo.MSJ_ERROR_PERMISO_TIENE_PERMISOS_HIJOS', { lang }),
         'status': 404,
       }
     }
@@ -100,7 +100,7 @@ export class ModulosService {
     return roots;
   }
 
-  async findAllForUser(queryParams) {
+  async findAllForUser(lang:string, queryParams) {
 
     // Realizar la consulta
     const query = await this.moduloRepository.createQueryBuilder('mpm')
@@ -136,7 +136,7 @@ export class ModulosService {
     return result;
   }
 
-  async findPermiso(moduloId?: number, permiso?: string, opcion?: string){
+  async findPermiso(lang:string, moduloId?: number, permiso?: string, opcion?: string){
     
     let consulta = []
 
@@ -171,7 +171,7 @@ export class ModulosService {
       .getMany();
       
       if(consulta.length > 0) throw new NotFoundException(
-        this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_EXISTENTE') }
+        this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_EXISTENTE', { lang }) }
       )
     }
     if(moduloId != 0 && opcion == 'CREATE'){
@@ -180,7 +180,7 @@ export class ModulosService {
       .getMany();
 
       if(consulta.length == 0) throw new NotFoundException(
-        this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_PADRE_NO_EXISTENTE') }
+        this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_PADRE_NO_EXISTENTE', { lang }) }
       )
 
       consulta = await this.moduloRepository.createQueryBuilder("modulo")
@@ -189,7 +189,7 @@ export class ModulosService {
       .getMany();
 
       if(consulta.length > 0) throw new NotFoundException(
-        this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_EXISTENTE') }
+        this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_EXISTENTE', { lang }) }
       )
     }
     
@@ -200,7 +200,7 @@ export class ModulosService {
       .getMany();
         
       if(consulta.length == 0) throw new NotFoundException(
-        this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE') }
+        this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE', { lang }) }
       )
 
       let consulta2 = await this.moduloRepository.createQueryBuilder("modulo")
@@ -208,7 +208,7 @@ export class ModulosService {
       .getMany();
       
       if(consulta2.length > 0) throw new NotFoundException(
-        this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_TIENE_PERMISOS_HIJOS') }
+        this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_TIENE_PERMISOS_HIJOS', { lang }) }
       )
     }
     if(moduloId != 0 && opcion == 'DELETE'){
@@ -217,7 +217,7 @@ export class ModulosService {
       .getMany();
 
       if(consulta.length == 0) throw new NotFoundException(
-        this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_PADRE_NO_EXISTENTE') }
+        this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_PADRE_NO_EXISTENTE', { lang }) }
       )
 
       consulta = await this.moduloRepository.createQueryBuilder("modulo")
@@ -225,7 +225,7 @@ export class ModulosService {
       .getMany();
 
       if(consulta.length > 0) throw new NotFoundException(
-        this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_TIENE_PERMISOS_HIJOS') }
+        this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_TIENE_PERMISOS_HIJOS', { lang }) }
       )
 
       consulta = await this.moduloRepository.createQueryBuilder("modulo")
@@ -234,7 +234,7 @@ export class ModulosService {
       .getMany();
 
       if(consulta.length == 0) throw new NotFoundException(
-        this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE') }
+        this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE', { lang }) }
       )
     }
 
@@ -245,7 +245,7 @@ export class ModulosService {
       .getMany();
 
       if(consulta.length == 0) throw new NotFoundException(
-        this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE') }
+        this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE', { lang }) }
       )
     }
     if(moduloId != 0 && opcion == 'SEARCH'){
@@ -254,7 +254,7 @@ export class ModulosService {
       .getMany();
 
       if(consulta.length == 0) throw new NotFoundException(
-        this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_PADRE_NO_EXISTENTE') }
+        this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_PADRE_NO_EXISTENTE', { lang }) }
       )
 
       consulta = await this.moduloRepository.createQueryBuilder("modulo")
@@ -263,14 +263,14 @@ export class ModulosService {
       .getMany();
 
       if(consulta.length == 0) throw new NotFoundException(
-        this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE') }
+        this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE', { lang }) }
       )
     }
 
     return consulta
   }
 
-  async getHasSubmodule(moduloId?: number){
+  async getHasSubmodule(lang:string, moduloId?: number){
     
     let consulta = []
 
@@ -279,17 +279,17 @@ export class ModulosService {
     .getMany();
 
     if(consulta.length == 0) throw new NotFoundException(
-      this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE') }
+      this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE', { lang }) }
     )
 
     return consulta
   }
 
-  async create(createModuleDto: CreateModuloDto) {
+  async create(lang:string, createModuleDto: CreateModuloDto) {
     try {
-      if(!createModuleDto.nombre) throw new NotFoundException(this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE') })
-      if(!createModuleDto.descripcion) throw new NotFoundException(this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE') })
-      if(!createModuleDto.permiso) throw new NotFoundException(this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE') })
+      if(!createModuleDto.nombre) throw new NotFoundException(this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE', { lang }) })
+      if(!createModuleDto.descripcion) throw new NotFoundException(this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE', { lang }) })
+      if(!createModuleDto.permiso) throw new NotFoundException(this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE', { lang }) })
       
       await this.findPermiso(createModuleDto.modulo_padre_id, createModuleDto.permiso, 'CREATE')
 
@@ -304,8 +304,8 @@ export class ModulosService {
       await this.moduloRepository.save(model);
 
       return {
-        'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE'),
-        'message': this.i18n.t('modulo.MSJ_PERMISO_CREADO_OK'),
+        'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE', { lang }),
+        'message': this.i18n.t('modulo.MSJ_PERMISO_CREADO_OK', { lang }),
         'status': 200,
       }
     } catch (error) {
@@ -317,20 +317,20 @@ export class ModulosService {
     }
   }
 
-  async update(query: any){
+  async update(lang:string,query: any){
 
     let idRegistro = await this.findPermiso(query.idModulo, query.permiso, 'SEARCH')
     const elimiarModulo = this.moduloRepository.delete(idRegistro[0].id);
     
     return {
-      'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE'),
-      'message': this.i18n.t('modulo.MSN_PERMISO_REMOVIDO_OK'),
+      'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE', { lang }),
+      'message': this.i18n.t('modulo.MSN_PERMISO_REMOVIDO_OK', { lang }),
       'status': 200,
     }
     
   }  
 
-  async getPermisoModulo(permisoId?: number){
+  async getPermisoModulo(lang:string, permisoId?: number){
     let consulta = []
 
     consulta = await this.moduloRepository.createQueryBuilder("modulo")
@@ -338,14 +338,14 @@ export class ModulosService {
     .getRawOne();
     
     if(!consulta) throw new NotFoundException(
-      this.i18n.t('modulo.ERROR'), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE') }
+      this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE', { lang }) }
     )
 
     return consulta
 
   }
 
-  async getPermisoModuloAsignacion(modulo?: object){
+  async getPermisoModuloAsignacion(lang, modulo?: object){
     const cuentaAsignados = await this.asignacionRepository.count({
       where: {
         nombre: modulo['modulo_nombre'],
@@ -357,10 +357,10 @@ export class ModulosService {
     return cuentaAsignados
   }
 
-  async updateModulePermiso(query: any, editModuloDto: EditModuloDto){
+  async updateModulePermiso(lang:string,query: any, editModuloDto: EditModuloDto){
     // query.idPermiso sera el id de la tabla mod_permisos_modulo
-    let modulo = await this.getPermisoModulo(query.idPermiso)
-    let asignacion = await this.getPermisoModuloAsignacion(modulo)  
+    let modulo = await this.getPermisoModulo(lang, query.idPermiso)
+    let asignacion = await this.getPermisoModuloAsignacion(lang, modulo)  
 
     // actualizar en mod_permisos_modulo
     const moduloPermiso = await this.moduloRepository.findOne({
@@ -413,14 +413,14 @@ export class ModulosService {
   
 
     return {
-      'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE'),
-      'message': this.i18n.t('modulo.MSN_PERMISO_UPDATED_OK'),
+      'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE', { lang }),
+      'message': this.i18n.t('modulo.MSN_PERMISO_UPDATED_OK', { lang }),
       'status': 200,
     }
   }
 
 
-  async findPaginada(padreId:number, paginationDto: PaginationDto){
+  async findPaginada(lang:string,padreId:number, paginationDto: PaginationDto){
 
     const { limit, page, field = 'id' , order = 'Asc' } = paginationDto
     

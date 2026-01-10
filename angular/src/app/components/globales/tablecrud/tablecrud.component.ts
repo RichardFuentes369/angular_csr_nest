@@ -5,7 +5,6 @@ import { DataTableDirective, DataTablesModule } from 'angular-datatables';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subject, Subscription } from 'rxjs';
 import { Config } from 'datatables.net';
-import { TablecrudService } from './service/tablecrud.service';
 
 @Component({
   selector: 'app-globales-tablecrud',
@@ -34,7 +33,6 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
   private langSub: Subscription | undefined;
 
   constructor(
-    private tableCrudService: TablecrudService,
     private http: HttpClient,
     private translate: TranslateService
   ) { }
@@ -81,6 +79,9 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
       ajax: (dataTablesParameters: any, callback) => {
         const page = Math.floor(dataTablesParameters.start / dataTablesParameters.length) + 1;
 
+        // const lang = this.translate.currentLang || this.translate.getDefaultLang();
+        // console.log("Idioma para la petición:", lang);
+        
         this.http.get<any[]>(
           `${this.url}${this.endPoint}?page=${page}&limit=${dataTablesParameters.length}&field=id&order=asc${this.filters}`
         ).subscribe((post) => {

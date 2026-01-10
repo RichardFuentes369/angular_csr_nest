@@ -3,12 +3,11 @@ import { AdminService } from './admin.service';
 import { CreateAdminDto } from './dto/create-admin.dto';
 import { UpdateAdminDto } from './dto/update-admin.dto';
 
-import { PaginationDto } from '@global/dto/pagination.dto';
 import { FilterUserDto } from '@module/user/dto/filter-user.dto';
 
-import { AdminGuard } from '@guard/admin/admin.guard';
 import { ApiTags } from '@nestjs/swagger';
 import { UpdateStatusDto } from './dto/update-status.dto';
+import { AdminGuard } from '@guard/admin/admin.guard';
 
 @Controller('admin')
 export class AdminController {
@@ -16,40 +15,71 @@ export class AdminController {
 
   @ApiTags('admin')
   @Post('crear-admininistrador')
-  create(@Body() createAdminDto: CreateAdminDto) {
-    return this.adminService.create(createAdminDto);
+  create(
+    @Query('lang') lang:string,
+    @Body() createAdminDto: CreateAdminDto
+  ) {
+    return this.adminService.create(
+      lang,
+      createAdminDto
+    );
   }
   
   @ApiTags('admin')
   @Get()
   // @UseGuards(AdminGuard)
-  findAll(@Query() filterUserDto: FilterUserDto) {
-    return this.adminService.findAll(filterUserDto);
+  findAll(
+    @Query('lang') lang:string,
+    @Query() filterUserDto: FilterUserDto
+  ) {
+    return this.adminService.findAll(
+      filterUserDto,
+      lang
+    );
   }
 
   @ApiTags('admin')
   @Get('obtener-administrador/:id')
-  findOne(@Param('id') id: string) {
-    return this.adminService.findOne(+id);
+  findOne(
+    @Query('lang') lang:string,
+    @Param('id') id: string
+  ) {
+    return this.adminService.findOne(
+      lang,
+      +id
+    );
   }
 
   @ApiTags('admin')
   @Patch('editar-administrador/:id')
-  update(@Param('id') id: string, @Body() updateAdminDto: UpdateAdminDto) {
-    return this.adminService.update(+id, updateAdminDto);
+  update(
+    @Query('lang') lang:string,
+    @Param('id') id: string, @Body() updateAdminDto: UpdateAdminDto
+  ) {
+    return this.adminService.update(
+      lang,
+      +id, 
+      updateAdminDto
+    );
   }
 
   @ApiTags('admin')
   @Patch('actualizar-estado-admininistrador')
-  updateStatus(@Body() upsateStatus: UpdateStatusDto) {
+  updateStatus(
+    @Query('lang') lang:string,
+    @Body() upsateStatus: UpdateStatusDto
+  ) {
     const option = (upsateStatus.option == '1') ? true : false
-    return this.adminService.updateStatus(upsateStatus.id, option);
+    return this.adminService.updateStatus(lang,upsateStatus.id, option);
   }
 
   @ApiTags('admin')
   @Delete('eliminar-admininistrador/:id')
-  remove(@Param('id') id: string) {
+  remove(
+    @Query('lang') lang:string,
+    @Param('id') id: string
+  ) {
     const idsNumeros: number[] = id.split(',').map(str => parseInt(str.trim(), 10));
-    return this.adminService.remove(idsNumeros);
+    return this.adminService.remove(lang,idsNumeros);
   }
 }

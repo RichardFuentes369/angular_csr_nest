@@ -5,6 +5,7 @@ import {
   HttpCode,
   HttpStatus,
   Post,
+  Query,
   Request,
   UseGuards
 } from '@nestjs/common';
@@ -22,20 +23,34 @@ export class AuthadminController {
   @ApiTags('autenticacion_admin')
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  create(@Body() createAuthDto: CreateAuthadminDto) {
-    return this.authadminService.signIn(createAuthDto);
+  create(
+    @Query('lang') lang: string, 
+    @Body() createAuthDto: CreateAuthadminDto
+  ) {
+    return this.authadminService.signIn(
+      lang,
+      createAuthDto
+    );
   }
   
   @ApiTags('autenticacion_admin')
   @Post('refresh')
-  refreshToken(@Body() token: TokenDto) {
-    return this.authadminService.refreshToken(token);
+  refreshToken(
+    @Query('lang') lang: string,
+    @Body() token: TokenDto
+  ) {
+    return this.authadminService.refreshToken(
+      lang,
+      token
+    );
   }
   
   @ApiTags('autenticacion_admin')
   @UseGuards(AdminGuard)
   @Get('profile')
-  getProfile(@Request() req) {
+  getProfile(
+    @Request() req
+  ) {
     return req.user;
   }
 }

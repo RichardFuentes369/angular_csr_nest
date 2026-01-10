@@ -3,7 +3,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 import * as path from 'path';
-import { I18nModule } from 'nestjs-i18n';
+import { AcceptLanguageResolver, I18nModule, QueryResolver } from 'nestjs-i18n';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -26,11 +26,14 @@ import {
     // MongooseModule.forRoot(process.env.MONGODB), 
 
     I18nModule.forRoot({
-      fallbackLanguage: 'es',
+      fallbackLanguage: process.env.FALLBACK_LANG,
       loaderOptions: {
         path: path.join(__dirname, 'assets/i18n/'),
         watch: true,
       },
+      resolvers: [
+        new QueryResolver(['lang']), 
+      ],
       typesOutputPath: path.join(__dirname, '../src/generated/i18n.generated.ts'),
     }),
 

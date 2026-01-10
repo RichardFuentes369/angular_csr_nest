@@ -21,6 +21,5 @@ export class BreadcrumbsComponent implements OnInit {
     this.breadcrumbService.breadcrumbs$.subscribe(breadcrumbs => {
       this.breadcrumbs = breadcrumbs;
     });
-    console.log(this.breadcrumbs)
   }
 }

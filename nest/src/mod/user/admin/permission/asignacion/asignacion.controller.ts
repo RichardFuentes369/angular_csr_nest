@@ -10,23 +10,51 @@ export class AsignacionController {
 
   @ApiTags('asignacion_permiso')
   @Get('mis-permisos')
-  findAll(@Query() query) {
+  findAll(
+    @Query('lang') lang:string,
+    @Query() query
+  ) {
     if(query.heredadosDe){
-      return this.asignacionService.findAll(+query.idUser, query.heredadosDe);
+      return this.asignacionService.findAll(
+        lang,
+        +query.idUser, 
+        query.heredadosDe
+      );
     }
-    return this.asignacionService.findAll(+query.idUser, '');
+    return this.asignacionService.findAll(
+      lang,
+      +query.idUser, 
+      ''
+    );
   }
 
   @ApiTags('asignacion_permiso')
   @Get('getAsignacionMePertenece')
-  findOne(@Query() query) {
-    return this.asignacionService.findOne(+query.idModulo, query.nombre, +query.idUser);
+  findOne(
+    @Query('lang') lang:string,
+    @Query() query
+  ) {
+    return this.asignacionService.findOne(
+      lang,
+      +query.idModulo, 
+      query.nombre, 
+      +query.idUser,
+    );
   }
 
   @ApiTags('asignacion_permiso')
   @Put('updateAsignacionPermiso')
-  updateAsignacion(@Query() query) {
-    return this.asignacionService.updateAsignacion(+query.idPermiso, query.idPadre, +query.opcion, +query.idUser);
+  updateAsignacion(
+    @Query('lang') lang:string,
+    @Query() query
+  ) {
+    return this.asignacionService.updateAsignacion(
+      lang,
+      +query.idPermiso, 
+      query.idPadre, 
+      +query.opcion, 
+      +query.idUser
+    );
   }
 
 

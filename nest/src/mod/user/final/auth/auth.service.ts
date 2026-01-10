@@ -16,17 +16,19 @@ export class AuthuserService {
     private i18n: I18nService
   ) {}
   
-  async signIn(createUserDto: CreateAuthuserDto): Promise<any> {
-    
+  async signIn(
+    lang: string,
+    createUserDto: CreateAuthuserDto
+  ): Promise<any> {
     const user = await this.userService.findUsernameEmail(createUserDto.username);
     if(!user || user == null){
-      throw new NotFoundException(this.i18n.t('auth.ERROR'), { cause: new Error(), description: this.i18n.t('auth.MSN_NOT_REGISTER') });
+      throw new NotFoundException(this.i18n.t('auth.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('auth.MSN_NOT_REGISTER', { lang }) });
     }
     if(user.isActive == false){
-      throw new NotFoundException(this.i18n.t('auth.ERROR'), { cause: new Error(), description: this.i18n.t('auth.MSN_IS_DESACTIVED') });
+      throw new NotFoundException(this.i18n.t('auth.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('auth.MSN_IS_DESACTIVED', { lang }) });
     }
     if (user.password !== createUserDto.pass) {
-      throw new NotFoundException(this.i18n.t('auth.ERROR'), { cause: new Error(), description: this.i18n.t('auth.PASSWORD_INVALID') });
+      throw new NotFoundException(this.i18n.t('auth.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('auth.PASSWORD_INVALID', { lang }) });
     }
 
     const payload = { id: user.id, email: user.email };
@@ -36,14 +38,17 @@ export class AuthuserService {
 
   }
 
-  async refreshToken(tokenDto: TokenDto): Promise<any> {
+  async refreshToken(
+    lang: string,
+    tokenDto: TokenDto
+  ): Promise<any> {
     const tokenUsuario = await this.jwtService.decode(tokenDto.token)
     if(!tokenUsuario){
-      throw new NotFoundException('Error!', { cause: new Error(), description: 'token invalido' })
+        this.i18n.t('auth.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('auth.MSN_INVALID', { lang }) }
     }
     const user = await this.userService.findUsernameEmail(tokenUsuario.email);
     if(!user){
-      throw new NotFoundException('Error!', { cause: new Error(), description: 'user not exists' })
+        this.i18n.t('auth.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('auth.MSN_NOT_REGISTER', { lang }) }
     }
     const payload = { id: user.id, email: user.email };
     const token = await  this.jwtService.sign(payload);

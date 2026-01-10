@@ -16,7 +16,7 @@ export class UserService {
     private i18n: I18nService
   ) {}
 
- async create(createUserDto: CreateUserDto) {
+ async create(createUserDto: CreateUserDto,lang: string) {
     try{
       const encontrarCorreo = await this.findUsernameEmail(createUserDto.email)
   
@@ -26,8 +26,8 @@ export class UserService {
       await this.userRepository.save(createUserDto);
 
       return {
-        'title': this.i18n.t('user.MSJ_USUARIO_TITTLE'),
-        'message': this.i18n.t('user.MSJ_USUARIO_CREADO_EXITOSAMENTE_TITTLE'),
+        'title': this.i18n.t('user.MSJ_USUARIO_TITTLE', { lang }),
+        'message': this.i18n.t('user.MSJ_USUARIO_CREADO_EXITOSAMENTE_TITTLE', { lang }),
         'status': 200,
       }
     } catch (error) {
@@ -45,7 +45,7 @@ export class UserService {
     return metadata.columns.map((column) => column.propertyName);
   }
 
-  async findAll(filterUserDto: FilterUserDto) {
+  async findAll(filterUserDto: FilterUserDto,lang: string) {
 
     const { limit, page, field = 'id' , order = 'Asc' } = filterUserDto
     
@@ -114,14 +114,14 @@ export class UserService {
     }]
   }
 
-  findOne(id: number) {
+  findOne(id: number,lang: string) {
     return this.userRepository.findOne({
       where: [ {id : id}],
       order: { id: 'DESC' }
     });
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto) {
+  async update(id: number, updateUserDto: UpdateUserDto,lang: string) {
     const property = await this.userRepository.findOne({
       where: { id }
     });
@@ -146,14 +146,14 @@ export class UserService {
     });
   }
 
-  updateStatus(id: number[], isActiveo: boolean) {
+  updateStatus(id: number[], isActiveo: boolean,lang: string) {
     return this.userRepository.update(
         { id: In(id) },
         { isActive: isActiveo } 
     );
   }  
 
-  remove(id: number[]) {
+  remove(id: number[],lang: string) {
     return this.userRepository.delete({id: In(id)})
   }
 

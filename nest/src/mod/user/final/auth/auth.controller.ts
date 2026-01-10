@@ -5,6 +5,7 @@ import {
   HttpCode,
   HttpStatus,
   Post,
+  Query,
   Request,
   UseGuards
 } from '@nestjs/common';
@@ -22,20 +23,35 @@ export class AuthuserController {
   @ApiTags('autenticacion_user')
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  create(@Body() createAuthDto: CreateAuthuserDto) {
-    return this.authauserService.signIn(createAuthDto);
+  create(
+    @Query('lang') lang:string,
+    @Body() createAuthDto: CreateAuthuserDto
+  ) {
+    return this.authauserService.signIn(
+      lang,
+      createAuthDto
+    );
   }
 
   @ApiTags('autenticacion_user')
   @Post('refresh')
-  refreshToken(@Body() token: TokenDto) {
-    return this.authauserService.refreshToken(token);
+  refreshToken(
+    @Query('lang') lang:string,
+    @Body() token: TokenDto
+  ) {
+    return this.authauserService.refreshToken(
+      lang,
+      token
+    );
   }
 
   @ApiTags('autenticacion_user')
   @UseGuards(FinalGuard)
   @Get('profile')
-  getProfile(@Request() req) {
+  getProfile(
+    @Query('lang') lang:string,
+    @Request() req
+  ) {
     return req.user;
   }
 }
