@@ -11,6 +11,7 @@ interface Breadcrumb {
 @Injectable({
   providedIn: 'root'
 })
+
 export class BreadcrumbService {
   private breadcrumbs = new BehaviorSubject<Breadcrumb[]>([]);
   breadcrumbs$ = this.breadcrumbs.asObservable();

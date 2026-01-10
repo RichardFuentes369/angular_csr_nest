@@ -8,10 +8,7 @@ import axios from 'axios';
 })
 export class PrincipalService {
 
-  constructor(
-    private translate: TranslateService
-  ) {
-  }
+  constructor(private translate: TranslateService) {}
 
   async getDataUser(id: string){
     let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';

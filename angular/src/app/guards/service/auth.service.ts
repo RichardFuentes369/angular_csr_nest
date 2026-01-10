@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router'
 import { STORAGE_KEY_TOKEN } from '@const/app.const';
 import { environment } from '@environment/environment';
+import { TranslateService } from '@ngx-translate/core';
 import axios from 'axios';
 
 @Injectable({
@@ -11,6 +12,7 @@ export class AuthService {
 
   constructor(
     private router: Router,
+    private translate: TranslateService
   ) {}
 
   getToken(){
@@ -18,6 +20,7 @@ export class AuthService {
   }
 
   async validarToken(rol: string){
+    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let urlCopleta = environment.apiUrl+rol+'/profile'
     let headers = {
       'Authorization': `Bearer ${this.getToken()}`
@@ -32,6 +35,7 @@ export class AuthService {
   }
 
   async refreshToken(rol:string){
+    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let token = localStorage.getItem(STORAGE_KEY_TOKEN)
     let urlCopleta = environment.apiUrl+rol+'/refresh'
     let post = {
@@ -49,6 +53,7 @@ export class AuthService {
   }
 
   async isAuth(rol: string){
+    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
 
     if(this.getToken() == null){
       return false;
@@ -75,7 +80,7 @@ export class AuthService {
   }
 
   async getUser(rol: string){
-
+    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let urlCopleta = environment.apiUrl+rol+'/profile'
     const data = await axios.get(urlCopleta, {
       headers: {
