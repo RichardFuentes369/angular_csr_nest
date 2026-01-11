@@ -1,10 +1,13 @@
-.abs-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  // min-height: 90vh;
+.flex-container {
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center;     /* Centrado vertical */
+    min-height: 80vh;       /* Ocupa el 100% de la altura de la pantalla */
+    width: 100%;
 }
 
-.form {
-  width: 450px;
+.card {
+    /* Opcional: define un ancho máximo para que no se estire demasiado */
+    max-width: 800px;
+    width: 100%;
 }

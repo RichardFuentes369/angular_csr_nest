@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router'
-
-import { TranslateModule, TranslateService } from '@ngx-translate/core'
+import { RouterLink } from '@angular/router';
+import { _PAGE_BACK_ADMIN } from '@const/app.const';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-globales-admin-not-found',
   standalone: true,
   imports: [
+    RouterLink,
     TranslateModule
   ],
   templateUrl: './admin.component.html',
@@ -15,17 +16,8 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core'
 export class AdminNotFoundComponent {
 
   constructor(
-    private router: Router,
-    private translate: TranslateService
   ) {}
 
-  calculateMinHeight(): number {
-    let data = window.innerHeight - (window.innerHeight/5)
-    return data;
-  }
-
-  idiomaCambiar(valor: string){
-    this.translate.use(valor)
-  }
+  public _PAGE_BACK_ADMIN = _PAGE_BACK_ADMIN
 
 }

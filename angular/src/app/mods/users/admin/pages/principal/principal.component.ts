@@ -14,7 +14,7 @@ import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boost
 import { PrincipalService } from './service/principal.service';
 import { SearchComponent } from '@component/globales/search/search.component';
 import { Subscription } from 'rxjs';
-import { MOD_USER_PAGE_PERMISO, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE } from '@const/app.const';
+import { _PAGE_WITHOUT_PERMISSION, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE } from '@const/app.const';
 import { MOD_USER_PAGE_ADMIN_ASSIGMENT, STORAGE_KEY_PROFILE_ADMIN } from '@mod/users/const/users.const'
 
 @Component({
@@ -108,7 +108,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     const submodulo = await this.permisosService.permisoPage(1,'administradores',userData.data.id)
     console.log(submodulo)
     if (submodulo.data === "") {
-      this.router.navigate([MOD_USER_PAGE_PERMISO]);
+      this.router.navigate([_PAGE_WITHOUT_PERMISSION]);
     } 
 
     const permisos = await this.permisosService.permisos(userData.data.id,'administradores')

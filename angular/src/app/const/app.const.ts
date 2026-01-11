@@ -4,4 +4,8 @@ export const STORAGE_KEY_PROFILE = 'profile';
 export const STORAGE_KEY_ADMIN_AUTH = 'authadmin';
 export const STORAGE_KEY_FINAL_AUTH = 'authuser';
 
-export const MOD_USER_PAGE_PERMISO =  '/admin/permiso';
+export const MAIN_MENU =  '/admin/mod';
+export const _PAGE_WITHOUT_PERMISSION =  '/admin/permiso';
+export const _PAGE_BACK_ADMIN =  '/admin/mod';
+export const _PAGE_BACK_FINAL =  '/final/me/perfil';
+export const _PAGE_BACK_HOME =  '/home/inicio';

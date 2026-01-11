@@ -1,10 +1,14 @@
-<div class="container">
-  <div class="abs-center" [style.min-height.px]="calculateMinHeight()">
-    <div class="col text-center">
-      <div class="p-3 border bg-light">
-          <h1>{{ 'global-notfound.NotFound_Msj' | translate}}</h1>
-          <!-- <p>Este contenido está centrado en la mitad de la pantalla.</p> -->
-      </div>
-    </div>
-  </div>
+<div class="flex-container">
+    <div class="card">
+        <div class="card-body text-center">
+            <img src="https://icons.iconarchive.com/icons/awicons/vista-artistic/128/delete-icon.png" width="80px">
+            <div class="m-4"></div>
+            <h3>{{ 'global-notfound.NotFound_Msj' | translate}}</h3>
+            <div class="m-4">
+                <a [routerLink]="_PAGE_BACK_ADMIN" class="item">
+                    {{ 'global-notfound.BACK' | translate}}
+                </a>
+            </div>
+        </div>
+    </div>    
 </div>

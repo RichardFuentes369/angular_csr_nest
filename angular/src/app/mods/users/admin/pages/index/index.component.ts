@@ -11,7 +11,7 @@ import { Permisos } from '@function/System'
 import { AuthService } from '@guard/service/auth.service';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
-import { MOD_USER_PAGE_PERMISO } from '@const/app.const';
+import { _PAGE_WITHOUT_PERMISSION } from '@const/app.const';
 import { MOD_USER_PAGE_ADMIN, MOD_USER_PAGE_FINAL } from '@mod/users/const/users.const';
 
 
@@ -44,7 +44,7 @@ export class IndexComponent implements OnInit{
     const submodulo = await this.permisosService.permisoPage(0,'usuarios',userData.data.id)
     console.log(submodulo)
     if (submodulo.data === "") {
-      this.router.navigate([MOD_USER_PAGE_PERMISO]);
+      this.router.navigate([_PAGE_WITHOUT_PERMISSION]);
     } 
 
     const modulo = await this.permisosService.permisos(userData.data.id,'usuarios')
