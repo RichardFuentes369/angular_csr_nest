@@ -7,11 +7,13 @@ enum Order {
 
 export class FilterUserDto {
 
+    @IsOptional()
     @IsPositive()
     @IsNumber()
     @Min(1)
     limit?: number;
 
+    @IsOptional()
     @IsNumber()
     @Min(1)
     page?: number;
@@ -40,5 +42,9 @@ export class FilterUserDto {
     @IsOptional()
     @IsNumber()
     isActive?: number;
+
+    @IsOptional()
+    @IsString()
+    lang?: string;  
     
 }

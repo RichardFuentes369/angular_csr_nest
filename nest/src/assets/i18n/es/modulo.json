@@ -5,11 +5,16 @@
   "MSJ_PERMISO_CREADO_OK": "creado exitosamente",
   "MSN_PERMISO_REMOVIDO_OK": "eliminado exitosamente",
   "MSN_PERMISO_UPDATED_OK": "actualizado exitosamente",
-
   "MSJ_ERROR_PERMISO_EXISTENTE": "Este permiso, ya existe en nuestra base de datos.",
   "MSJ_ERROR_PERMISO_PADRE_NO_EXISTENTE": "No se puede realizar ninguna accion, el padre no existe en nuestra base de datos.",
   "MSJ_ERROR_PERMISO_TIENE_PERMISOS_HIJOS": "No se puede realizar ninguna accion, este permiso contiene permisos hijos.",
   "MSJ_ERROR_PERMISO_TIENE_IS_ASSIGNED": "No se puede realizar ninguna accion, este permiso está asignado",
+
+  "MSJ_ERROR_PARAMETRO_LISTA_NO_ENVIADO": "Recuerde que debe enviar los parametros page, limit.",
+  "MSJ_ERROR_PARAMETRO_NO_EXISTE": "El parametro de busqueda {field} no existe en la base de datos.",
+  "MSJ_ERROR_PARAMETRO_CAMPO_FILTRO_NO_ENVIADO": "Debe enviar el parametro del campo por el cual desea filtrar.",
+  "MSJ_ERROR_PARAMETRO_CAMPO_PAGE_NO_ENVIADO": "Debe enviar el parametro page por el cual desea filtrar.",
+  "MSJ_ERROR_PARAMETRO_CAMPO_LIMIT_NO_ENVIADO": "Debe enviar el parametro limig por el cual desea filtrar.",
 
   "MSJ_PERMISO_ASIGNADO_MESSAGE": "asignado, correctamente",
   "MSJ_PERMISO_REMOVIDO_MESSAGE": "removido, correctamente"

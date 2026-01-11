@@ -16,7 +16,10 @@ export class UserService {
     private i18n: I18nService
   ) {}
 
- async create(createUserDto: CreateUserDto,lang: string) {
+ async create(
+  createUserDto: CreateUserDto,
+  lang: string
+) {
     try{
       const encontrarCorreo = await this.findUsernameEmail(createUserDto.email)
   
@@ -45,23 +48,34 @@ export class UserService {
     return metadata.columns.map((column) => column.propertyName);
   }
 
-  async findAll(filterUserDto: FilterUserDto,lang: string) {
+  async findAll(
+    filterUserDto: FilterUserDto,
+    lang: string
+  ) {
 
     const { limit, page, field = 'id' , order = 'Asc' } = filterUserDto
     
-    if(!filterUserDto.page && !filterUserDto.limit) throw new NotFoundException(`
-      Recuerde que debe enviar los parametros page, limit
-    `)
+    if(!filterUserDto.page && !filterUserDto.limit) throw new NotFoundException(
+      this.i18n.t('user.MSJ_ERROR_PARAMETRO_LISTA_NO_ENVIADO', { lang, args: { field: field } })
+    )
 
-    if(field == '') throw new NotFoundException(`Debe enviar el campo por el que desea filtrar`)
-    if(!filterUserDto.page) throw new NotFoundException(`Debe enviar el parametro page`)
-    if(!filterUserDto.limit) throw new NotFoundException(`Debe enviar el parametro limit`)
-
+    if(field == '') throw new NotFoundException(
+      this.i18n.t('user.MSJ_ERROR_PARAMETRO_CAMPO_FILTRO_NO_ENVIADO', { lang, args: { field: field } })
+    )
+    if(!filterUserDto.page) throw new NotFoundException(
+      this.i18n.t('user.MSJ_ERROR_PARAMETRO_CAMPO_PAGE_NO_ENVIADO', { lang, args: { field: field } })
+    )
+    if(!filterUserDto.limit) throw new NotFoundException(
+      this.i18n.t('user.MSJ_ERROR_PARAMETRO_CAMPO_LIMIT_NO_ENVIADO', { lang, args: { field: field } })
+    )
+    
     if(field != ''){
       const propiedades = this.listarPropiedadesTabla(this.userRepository)
       const arratResult = propiedades.filter(obj => obj === field).length
   
-      if(arratResult == 0) throw new NotFoundException(`El parametro de busqueda ${field} no existe en la base de datos`)
+      if(arratResult == 0) throw new NotFoundException(
+        this.i18n.t('user.MSJ_ERROR_PARAMETRO_NO_EXISTE', { lang, args: { field: field } })
+      )
     }
    
     const skipeReal = (page == 1) ? 0 : (page - 1) * limit
@@ -114,14 +128,21 @@ export class UserService {
     }]
   }
 
-  findOne(id: number,lang: string) {
+  findOne(
+    id: number,
+    lang: string
+  ) {
     return this.userRepository.findOne({
       where: [ {id : id}],
       order: { id: 'DESC' }
     });
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto,lang: string) {
+  async update(
+    id: number, 
+    updateUserDto: UpdateUserDto,
+    lang: string
+  ) {
     const property = await this.userRepository.findOne({
       where: { id }
     });
@@ -133,9 +154,9 @@ export class UserService {
           where: [ {email : updateUserDto.email}]
         });
         
-        if(concidencia) throw new NotFoundException(`
-          El correo que esta intentando actualizar ya existe
-        `)
+        if(concidencia) throw new NotFoundException(
+          this.i18n.t('user.MSJ_ERROR_USER_EXIST', { lang, args: { correo: updateUserDto.email } })
+        )
         
       }
     }
@@ -146,14 +167,21 @@ export class UserService {
     });
   }
 
-  updateStatus(id: number[], isActiveo: boolean,lang: string) {
+  updateStatus(
+    id: number[], 
+    isActiveo: boolean,
+    lang: string
+  ) {
     return this.userRepository.update(
         { id: In(id) },
         { isActive: isActiveo } 
     );
   }  
 
-  remove(id: number[],lang: string) {
+  remove(
+    id: number[],
+    lang: string
+  ) {
     return this.userRepository.delete({id: In(id)})
   }
 

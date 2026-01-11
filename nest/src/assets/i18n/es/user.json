@@ -1,7 +1,12 @@
 {
   "ERROR": "Error!",
   "MSJ_USUARIO_TITTLE": "Usuario",
-  "MSJ_USUARIO_CREADO_EXITOSAMENTE_TITTLE": "creado, exitosamente",
-  "MSJ_USUARIO_REMOVIDO_EXITOSAMENTE_TITTLE": "removido, exitosamente",
-  "MSJ_ERROR_USER_EXIST": "Este usuario {correo} ya existe en nuestros registros."
+  "MSJ_USUARIO_CREADO_EXITOSAMENTE_TITTLE": "creado, exitosamente.",
+  "MSJ_USUARIO_REMOVIDO_EXITOSAMENTE_TITTLE": "removido, exitosamente.",
+  "MSJ_ERROR_USER_EXIST": "Este usuario {correo} ya existe en nuestros registros.",
+  "MSJ_ERROR_PARAMETRO_LISTA_NO_ENVIADO": "Recuerde que debe enviar los parametros page, limit.",
+  "MSJ_ERROR_PARAMETRO_NO_EXISTE": "El parametro de busqueda {field} no existe en la base de datos.",
+  "MSJ_ERROR_PARAMETRO_CAMPO_FILTRO_NO_ENVIADO": "Debe enviar el parametro del campo por el cual desea filtrar.",
+  "MSJ_ERROR_PARAMETRO_CAMPO_PAGE_NO_ENVIADO": "Debe enviar el parametro page por el cual desea filtrar.",
+  "MSJ_ERROR_PARAMETRO_CAMPO_LIMIT_NO_ENVIADO": "Debe enviar el parametro limig por el cual desea filtrar."
 }

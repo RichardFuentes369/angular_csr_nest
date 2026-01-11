@@ -11,6 +11,12 @@
   "MSJ_ERROR_PERMISO_TIENE_PERMISOS_HIJOS": "No action can be taken, this permission contains child permissions.",
   "MSJ_ERROR_PERMISO_TIENE_IS_ASSIGNED": "No action, this permission is assigned.",
 
+  "MSJ_ERROR_PARAMETRO_LISTA_NO_ENVIADO": "Remember that you must send the parameters page, limit.",
+  "MSJ_ERROR_PARAMETRO_NO_EXISTE": "The search parameter {field} does not exist in the database.",
+  "MSJ_ERROR_PARAMETRO_CAMPO_FILTRO_NO_ENVIADO": "You must send the field parameter by which you want to filter.",
+  "MSJ_ERROR_PARAMETRO_CAMPO_PAGE_NO_ENVIADO": "You must send the page parameter by which you want to filter.",
+  "MSJ_ERROR_PARAMETRO_CAMPO_LIMIT_NO_ENVIADO": "You must send the limit parameter by which you want to filter.",
+
   "MSJ_PERMISO_ASIGNADO_MESSAGE": "assigned, correctly",
   "MSJ_PERMISO_REMOVIDO_MESSAGE": "removed, correctly"
 }

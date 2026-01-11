@@ -56,19 +56,27 @@ export class AdminService {
 
     const { limit, page, field = 'id' , order = 'Asc' } = filterUserDto
     
-    if(!filterUserDto.page && !filterUserDto.limit) throw new NotFoundException(`
-      Recuerde que debe enviar los parametros page, limit
-    `)
+    if(!filterUserDto.page && !filterUserDto.limit) throw new NotFoundException(
+      this.i18n.t('user.MSJ_ERROR_PARAMETRO_LISTA_NO_ENVIADO', { lang, args: { field: field } })
+    )
 
-    if(field == '') throw new NotFoundException(`Debe enviar el campo por el que desea filtrar`)
-    if(!filterUserDto.page) throw new NotFoundException(`Debe enviar el parametro page`)
-    if(!filterUserDto.limit) throw new NotFoundException(`Debe enviar el parametro limit`)
+    if(field == '') throw new NotFoundException(
+      this.i18n.t('user.MSJ_ERROR_PARAMETRO_CAMPO_FILTRO_NO_ENVIADO', { lang, args: { field: field } })
+    )
+    if(!filterUserDto.page) throw new NotFoundException(
+      this.i18n.t('user.MSJ_ERROR_PARAMETRO_CAMPO_PAGE_NO_ENVIADO', { lang, args: { field: field } })
+    )
+    if(!filterUserDto.limit) throw new NotFoundException(
+      this.i18n.t('user.MSJ_ERROR_PARAMETRO_CAMPO_LIMIT_NO_ENVIADO', { lang, args: { field: field } })
+    )
 
     if(field != ''){
       const propiedades = this.listarPropiedadesTabla(this.adminRepository)
       const arratResult = propiedades.filter(obj => obj === field).length
   
-      if(arratResult == 0) throw new NotFoundException(`El parametro de busqueda ${field} no existe en la base de datos`)
+      if(arratResult == 0) throw new NotFoundException(
+        this.i18n.t('user.MSJ_ERROR_PARAMETRO_NO_EXISTE', { lang, args: { field: field } })
+      )
     }
 
     const skipeReal = (page == 1) ? 0 : (page - 1) * limit
@@ -147,9 +155,9 @@ export class AdminService {
           where: [ {email : updateAdminDto.email}]
         });
         
-        if(concidencia) throw new NotFoundException(`
-          El correo que esta intentando actualizar ya existe
-        `)
+        if(concidencia) throw new NotFoundException(
+          this.i18n.t('user.MSJ_ERROR_USER_EXIST', { lang, args: { correo: updateAdminDto.email } })
+        )
         
       }
     }

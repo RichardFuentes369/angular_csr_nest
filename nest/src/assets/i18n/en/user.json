@@ -1,7 +1,12 @@
 {
   "ERROR": "Error!",
   "MSJ_USUARIO_TITTLE": "User",
-  "MSJ_USUARIO_CREADO_EXITOSAMENTE_TITTLE": "successfully created",
-  "MSJ_USUARIO_REMOVIDO_EXITOSAMENTE_TITTLE": "removido, exitosamente",
-  "MSJ_ERROR_USER_EXIST": "This user {correo} already exists in our records."
+  "MSJ_USUARIO_CREADO_EXITOSAMENTE_TITTLE": "successfully created.",
+  "MSJ_USUARIO_REMOVIDO_EXITOSAMENTE_TITTLE": "removido, exitosamente.",
+  "MSJ_ERROR_USER_EXIST": "This user {correo} already exists in our records.",
+  "MSJ_ERROR_PARAMETRO_LISTA_NO_ENVIADO": "Remember that you must send the parameters page, limit.",
+  "MSJ_ERROR_PARAMETRO_NO_EXISTE": "The search parameter {field} does not exist in the database.",
+  "MSJ_ERROR_PARAMETRO_CAMPO_FILTRO_NO_ENVIADO": "You must send the field parameter by which you want to filter.",
+  "MSJ_ERROR_PARAMETRO_CAMPO_PAGE_NO_ENVIADO": "You must send the page parameter by which you want to filter.",
+  "MSJ_ERROR_PARAMETRO_CAMPO_LIMIT_NO_ENVIADO": "You must send the limit parameter by which you want to filter."
 }

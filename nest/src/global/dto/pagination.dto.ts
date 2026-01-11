@@ -6,11 +6,13 @@ enum Order {
 }
 
 export class PaginationDto {
+    @IsOptional()
     @IsPositive()
     @IsNumber()
     @Min(1)
     limit?: number;
 
+    @IsOptional()
     @IsNumber()
     @Min(1)
     page?: number;
@@ -23,4 +25,8 @@ export class PaginationDto {
     @IsString()
     @IsEnum(Order)
     order?: string;
+
+    @IsOptional()
+    @IsString()
+    lang?: string;  
 }
