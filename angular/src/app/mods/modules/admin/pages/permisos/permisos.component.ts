@@ -11,12 +11,15 @@ import { Permisos } from '@function/System'
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
 import { _PAGE_WITHOUT_PERMISSION, STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
 import { MOD_MODULES_PAGE_MODULES, STORAGE_KEY_SUBMODULE } from '@mod/modules/const/modules.const';
+import { LoadingComponent } from '@component/globales/loading/loading.component';
+import { Subscription, timer } from 'rxjs';
 @Component({
   selector: 'app-permisos',
   standalone: true,
   imports: [
     TranslateModule, 
     TablecrudComponent,
+    LoadingComponent,
     ModalBoostrapComponent,
   ],
   templateUrl: './permisos.component.html',
@@ -34,6 +37,7 @@ export class PermisosComponent implements OnInit{
     private module: ModulosService,
   ) { }
 
+  private langSub: Subscription | undefined;
   permisos: any[] = []
   moduloPadre: any = 0
 
@@ -59,7 +63,14 @@ export class PermisosComponent implements OnInit{
         this.permisos.push(permiso)
       }
     }
-
+    
+    this.langSub = this.translate.onLangChange.subscribe(() => {
+      this.cargarTabla = false;
+      timer(200).subscribe(() => {
+        this.listar(); 
+        this.cargarTabla = true;
+      });
+    });
   }
 
   // inicio datos que envio al componente
@@ -67,17 +78,17 @@ export class PermisosComponent implements OnInit{
   endPoint = `modulos/getPermisosSobrePadre/${localStorage.getItem(STORAGE_KEY_SUBMODULE)}`
   columnas = [
     {
-      title: 'Permission name',
+      title: this.translate.instant('mod-modules.Column.PermissioName'),
       data: 'nombre',
     },
     {
-      title: 'Permission',
+      title: this.translate.instant('mod-modules.Column.Permission'),
       data: 'permiso',
     },
     {
-      title: 'Description',
+      title: this.translate.instant('mod-modules.Column.Description'),
       data: 'descripcion',
-    }
+    },
   ]
   permisosAcciones = this.permisos
   // fin datos que envio al componente
@@ -93,10 +104,30 @@ export class PermisosComponent implements OnInit{
   buttonCancel = "Cancelar"
   cierreModal = "true"
   componentePrecargado = ""
+
+  cargarTabla = true;
   
   search = true
   buttonSearch = "Buscar"
   iconFilter="fa fa-filter"
+
+
+  listar(){
+    this.columnas = [
+      {
+        title: this.translate.instant('mod-modules.Column.PermissioName'),
+        data: 'nombre',
+      },
+      {
+        title: this.translate.instant('mod-modules.Column.Permission'),
+        data: 'permiso',
+      },
+      {
+        title: this.translate.instant('mod-modules.Column.Description'),
+        data: 'descripcion',
+      }
+    ]
+  }
 
   crearData (_id: string){
     // localStorage.setItem('profile', 'user')

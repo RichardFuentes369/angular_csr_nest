@@ -9,21 +9,26 @@
     >
     </app-globales-search>
 
-    <app-globales-tablecrud
-      [campoFiltro] = showcampoFiltro
-      [endPoint] = endPoint
-      [columnas] = columnas
-      [permisosAcciones] = permisos
-      [filters] = filters
-  
-      (verItem) = "verData($event)"
-      (crearNuevoItem) = "crearData($event)"
-      (editarItem) = "editarData($event)"
-      (activarItem) = "activarData($event)"
-      (asignar) = "asignarData($event)"
-      (eliminarItem) = "eliminarData($event)"
-    >
-    </app-globales-tablecrud>
+    @if (cargarTabla) {
+      <app-globales-tablecrud
+        [campoFiltro] = showcampoFiltro
+        [endPoint] = endPoint
+        [columnas] = columnas
+        [permisosAcciones] = permisos
+        [filters] = filters
+    
+        (verItem) = "verData($event)"
+        (crearNuevoItem) = "crearData($event)"
+        (editarItem) = "editarData($event)"
+        (activarItem) = "activarData($event)"
+        (asignar) = "asignarData($event)"
+        (eliminarItem) = "eliminarData($event)"
+      >
+      </app-globales-tablecrud>
+    }
+    @else {
+      <app-globales-loading></app-globales-loading>
+    }
   </div>
 
   <app-globales-modal-boostrap

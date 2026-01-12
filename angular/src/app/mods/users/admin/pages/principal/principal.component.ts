@@ -13,9 +13,10 @@ import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boost
 
 import { PrincipalService } from './service/principal.service';
 import { SearchComponent } from '@component/globales/search/search.component';
-import { Subscription } from 'rxjs';
+import { Subscription, timer } from 'rxjs';
 import { _PAGE_WITHOUT_PERMISSION, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE } from '@const/app.const';
 import { MOD_USER_PAGE_ADMIN_ASSIGMENT, STORAGE_KEY_PROFILE_ADMIN } from '@mod/users/const/users.const'
+import { LoadingComponent } from '@component/globales/loading/loading.component';
 
 @Component({
   selector: 'app-principal',
@@ -23,6 +24,7 @@ import { MOD_USER_PAGE_ADMIN_ASSIGMENT, STORAGE_KEY_PROFILE_ADMIN } from '@mod/u
   imports: [
     TranslateModule,
     SearchComponent,
+    LoadingComponent,
     TablecrudComponent,
     ModalBoostrapComponent,
   ],
@@ -100,6 +102,8 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   componentePrecargado = ""
   // fin datos envio al modal
 
+  cargarTabla = true;
+
   // metodos Init, Destroy
   async ngOnInit() {
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
@@ -119,11 +123,12 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     sessionStorage.removeItem('isActive')
 
     this.langSub = this.translate.onLangChange.subscribe(() => {
-      setTimeout(() => {
-        this.listar();
-      }, 100); 
+      this.cargarTabla = false;
+      timer(200).subscribe(() => {
+        this.listar(); 
+        this.cargarTabla = true;
+      });
     });
-
   }
 
   ngOnDestroy() {

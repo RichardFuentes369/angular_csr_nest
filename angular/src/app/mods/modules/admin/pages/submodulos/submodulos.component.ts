@@ -10,6 +10,8 @@ import { Permisos } from '@function/System'
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
 import { _PAGE_WITHOUT_PERMISSION, STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
 import { MOD_MODULES_PAGE_MODULES, MOD_MODULES_PAGE_PERMISSIONS_C, STORAGE_KEY_MODULE, STORAGE_KEY_SUBMODULE } from '@mod/modules/const/modules.const';
+import { LoadingComponent } from '@component/globales/loading/loading.component';
+import { Subscription, timer } from 'rxjs';
 
 @Component({
   selector: 'app-submodulos',
@@ -17,6 +19,7 @@ import { MOD_MODULES_PAGE_MODULES, MOD_MODULES_PAGE_PERMISSIONS_C, STORAGE_KEY_M
   imports: [
     TranslateModule, 
     TablecrudComponent,
+    LoadingComponent,
     ModalBoostrapComponent,
   ],
   templateUrl: './submodulos.component.html',
@@ -34,6 +37,7 @@ export class SubmodulosComponent implements OnInit{
     private module: ModulosService,
   ) { }
 
+  private langSub: Subscription | undefined;
   permisos: any[] = []
   moduloPadre: any = 0
 
@@ -55,6 +59,14 @@ export class SubmodulosComponent implements OnInit{
 
     const modulo = await this.permisosService.permisos(userData.data.id,'modulos')
     this.permisos = modulo.data
+
+    this.langSub = this.translate.onLangChange.subscribe(() => {
+      this.cargarTabla = false;
+      timer(200).subscribe(() => {
+        this.listar(); 
+        this.cargarTabla = true;
+      });
+    });
   }
 
   // inicio datos que envio al componente
@@ -62,15 +74,15 @@ export class SubmodulosComponent implements OnInit{
   endPoint = `modulos/getPermisosSobrePadre/${localStorage.getItem(STORAGE_KEY_MODULE)}`
   columnas = [
     {
-      title: 'Permission name',
+      title: this.translate.instant('mod-modules.Column.PermissioName'),
       data: 'nombre',
     },
     {
-      title: 'Permission',
+      title: this.translate.instant('mod-modules.Column.Permission'),
       data: 'permiso',
     },
     {
-      title: 'Description',
+      title: this.translate.instant('mod-modules.Column.Description'),
       data: 'descripcion',
     },
   ]
@@ -88,10 +100,29 @@ export class SubmodulosComponent implements OnInit{
   buttonCancel = "Cancelar"
   cierreModal = "true"
   componentePrecargado = ""
+
+  cargarTabla = true;
   
   search = true
   buttonSearch = "Buscar"
   iconFilter="fa fa-filter"
+
+  listar(){
+    this.columnas = [
+      {
+        title: this.translate.instant('mod-modules.Column.PermissioName'),
+        data: 'nombre',
+      },
+      {
+        title: this.translate.instant('mod-modules.Column.Permission'),
+        data: 'permiso',
+      },
+      {
+        title: this.translate.instant('mod-modules.Column.Description'),
+        data: 'descripcion',
+      }
+    ]
+  }
 
   verData (_id: string){
     console.log("verData "+_id)

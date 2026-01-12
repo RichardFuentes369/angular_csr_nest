@@ -78,12 +78,9 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
       serverSide: true,
       ajax: (dataTablesParameters: any, callback) => {
         const page = Math.floor(dataTablesParameters.start / dataTablesParameters.length) + 1;
-
-        // const lang = this.translate.currentLang || this.translate.getDefaultLang();
-        // console.log("Idioma para la petición:", lang);
-        
+                
         this.http.get<any[]>(
-          `${this.url}${this.endPoint}?page=${page}&limit=${dataTablesParameters.length}&field=id&order=asc${this.filters}`
+          `${this.url}${this.endPoint}?page=${page}&limit=${dataTablesParameters.length}&field=id&order=asc${this.filters}&lang=${this.translate.currentLang}`
         ).subscribe((post) => {
           const recordsTotal = post[0].pagination.totalRecord;
           const data = post[0].result.map((item: any) => {
@@ -104,6 +101,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
         "zeroRecords": "No se encontraron resultados",
         "emptyTable": `${this.translate.instant('global-tablecrud.Info.NoInfo')}`,
         "info": `${this.translate.instant('global-tablecrud.Info.Showing')} _START_ ${this.translate.instant('global-tablecrud.Info.To')} _END_ ${this.translate.instant('global-tablecrud.Info.Of')} _TOTAL_ ${this.translate.instant('global-tablecrud.Info.Entries')}`,
+        "infoEmpty": `${this.translate.instant('global-tablecrud.Info.Showing')} _START_ ${this.translate.instant('global-tablecrud.Info.To')} _END_ ${this.translate.instant('global-tablecrud.Info.Of')} _TOTAL_ ${this.translate.instant('global-tablecrud.Info.Entries')}`,
         "paginate": {
           "first": `${this.translate.instant('global-tablecrud.Info.First')}`,
           "last": `${this.translate.instant('global-tablecrud.Info.Last')}`,

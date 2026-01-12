@@ -1,38 +1,50 @@
-.mitad{
-  display: flex;
-  justify-content: center; /* Alineación horizontal */
+
+
+/* El resto de tus estilos (.word, .dots-container, .dot, @keyframes) se mantienen igual */
+.content-wrapper {
+  text-align: center;
 }
 
-.loading {
-  display: flex;
-  align-items: center;
+.word {
   font-family: Arial, sans-serif;
-  font-size: 24px;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.dots-container {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
 }
 
 .dot {
-  width: 8px;
-  height: 8px;
-  margin: 0 2px;
+  width: 10px;
+  height: 10px;
+  background-color: #3498db;
   border-radius: 50%;
-  background-color: #000;
-  opacity: 0.2;
-  animation: blink 1.5s infinite;
+  animation: bounce 1.4s infinite ease-in-out both;
 }
 
-.dot:nth-child(2) {
-  animation-delay: 0.5s;
+.dot:nth-child(1) { animation-delay: -0.32s; }
+.dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0); opacity: 0.3; } 
+  40% { transform: scale(1.0); opacity: 1; }
 }
 
-.dot:nth-child(3) {
-  animation-delay: 1s;
+
+.flex-container {
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center;     /* Centrado vertical */
+    min-height: 60vh;       /* Ocupa el 100% de la altura de la pantalla */
+    width: 100%;
 }
 
-@keyframes blink {
-  0%, 100% {
-      opacity: 0.2;
-  }
-  50% {
-      opacity: 1;
-  }
+.card {
+    /* Opcional: define un ancho máximo para que no se estire demasiado */
+    max-width: 800px;
+    width: 100%;
 }

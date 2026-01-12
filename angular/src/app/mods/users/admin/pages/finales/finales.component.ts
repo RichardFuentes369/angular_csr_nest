@@ -11,9 +11,10 @@ import { TablecrudComponent } from '@component/globales/tablecrud/tablecrud.comp
 import { FinalService } from './service/final.service';
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
 import { SearchComponent } from '@component/globales/search/search.component';
-import { Subscription } from 'rxjs';
+import { Subscription, timer } from 'rxjs';
 import { _PAGE_WITHOUT_PERMISSION, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE } from '@const/app.const';
 import { STORAGE_KEY_PROFILE_FINAL } from '@mod/users/const/users.const'
+import { LoadingComponent } from '@component/globales/loading/loading.component';
 
 @Component({
   selector: 'app-menu-usuarios-finales',
@@ -21,6 +22,7 @@ import { STORAGE_KEY_PROFILE_FINAL } from '@mod/users/const/users.const'
   imports: [
     TranslateModule,
     SearchComponent,
+    LoadingComponent,
     TablecrudComponent,
     ModalBoostrapComponent,
   ],
@@ -87,6 +89,8 @@ export class FinalesComponent implements OnInit{
   permisosAcciones = this.permisos
   // fin datos que envio al componente tabla
 
+  cargarTabla = true;
+
   // inicio datos envio al modal
   tamano = ""
   scrollable = false
@@ -119,9 +123,12 @@ export class FinalesComponent implements OnInit{
     sessionStorage.removeItem('isActive')
 
     this.langSub = this.translate.onLangChange.subscribe(() => {
-      setTimeout(() => {
-        this.listar();
-      }, 100); 
+      this.cargarTabla = false;
+
+      timer(200).subscribe(() => {
+        this.listar(); 
+        this.cargarTabla = true;
+      });
     });
   } 
   ngOnDestroy() {

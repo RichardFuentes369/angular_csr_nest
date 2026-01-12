@@ -2,6 +2,7 @@
   <h1>{{ 'mod-modules.Title.Submodules' | translate}}</h1>
 
   <div class="card p-5">
+    @if (cargarTabla) {
     <app-globales-tablecrud
       [campoFiltro] = showcampoFiltro
       [endPoint] = endPoint
@@ -14,6 +15,10 @@
       (eliminarItem) = "eliminarData($event)"
       >
     </app-globales-tablecrud>
+    }
+    @else {
+      <app-globales-loading></app-globales-loading>
+    }
   </div>
 
   <app-globales-modal-boostrap

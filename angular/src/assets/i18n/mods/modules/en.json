@@ -1,7 +1,7 @@
 {
   "Title": {
     "Module": "Modules",
-    "Submodules": "Submodulos",
+    "Submodules": "Submodules",
     "Permissions": "Permissions",
     "CreateModule": "Create module",
     "EditModule": "Edit module",
@@ -46,5 +46,11 @@
   },
   "Buttons": {
     "createModuloPermiso": "Create module/permission"
+  },
+  "Column": {
+   "PermissioName": "Permission Name",
+   "Permission": "Permission",
+   "Description": "Description", 
+   "Submodules": "Submodules"
   }
 }
