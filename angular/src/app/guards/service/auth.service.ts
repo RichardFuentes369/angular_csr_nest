@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router'
-import { STORAGE_KEY_TOKEN } from '@const/app.const';
+import { STORAGE_KEY_TOKEN_ADMIN, STORAGE_KEY_TOKEN_FINAL } from '@const/app.const';
 import { environment } from '@environment/environment';
 import { TranslateService } from '@ngx-translate/core';
 import axios from 'axios';
@@ -16,7 +16,20 @@ export class AuthService {
   ) {}
 
   getToken(){
-    return localStorage.getItem(STORAGE_KEY_TOKEN)
+    const token = (localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)) ? localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN) : localStorage.getItem(STORAGE_KEY_TOKEN_FINAL)
+    return token
+  }
+
+  async getUser(rol: string){
+    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
+    let urlCopleta = environment.apiUrl+rol+'/profile'
+    const data = await axios.get(urlCopleta, {
+      headers: {
+        'Authorization': `Bearer ${this.getToken()}`
+      }
+    });
+
+    return data
   }
 
   async validarToken(rol: string){
@@ -36,7 +49,7 @@ export class AuthService {
 
   async refreshToken(rol:string){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let token = localStorage.getItem(STORAGE_KEY_TOKEN)
+    let token = this.getToken()
     let urlCopleta = environment.apiUrl+rol+'/refresh'
     let post = {
       'token': token
@@ -44,10 +57,10 @@ export class AuthService {
 
     try {
       let data = (await axios.post(urlCopleta, post)).data
-      localStorage.setItem(STORAGE_KEY_TOKEN, data);
+      // localStorage.setItem(STORAGE_KEY_TOKEN, data);
       return data
     } catch(error) {
-      localStorage.removeItem(STORAGE_KEY_TOKEN);
+      // localStorage.removeItem(STORAGE_KEY_TOKEN);
       return false
     }
   }
@@ -70,25 +83,13 @@ export class AuthService {
     let refreshTokenResponse = await this.refreshToken(rol)
 
     if(refreshTokenResponse){
-      localStorage.setItem(STORAGE_KEY_TOKEN, refreshTokenResponse);
+      // localStorage.setItem(STORAGE_KEY_TOKEN, refreshTokenResponse);
       return true
     }else{
-      localStorage.removeItem(STORAGE_KEY_TOKEN);
+      // localStorage.removeItem(STORAGE_KEY_TOKEN);
       return false
     }
 
-  }
-
-  async getUser(rol: string){
-    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let urlCopleta = environment.apiUrl+rol+'/profile'
-    const data = await axios.get(urlCopleta, {
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem(STORAGE_KEY_TOKEN)}`
-      }
-    });
-
-    return data
   }
 
 }

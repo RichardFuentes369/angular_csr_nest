@@ -8,6 +8,7 @@ import { LoginServiceService } from './service/login-service.service'
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { LoadingComponent } from '../loading/loading.component';
+import { STORAGE_KEY_TOKEN_ADMIN, STORAGE_KEY_TOKEN_FINAL } from '@const/app.const';
 
 @Component({
   selector: 'app-globales-login',
@@ -65,12 +66,13 @@ export class LoginComponent implements OnInit {
 
     await this.loginService.login(data)
     .then(response=>{
-      localStorage.setItem('token', response.data.access_token)
       if(rol == 0){
         this.isPending = false;
+        localStorage.setItem(STORAGE_KEY_TOKEN_ADMIN,response.data.access_token)
         this.router.navigate(['/admin']);
       }else{
         this.isPending = false;
+        localStorage.setItem(STORAGE_KEY_TOKEN_FINAL,response.data.access_token)
         this.router.navigate(['/final']);
       }
     }).catch(err =>{

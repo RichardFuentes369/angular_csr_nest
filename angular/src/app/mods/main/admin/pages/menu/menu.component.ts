@@ -7,7 +7,7 @@ import { AuthService } from '@guard/service/auth.service';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
 
 import { TranslateModule } from '@ngx-translate/core';
-import { STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_TOKEN } from '@const/app.const';
+import { STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_TOKEN_ADMIN } from '@const/app.const';
 import { ADMIN_PAGE_MENU_PERSMISSION_USERS, ADMIN_PAGE_MENU_PERSMISSION_MODULES, LAYOUT_ADMIN_PAGE_USERS, LAYOUT_ADMIN_PAGE_MODULES } from '@mod/main/const/main.const';
 
 @Component({
@@ -38,7 +38,7 @@ export class MenuAdminComponent implements OnInit{
   async ngOnInit() {
 
     for (const key in localStorage) {
-      if (key != STORAGE_KEY_TOKEN) {
+      if (key != STORAGE_KEY_TOKEN_ADMIN) {
         delete localStorage[key];
       }
     }

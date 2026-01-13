@@ -13,7 +13,7 @@ import { AdminModule } from '@module/user/admin/user/admin.module';
     JwtModule.register({
       global: true,
       secret: jwtConstants.secretAdmin,
-      signOptions: { expiresIn: '1m' },
+      signOptions: { expiresIn: jwtConstants.TOKEN_TIME },
     }),
   ],
   controllers: [AuthadminController],
