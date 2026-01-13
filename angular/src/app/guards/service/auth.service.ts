@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router'
-import { STORAGE_KEY_TOKEN, STORAGE_KEY_TOKEN_ADMIN, STORAGE_KEY_TOKEN_FINAL } from '@const/app.const';
+import { _PAGE_BACK_HOME, STORAGE_KEY_TOKEN, STORAGE_KEY_TOKEN_ADMIN, STORAGE_KEY_TOKEN_FINAL } from '@const/app.const';
 import { environment } from '@environment/environment';
+import { LAYOUT_ADMIN_PAGE_LOGOUT, LAYOUT_FINAL_PAGE_LOGOUT } from '@layout/const/layouts.const';
 import { TranslateService } from '@ngx-translate/core';
 import axios from 'axios';
 
@@ -16,7 +17,9 @@ export class AuthService {
   ) {}
 
   getToken(){
-    const token = (localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)) ? localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN) : localStorage.getItem(STORAGE_KEY_TOKEN_FINAL)
+    const adminToken = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN);
+    const finalToken = localStorage.getItem(STORAGE_KEY_TOKEN_FINAL);
+    const token = adminToken || finalToken || '';
     return token
   }
 
@@ -35,16 +38,50 @@ export class AuthService {
     }
   }
 
+  async getUser(rol: string){
+    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
+    let urlCopleta = environment.apiUrl+rol+'/profile'
+    const data = await axios.get(urlCopleta, {
+      headers: {
+        'Authorization': `Bearer ${this.getToken()}`
+      }
+    });
+
+    return data
+  }
+
   async refreshToken(rol:string){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    const token = (localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)) ? localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN) : localStorage.getItem(STORAGE_KEY_TOKEN_FINAL)
-    let urlCopleta = environment.apiUrl+rol+'/refresh'
-    let post = {
-      'token': token
+    
+    const adminToken = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN);
+    const finalToken = localStorage.getItem(STORAGE_KEY_TOKEN_FINAL);
+    
+    const token = adminToken || finalToken || '';
+
+    const removeToken = () => {
+        if (adminToken) {
+          localStorage.removeItem(STORAGE_KEY_TOKEN_ADMIN);
+          this.router.navigate([LAYOUT_ADMIN_PAGE_LOGOUT]);
+        } else if (finalToken) {
+          localStorage.removeItem(STORAGE_KEY_TOKEN_FINAL);
+          this.router.navigate([LAYOUT_FINAL_PAGE_LOGOUT]);
+        } else {
+          localStorage.removeItem(STORAGE_KEY_TOKEN_ADMIN);
+          localStorage.removeItem(STORAGE_KEY_TOKEN_FINAL);
+          this.router.navigate([_PAGE_BACK_HOME]); 
+        }
+    };
+
+    if (!token) {
+      console.log('Token vacío o nulo detectado, limpiando...');
+      removeToken();
+      return false; 
     }
 
+    let urlCopleta = environment.apiUrl+rol+'/refresh'
+
     try {
-      let data = (await axios.post(urlCopleta, post)).data
+      let data = (await axios.post(urlCopleta, {"token": token})).data
       if(localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)){
         localStorage.setItem(STORAGE_KEY_TOKEN_ADMIN, data);
       }
@@ -53,12 +90,7 @@ export class AuthService {
       }
       return data
     } catch(error) {
-      if(localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)){
-        localStorage.removeItem(STORAGE_KEY_TOKEN_ADMIN);
-      }
-      if(localStorage.getItem(STORAGE_KEY_TOKEN_FINAL)){
-        localStorage.removeItem(STORAGE_KEY_TOKEN_FINAL);
-      }
+      removeToken()
       return false
     }
   }
@@ -77,7 +109,7 @@ export class AuthService {
     if(await this.validarToken(rol)){
       return true;
     }
-
+   
     let refreshTokenResponse = await this.refreshToken(rol)
 
     if(refreshTokenResponse){
@@ -88,28 +120,8 @@ export class AuthService {
         localStorage.setItem(STORAGE_KEY_TOKEN_FINAL, refreshTokenResponse);
       }
       return true
-    }else{
-      if(localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)){
-        localStorage.removeItem(STORAGE_KEY_TOKEN_ADMIN);
-      }
-      if(localStorage.getItem(STORAGE_KEY_TOKEN_FINAL)){
-        localStorage.removeItem(STORAGE_KEY_TOKEN_FINAL);
-      }
-      return false
     }
-
-  }
-
-  async getUser(rol: string){
-    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let urlCopleta = environment.apiUrl+rol+'/profile'
-    const data = await axios.get(urlCopleta, {
-      headers: {
-        'Authorization': `Bearer ${this.getToken()}`
-      }
-    });
-
-    return data
+    return false
   }
 
 }

@@ -7,16 +7,22 @@ export const finalGuard: CanActivateFn = async(route, state) => {
   const authService = inject(AuthService)
   const router = inject(Router)
 
-  const isAdmin = !!localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN);
-  const isFinal = !!localStorage.getItem(STORAGE_KEY_TOKEN_FINAL);
+  const adminToken = (localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN) != "") ? localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN) : "";
+  const finalToken = (localStorage.getItem(STORAGE_KEY_TOKEN_FINAL) != "") ? localStorage.getItem(STORAGE_KEY_TOKEN_FINAL) : "";
 
-  // const isFinal = await authService.isAuth(STORAGE_KEY_FINAL_AUTH);
-  if (isFinal) {
+  const token = adminToken || finalToken || null;
+
+  if (token === null ) {
+    console.log('Token no valido')
+    return router.navigate([_PAGE_BACK_HOME])
+  }
+
+  if (token!= null && finalToken) {
     console.log('Redirigiendo a Final')
     return true
   }
   
-  if (isAdmin) {
+  if (token!= null && adminToken) {
     console.error('Acceso prohibido: Eres usuario admin, no final');
     return router.navigate([_PAGE_NOT_FOUND_ADMIN])
   }

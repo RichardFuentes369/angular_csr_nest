@@ -7,16 +7,22 @@ export const adminGuard: CanActivateFn = async(route, state) => {
   const authService = inject(AuthService)
   const router = inject(Router)
 
-  const isAdmin = !!localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN);
-  const isFinal = !!localStorage.getItem(STORAGE_KEY_TOKEN_FINAL);
+  const adminToken = (localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN) != "") ? localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN) : "";
+  const finalToken = (localStorage.getItem(STORAGE_KEY_TOKEN_FINAL) != "") ? localStorage.getItem(STORAGE_KEY_TOKEN_FINAL) : "";
+  
+  const token = adminToken || finalToken || null;
 
-  // const isAdmin = await authService.isAuth(STORAGE_KEY_ADMIN_AUTH);
-  if (isAdmin) {
+  if (token === null ) {
+    console.log('Token no valido')
+    return router.navigate([_PAGE_BACK_HOME])
+  }
+
+  if (token!= null && adminToken) {
     console.log('Redirigiendo a Admin')
     return true
   }
 
-  if (isFinal) {
+  if (token!= null && finalToken) {
     console.error('Acceso prohibido: Eres usuario final, no admin');
     return router.navigate([_PAGE_NOT_FOUND_FINAL])
   }
