@@ -6,7 +6,7 @@ import { BreadcrumbsComponent } from '@component/globales/breadcrumb/breadcrumb.
 import { IdiomaComponent } from '@component/globales/idioma/idioma.component';
 import { CommonModule } from '@angular/common';
 
-import { STORAGE_KEY_TOKEN_FINAL } from '@const/app.const'
+import { STORAGE_KEY_TOKEN_ADMIN, STORAGE_KEY_TOKEN_FINAL } from '@const/app.const'
 import { NAME_PAGE, LAYOUT_ADMIN_PAGE_LOGOUT } from '@layout/const/layouts.const'
 import { LAYOUT_PAGE_PROFILE, LAYOUT_ADMIN_PAGE_MOD } from '@mod/me/const/me.const'
 
@@ -51,6 +51,7 @@ export class AdminComponent implements OnInit {
   }
 
   cerrarSession(){
+    localStorage.removeItem(STORAGE_KEY_TOKEN_ADMIN)
     localStorage.removeItem(STORAGE_KEY_TOKEN_FINAL)
     this.router.navigate([LAYOUT_ADMIN_PAGE_LOGOUT]);
   }

@@ -1,8 +1,7 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, CanMatchFn, Router } from '@angular/router';
-import { _PAGE_BACK_HOME, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_TOKEN_ADMIN } from '@const/app.const';
+import { _PAGE_BACK_HOME, _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_TOKEN_ADMIN } from '@const/app.const';
 import { AuthService } from '@guard/service/auth.service';
-import { LAYOUT_PAGE_PROFILE } from '@mod/me/const/me.const';
 
 export const adminGuard: CanActivateFn = async(route, state) => {
   const authService = inject(AuthService)
@@ -11,7 +10,8 @@ export const adminGuard: CanActivateFn = async(route, state) => {
   const isAdmin = await authService.isAuth(STORAGE_KEY_ADMIN_AUTH)
   if (isAdmin) {
     console.log('Redirigiendo a Admin')
-    return await router.navigate(['/admin/' + LAYOUT_PAGE_PROFILE])
+    return true
+  }else{
+    return router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN])
   }
-  return router.navigate([_PAGE_BACK_HOME])
 };

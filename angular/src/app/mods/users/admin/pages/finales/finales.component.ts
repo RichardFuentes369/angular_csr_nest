@@ -12,7 +12,7 @@ import { FinalService } from './service/final.service';
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
 import { SearchComponent } from '@component/globales/search/search.component';
 import { Subscription, timer } from 'rxjs';
-import { _PAGE_WITHOUT_PERMISSION, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE } from '@const/app.const';
+import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE } from '@const/app.const';
 import { STORAGE_KEY_PROFILE_FINAL } from '@mod/users/const/users.const'
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 
@@ -112,7 +112,7 @@ export class FinalesComponent implements OnInit{
 
     const submodulo = await this.permisosService.permisoPage(1,'finales',userData.data.id)
     if (submodulo.data === "") {
-      this.router.navigate([_PAGE_WITHOUT_PERMISSION]);
+      this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
     } 
 
     const permisos = await this.permisosService.permisos(userData.data.id,'finales')

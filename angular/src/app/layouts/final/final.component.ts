@@ -4,7 +4,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core'
 
 import { IdiomaComponent } from '@component/globales/idioma/idioma.component';
 
-import { STORAGE_KEY_TOKEN_FINAL } from '@const/app.const';
+import { STORAGE_KEY_TOKEN_ADMIN, STORAGE_KEY_TOKEN_FINAL } from '@const/app.const';
 import { LAYOUT_FINAL_PAGE_LOGOUT } from '@layout/const/layouts.const';
 
 @Component({
@@ -32,6 +32,7 @@ export class FinalComponent {
   }
 
   cerrarSession(){
+    localStorage.removeItem(STORAGE_KEY_TOKEN_ADMIN)
     localStorage.removeItem(STORAGE_KEY_TOKEN_FINAL)
     this.router.navigate([LAYOUT_FINAL_PAGE_LOGOUT]);
   }

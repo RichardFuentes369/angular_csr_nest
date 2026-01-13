@@ -9,7 +9,7 @@ import Swal from 'sweetalert2'
 import { Permisos } from '@function/System'
 import { ModulosService } from '@mod/modules/admin/service/modulos.service';
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
-import { _PAGE_WITHOUT_PERMISSION, STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
+import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
 import { MOD_MODULES_PAGE_PERMISSIONS, MOD_MODULES_PAGE_SUBMODULES, STORAGE_KEY_MODULE, STORAGE_KEY_SUBMODULE } from '@mod/modules/const/modules.const';
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { Subscription, timer } from 'rxjs';
@@ -48,7 +48,7 @@ export class ModulosComponent implements OnInit{
 
     const submodulo = await this.permisosService.permisoPage(0,'modulos',userData.data.id)
     if (submodulo.data === "") {
-      this.router.navigate([_PAGE_WITHOUT_PERMISSION]);
+      this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
     } 
 
     const modulo = await this.permisosService.permisos(userData.data.id,'modulos')
