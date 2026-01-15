@@ -1,9 +1,5 @@
 {
-  "Title": {
-    "ComponentName": "Search"
-  },
-  "Buttons": {
-    "Filter": "Filter",
-    "Clear": "Clear"
-  }
+  "TITTLE_COMPONENT": "Search",
+  "BUTTON_FILTER": "Filter",
+  "BUTTON_CLEAR": "Clear"
 }

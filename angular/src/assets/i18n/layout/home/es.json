@@ -1,6 +1,4 @@
 {
-  "Tab": {
-    "Start": "Inicio",
-    "Login": "Ingreso"
-  }
+  "TAB_START": "Inicio",
+  "TAB_LOGIN": "Ingreso"
 }

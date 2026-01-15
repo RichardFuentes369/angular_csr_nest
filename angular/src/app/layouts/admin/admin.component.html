@@ -18,7 +18,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        {{ 'layout-admin.Modules' | translate}}
+        {{ 'layout-admin.WORD_MODULES' | translate}}
       </div>
 
       <!-- Nav Item - Dashboard -->
@@ -26,7 +26,7 @@
         <a class="nav-link" routerLink="{{LAYOUT_ADMIN_PAGE_MOD}}" routerLinkActive="active">
           <i class="fa fa-bars"></i>
           <span>
-            {{ 'layout-admin.OptionsModules.Menu' | translate}}
+            {{ 'layout-admin.OPTION_MODULES_MENU' | translate}}
           </span>
         </a>
       </li>
@@ -254,16 +254,16 @@
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item"  routerLink="perfil" routerLinkActive="active" routerLink="me/perfil">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  {{ 'layout-admin.DradropdowMenu.Profile' | translate}}
+                  {{ 'layout-admin.DRADROPDOW_MENU_PROFILE' | translate}}
                 </a>
                 <a class="dropdown-item" routerLink="configuracion" routerLinkActive="active" routerLink="me/configuracion">
                   <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  {{ 'layout-admin.DradropdowMenu.Setting' | translate}}
+                  {{ 'layout-admin.DRADROPDOW_MENU_SETTING' | translate}}
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal" (click)="cerrarSession()" style="cursor: pointer;">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  {{ 'layout-admin.DradropdowMenu.Logout' | translate}}
+                  {{ 'layout-admin.DRADROPDOW_MENU_LOGOUT' | translate}}
                 </a>
               </div>
             </li>

@@ -106,7 +106,7 @@ export class ModulosComponent implements OnInit{
   cargarTabla = true;
   
   search = true
-  buttonSearch = this.translate.instant('mod-modules.BUTTON_EDIT_PERMISSION_MODULE4')
+  buttonSearch = this.translate.instant('mod-modules.BUTTON_SEARCH')
   iconFilter="fa fa-filter"
 
   listar(){
@@ -168,8 +168,10 @@ export class ModulosComponent implements OnInit{
   }
   
   async editarData (_id: string){
+
     const response = await this.modulosService.getHasSubmodule(+_id)
     const { nombre } = response.data?.[0] || { nombre: 'xxxxxxx' }
+    
     this.translate.get('mod-modules.EDIT_MODULE_TITLE', { "module_name": nombre }).subscribe((res: string) => {this.title = res});
     this.tamano = "xl"
     this.scrollable = false

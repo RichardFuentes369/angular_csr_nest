@@ -7,30 +7,30 @@
       <div class="col-sm-12 row p-0">
         <div class="col-sm-6 form-group">
           <label for="exampleInputEmail1">
-            {{ 'mod-users.Label.firstName' | translate}}
+            {{ 'mod-users.LABEL_USER_FIRSTNAME' | translate}}
           </label>
-          <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.firstName" aria-describedby="emailHelp" placeholder="{{ 'mod-users.Placeholder.firstName' | translate}}">
-          <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.Error.firstName' | translate}}</small>
+          <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.firstName" aria-describedby="emailHelp" placeholder="{{ 'mod-users.PLACEHOLDER_USER_FIRSTNAME' | translate}}">
+          <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.ERROR_USER_FIRSTNAME' | translate}}</small>
         </div>
         <div class="col-sm-6 form-group">
           <label for="exampleInputEmail1">
-            {{ 'mod-users.Label.lastName' | translate}}
+            {{ 'mod-users.LABEL_USER_LASTNAME' | translate}}
           </label>
-          <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.lastName" aria-describedby="emailHelp" placeholder="{{ 'mod-users.Placeholder.lastName' | translate}}">
-          <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.Error.lastName' | translate}}</small>
+          <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.lastName" aria-describedby="emailHelp" placeholder="{{ 'mod-users.PLACEHOLDER_USER_LASTNAME' | translate}}">
+          <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.ERROR_USER_LASTNAME' | translate}}</small>
         </div>
       </div>
       <div class="col-sm-12 row p-0">
         <div class="col-sm-6 form-group">
           <label for="exampleInputEmail1">
-            {{ 'mod-users.Label.email' | translate}}
+            {{ 'mod-users.LABEL_USER_EMAIL' | translate}}
           </label>
-          <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.email" aria-describedby="emailHelp" placeholder="{{ 'mod-users.Placeholder.email' | translate}}">
-          <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.Error.email' | translate}}</small>
+          <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.email" aria-describedby="emailHelp" placeholder="{{ 'mod-users.PLACEHOLDER_USER_EMAIL' | translate}}">
+          <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.ERROR_USER_EMAIL' | translate}}</small>
         </div>
         <div class="col-sm-6 form-group">
           <label for="exampleInputEmail1">
-            {{ 'mod-users.Label.password' | translate}}
+            {{ 'mod-users.LABEL_USER_PASSWORD' | translate}}
           </label>
           <div class="input-group">
             <input
@@ -47,23 +47,22 @@
               </div>
             </div>
           </div>
-          <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.Error.password' | translate}}</small>
+          <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.ERROR_USER_PASSWORD' | translate}}</small>
         </div>
       </div>
       <div class="col-sm-12 row p-0">
         <div class="col-sm-6 form-group">
           <label for="exampleInputEmail1">
-            {{ 'mod-users.Label.statusUser' | translate}}
+            {{ 'mod-users.LABEL_USER_STATUS' | translate}}
           </label>
           <select [(ngModel)]="model.isActive" class="form-control">
             <option [ngValue]="true">
-              {{ 'mod-users.Placeholder.isActive' | translate}}
+              {{ 'mod-users.WORD_ACTIVED' | translate}}
             </option>
             <option [ngValue]="false">
-              {{ 'mod-users.Placeholder.isInactive' | translate}}
+              {{ 'mod-users.WORD_INACTIVED' | translate}}
             </option>
           </select>
-          <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.Error.isActive' | translate}}</small>
         </div>
         <div class="col-sm-6 form-group">
         </div>
@@ -71,7 +70,7 @@
       <div class="col-sm-12 row p-0">
         <div class="col-sm-12">
           <button class="btn btn-sm btn-primary btnAction d-none" (click)="crearUsuario()">
-            {{ 'mod-users.Buttons.createUser' | translate}}
+            {{ 'mod-users.BUTTON_USER_CREATE' | translate}}
           </button>
         </div>
       </div>

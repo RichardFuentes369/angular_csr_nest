@@ -1,24 +1,22 @@
 {
-  "Options": {
-    "See":"Ver",
-    "Create":"Crear",
-    "Edit":"Editar",
-    "Delete":"Eliminar",
-    "Assign":"Asignar",
-    "Clean":"Limpiar",
-    "Suspend":"Suspender"
-  },
-  "Info": {
-    "Show": "Mostrar",
-    "Records": "registros",
-    "Showing": "Mostrando",
-    "To": "a",
-    "Of": "de",
-    "Entries": "entradas",
-    "NoInfo": "No se encontraron registros",
-    "First": "Primero",
-    "Last": "Ultimo",
-    "Next": "Siguiente",
-    "Previous": "Anterior"
-  }
+  "BUTTON_OPTION_SEE": "Ver",
+  "BUTTON_OPTION_CREATE": "Crear",
+  "BUTTON_OPTION_EDIT": "Editar",
+  "BUTTON_OPTION_DELETE": "Eliminar",
+  "BUTTON_OPTION_ASSIGN": "Asignar",
+  "BUTTON_OPTION_CLEAR": "Limpiar",
+  "BUTTON_OPTION_SUSPEND": "Suspender",
+
+  "TABLE_INFO_SHOW": "Mostrar",
+  "TABLE_INFO_RECORDS": "registros",
+  "TABLE_INFO_SHOWING": "Mostrando",
+  "TABLE_INFO_TO": "a",
+  "TABLE_INFO_OF": "de",
+  "TABLE_INFO_ENTRIES": "entradas",
+  "TABLE_INFO_NO_INFO": "No se encontraron registros",
+  "TABLE_INFO_FIRST": "Primero",
+  "TABLE_INFO_LAST": "Ultimo",
+  "TABLE_INFO_NEXT": "Siguiente",
+  "TABLE_INFO_PREVIOUS": "Anterior"
 }
+

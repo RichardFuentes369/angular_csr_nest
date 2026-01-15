@@ -1,24 +1,21 @@
 {
-  "Options": {
-    "See":"See",
-    "Create":"Create",
-    "Edit":"Edit",
-    "Delete":"Delete",
-    "Assign":"Assign",
-    "Clean":"Clear",
-    "Suspend":"Suspend"
-  },
-  "Info": {
-    "Show": "Show",
-    "Records": "records",
-    "Showing": "Showing",
-    "To": "to",
-    "Of": "of",
-    "Entries": "entries",
-    "NoInfo": "No records found",
-    "First": "First",
-    "Last": "Last",
-    "Next": "Next",
-    "Previous": "Previous"
-  }
+  "BUTTON_OPTION_SEE": "See",
+  "BUTTON_OPTION_CREATE": "Create",
+  "BUTTON_OPTION_EDIT": "Edit",
+  "BUTTON_OPTION_DELETE": "Delete",
+  "BUTTON_OPTION_ASSIGN": "Assign",
+  "BUTTON_OPTION_CLEAR": "Clear",
+  "BUTTON_OPTION_SUSPEND": "Suspend",
+
+  "TABLE_INFO_SHOW": "Show",
+  "TABLE_INFO_RECORDS": "records",
+  "TABLE_INFO_SHOWING": "Showing",
+  "TABLE_INFO_TO": "to",
+  "TABLE_INFO_OF": "of",
+  "TABLE_INFO_ENTRIES": "entries",
+  "TABLE_INFO_NO_INFO": "No records found",
+  "TABLE_INFO_FIRST": "First",
+  "TABLE_INFO_LAST": "Last",
+  "TABLE_INFO_NEXT": "Next",
+  "TABLE_INFO_PREVIOUS": "Previous"
 }

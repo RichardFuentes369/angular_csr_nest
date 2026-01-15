@@ -1,9 +1,5 @@
 {
-  "Title": {
-    "ComponentName": "Buscar"
-  },
-  "Buttons": {
-    "Filter": "Filtrar",
-    "Clear": "Limpiar"
-  }
+  "TITTLE_COMPONENT": "Search",
+  "BUTTON_FILTER": "Filtrar",
+  "BUTTON_CLEAR": "Limpiar"
 }

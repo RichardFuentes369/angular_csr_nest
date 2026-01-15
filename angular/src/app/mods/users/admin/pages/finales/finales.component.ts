@@ -12,8 +12,8 @@ import { FinalService } from './service/final.service';
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
 import { SearchComponent } from '@component/globales/search/search.component';
 import { Subscription, timer } from 'rxjs';
-import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE } from '@const/app.const';
-import { STORAGE_KEY_PROFILE_FINAL } from '@mod/users/const/users.const'
+import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE, WORD_KEY_COMPONENT_GLOBAL } from '@const/app.const';
+import { CREAR_USUARIO_COMPONENT, EDITAR_USUARIO_COMPONENT, FILTRO_USUARIO_COMPONENT, STORAGE_KEY_PROFILE_FINAL, VER_USUARIO_COMPONENT } from '@mod/users/const/users.const'
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 
 @Component({
@@ -45,9 +45,9 @@ export class FinalesComponent implements OnInit{
 
   // inicio datos envio al filtro  
   search = true
-  buttonSearch = "Buscar"
+  buttonSearch = this.translate.instant('mod-users.BUTTON_SEARCH')
   iconFilter="fa fa-filter"
-  componenteFilter="FiltroUsuariosComponent"
+  componenteFilter=FILTRO_USUARIO_COMPONENT
   // fin datos envio al filtro
 
   // inicio datos que envio al componente tabla
@@ -96,11 +96,11 @@ export class FinalesComponent implements OnInit{
   scrollable = false
   title = ""
   save = true
-  buttonSave = "Guardar"
+  buttonSave = this.translate.instant('mod-users.BUTTON_SAVE_')
   edit = true
-  buttonEdit = "Editar"
+  buttonEdit = this.translate.instant('mod-users.BUTTON_UPDATE_')
   cancel = true
-  buttonCancel = "Cancelar"
+  buttonCancel = this.translate.instant('mod-users.BUTTON_CANCEL')
   cierreModal = "true"
   componentePrecargado = ""
   // fin datos envio al modal
@@ -141,27 +141,27 @@ export class FinalesComponent implements OnInit{
   listar(){
     this.columnas = [
       {
-        title: this.translate.instant('mod-users.Column.Id'),
+        title: this.translate.instant('mod-users.COLUMN_ID'),
         data: 'id',
       },
       {
-        title: this.translate.instant('mod-users.Column.Email'),
+        title: this.translate.instant('mod-users.COLUMN_EMAIL'),
         data: 'email',
       },
       {
-        title: this.translate.instant('mod-users.Column.Names'),
+        title: this.translate.instant('mod-users.COLUMN_NAMES'),
         data: 'firstName',
       },
       {
-        title: this.translate.instant('mod-users.Column.Surnames'),
+        title: this.translate.instant('mod-users.COLUMN_LASTNAME'),
         data: 'lastName',
       },
       {
-        title: this.translate.instant('mod-users.Column.Status'),
+        title: this.translate.instant('mod-users.COLUMN_STATUS'),
         data: 'isActive',
         render: (data: any, type: any) => {
           if (type === 'display') {
-            const statusKey = data ? this.translate.instant('mod-users.Column.Actived') : this.translate.instant('mod-users.Column.Inactived');
+            const statusKey = data ? this.translate.instant('mod-users.WORD_ACTIVED') : this.translate.instant('mod-users.WORD_INACTIVED');
             return this.translate.instant(statusKey);
           }
           return data;
@@ -174,89 +174,103 @@ export class FinalesComponent implements OnInit{
     localStorage.setItem(STORAGE_KEY_PROFILE, STORAGE_KEY_PROFILE_FINAL)
     this.tamano = "xl"
     this.scrollable = false
-    this.title = this.translate.instant('mod-users.Title.CreateUserFinalWord')
+    this.title = this.translate.instant('mod-users.CREATE_FINAL_TITLE')
     this.save = true
-    this.buttonSave = "Guardar"
+    this.buttonSave = this.translate.instant('mod-users.BUTTON_SAVE_')
     this.edit = false
-    this.buttonEdit = "Editar"
+    this.buttonEdit = this.translate.instant('mod-users.BUTTON_UPDATE_')
     this.cancel = true
-    this.buttonCancel = "Cancelar"
+    this.buttonCancel = this.translate.instant('mod-users.BUTTON_CANCEL')
     this.cierreModal = "true"
-    this.componentePrecargado = "CrearUsuariosComponent"
+    this.componentePrecargado = CREAR_USUARIO_COMPONENT
 
     const idButton = document.getElementById('miBoton')
     if(idButton){
-      idButton.setAttribute('componente', this.componentePrecargado);
+      idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
     }
   }
 
-  verData (_id: string){
+  async verData (_id: string){
+    const response = await this.finalService.getDataUser(_id)
+    const { firstName, lastName } = response.data || { firstName: 'xxxxxxx', lastName: 'yyyyyyy' }
+    
+    this.translate.get('mod-users.SEE_FINAL_TITLE', { "user_name": firstName + ' ' + lastName }).subscribe((res: string) => {this.title = res});
     this.tamano = "xl"
     this.scrollable = false
-    this.title = this.translate.instant('mod-users.Title.SeeUserFinalWord')
     this.save = false
-    this.buttonSave = "Guardar"
+    this.buttonSave = this.translate.instant('mod-users.BUTTON_SAVE_')
     this.edit = false
-    this.buttonEdit = "Editar"
+    this.buttonEdit = this.translate.instant('mod-users.BUTTON_UPDATE_')
     this.cancel = true
-    this.buttonCancel = "Cancelar"
+    this.buttonCancel = this.translate.instant('mod-users.BUTTON_CANCEL')
     this.cierreModal = "true"
-    this.componentePrecargado = "VerUsuariosComponent"
+    this.componentePrecargado = VER_USUARIO_COMPONENT
 
     const idButton = document.getElementById('miBoton')
     if(idButton){
       this.router.navigate([], {
         queryParams: { rol: 'admin', id: _id },
       });
-      idButton.setAttribute('componente', this.componentePrecargado);
+      idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
     }
   }
 
-  editarData (_id: string){
-    localStorage.setItem('profile', 'user')
+  async editarData (_id: string){
+    localStorage.setItem(STORAGE_KEY_PROFILE, STORAGE_KEY_PROFILE_FINAL)
+
+    const response = await this.finalService.getDataUser(_id)
+    const { firstName, lastName } = response.data || { firstName: 'xxxxxxx', lastName: 'yyyyyyy' }
+
+    this.translate.get('mod-users.SWAL_ARE_YOU_SURE_UPDATE_USER', { "user_name": firstName + ' ' + lastName }).subscribe((res: string) => {this.title = res});
     this.tamano = "xl"
     this.scrollable = false
-    this.title = this.translate.instant('mod-users.Title.EditUserFinalWord')
     this.save = false
-    this.buttonSave = "Guardar"
+    this.buttonSave = this.translate.instant('mod-users.BUTTON_SAVE_')
     this.edit = true
-    this.buttonEdit = "Editar"
+    this.buttonEdit = this.translate.instant('mod-users.BUTTON_UPDATE_')
     this.cancel = true
-    this.buttonCancel = "Cancelar"
-    this.componentePrecargado = "EditarUsuariosComponent"
+    this.buttonCancel = this.translate.instant('mod-users.BUTTON_CANCEL')
+    this.componentePrecargado = EDITAR_USUARIO_COMPONENT
 
     const idButton = document.getElementById('miBoton')
     if(idButton){
       this.router.navigate([], {
         queryParams: { rol: 'admin', id: _id },
       });
-      idButton.setAttribute('componente', this.componentePrecargado);
+      idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
     }
   }
 
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
-  eliminarData (_id: string[]){
+  async eliminarData (_id: string[]){
     console.log("eliminarData "+_id)
-    this.translate.get('mod-users.Swal.TitleAreYouSure').subscribe((translatedTitle: string) => {
+
+    const response = await this.finalService.getDataUser(_id[0])
+    const { firstName, lastName } = response.data || { firstName: 'xxxxxxx', lastName: 'yyyyyyy' }
+    const name_user = (_id.length === 1) ? firstName+" "+lastName : "("+_id.length+")"
+    const count_users = (_id.length === 1) ? 'el' : 'los'
+    const plural = (_id.length === 1) ? '' : 's'
+
+    this.translate.get('mod-users.SWAL_ARE_YOU_SURE_DELETE_USER',{ "art_the": count_users, "plural": plural, "user_name": name_user}).subscribe((translatedTitle: string) => {
       Swal.fire({
         title: translatedTitle,
-        text: this.translate.instant('mod-users.Swal.TitleWarnigRevert'),
+        text: this.translate.instant('mod-users.SWAL_WARNING_REVERSE_CHANGE'),
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: this.translate.instant('mod-users.Swal.TitleDelete'),
-        cancelButtonText: this.translate.instant('mod-users.Swal.TitleCancel')
+        confirmButtonText: this.translate.instant('mod-users.SWAL_BUTTON_DELETE'),
+        cancelButtonText: this.translate.instant('mod-users.SWAL_BUTTON_CANCEL')
       }).then(async (result) => {
         if (result.isConfirmed) {
           if (result.isConfirmed) {
             await this.finalService.deleteUser(_id)
             await this.someInput.reload()
             Swal.fire({
-              title: this.translate.instant('mod-users.Swal.TitleDelete'),
-              text: this.translate.instant('mod-users.Swal.TitleRegisterDeleted'),
+              title: this.translate.instant('mod-users.SWAL_DELETED'),
+              text: this.translate.instant('mod-users.SWAL_DELETED_RECORD'),
               icon: "success"
             });
           }
@@ -269,20 +283,20 @@ export class FinalesComponent implements OnInit{
     console.log("activarData "+_id)
 
     let opcionesSelect = {
-      0: this.translate.instant('mod-users.Swal.TitleInactived'),
-      1: this.translate.instant('mod-users.Swal.TitleActived'),
+      0: this.translate.instant('mod-users.WORD_INACTIVED'),
+      1: this.translate.instant('mod-users.WORD_ACTIVED'),
     };
 
     Swal.fire({
-        title: this.translate.instant('mod-users.Label.statusUser'),
+        title: this.translate.instant('mod-users.LABEL_USER_STATUS'),
         input: 'select',
         inputOptions: opcionesSelect,
-        inputPlaceholder: this.translate.instant('mod-users.Placeholder.select'),
+        inputPlaceholder: this.translate.instant('mod-users.SELECT_STATUS_USER_SELECT_OPTION'),
         showCancelButton: true,
         inputValidator: (value) => {
             return new Promise((resolve) => {
                 if (value === '') {
-                    resolve(this.translate.instant('mod-users.Swal.MsjErrorSelected'));
+                    resolve(this.translate.instant('mod-users.SWAL_WORD_ONE_OPTION_SELECTION'));
                 } else {
                     resolve();
                 }
@@ -293,8 +307,8 @@ export class FinalesComponent implements OnInit{
           await this.finalService.updatestatusUser(_id, result.value)
           await this.someInput.reload()
           Swal.fire({
-            title: this.translate.instant('mod-users.Swal.TitleUpdate'),
-            text: this.translate.instant('mod-users.Swal.TitleRegisterUpdated'),
+            title: this.translate.instant('mod-users.SWAL_UPDATED'),
+            text: this.translate.instant('mod-users.SWAL_UPDATED_RECORD'),
             icon: "success"
           });
         }

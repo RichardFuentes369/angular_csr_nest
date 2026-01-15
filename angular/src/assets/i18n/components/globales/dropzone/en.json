@@ -1,5 +1,3 @@
 {
-  "Label": {
-    "wordUpload": "Upload files"
-  }
+  "WORD_UPLOAD": "Upload files"
 }

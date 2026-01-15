@@ -111,10 +111,10 @@ export class EditarUsuariosComponent implements OnInit{
       this.model.id
     ).then((response) =>{
       ocultarModalOscura()
-      this.translate.get('mod-users.Swal.TitleAreYouSure').subscribe((translatedTitle: string) => {
+      this.translate.get('mod-users.SWAL_ARE_YOU_SURE_UPDATE_USER').subscribe((translatedTitle: string) => {
         Swal.fire({
-          title: this.translate.instant('mod-users.Swal.TitleUpdate'),
-          text: this.translate.instant('mod-users.Swal.TitleRegisterUpdated'),
+          title: this.translate.instant('mod-users.SWAL_UPDATED'),
+          text: this.translate.instant('mod-users.SWAL_UPDATED_RECORD'),
           icon: "success"
         });
       })

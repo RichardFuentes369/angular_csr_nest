@@ -1,11 +1,8 @@
 {
-  "DradropdowMenu": {
-    "Profile": "Perfil",
-    "Setting": "Ajustes",
-    "Logout": "Salir"
-  },
-  "Modules": "Modulos",
-  "OptionsModules": {
-    "Menu": "Menú"
-  }
+  "DRADROPDOW_MENU_PROFILE": "Perfil",
+  "DRADROPDOW_MENU_SETTING": "Ajustes",
+  "DRADROPDOW_MENU_LOGOUT": "Salir",
+  
+  "WORD_MODULES": "Modulos",
+  "OPTION_MODULES_MENU": "Menú"
 }

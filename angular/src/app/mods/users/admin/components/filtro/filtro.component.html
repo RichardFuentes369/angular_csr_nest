@@ -3,35 +3,35 @@
         <input type="text" class="d-none complementoRuta" value="">
         <div class="col-sm-12">
             <label for="exampleInputEmail1">
-                {{ 'mod-users.Label.email' | translate}}
+                {{ 'mod-users.LABEL_USER_EMAIL' | translate}}
             </label>
-            <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.email" aria-describedby="emailHelp" placeholder="{{ 'mod-users.Placeholder.email' | translate}}">
-            <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.Error.email' | translate}}</small>
+            <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.email" aria-describedby="emailHelp" placeholder="{{ 'mod-users.PLACEHOLDER_USER_EMAIL' | translate}}">
+            <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.ERROR_USER_EMAIL' | translate}}</small>
         </div>
         <div class="col-sm-12">
             <label for="exampleInputEmail1">
-                {{ 'mod-users.Label.firstName' | translate}}
+                {{ 'mod-users.LABEL_USER_FIRSTNAME' | translate}}
             </label>
-            <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.firstName" aria-describedby="emailHelp" placeholder="{{ 'mod-users.Placeholder.firstName' | translate}}">
-            <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.Error.firstName' | translate}}</small>
+            <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.firstName" aria-describedby="emailHelp" placeholder="{{ 'mod-users.PLACEHOLDER_USER_FIRSTNAME' | translate}}">
+            <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.ERROR_USER_FIRSTNAME' | translate}}</small>
         </div>
         <div class="col-sm-12">
             <label for="exampleInputEmail1">
-                {{ 'mod-users.Label.lastName' | translate}}
+                {{ 'mod-users.LABEL_USER_LASTNAME' | translate}}
             </label>
-            <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.lastName" aria-describedby="emailHelp" placeholder="{{ 'mod-users.Placeholder.lastName' | translate}}">
-            <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.Error.isActive' | translate}}</small>
+            <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.lastName" aria-describedby="emailHelp" placeholder="{{ 'mod-users.PLACEHOLDER_USER_LASTNAME' | translate}}">
+            <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.ERROR_USER_STATUS' | translate}}</small>
         </div>
         <div class="col-sm-12">
             <label for="exampleInputEmail1">
-                {{ 'mod-users.Label.statusUser' | translate}}
+                {{ 'mod-users.LABEL_USER_STATUS' | translate}}
             </label>
             <select name="" id="" class="form-control" [(ngModel)]="model.isActive">
-                <option value="">{{ 'mod-users.Placeholder.select' | translate}}</option>
-                <option value="0">{{ 'mod-users.Placeholder.isActive' | translate}}</option>
-                <option value="1">{{ 'mod-users.Placeholder.isInactive' | translate}}</option>
+                <option value="">{{ 'mod-users.SELECT_STATUS_USER_SELECT_OPTION' | translate}}</option>
+                <option value="1">{{ 'mod-users.WORD_ACTIVED' | translate}}</option>
+                <option value="0">{{ 'mod-users.WORD_INACTIVED' | translate}}</option>
             </select>
-            <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.Error.isActive' | translate}}</small>
+            <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.ERROR_USER_STATUS' | translate}}</small>
         </div>
         <button class="d-none limpiar" (click)="limpiar()"></button>
         <button class="d-none filtrar" (click)="filtrar()"></button>

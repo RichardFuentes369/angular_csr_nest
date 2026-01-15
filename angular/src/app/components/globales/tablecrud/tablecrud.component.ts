@@ -97,16 +97,16 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
       },
       language: {
         "processing": "Procesando...",
-        "lengthMenu": `${this.translate.instant('global-tablecrud.Info.Show')} _MENU_ ${this.translate.instant('global-tablecrud.Info.Records')}`,
+        "lengthMenu": `${this.translate.instant('global-tablecrud.TABLE_INFO_SHOW')} _MENU_ ${this.translate.instant('global-tablecrud.TABLE_INFO_RECORDS')}`,
         "zeroRecords": "No se encontraron resultados",
-        "emptyTable": `${this.translate.instant('global-tablecrud.Info.NoInfo')}`,
-        "info": `${this.translate.instant('global-tablecrud.Info.Showing')} _START_ ${this.translate.instant('global-tablecrud.Info.To')} _END_ ${this.translate.instant('global-tablecrud.Info.Of')} _TOTAL_ ${this.translate.instant('global-tablecrud.Info.Entries')}`,
-        "infoEmpty": `${this.translate.instant('global-tablecrud.Info.Showing')} _START_ ${this.translate.instant('global-tablecrud.Info.To')} _END_ ${this.translate.instant('global-tablecrud.Info.Of')} _TOTAL_ ${this.translate.instant('global-tablecrud.Info.Entries')}`,
+        "emptyTable": `${this.translate.instant('global-tablecrud.TABLE_INFO_NO_INFO')}`,
+        "info": `${this.translate.instant('global-tablecrud.TABLE_INFO_SHOWING')} _START_ ${this.translate.instant('global-tablecrud.TABLE_INFO_TO')} _END_ ${this.translate.instant('global-tablecrud.TABLE_INFO_OF')} _TOTAL_ ${this.translate.instant('global-tablecrud.TABLE_INFO_ENTRIES')}`,
+        "infoEmpty": `${this.translate.instant('global-tablecrud.TABLE_INFO_SHOWING')} _START_ ${this.translate.instant('global-tablecrud.TABLE_INFO_TO')} _END_ ${this.translate.instant('global-tablecrud.TABLE_INFO_OF')} _TOTAL_ ${this.translate.instant('global-tablecrud.TABLE_INFO_ENTRIES')}`,
         "paginate": {
-          "first": `${this.translate.instant('global-tablecrud.Info.First')}`,
-          "last": `${this.translate.instant('global-tablecrud.Info.Last')}`,
-          "next": `${this.translate.instant('global-tablecrud.Info.Next')}`,
-          "previous": `${this.translate.instant('global-tablecrud.Info.Previous')}`
+          "first": `${this.translate.instant('global-tablecrud.TABLE_INFO_FIRST')}`,
+          "last": `${this.translate.instant('global-tablecrud.TABLE_INFO_LAST')}`,
+          "next": `${this.translate.instant('global-tablecrud.TABLE_INFO_NEXT')}`,
+          "previous": `${this.translate.instant('global-tablecrud.TABLE_INFO_PREVIOUS')}`
         },
         "decimal": ",",
         "thousands": "."

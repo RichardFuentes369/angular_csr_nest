@@ -8,14 +8,14 @@
         <div class="col-sm-12 row p-0">
           <div class="col-sm-6 form-group">
             <label for="exampleInputEmail1">
-              {{ 'mod-users.Label.firstName' | translate}}
+              {{ 'mod-users.LABEL_USER_FIRSTNAME' | translate}}
             </label>
             <input type="text" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.firstName" aria-describedby="emailHelp">
             <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
           </div>
           <div class="col-sm-6 form-group">
             <label for="exampleInputEmail1">
-              {{ 'mod-users.Label.lastName' | translate}}
+              {{ 'mod-users.LABEL_USER_LASTNAME' | translate}}
             </label>
             <input type="text" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.lastName" aria-describedby="emailHelp">
             <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
@@ -24,14 +24,14 @@
         <div class="col-sm-12 row p-0">
           <div class="col-sm-6 form-group">
             <label for="exampleInputEmail1">
-              {{ 'mod-users.Label.email' | translate}}
+              {{ 'mod-users.LABEL_USER_EMAIL' | translate}}
             </label>
             <input type="text" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.email" aria-describedby="emailHelp">
             <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
           </div>
           <div class="col-sm-6 form-group">
             <label for="exampleInputEmail1">
-              {{ 'mod-users.Label.password' | translate}}
+              {{ 'mod-users.LABEL_USER_PASSWORD' | translate}}
             </label>
 
           <div class="input-group">
@@ -57,23 +57,22 @@
         <div class="col-sm-12 row p-0">
           <div class="col-sm-6 form-group">
             <label for="exampleInputEmail1">
-              {{ 'mod-users.Label.statusUser' | translate}}
+              {{ 'mod-users.LABEL_USER_STATUS' | translate}}
             </label>
             <select [(ngModel)]="model.isActive" class="form-control">
               <option [ngValue]="true">
-                {{ 'mod-users.Placeholder.isActive' | translate}}
+                {{ 'mod-users.SELECT_STATUS_USER_ACTIVE_OPTION' | translate}}
               </option>
               <option [ngValue]="false">
-                {{ 'mod-users.Placeholder.isInactive' | translate}}
+                {{ 'mod-users.SELECT_STATUS_USER_INACTIVE_OPTION' | translate}}
               </option>
             </select>
-            <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.Error.isActive' | translate}}</small>
           </div>
         </div>
         <div class="col-sm-12 row p-0">
           <div class="col-sm-12">
             <button class="btn btn-sm btn-primary btnAction d-none" (click)="actualizarData()">
-              {{ 'mod-users.Buttons.updateUser' | translate}}
+              {{ 'mod-users.BUTTON_USER_EDIT' | translate}}
             </button>
           </div>
         </div>

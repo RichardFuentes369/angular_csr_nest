@@ -37,12 +37,13 @@
   "ERROR_PERMISSION_NICKNAME": "",
   "ERROR_PERMISSION_DESCRIPTION": "",
 
-  "BUTTON_CREATE_PERMISSION_MODULE": "Create modulo/permiso",
-  "BUTTON_EDIT_PERMISSION_MODULE": "Editar modulo/permiso",
+  "BUTTON_CREATE_PERMISSION": "Create modulo/permiso",
+  "BUTTON_EDIT_PERMISSION": "Editar modulo/permiso",
 
   "BUTTON_SAVE_": "Guardar",
   "BUTTON_UPDATE_": "Actualizar",
   "BUTTON_CANCEL": "Cancelar",
+  "BUTTON_SEARCH": "Buscar",
 
   "COLUMN_MODULE_NAME": "Nombre del modulo",
   "COLUMN_SUBMODULE_NAME": "Nombre del submodulo",

@@ -6,8 +6,6 @@ import { RouterLink } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { Permisos } from '@function/System'
-
 import { AuthService } from '@guard/service/auth.service';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';

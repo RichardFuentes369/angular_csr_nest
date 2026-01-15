@@ -1,9 +1,9 @@
 {
-  "Welcome": "Bienvenido",
-  "Email_Msj": "Correo",
-  "Password_Msj": "Contraseña",
-  "Remember_Msj": "Recordar",
-  "Login_Msj": "Ingresar",
-  "ForgotPassword_Msj": "Olvide mi contraseña!",
-  "CreateAccount_Msj": "Crear una cuenta"
+  "TITLE_WELCOME": "Bienvenido",
+  "PLACEHOLDER_EMAIL": "Correo",
+  "PLACEHOLDER_PASSWORD": "Contraseña",
+  "LABEL_REMEMBER": "Recordar",
+  "TEXT_LOGIN": "Ingresar",
+  "TEXT_FORGOT_PASSWORD": "Olvide mi contraseña!",
+  "TEXT_CREATE_ACCOUNT": "Crear una cuenta"
 }

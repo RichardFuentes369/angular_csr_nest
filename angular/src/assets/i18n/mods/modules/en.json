@@ -15,13 +15,13 @@
 
   "SWAL_ARE_YOU_SURE": "Are you sure you want to delete permission {{permission_name}}?",
   "SWAL_WARNING_REVERSE_CHANGE": "You won't be able to revert this!",
-  "SWAL_CREATED": "Permission!",
+  "SWAL_CREATED": "¡Permission!",
   "SWAL_CREATED_RECORD": "Created successfully.",
-  "SWAL_UPDATED": "Permission!",
+  "SWAL_UPDATED": "¡Permission!",
   "SWAL_UPDATED_RECORD": "Updated successfully.",
   "SWAL_BUTTON_DELETE": "Delete",
   "SWAL_BUTTON_CANCEL": "Cancel",
-  "SWAL_DELETED": "Permission!",
+  "SWAL_DELETED": "¡Permission!",
   "SWAL_DELETED_RECORD": "Deleted successfully.",
 
   "LABEL_PERMISSION_NAME": "Module/Permission",
@@ -43,6 +43,7 @@
   "BUTTON_SAVE_": "Save",
   "BUTTON_UPDATE_": "Update",
   "BUTTON_CANCEL": "Cancel",
+  "BUTTON_SEARCH": "Search",
 
   "COLUMN_MODULE_NAME": "Module Name",
   "COLUMN_SUBMODULE_NAME": "Submodule Name",

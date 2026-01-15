@@ -1,75 +1,77 @@
 {
-  "Title": {
-    "pageUsersTitle":"Usuarios",
-    "CreateAdminWord":"Crear administrador",
-    "EditAdminWord":"Editar administrador",
-    "SeeAdminWord":"Ver administrador",
-    "CreateUserFinalWord":"Crear usuario final",
-    "EditUserFinalWord":"Editar usuario final",
-    "SeeUserFinalWord":"Ver usuario final",
-    "PermissionsTitle": "Permisos"
-  },
-  "Index": {
-    "buttonAdmins":"Usuarios administradores",
-    "buttonFinals":"Usuarios finales"
-  },
-  "Tipo": {
-    "AdminWord": "Administradores",
-    "FinalWord": "Finales"
-  },
-  "Label": {
-    "firstName": "Nombres",
-    "lastName": "Apellidos",
-    "email": "Correo",
-    "password": "Contraseña",
-    "statusUser": "Estado"
-  },
-  "Placeholder": {
-    "firstName": "Juan Andres",
-    "lastName": "Lozano Fonseca",
-    "email": "email@example.es",
-    "password": "********",
-    "select": "Seleccione por favor",
-    "isActive": "Activo",
-    "isInactive": "Inactivo"
-  },
-  "Error": {
-    "firstName": "",
-    "lastName": "",
-    "email": "",
-    "password": "",
-    "isActive": ""
-  },
-  "Buttons": {
-    "createUser": "Crear usuario",
-    "editUser": "Ir a editar",
-    "updateUser": "Actualizar usuario",
-    "back": "Volver"
-  },
-  "Swal": {
-    "TitleAreYouSure": "Estas seguro?",
-    "TitleWarnigRevert": "No podras reviertir este cambio!",
-    "TitleWarnigSuspend": "Inactivara el/los usuarios seleccionados!",
-    "TitleUpdate": "Actualizado",
-    "TitleCreate": "Creado",
-    "TitleCancel": "Cancelar",
-    "TitleDelete": "Eliminar!",
-    "TitleRegisterUpdated": "Registro actualizado",
-    "TitleRegisterCreate": "Registro creado",
-    "TitleRegisterDeleted": "Registro eliminado",
-    "TitleRegisterInactived": "Registro desactivado",
-    "TitleRegisterActived": "Registro activado",
-    "TitleActived": "Activar",
-    "TitleInactived": "Inactivar",
-    "MsjErrorSelected": "Necesitas seleccionar una opción"
-  },
-  "Column": {
-   "Id": "Id",
-   "Email": "Correo electronico",
-   "Names": "Nombres", 
-   "Surnames": "Apellidos", 
-   "Status": "Estado", 
-   "Actived": "Activo",
-   "Inactived": "Inactivo"
-  }
+  "UNKNOW_MODULE_TITLE": "Desconocido",
+
+  "PAGE_ADMIN_TITLE": "Administradores",
+  "PAGE_FINAL_TITLE": "Finales",
+
+  "MODULE_TITLE": "Usuarios",
+
+  "CREATE_ADMIN_TITLE": "Crear usuario administrador",
+  "EDIT_ADMIN_TITLE": "Editar usuario {{user_name}}",
+  "SEE_ADMIN_TITLE": "Ver usuario {{user_name}}",
+  "ASSIGN_ADMIN_TITLE": "Editar usuario {{user_name}}",
+
+  "CREATE_FINAL_TITLE": "Crear usuario final",
+  "EDIT_FINAL_TITLE": "Editar usuario {{user_name}}",
+  "SEE_FINAL_TITLE": "Ver usuario {{user_name}}",
+
+  "SWAL_ARE_YOU_SURE_UPDATE_USER": "¿Esta seguro de actualizar el usuario {{user_name}}?",
+  "SWAL_ARE_YOU_SURE_DELETE_USER": "¿Esta seguro de eliminar {{art_the}} usuario{{plural}} {{user_name}}?",
+  "SWAL_WARNING_REVERSE_CHANGE": "¡No podrás revertir esto!",
+  "SWAL_CREATED": "¡USUARIO!",
+  "SWAL_CREATED_RECORD": "Creado exitosamente.",
+  "SWAL_UPDATED": "¡USUARIO!",
+  "SWAL_UPDATED_RECORD": "Actualizado exitosamente.",
+  "SWAL_BUTTON_DELETE": "Eliminar",
+  "SWAL_BUTTON_CANCEL": "Cancelar",
+  "SWAL_DELETED": "¡USUARIO!",
+  "SWAL_DELETED_RECORD": "Eliminado exitosamente.",
+  "SWAL_WORD_ONE_OPTION_SELECTION": "Necesitas seleccionar una opción",
+  "SWAL_WORD_OPTION_ACTIVATE": "Activar",
+  "SWAL_WORD_OPTION_INACTIVATE": "Inactivar",
+  "SWAL_ACTIVED_RECORD": "Activado exitosamente",
+  "SWAL_INACTIVED_RECORD": "Inactivado exitosamente",
+  "SWAL_INACTIVED_ALL_USER": "Inactivara los {{count_users}} usuarios seleccionados",
+
+  "LABEL_USER_FIRSTNAME": "Nombres",
+  "LABEL_USER_LASTNAME": "Apellidos",
+  "LABEL_USER_EMAIL": "Correo",
+  "LABEL_USER_PASSWORD": "Contraseña",
+  "LABEL_USER_STATUS": "Estado",
+
+  "PLACEHOLDER_USER_FIRSTNAME": "Juan Andres",
+  "PLACEHOLDER_USER_LASTNAME": "Lozano Fonseca",
+  "PLACEHOLDER_USER_EMAIL": "email@example.com",
+  "PLACEHOLDER_USER_PASSWORD": "**********",
+
+  "SELECT_STATUS_USER_SELECT_OPTION": "Seleccione",
+  "SELECT_STATUS_USER_ACTIVE_OPTION": "Activo",
+  "SELECT_STATUS_USER_INACTIVE_OPTION": "Inactivo",
+
+  "ERROR_USER_FIRSTNAME": "",
+  "ERROR_USER_LASTNAME": "",
+  "ERROR_USER_EMAIL": "",
+  "ERROR_USER_PASSWORD": "",
+  "ERROR_USER_STATUS": "",
+
+  "BUTTON_USER_CREATE": "Crear usuario",
+  "BUTTON_USER_EDIT": "Editar usuario",
+
+  "BUTTON_ADMIN": "Usuarios administradores",
+  "BUTTON_FINAL": "Usuarios finales",
+
+  "BUTTON_SAVE_": "Guardar",
+  "BUTTON_UPDATE_": "Actualizar",
+  "BUTTON_CANCEL": "Cancelar",
+  "BUTTON_BACK": "Volver",
+  "BUTTON_SEARCH": "Buscar",
+
+  "COLUMN_ID": "Id",
+  "COLUMN_EMAIL": "Correo electrónico",
+  "COLUMN_NAMES": "Nombres",
+  "COLUMN_LASTNAME": "Apellidos",
+  "COLUMN_STATUS": "Estado",
+
+  "WORD_ACTIVED": "Activo",
+  "WORD_INACTIVED": "Inactivo"
 }

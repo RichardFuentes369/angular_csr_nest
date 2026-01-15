@@ -25,3 +25,9 @@ export const BREADCRUMB_PATH_ASSIGN_ADMIN_USERS = 'Asignar';
 export const MOD_USER_PAGE_ADMIN_ASSIGMENT =  '/admin/mod/users/administradores/asignar-administrador/';
 export const MOD_USER_PAGE_ADMIN =  '/admin/mod/users/administradores/';
 export const MOD_USER_PAGE_FINAL =  '/admin/mod/users/finales/';
+
+export const CREAR_USUARIO_COMPONENT = 'CrearUsuariosComponent';
+export const VER_USUARIO_COMPONENT = 'VerUsuariosComponent';
+export const EDITAR_USUARIO_COMPONENT = 'EditarUsuariosComponent';
+export const FILTRO_USUARIO_COMPONENT = 'FiltroUsuariosComponent';
+export const EDITAR_MODULO_PERMISO_COMPONENT = 'EditarModuloPermisoComponent';

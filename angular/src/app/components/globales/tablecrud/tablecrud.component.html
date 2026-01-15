@@ -2,41 +2,41 @@
   <div class="botoneria mb-3">
     @if(tienePermiso('crear')){
       <button class="btn btn-primary btn-sm mx-1" (click)="newItem()" [disabled]="idsSeleccionados.length >= 1">
-        {{ 'global-tablecrud.Options.Create' | translate}}
+        {{ 'global-tablecrud.BUTTON_OPTION_CREATE' | translate}}
       </button>
     }
     @if(tienePermiso('ver')){
       <button class="btn btn-primary btn-sm mx-1" (click)="seeItem()" [disabled]="idsSeleccionados.length != 1">
-        {{ 'global-tablecrud.Options.See' | translate}}
+        {{ 'global-tablecrud.BUTTON_OPTION_SEE' | translate}}
       </button>
     }
     @if(tienePermiso('editar')){
       <button class="btn btn-primary btn-sm mx-1" (click)="editItem()" [disabled]="idsSeleccionados.length != 1">
-        {{ 'global-tablecrud.Options.Edit' | translate}}
+        {{ 'global-tablecrud.BUTTON_OPTION_EDIT' | translate}}
       </button>
     }
     @if(tienePermiso('eliminar_individual')){
       <button class="btn btn-primary btn-sm mx-1" (click)="deleteItem()" [disabled]="idsSeleccionados.length !== 1">
-        {{ 'global-tablecrud.Options.Delete' | translate}} ({{idsSeleccionados.length}})
+        {{ 'global-tablecrud.BUTTON_OPTION_DELETE' | translate}} ({{idsSeleccionados.length}})
       </button>
     }
     @if(tienePermiso('eliminar_multiple')){
       <button class="btn btn-primary btn-sm mx-1" (click)="deleteItem()" [disabled]="idsSeleccionados.length === 0">
-        {{ 'global-tablecrud.Options.Delete' | translate}} ({{idsSeleccionados.length}})
+        {{ 'global-tablecrud.BUTTON_OPTION_DELETE' | translate}} ({{idsSeleccionados.length}})
       </button>
     }
     @if(tienePermiso('asignar_permisos')){
       <button class="btn btn-primary btn-sm mx-1" (click)="assignItem($event)" [disabled]="idsSeleccionados.length !== 1">
-        {{ 'global-tablecrud.Options.Assign' | translate}} ({{idsSeleccionados.length}})
+        {{ 'global-tablecrud.BUTTON_OPTION_ASSIGN' | translate}} ({{idsSeleccionados.length}})
       </button>
     }
     @if(tienePermiso('estado_usuario')){
       <button class="btn btn-primary btn-sm mx-1" (click)="activedItem()" [disabled]="idsSeleccionados.length === 0">
-        {{ 'global-tablecrud.Options.Suspend' | translate}} ({{idsSeleccionados.length}})
+        {{ 'global-tablecrud.BUTTON_OPTION_SUSPEND' | translate}} ({{idsSeleccionados.length}})
       </button>
     }
     <button class="btn btn-secondary btn-sm mx-1" (click)="selectionClear()" [disabled]="idsSeleccionados.length === 0">
-      {{ 'global-tablecrud.Options.Clean' | translate}} ({{idsSeleccionados.length}})
+      {{ 'global-tablecrud.BUTTON_OPTION_CLEAR' | translate}} ({{idsSeleccionados.length}})
     </button> 
   </div>
 

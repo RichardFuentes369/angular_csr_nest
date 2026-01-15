@@ -2,7 +2,7 @@
   <div class="p-4">
     <div class="text-center">
       <h1 class="h4 text-gray-900 mb-4">
-        {{ 'global-login.Welcome' | translate}} {{ this.isLoginAdmin ? 'admin' : '' }}
+        {{ 'global-login.TITLE_WELCOME' | translate}} {{ this.isLoginAdmin ? 'admin' : '' }}
       </h1>
     </div>
     <form class="user">
@@ -12,7 +12,7 @@
           class="form-control form-control-user"
           id="exampleInputEmail"
           aria-describedby="emailHelp"
-          placeholder="{{ 'global-login.Email_Msj' | translate}}"
+          placeholder="{{ 'global-login.PLACEHOLDER_EMAIL' | translate}}"
           [(ngModel)]="model.email"
           name="model.email"
           >
@@ -23,7 +23,7 @@
             [(type)]="typefield"
             class="form-control form-control-user"
             id="exampleInputPassword"
-            placeholder="{{ 'global-login.Password_Msj' | translate}}"
+            placeholder="{{ 'global-login.PLACEHOLDER_PASSWORD' | translate}}"
             [(ngModel)]="model.password"
             name="model.password"
             >
@@ -39,7 +39,7 @@
           <div class="custom-control custom-checkbox small">
             <input type="checkbox" class="custom-control-input" id="customCheck">
             <label class="custom-control-label" for="customCheck">
-              {{ 'global-login.Remember_Msj' | translate}}
+              {{ 'global-login.LABEL_REMEMBER' | translate}}
             </label>
           </div>
         </div>
@@ -51,12 +51,12 @@
       @else {
       @if (this.isLoginAdmin === true) {
         <a class="btn btn-primary btn-user btn-block" (click)="ingresar()">
-          {{ 'global-login.Login_Msj' | translate}}
+          {{ 'global-login.TEXT_LOGIN' | translate}}
         </a>
       }
       @if (this.isLoginAdmin === false) {
         <a class="btn btn-primary btn-user btn-block" (click)="ingresar()">
-          {{ 'global-login.Login_Msj' | translate}}
+          {{ 'global-login.TEXT_LOGIN' | translate}}
         </a>
       }
     }
@@ -65,14 +65,14 @@
     @if (this.isLoginAdmin === false) {
       <div class="text-center">
         <a class="small">
-          {{ 'global-login.ForgotPassword_Msj' | translate}}
+          {{ 'global-login.TEXT_FORGOT_PASSWORD' | translate}}
         </a>
       </div>
     }
     @if (this.isLoginAdmin === false) {
       <div class="text-center">
         <a class="small">
-          {{ 'global-login.CreateAccount_Msj' | translate}}
+          {{ 'global-login.TEXT_CREATE_ACCOUNT' | translate}}
         </a>
       </div>
     }

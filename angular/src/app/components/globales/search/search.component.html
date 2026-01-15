@@ -5,7 +5,7 @@
 
   <div class="animated-card" [class.is-visible]="isFilterVisible">
     <h3 class="text-bg-primary">
-      {{ 'global-search.Title.ComponentName' | translate}}
+      {{ 'global-search.TITTLE_COMPONENT' | translate}}
     </h3>
 
     <div class="card-body pl-0 pr-0">
@@ -13,10 +13,10 @@
     </div>
 
     <button (click)="$event.stopPropagation(); limpiar()" class="btn-secondary btn btn-sm mt-2">
-      {{ 'global-search.Buttons.Clear' | translate}}
+      {{ 'global-search.BUTTON_CLEAR' | translate}}
     </button>
     <button (click)="$event.stopPropagation(); filtrar()" class="btn-primary btn btn-sm mt-2 mx-sm-2">
-      {{ 'global-search.Buttons.Filter' | translate}}
+      {{ 'global-search.BUTTON_FILTER' | translate}}
     </button>
   </div>
 
