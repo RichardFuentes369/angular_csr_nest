@@ -56,23 +56,23 @@ export class FinalesComponent implements OnInit{
   filters = ''
   columnas = [
     {
-      title: 'ID',
+      title: this.translate.instant('mod-users.COLUMN_ID'),
       data: 'id',
     },
     {
-      title: 'Email',
+      title: this.translate.instant('mod-users.COLUMN_EMAIL'),
       data: 'email',
     },
     {
-      title: 'First name',
+      title: this.translate.instant('mod-users.COLUMN_NAMES'),
       data: 'firstName',
     },
     {
-      title: 'Last name',
+      title: this.translate.instant('mod-users.COLUMN_LASTNAME'),
       data: 'lastName',
     },
     {
-      title: 'Status',
+      title: this.translate.instant('mod-users.COLUMN_STATUS'),
       data: 'isActive',
       render: function (data: any, type: any, row: any) {
         if (type === 'display') {
