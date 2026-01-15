@@ -1,9 +1,5 @@
 {
-  "Title": {
-    "Menu": "Menú"
-  },
-  "Pages": {
-    "Users": "Usuarios",
-    "Modules": "Modulos"
-  }
+  "TITTLE_MENU": "Menú",
+  "PAGES_USERS": "Usuarios",
+  "PAGES_MODULES": "Modulos"
 }

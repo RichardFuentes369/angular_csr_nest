@@ -1,56 +1,56 @@
 {
-  "Title": {
-    "Module": "Modulos",
-    "Submodules": "Submódulos",
-    "Permissions": "Permisos",
-    "CreateModule": "Crear modulo",
-    "EditModule": "Editar modulo",
-    "SeeModule": "Ver modulo",
-    "CreateSubModule": "Crear submodulo",
-    "EditSubModule": "Editar submodulo",
-    "SeeSubModule": "Ver submodulo",
-    "CreatePermission": "Crear permiso",
-    "EditPermission": "Editar permiso",
-    "SeePermission": "Ver permiso"
-  },
-  "Swal": {
-    "TitleAreYouSure": "Estas seguro?",
-    "TitleWarnigRevert": "No podras reviertir este cambio!",
-    "TitleCreate": "Creado",
-    "TitleUpdate": "Actualizado",
-    "TitleCancel": "Cancelar",
-    "TitleDelete": "Eliminar!",
-    "TitleRegisterUpdated": "Registro actualizado",
-    "TitleRegisterCreate": "Registro creado",
-    "TitleRegisterDeleted": "Registro eliminado",
-    "TitleRegisterInactived": "Registro desactivado",
-    "TitleRegisterActived": "Registro activado",
-    "TitleActived": "Activar",
-    "TitleInactived": "Inactivar"
-  },
-  "Label": {
-    "namePermission": "Nombre permiso",
-    "nickPermission": "Permiso",
-    "descriptionPermission": "Descripción",
-    "hasModules": "Tendra submódulos"
-  },
-  "Placeholder": {
-    "namePermission": "",
-    "nickPermission": "",
-    "descriptionPermission": ""
-  },
-  "Error": {
-    "namePermission": "",
-    "nickPermission": "",
-    "descriptionPermission": ""
-  },
-  "Buttons": {
-    "createModuloPermiso": "Crear modulo permiso"
-  },
-  "Column": {
-    "PermissioName": "Nombre del permiso",
-    "Permission": "Permiso",
-    "Description": "Descripción",
-    "Submodules": "Submódulos"
-  }
+  "UNKNOW_MODULE_TITLE": "Desconocido",
+
+  "MODULE_TITLE": "Modulos",
+  "CREATE_MODULE_TITLE": "Crear nuevo modulo",
+  "EDIT_MODULE_TITLE": "Editar modulo {{module_name}}",
+  
+  "SUBMODULE_TITLE": "Submodulos",
+  "CREATE_SUBMODULE_TITLE": "Crear nuevo submodulo",
+  "EDIT_SUBMODULE_TITLE": "Editar submodulo {{submodule_name}}",
+  
+  "PERMISSION_TITLE": "Permiso",
+  "CREATE_PERMISSION_TITLE": "Crear nuevo permiso",
+  "EDIT_PERMISSION_TITLE": "Editar permiso {{permission_name}}",
+
+  "SWAL_ARE_YOU_SURE": "¿Esta seguro de eliminar el permiso {{permission_name}}?",
+  "SWAL_WARNING_REVERSE_CHANGE": "¡No podrás revertir esto!",
+  "SWAL_CREATED": "¡Permiso!",
+  "SWAL_CREATED_RECORD": "Creado exitosamente.",
+  "SWAL_UPADTED": "¡Permiso!",
+  "SWAL_UPDATED_RECORD": "Actualizado exitosamente.",
+  "SWAL_BUTTON_DELETE": "Eliminar",
+  "SWAL_BUTTON_CANCEL": "Cancelar",
+  "SWAL_DELETED": "¡Permiso!",
+  "SWAL_DELETED_RECORD": "Eliminado exitosamente.",
+
+  "LABEL_PERMISSION_NAME": "Modulo/Permiso",
+  "LABEL_PERMISSION_NICKNAME": "Identificador",
+  "LABEL_PERMISSION_DESCRIPTION": "Descripción",
+  "LABEL_HAS_MODULES": "Tiene permisos",
+
+  "PLACEHOLDER_PERMISSION_NAME": "Nombre del modulo-permiso",
+  "PLACEHOLDER_PERMISSION_NICKNAME": "Identificador del modulo-permiso",
+  "PLACEHOLDER_PERMISSION_DESCRIPTION": "¿Para que usara este permiso?",
+
+  "ERROR_PERMISSION_NAME": "",
+  "ERROR_PERMISSION_NICKNAME": "",
+  "ERROR_PERMISSION_DESCRIPTION": "",
+
+  "BUTTON_CREATE_PERMISSION_MODULE": "Create modulo/permiso",
+  "BUTTON_EDIT_PERMISSION_MODULE": "Editar modulo/permiso",
+
+  "BUTTON_SAVE_": "Guardar",
+  "BUTTON_UPDATE_": "Actualizar",
+  "BUTTON_CANCEL": "Cancelar",
+
+  "COLUMN_MODULE_NAME": "Nombre del modulo",
+  "COLUMN_SUBMODULE_NAME": "Nombre del submodulo",
+  "COLUMN_PERMISSION_NAME": "Nombre del permiso",
+  "COLUMN_PERMISSION_NICKNAME": "Identificador",
+  "COLUMN_DESCRIPTION": "Descripción",
+  "COLUMN_HAS_SUBMODULE": "Tiene submodulos",
+
+  "WORD_YES": "Si",
+  "WORD_NO": "No"
 }

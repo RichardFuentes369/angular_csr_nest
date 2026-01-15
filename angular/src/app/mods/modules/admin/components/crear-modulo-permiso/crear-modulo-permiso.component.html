@@ -3,29 +3,29 @@
     <div class="col-sm-12 row p-0">
       <div class="col-sm-12 form-group">
         <label for="exampleInputEmail1">
-          {{ 'mod-modules.Label.namePermission' | translate}}
+          {{ 'mod-modules.LABEL_PERMISSION_NAME' | translate}}
         </label>
-        <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.nombre" aria-describedby="emailHelp" placeholder="{{ 'mod-modules.Placeholder.namePermission' | translate}}">
-        <small id="emailHelp" class="form-text text-muted">{{ 'mod-modules.Error.namePermission' | translate}}</small>
+        <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.nombre" aria-describedby="emailHelp" placeholder="{{ 'mod-modules.PLACEHOLDER_PERMISSION_NAME' | translate}}">
+        <small id="emailHelp" class="form-text text-muted">{{ 'mod-modules.ERROR_PERMISSION_NAME' | translate}}</small>
       </div>
       <div class="col-sm-12 form-group">
         <label for="exampleInputEmail1">
-          {{ 'mod-modules.Label.nickPermission' | translate}}
+          {{ 'mod-modules.LABEL_PERMISSION_NICKNAME' | translate}}
         </label>
-        <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.permiso" aria-describedby="emailHelp" placeholder="{{ 'mod-modules.Placeholder.nickPermission' | translate}}">
-        <small id="emailHelp" class="form-text text-muted">{{ 'mod-modules.Error.nickPermission' | translate}}</small>
+        <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.permiso" aria-describedby="emailHelp" placeholder="{{ 'mod-modules.PLACEHOLDER_PERMISSION_NICKNAME' | translate}}">
+        <small id="emailHelp" class="form-text text-muted">{{ 'mod-modules.ERROR_PERMISSION_NICKNAME' | translate}}</small>
       </div>
       <div class="col-sm-12 form-group">
         <label for="exampleInputEmail1">
-          {{ 'mod-modules.Label.descriptionPermission' | translate}}
+          {{ 'mod-modules.LABEL_PERMISSION_DESCRIPTION' | translate}}
         </label>
-        <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.descripcion" aria-describedby="emailHelp" placeholder="{{ 'mod-modules.Placeholder.descriptionPermission' | translate}}">
-        <small id="emailHelp" class="form-text text-muted">{{ 'mod-modules.Error.descriptionPermission' | translate}}</small>
+        <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.descripcion" aria-describedby="emailHelp" placeholder="{{ 'mod-modules.PLACEHOLDER_PERMISSION_DESCRIPTION' | translate}}">
+        <small id="emailHelp" class="form-text text-muted">{{ 'mod-modules.ERROR_PERMISSION_DESCRIPTION' | translate}}</small>
       </div>
       @if(mostrarCheck){
         <div class="col-sm-12 form-group">
           <label for="exampleInputEmail1">
-            {{ 'mod-modules.Label.hasModules' | translate}}
+            {{ 'mod-modules.LABEL_HAS_MODULES' | translate}}
           </label>
           <input type="checkbox" [(ngModel)]="model.tiene_submodulos">
         </div>
@@ -34,7 +34,7 @@
     <div class="col-sm-12 row p-0">
       <div class="col-sm-12">
         <button class="btn btn-sm btn-primary btnAction d-none" (click)="crearModuloPermiso()">
-          {{ 'mod-modules.Buttons.createModuloPermiso' | translate}}
+          {{ 'mod-modules.BUTTON_CREATE_PERMISSION_MODULE' | translate}}
         </button>
       </div>
     </div>

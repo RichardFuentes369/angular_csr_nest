@@ -1,56 +1,56 @@
 {
-  "Title": {
-    "Module": "Modules",
-    "Submodules": "Submodules",
-    "Permissions": "Permissions",
-    "CreateModule": "Create module",
-    "EditModule": "Edit module",
-    "SeeModule": "See module",
-    "CreateSubModule": "Crear submodulo",
-    "EditSubModule": "Edit submodule",
-    "SeeSubModule": "See submodule",
-    "CreatePermission": "Create permission",
-    "EditPermission": "Edit permission",
-    "SeePermission": "See permission"
-  },
-  "Swal": {
-    "TitleAreYouSure": "Are you sure?",
-    "TitleWarningRevert": "You will not be able to revert this change!",
-    "TitleCreate": "Created",
-    "TitleUpdate": "Updated",
-    "TitleCancel": "Cancel",
-    "TitleDelete": "Delete!",
-    "TitleRegisterUpdated": "Registration updated",
-    "TitleRegisterCreate": "Registration created",
-    "TitleRegisterDeleted": "Registration deleted",
-    "TitleRegisterInactived": "Registration disabled",
-    "TitleRegisterActived": "Registration enabled",
-    "TitleActived": "Activate",
-    "TitleInactived": "Inactivate"
-  },
-  "Label": {
-    "namePermission": "Permission name",
-    "nickPermission": "Permission",
-    "descriptionPermission": "Description",
-    "hasModules": "Will have modules"
-  },
-  "Placeholder": {
-    "namePermission": "",
-    "nickPermission": "",
-    "descriptionPermission": ""
-  },
-  "Error": {
-    "namePermission": "",
-    "nickPermission": "",
-    "descriptionPermission": ""
-  },
-  "Buttons": {
-    "createModuloPermiso": "Create module/permission"
-  },
-  "Column": {
-   "PermissioName": "Permission Name",
-   "Permission": "Permission",
-   "Description": "Description", 
-   "Submodules": "Submodules"
-  }
+  "UNKNOW_MODULE_TITLE": "Unknown",
+
+  "MODULE_TITLE": "Modules",
+  "CREATE_MODULE_TITLE": "Create new module",
+  "EDIT_MODULE_TITLE": "Edit module {{module_name}}",
+
+  "SUBMODULE_TITLE": "Submodules",
+  "CREATE_SUBMODULE_TITLE": "Create new submodule",
+  "EDIT_SUBMODULE_TITLE": "Edit submodule {{submodule_name}}",
+
+  "PERMISSION_TITLE": "Permission",
+  "CREATE_PERMISSION_TITLE": "Create new permission",
+  "EDIT_PERMISSION_TITLE": "Edit permission {{permission_name}}",
+
+  "SWAL_ARE_YOU_SURE": "Are you sure you want to delete permission {{permission_name}}?",
+  "SWAL_WARNING_REVERSE_CHANGE": "You won't be able to revert this!",
+  "SWAL_CREATED": "Permission!",
+  "SWAL_CREATED_RECORD": "Created successfully.",
+  "SWAL_UPDATED": "Permission!",
+  "SWAL_UPDATED_RECORD": "Updated successfully.",
+  "SWAL_BUTTON_DELETE": "Delete",
+  "SWAL_BUTTON_CANCEL": "Cancel",
+  "SWAL_DELETED": "Permission!",
+  "SWAL_DELETED_RECORD": "Deleted successfully.",
+
+  "LABEL_PERMISSION_NAME": "Module/Permission",
+  "LABEL_PERMISSION_NICKNAME": "Identifier",
+  "LABEL_PERMISSION_DESCRIPTION": "Description",
+  "LABEL_HAS_MODULES": "Has permissions",
+
+  "PLACEHOLDER_PERMISSION_NAME": "Module/permission name",
+  "PLACEHOLDER_PERMISSION_NICKNAME": "Module/permission identifier",
+  "PLACEHOLDER_PERMISSION_DESCRIPTION": "What will this permission be used for?",
+
+  "ERROR_PERMISSION_NAME": "",
+  "ERROR_PERMISSION_NICKNAME": "",
+  "ERROR_PERMISSION_DESCRIPTION": "",
+
+  "BUTTON_CREATE_PERMISSION_MODULE": "Create module/permission",
+  "BUTTON_EDIT_PERMISSION_MODULE": "Edit module/permission",
+
+  "BUTTON_SAVE_": "Save",
+  "BUTTON_UPDATE_": "Update",
+  "BUTTON_CANCEL": "Cancel",
+
+  "COLUMN_MODULE_NAME": "Module Name",
+  "COLUMN_SUBMODULE_NAME": "Submodule Name",
+  "COLUMN_PERMISSION_NAME": "Permission Name",
+  "COLUMN_PERMISSION_NICKNAME": "Permission",
+  "COLUMN_DESCRIPTION": "Description",
+  "COLUMN_HAS_SUBMODULE": "Submodules",
+
+  "WORD_YES": "Yes",
+  "WORD_NO": "No"
 }

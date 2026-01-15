@@ -67,10 +67,10 @@ export class CrearModuloPermisoComponent implements OnInit{
     }
     if(response.data.status == 200){
       ocultarModalOscura()
-      this.translate.get('mod-modules.Swal.TitleAreYouSure').subscribe((translatedTitle: string) => {
+      this.translate.get('mod-modules.SWAL_ARE_YOU_SURE').subscribe((translatedTitle: string) => {
         Swal.fire({
-          title: this.translate.instant('mod-modules.Swal.TitleCreate'),
-          text: this.translate.instant('mod-modules.Swal.TitleRegisterCreate'),
+          title: this.translate.instant('mod-modules.SWAL_CREATED'),
+          text: this.translate.instant('mod-modules.SWAL_CREATED_RECORD'),
           icon: "success"
         });
       });

@@ -6,13 +6,12 @@ import { AuthService } from '@guard/service/auth.service';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { ModulosService } from '@mod/modules/admin/service/modulos.service';
 import Swal from 'sweetalert2'
-
-import { Permisos } from '@function/System'
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
-import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
-import { MOD_MODULES_PAGE_MODULES, STORAGE_KEY_SUBMODULE } from '@mod/modules/const/modules.const';
+import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL } from '@const/app.const';
+import { CREAR_MODULO_PERMISO_COMPONENT, EDITAR_MODULO_PERMISO_COMPONENT, MOD_MODULES_PAGE_MODULES, STORAGE_KEY_SUBMODULE } from '@mod/modules/const/modules.const';
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { Subscription, timer } from 'rxjs';
+
 @Component({
   selector: 'app-permisos',
   standalone: true,
@@ -78,15 +77,15 @@ export class PermisosComponent implements OnInit{
   endPoint = `modulos/getPermisosSobrePadre/${localStorage.getItem(STORAGE_KEY_SUBMODULE)}`
   columnas = [
     {
-      title: this.translate.instant('mod-modules.Column.PermissioName'),
+      title: this.translate.instant('mod-modules.COLUMN_PERMISSION_NAME'),
       data: 'nombre',
     },
     {
-      title: this.translate.instant('mod-modules.Column.Permission'),
+      title: this.translate.instant('mod-modules.COLUMN_PERMISSION_NICKNAME'),
       data: 'permiso',
     },
     {
-      title: this.translate.instant('mod-modules.Column.Description'),
+      title: this.translate.instant('mod-modules.COLUMN_DESCRIPTION'),
       data: 'descripcion',
     },
   ]
@@ -97,11 +96,11 @@ export class PermisosComponent implements OnInit{
   scrollable = false
   title = ""
   save = true
-  buttonSave = "Guardar"
+  buttonSave = this.translate.instant('mod-modules.BUTTON_SAVE_')
   edit = true
-  buttonEdit = "Editar"
+  buttonEdit = this.translate.instant('mod-modules.BUTTON_UPDATE_')
   cancel = true
-  buttonCancel = "Cancelar"
+  buttonCancel = this.translate.instant('mod-modules.BUTTON_CANCEL')
   cierreModal = "true"
   componentePrecargado = ""
 
@@ -111,21 +110,20 @@ export class PermisosComponent implements OnInit{
   buttonSearch = "Buscar"
   iconFilter="fa fa-filter"
 
-
   listar(){
     this.columnas = [
       {
-        title: this.translate.instant('mod-modules.Column.PermissioName'),
+        title: this.translate.instant('mod-modules.COLUMN_PERMISSION_NAME'),
         data: 'nombre',
       },
       {
-        title: this.translate.instant('mod-modules.Column.Permission'),
+        title: this.translate.instant('mod-modules.COLUMN_PERMISSION_NICKNAME'),
         data: 'permiso',
       },
       {
-        title: this.translate.instant('mod-modules.Column.Description'),
+        title: this.translate.instant('mod-modules.COLUMN_DESCRIPTION'),
         data: 'descripcion',
-      }
+      },
     ]
   }
 
@@ -133,40 +131,41 @@ export class PermisosComponent implements OnInit{
     // localStorage.setItem('profile', 'user')
     this.tamano = "xl"
     this.scrollable = false
-    this.title = this.translate.instant('mod-modules.Title.CreatePermission')
+    this.title = this.translate.instant('mod-modules.CREATE_PERMISSION_TITLE')
     this.save = true
-    this.buttonSave = "Guardar"
+    this.buttonSave = this.translate.instant('mod-modules.BUTTON_SAVE_')
     this.edit = false
-    this.buttonEdit = "Editar"
+    this.buttonEdit = this.translate.instant('mod-modules.BUTTON_UPDATE_')
     this.cancel = true
-    this.buttonCancel = "Cancelar"
+    this.buttonCancel = this.translate.instant('mod-modules.BUTTON_CANCEL')
     this.cierreModal = "true"
-    this.componentePrecargado = "CrearModuloPermisoComponent"
+    this.componentePrecargado = CREAR_MODULO_PERMISO_COMPONENT
 
     const idButton = document.getElementById('miBoton')
     if(idButton){
-      idButton.setAttribute('componente', this.componentePrecargado);
+      idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
     }
   }
 
-  editarData (_id: string){
-    // localStorage.setItem('profile', 'user')
+  async editarData (_id: string){
+    const response = await this.modulosService.getHasSubmodule(+_id)
+    const { nombre } = response.data?.[0] || { nombre: 'xxxxxxx' }
+    this.translate.get('mod-modules.EDIT_PERMISSION_TITLE', { "permission_name": nombre }).subscribe((res: string) => {this.title = res});
     this.tamano = "xl"
     this.scrollable = false
-    this.title = this.translate.instant('mod-modules.Title.EditPermission')
     this.save = true
-    this.buttonSave = "Guardar"
+    this.buttonSave = this.translate.instant('mod-modules.BUTTON_SAVE_')
     this.edit = false
-    this.buttonEdit = "Editar"
+    this.buttonEdit = this.translate.instant('mod-modules.BUTTON_UPDATE_')
     this.cancel = true
-    this.buttonCancel = "Cancelar"
+    this.buttonCancel = this.translate.instant('mod-modules.BUTTON_CANCEL')
     this.cierreModal = "true"
-    this.componentePrecargado = "EditarModuloPermisoComponent"
+    this.componentePrecargado = EDITAR_MODULO_PERMISO_COMPONENT
 
     const idButton = document.getElementById('miBoton')
     if(idButton){
-      idButton.setAttribute('componente', this.componentePrecargado);
+      idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
     }
     console.log("editarData "+_id)
@@ -175,15 +174,17 @@ export class PermisosComponent implements OnInit{
 
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
-  eliminarData (_id: string[]){
-    this.translate.get('mod-modules.Swal.TitleAreYouSure').subscribe((translatedTitle: string) => {
+  async eliminarData (_id: string[]){
+    const response = await this.modulosService.getHasSubmodule(+_id)
+    const { nombre } = response.data?.[0] || { nombre: 'xxxxxxx' }
+    this.translate.get('mod-modules.SWAL_ARE_YOU_SURE', { "permission_name": nombre }).subscribe((translatedTitle: string) => {
       Swal.fire({
         title: translatedTitle,
-        text: this.translate.instant('mod-modules.Swal.TitleWarnigRevert'),
+        text: this.translate.instant('mod-modules.SWAL_WARNING_REVERSE_CHANGE'),
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: this.translate.instant('mod-modules.Swal.TitleDelete'),
-        cancelButtonText: this.translate.instant('mod-modules.Swal.TitleCancel')
+        confirmButtonText: this.translate.instant('mod-modules.SWAL_BUTTON_DELETE'),
+        cancelButtonText: this.translate.instant('mod-modules.SWAL_BUTTON_CANCEL')
       }).then(async (result) => {
         if (result.isConfirmed) {
           let response = await this.modulosService.eliminarPermiso(_id)
@@ -191,14 +192,14 @@ export class PermisosComponent implements OnInit{
 
           if (response.data.status == 200) {
             Swal.fire({
-              title: this.translate.instant('mod-modules.Swal.TitleDelete'),
-              text: this.translate.instant('mod-modules.Swal.TitleRegisterDeleted'),
+              title: this.translate.instant('mod-modules.SWAL_DELETED'),
+              text: this.translate.instant('mod-modules.SWAL_DELETED_RECORD'),
               icon: "success"
             });
           }
           if (response.data.status == 404) {
             Swal.fire({
-              title: this.translate.instant('mod-modules.Swal.TitleDelete'),
+              title: this.translate.instant('mod-modules.SWAL_DELETED'),
               text: response.data.message,
               icon: "error"
             });

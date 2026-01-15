@@ -28,8 +28,8 @@
             </label>
             <select name="" id="" class="form-control" [(ngModel)]="model.isActive">
                 <option value="">{{ 'mod-users.Placeholder.select' | translate}}</option>
-                <option value="0">Inactivo</option>
-                <option value="1">Activo</option>
+                <option value="0">{{ 'mod-users.Placeholder.isActive' | translate}}</option>
+                <option value="1">{{ 'mod-users.Placeholder.isInactive' | translate}}</option>
             </select>
             <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.Error.isActive' | translate}}</small>
         </div>
