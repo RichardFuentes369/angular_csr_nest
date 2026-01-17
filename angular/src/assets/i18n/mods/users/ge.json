@@ -36,7 +36,7 @@
   "SWAL_INACTIVED_ALL_USER": "Deaktiviert die ausgewählten {{count_users}} Benutzer.",
 
   "LABEL_USER_FIRSTNAME": "Vorname.",
-  "LABEL_USER_LASTTNAME": "Nachname.",
+  "LABEL_USER_LASTNAME": "Nachname.",
   "LABEL_USER_EMAIL": "E-Mail-Adresse.",
   "LABEL_USER_PASSWORD": "Passwort.",
   "LABEL_USER_STATUS": "Status",

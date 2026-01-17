@@ -27,12 +27,17 @@
   "LABEL_PERMISSION_NAME": "Modulo/Permiso",
   "LABEL_PERMISSION_NICKNAME": "Identificador",
   "LABEL_PERMISSION_DESCRIPTION": "Descripción",
-  "LABEL_HAS_MODULES": "Tiene permisos",
+  "LABEL_PERMISSION_HAS_": "Tiene",
+  "SELECT_STATUS_MODULE_OR_PERMISSION_SELECT_OPTION": "Seleccione",
+  "LABEL_HAS_SUBMODULE": "Submodulos",
+  "LABEL_HAS_PERMISSION": "Permisos",
 
   "PLACEHOLDER_PERMISSION_NAME": "Nombre del modulo-permiso",
   "PLACEHOLDER_PERMISSION_NICKNAME": "Identificador del modulo-permiso",
   "PLACEHOLDER_PERMISSION_DESCRIPTION": "¿Para que usara este permiso?",
 
+  "ERROR_WORD": "Seleccione",
+  "ERROR_SELECT_ONE": "una opción",
   "ERROR_PERMISSION_NAME": "",
   "ERROR_PERMISSION_NICKNAME": "",
   "ERROR_PERMISSION_DESCRIPTION": "",
@@ -51,6 +56,7 @@
   "COLUMN_PERMISSION_NICKNAME": "Identificador",
   "COLUMN_DESCRIPTION": "Descripción",
   "COLUMN_HAS_SUBMODULE": "Tiene submodulos",
+  "COLUMN_HAS_PERMISSION": "Tiene permisos",
 
   "WORD_YES": "Si",
   "WORD_NO": "No"

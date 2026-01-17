@@ -22,5 +22,9 @@ export class EditModuloDto {
   // @Transform(({value}) => value.trim())
   readonly tiene_submodulos;
 
+  @IsBoolean()
+  // @Transform(({value}) => value.trim())
+  readonly tiene_permisos;
+
   
 }

@@ -15,6 +15,10 @@ export class CreateModuloDto {
   // @Transform(({value}) => value.trim())
   readonly tiene_submodulos;
 
+  @IsBoolean()
+  // @Transform(({value}) => value.trim())
+  readonly tiene_permisos;
+
   @IsString()
   // @Transform(({value}) => value.trim())
   readonly permiso;

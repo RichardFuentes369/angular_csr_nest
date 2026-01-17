@@ -25,36 +25,67 @@ export class CrearModuloPermisoComponent implements OnInit{
     private modulosService :ModulosService,
   ){}
 
-  mostrarCheck = false
+  showSelect = false
+  showSelectOption = false
+  hasSubmodule = false
+  hasPermission = false
+
+  optionSelect = 0
 
   model = {
     modulo_padre_id: 0,
     nombre: '',
     permiso: '',
     descripcion: '',
-    tiene_submodulos: false
+    tiene_submodulos: false,
+    tiene_permisos: false
   }
 
   async ngOnInit() {
-    if(localStorage.getItem(STORAGE_KEY_MODULE) && !localStorage.getItem(STORAGE_KEY_SUBMODULE)){
-      this.model.modulo_padre_id = parseInt(localStorage.getItem(STORAGE_KEY_MODULE) ?? '0', 10)
-      this.mostrarCheck = false
-    }
-    if(!localStorage.getItem(STORAGE_KEY_MODULE) && localStorage.getItem(STORAGE_KEY_SUBMODULE)){
-      this.model.modulo_padre_id = parseInt(localStorage.getItem(STORAGE_KEY_SUBMODULE) ?? '0', 10)
-      this.mostrarCheck = false
-    }
-    if(localStorage.getItem(STORAGE_KEY_MODULE) && localStorage.getItem(STORAGE_KEY_SUBMODULE)){
-      this.model.modulo_padre_id = parseInt(localStorage.getItem(STORAGE_KEY_SUBMODULE) ?? '0', 10)
-      this.mostrarCheck = false
-    }
     if(!localStorage.getItem(STORAGE_KEY_MODULE) && !localStorage.getItem(STORAGE_KEY_SUBMODULE)){
       this.model.modulo_padre_id = 0
-      this.mostrarCheck = true
+      this.showSelect = true
+      this.showSelectOption = true
+      this.hasSubmodule = true
+      this.hasPermission = true
+    }
+    if(localStorage.getItem(STORAGE_KEY_MODULE) && !localStorage.getItem(STORAGE_KEY_SUBMODULE)){
+      this.model.modulo_padre_id = Number(localStorage.getItem(STORAGE_KEY_MODULE))
+      this.showSelect = true
+      this.showSelectOption = false
+      this.hasSubmodule = false
+      this.hasPermission = true
+    }
+    if(localStorage.getItem(STORAGE_KEY_MODULE) && localStorage.getItem(STORAGE_KEY_SUBMODULE)){
+      this.model.modulo_padre_id = Number(localStorage.getItem(STORAGE_KEY_SUBMODULE))
+      this.showSelectOption = false
+      this.hasSubmodule = false
+      this.hasPermission = true
+    }
+    if(!localStorage.getItem(STORAGE_KEY_MODULE) && localStorage.getItem(STORAGE_KEY_SUBMODULE)){
+      this.model.modulo_padre_id = Number(localStorage.getItem(STORAGE_KEY_SUBMODULE))
+      this.showSelectOption = false
+      this.showSelect = false
+      this.hasSubmodule = false
+      this.hasPermission = false
     }
   }
 
   async crearModuloPermiso(){
+    if(this.optionSelect == 0) {
+      this.translate.get('mod-modules.SWAL_ARE_YOU_SURE').subscribe((translatedTitle: string) => {
+        Swal.fire({
+          title: this.translate.instant('mod-modules.ERROR_WORD'),
+          text: this.translate.instant('mod-modules.ERROR_SELECT_ONE'),
+          icon: 'error',
+          confirmButtonText: 'Cool'
+        })
+      });
+    }
+
+    this.model.tiene_submodulos = (this.optionSelect == 1) ? true : false
+    this.model.tiene_permisos = (this.optionSelect == 2) ? true : false
+
     const response = await this.modulosService.crearPermiso(this.model)
     if(response.data.status == 404){
       ocultarModalOscura()

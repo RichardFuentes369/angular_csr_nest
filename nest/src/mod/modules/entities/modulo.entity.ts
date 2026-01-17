@@ -15,6 +15,9 @@ export class Modulo {
   @Column({ default: false })
   tiene_submodulos: boolean;
 
+  @Column({ default: false })
+  tiene_permisos: boolean;
+
   @Column({ nullable: true })
   descripcion: string;
 

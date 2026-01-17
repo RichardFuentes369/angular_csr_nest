@@ -84,6 +84,16 @@ export class SubmodulosComponent implements OnInit{
       title: this.translate.instant('mod-modules.COLUMN_DESCRIPTION'),
       data: 'descripcion',
     },
+    {
+      title: this.translate.instant('mod-modules.COLUMN_HAS_PERMISSION'),
+      data: 'tiene_permisos',
+      render: (data: any, type: any, row: any) => {
+        if (type === 'display') {
+          return data ? this.translate.instant('mod-modules.WORD_YES') : this.translate.instant('mod-modules.WORD_NO');
+        }
+        return data;
+      }
+    }
   ]
   permisosAcciones = this.permisos
   // fin datos que envio al componente
@@ -120,6 +130,16 @@ export class SubmodulosComponent implements OnInit{
         title: this.translate.instant('mod-modules.COLUMN_DESCRIPTION'),
         data: 'descripcion',
       },
+      {
+        title: this.translate.instant('mod-modules.COLUMN_HAS_PERMISSION'),
+        data: 'tiene_permisos',
+        render: (data: any, type: any, row: any) => {
+          if (type === 'display') {
+            return data ? this.translate.instant('mod-modules.WORD_YES') : this.translate.instant('mod-modules.WORD_NO');
+          }
+          return data;
+        }
+      }
     ]
   }
 

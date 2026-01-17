@@ -25,13 +25,18 @@
 
   "LABEL_PERMISSION_NAME": "Modul/Berechtigung",
   "LABEL_PERMISSION_NICKNAME": "Kennung",
+  "LABEL_PERMISSION_HAS_": "Hat",
   "LABEL_PERMISSION_DESCRIPTION": "Beschreibung",
-  "LABEL_HAS_MODULES": "Hat Berechtigungen",
+  "SELECT_STATUS_MODULE_OR_PERMISSION_SELECT_OPTION": "Wählen",
+  "LABEL_HAS_SUBMODULE": "Submodule",
+  "LABEL_HAS_PERMISSION": "Berechtigungen",
 
   "PLACEHOLDER_PERMISSION_NAME": "Modul-/Berechtigungsname",
   "PLACEHOLDER_PERMISSION_NICKNAME": "Modul-/Berechtigungskennung",
   "PLACEHOLDER_PERMISSION_DESCRIPTION": "Wofür wird diese Berechtigung verwendet?",
 
+  "ERROR_WORD": "Auswählen",
+  "ERROR_SELECT_ONE": "eine Option",
   "ERROR_PERMISSION_NAME": "",
   "ERROR_PERMISSION_NICKNAME": "",
   "ERROR_PERMISSION_DESCRIPTION": "",
@@ -48,7 +53,8 @@
   "COLUMN_PERMISSION_NAME": "Berechtigungsname",
   "COLUMN_PERMISSION_NICKNAME": "Berechtigung",
   "COLUMN_DESCRIPTION": "Beschreibung",
-  "COLUMN_HAS_SUBMODULE": "Submodule",
+  "COLUMN_HAS_SUBMODULE": "Hat Submodule",
+  "COLUMN_HAS_PERMISSION": "Hat Berechtigungen",
 
   "WORD_YES": "Ja",
   "WORD_NO": "Nein"

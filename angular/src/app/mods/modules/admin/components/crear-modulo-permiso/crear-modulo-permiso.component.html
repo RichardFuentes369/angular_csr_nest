@@ -22,13 +22,31 @@
         <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.descripcion" aria-describedby="emailHelp" placeholder="{{ 'mod-modules.PLACEHOLDER_PERMISSION_DESCRIPTION' | translate}}">
         <small id="emailHelp" class="form-text text-muted">{{ 'mod-modules.ERROR_PERMISSION_DESCRIPTION' | translate}}</small>
       </div>
-      @if(mostrarCheck){
-        <div class="col-sm-12 form-group">
-          <label for="exampleInputEmail1">
-            {{ 'mod-modules.LABEL_HAS_MODULES' | translate}}
-          </label>
-          <input type="checkbox" [(ngModel)]="model.tiene_submodulos">
-        </div>
+      
+      @if(showSelect){
+      <div class="col-sm-12 form-group">
+        <label for="exampleInputEmail1">
+          {{ 'mod-modules.LABEL_PERMISSION_HAS_' | translate}}
+        </label>
+        <select [(ngModel)]="optionSelect" class="form-control">
+          @if(showSelectOption){
+            <option value="0">
+              {{ 'mod-modules.SELECT_STATUS_MODULE_OR_PERMISSION_SELECT_OPTION' | translate}}
+            </option>
+          }
+          @if(hasSubmodule){
+            <option value="1">
+              {{ 'mod-modules.LABEL_HAS_SUBMODULE' | translate}}
+            </option>
+          }
+          @if(hasPermission){
+            <option value="2">
+              {{ 'mod-modules.LABEL_HAS_PERMISSION' | translate}}
+            </option>
+          }
+        </select>
+        <small id="emailHelp" class="form-text text-muted">{{ 'mod-modules.ERROR_PERMISSION_DESCRIPTION' | translate}}</small>
+      </div>
       }
     </div>  
     <div class="col-sm-12 row p-0">
