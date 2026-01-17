@@ -1,0 +1,54 @@
+{
+  "UNKNOW_MODULE_TITLE": "Inconnu",
+
+  "MODULE_TITLE": "Modules",
+  "CREATE_MODULE_TITLE": "Créer un nouveau module",
+  "EDIT_MODULE_TITLE": "Modifier le module {{module_name}}",
+  "SUBMODULE_TITLE": "Sous-modules",
+  "CREATE_SUBMODULE_TITLE": "Créer un nouveau sous-module",
+  "EDIT_SUBMODULE_TITLE": "Modifier le sous-module {{submodule_name}}",
+  "PERMISSION_TITLE": "Permission",
+  "CREATE_PERMISSION_TITLE": "Créer une nouvelle permission",
+  "EDIT_PERMISSION_TITLE": "Modifier la permission {{permission_name}}",
+
+  "SWAL_ARE_YOU_SURE": "Êtes-vous sûr de vouloir supprimer la permission {{permission_name}}?",
+  "SWAL_WARNING_REVERSE_CHANGE": "Vous ne pourrez pas annuler cette action !",
+  "SWAL_CREATED": "Autorisation !",
+  "SWAL_CREATED_RECORD": "Créé avec succès.",
+  "SWAL_UPDATED": "Autorisation !",
+  "SWAL_UPDATED_RECORD": "Mis à jour avec succès.",
+  "SWAL_BUTTON_DELETE": "Supprimer",
+  "SWAL_BUTTON_CANCEL": "Annuler",
+  "SWAL_DELETED": "Autorisation !",
+  "SWAL_DELETED_RECORD": "Supprimé avec succès.",
+
+  "LABEL_PERMISSION_NAME": "Module/Autorisation",
+  "LABEL_PERMISSION_NICKNAME": "Identifiant",
+  "LABEL_PERMISSION_DESCRIPTION": "Description",
+  "LABEL_HAS_MODULES": "Contient permissions",
+
+  "PLACEHOLDER_PERMISSION_NAME": "Nom du module/de l'autorisation",
+  "PLACEHOLDER_PERMISSION_NICKNAME": "Identifiant du module/de l'autorisation",
+  "PLACEHOLDER_PERMISSION_DESCRIPTION": "À quoi servira cette autorisation ?",
+
+  "ERROR_PERMISSION_NAME": "",
+  "ERROR_PERMISSION_NICKNAME": "",
+  "ERROR_PERMISSION_DESCRIPTION": "",
+
+  "BUTTON_CREATE_PERMISSION_MODULE": "Créer un module/une autorisation",
+  "BUTTON_EDIT_PERMISSION_MODULE": "Modifier un module/une autorisation",
+  "BUTTON_SAVE_": "Enregistrer",
+  "BUTTON_UPDATE_": "Mettre à jour",
+  "BUTTON_CANCEL": "Annuler",
+  "BUTTON_SEARCH": "Rechercher",
+
+  "COLUMN_MODULE_NAME": "Nom du module",
+  "COLUMN_SUBMODULE_NAME": "Nom du sous-module",
+  "COLUMN_PERMISSION_NAME": "Nom de l'autorisation",
+  "COLUMN_PERMISSION_NICKNAME": "Autorisation",
+  "COLUMN_DESCRIPTION": "Description",
+  "COLUMN_HAS_SUBMODULE": "Sous-modules",
+
+  "WORD_YES": "Oui",
+  "WORD_NO": "Non"
+}

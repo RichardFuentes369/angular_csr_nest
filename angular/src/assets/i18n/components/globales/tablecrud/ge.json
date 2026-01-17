@@ -1,0 +1,21 @@
+{
+  "BUTTON_OPTION_SEE": "Ansehen",
+  "BUTTON_OPTION_CREATE": "Erstellen",
+  "BUTTON_OPTION_EDIT": "Bearbeiten",
+  "BUTTON_OPTION_DELETE": "Löschen",
+  "BUTTON_OPTION_ASSIGN": "Zuweisen",
+  "BUTTON_OPTION_CLEAR": "Löschen",
+  "BUTTON_OPTION_SUSPEND": "Anhalten",
+
+  "TABLE_INFO_SHOW": "Anzeigen",
+  "TABLE_INFO_RECORDS": "Datensätze",
+  "TABLE_INFO_SHOWING": "Anzeigen",
+  "TABLE_INFO_TO": "bis",
+  "TABLE_INFO_OF": "von",
+  "TABLE_INFO_ENTRIES": "Einträge",
+  "TABLE_INFO_NO_INFO": "Keine Datensätze gefunden",
+  "TABLE_INFO_FIRST": "Erster",
+  "TABLE_INFO_LAST": "Letzte",
+  "TABLE_INFO_NEXT": "Nächste",
+  "TABLE_INFO_PREVIOUS": "Vorherige"
+}

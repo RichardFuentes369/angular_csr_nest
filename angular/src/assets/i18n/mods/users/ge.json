@@ -1,0 +1,81 @@
+{
+  "UNKNOW_MODULE_TITLE": "Unbekannt",
+
+  "PAGE_ADMIN_TITLE": "Administratoren",
+  "PAGE_FINAL_TITLE": "Abschlussprüfung",
+
+  "MODULE_TITLE": "Benutzer",
+
+  "CREATE_ADMIN_TITLE": "Benutzeradministrator erstellen",
+  "EDIT_ADMIN_TITLE": "Benutzer {{user_name}} bearbeiten",
+  "SEE_ADMIN_TITLE": "Benutzer {{user_name}} bearbeiten",
+  "ASSIGN_ADMIN_TITLE": "Benutzer {{user_name}} bearbeiten",
+
+  "CREATE_FINAL_TITLE": "Benutzer final erstellen",
+  "EDIT_FINAL_TITLE": "Benutzer final {{user_name}} bearbeiten",
+  "SEE_FINAL_TITLE": "Benutzer final {{user_name}} anzeigen",
+
+  "ASSIGMENT_ADMIN_TITLE": "Zuweisen Berechtigungen für {{user_name}}",
+
+  "SWAL_ARE_YOU_SURE_UPDATE_USER": "Möchten Sie den Benutzer {{user_name}} wirklich aktualisieren?",
+  "SWAL_ARE_YOU_SURE_DELETE_USER": "Möchten Sie den Benutzer {{user_name}} wirklich löschen?",
+  "SWAL_WARNING_REVERSE_CHANGE": "Diese Änderung kann nicht rückgängig gemacht werden!",
+  "SWAL_CREATED": "BENUTZER!",
+  "SWAL_CREATED_RECORD": "Erfolgreich erstellt.",
+  "SWAL_UPDATED": "BENUTZER!",
+  "SWAL_UPDATED_RECORD": "Erfolgreich aktualisiert.",
+  "SWAL_BUTTON_DELETE": "Löschen",
+  "SWAL_BUTTON_CANCEL": "Abbrechen",
+  "SWAL_DELETED": "BENUTZER!",
+  "SWAL_DELETED_RECORD": "Erfolgreich gelöscht.",
+  "SWAL_WORD_ONE_OPTION_SELECTION": "Sie müssen eine Option auswählen.",
+  "SWAL_WORD_OPTION_ACTIVATE": "Aktivieren.",
+  "SWAL_WORD_OPTION_INACTIVATE": "Deaktivieren.",
+  "SWAL_ACTIVED_RECORD": "Erfolgreich aktiviert.",
+  "SWAL_INACTIVED_RECORD": "Erfolgreich deaktiviert.",
+  "SWAL_INACTIVED_ALL_USER": "Deaktiviert die ausgewählten {{count_users}} Benutzer.",
+
+  "LABEL_USER_FIRSTNAME": "Vorname.",
+  "LABEL_USER_LASTTNAME": "Nachname.",
+  "LABEL_USER_EMAIL": "E-Mail-Adresse.",
+  "LABEL_USER_PASSWORD": "Passwort.",
+  "LABEL_USER_STATUS": "Status",
+
+  "PLACEHOLDER_USER_FIRSTNAME": "Juan Andres",
+  "PLACEHOLDER_USER_LASTNAME": "Lozano Fonseca",
+  "PLACEHOLDER_USER_EMAIL": "email@example.com",
+  "PLACEHOLDER_USER_PASSWORD": "**********",
+
+  "SELECT_STATUS_USER_SELECT_OPTION": "Auswählen",
+  "SELECT_STATUS_USER_ACTIVE_OPTION": "Aktiv",
+  "SELECT_STATUS_USER_INACTIVE_OPTION": "Inaktiv",
+
+  "ERROR_USER_FIRSTNAME": "",
+  "ERROR_USER_LASTNAME": "",
+  "ERROR_USER_EMAIL": "",
+  "ERROR_USER_PASSWORD": "",
+  "ERROR_USER_STATUS": "",
+
+  "BUTTON_USER_CREATE": "Benutzer erstellen",
+  "BUTTON_USER_EDIT": "Benutzer bearbeiten",
+  "BUTTON_ADMIN": "Administratorbenutzer",
+  "BUTTON_FINAL": "Endbenutzer",
+  "BUTTON_SAVE_": "Speichern",
+  "BUTTON_UPDATE_": "Aktualisieren",
+  "BUTTON_CANCEL": "Abbrechen",
+  "BUTTON_BACK": "Zurück",
+  "BUTTON_SEARCH": "Suchen",
+
+  "COLUMN_ID": "ID",
+  "COLUMN_EMAIL": "E-Mail-Adresse",
+  "COLUMN_NAMES": "Vornamen",
+  "COLUMN_LASTNAME": "Nachnamen",
+  "COLUMN_STATUS": "Status",
+
+  "WORD_ACTIVED": "Aktiv",
+  "WORD_INACTIVED": "Inaktiv",
+
+  "CONSOLE_ERROR_INVALID_TOKEN": "",
+  "CONSOLE_MSJ_REDIRECTING_TO": "",
+  "CONSOLE_MSJ_FORBIDDEN_TO": ""
+}

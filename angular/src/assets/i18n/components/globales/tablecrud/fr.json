@@ -1,0 +1,21 @@
+{
+  "BUTTON_OPTION_SEE": "Voir",
+  "BUTTON_OPTION_CREATE": "Créer",
+  "BUTTON_OPTION_EDIT": "Modifier",
+  "BUTTON_OPTION_DELETE": "Supprimer",
+  "BUTTON_OPTION_ASSIGN": "Attribuer",
+  "BUTTON_OPTION_CLEAR": "Effacer",
+  "BUTTON_OPTION_SUSPEND": "Suspendre",
+
+  "TABLE_INFO_SHOW": "Afficher",
+  "TABLE_INFO_RECORDS": "enregistrements",
+  "TABLE_INFO_SHOWING": "Affichage",
+  "TABLE_INFO_TO": "À",
+  "TABLE_INFO_OF": "De",
+  "TABLE_INFO_ENTRIES": "entrées",
+  "TABLE_INFO_NO_INFO": "Aucun enregistrement trouvé",
+  "TABLE_INFO_FIRST": "Premier",
+  "TABLE_INFO_LAST": "Dernier",
+  "TABLE_INFO_NEXT": "Suivant",
+  "TABLE_INFO_PREVIOUS": "Précédent"
+}

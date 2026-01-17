@@ -1,0 +1,55 @@
+{
+  "UNKNOW_MODULE_TITLE": "Unbekannt",
+
+  "MODULE_TITLE": "Module",
+
+  "CREATE_MODULE_TITLE": "Neues Modul erstellen",
+  "EDIT_MODULE_TITLE": "Modul {{module_name}} bearbeiten",
+  "SUBMODULE_TITLE": "Submodule",
+  "CREATE_SUBMODULE_TITLE": "Neues Submodul erstellen",
+  "EDIT_SUBMODULE_TITLE": "Submodul {{submodule_name}} bearbeiten",
+  "PERMISSION_TITLE": "Berechtigung",
+  "CREATE_PERMISSION_TITLE": "Neue Berechtigung erstellen",
+  "EDIT_PERMISSION_TITLE": "Berechtigung {{permission_name}} bearbeiten",
+
+  "SWAL_ARE_YOU_SURE": "Möchten Sie die Berechtigung {{permission_name}} wirklich löschen?",
+  "SWAL_WARNING_REVERSE_CHANGE": "Diese Änderung kann nicht rückgängig gemacht werden!",
+  "SWAL_CREATED": "Berechtigung!",
+  "SWAL_CREATED_RECORD": "Erfolgreich erstellt.",
+  "SWAL_UPDATED": "Berechtigung!",
+  "SWAL_UPDATED_RECORD": "Erfolgreich aktualisiert.",
+  "SWAL_BUTTON_DELETE": "Löschen",
+  "SWAL_BUTTON_CANCEL": "Abbrechen",
+  "SWAL_DELETED": "Berechtigung!",
+  "SWAL_DELETED_RECORD": "Erfolgreich gelöscht.",
+
+  "LABEL_PERMISSION_NAME": "Modul/Berechtigung",
+  "LABEL_PERMISSION_NICKNAME": "Kennung",
+  "LABEL_PERMISSION_DESCRIPTION": "Beschreibung",
+  "LABEL_HAS_MODULES": "Hat Berechtigungen",
+
+  "PLACEHOLDER_PERMISSION_NAME": "Modul-/Berechtigungsname",
+  "PLACEHOLDER_PERMISSION_NICKNAME": "Modul-/Berechtigungskennung",
+  "PLACEHOLDER_PERMISSION_DESCRIPTION": "Wofür wird diese Berechtigung verwendet?",
+
+  "ERROR_PERMISSION_NAME": "",
+  "ERROR_PERMISSION_NICKNAME": "",
+  "ERROR_PERMISSION_DESCRIPTION": "",
+
+  "BUTTON_CREATE_PERMISSION_MODULE": "Modul/Berechtigung erstellen",
+  "BUTTON_EDIT_PERMISSION_MODULE": "Modul/Berechtigung bearbeiten",
+  "BUTTON_SAVE_": "Speichern",
+  "BUTTON_UPDATE_": "Aktualisieren",
+  "BUTTON_CANCEL": "Abbrechen",
+  "BUTTON_SEARCH": "Suchen",
+
+  "COLUMN_MODULE_NAME": "Modulname",
+  "COLUMN_SUBMODULE_NAME": "Submodulname",
+  "COLUMN_PERMISSION_NAME": "Berechtigungsname",
+  "COLUMN_PERMISSION_NICKNAME": "Berechtigung",
+  "COLUMN_DESCRIPTION": "Beschreibung",
+  "COLUMN_HAS_SUBMODULE": "Submodule",
+
+  "WORD_YES": "Ja",
+  "WORD_NO": "Nein"
+}

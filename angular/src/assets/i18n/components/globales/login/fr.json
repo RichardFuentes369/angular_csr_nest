@@ -1,0 +1,9 @@
+{
+  "TITLE_WELCOME": "Bienvenue",
+  "PLACEHOLDER_EMAIL": "Adresse e-mail",
+  "PLACEHOLDER_PASSWORD": "Mot de passe",
+  "LABEL_REMEMBER": "Se souvenir",
+  "TEXT_LOGIN": "Se connecter",
+  "TEXT_FORGOT_PASSWORD": "Mot de passe oublié !",
+  "TEXT_CREATE_ACCOUNT": "Créer un compte !"
+}
