@@ -14,7 +14,7 @@ export class ModulosService {
 
   async getHasSubmodule(id: number){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let complemento = `getHasSubmodule?idModulo=${id}&lang=${lang}`
+    let complemento = `modulos/getHasSubmodule?idModulo=${id}&lang=${lang}`
     let urlCopleta = environment.apiUrl+complemento
 
     const data = axios.get(urlCopleta)
