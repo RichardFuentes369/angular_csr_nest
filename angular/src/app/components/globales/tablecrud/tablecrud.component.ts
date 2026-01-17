@@ -6,6 +6,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subject, Subscription } from 'rxjs';
 import { Config } from 'datatables.net';
 
+let haySeleccionados: any[] = [];
 @Component({
   selector: 'app-globales-tablecrud',
   standalone: true,
@@ -39,8 +40,9 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit() {
     this.listar();
-
+    this.idsSeleccionados = [...haySeleccionados];
     this.langSub = this.translate.onLangChange.subscribe(() => {
+      haySeleccionados = [...this.idsSeleccionados];
       this.recargarIdioma();
     });
   }
@@ -62,7 +64,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
 
   recargarIdioma() {
     this.datatableElement.dtInstance.then((dtInstance: any) => {
-      dtInstance.destroy();
+      // dtInstance.destroy();
       this.listar();
       this.dtTrigger.next(null);
     });
