@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { _PAGE_BACK_FINAL } from '@const/app.const';
+import { _PAGE_FINAL_PROFILE } from '@const/app.const';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
@@ -17,5 +17,5 @@ export class FinalNotFoundComponent {
   constructor(
   ) {}
 
-  public _PAGE_BACK_FINAL = _PAGE_BACK_FINAL
+  public _PAGE_FINAL_PROFILE = _PAGE_FINAL_PROFILE
 }

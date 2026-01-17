@@ -5,7 +5,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core'
 import { IdiomaComponent } from '@component/globales/idioma/idioma.component';
 
 import { STORAGE_KEY_TOKEN_ADMIN, STORAGE_KEY_TOKEN_FINAL } from '@const/app.const';
-import { LAYOUT_FINAL_PAGE_LOGOUT } from '@layout/const/layouts.const';
+import { LAYOUT_FINAL_PAGE_LOGOUT, LAYOUT_PAGE_PROFILE, LAYOUT_PAGE_SETTINGS, NAME_PAGE } from '@layout/const/layouts.const';
 
 @Component({
   selector: 'app-layout-final',
@@ -20,6 +20,10 @@ import { LAYOUT_FINAL_PAGE_LOGOUT } from '@layout/const/layouts.const';
 })
 export class FinalComponent {
 
+  public NAME_PAGE = NAME_PAGE;
+  public LAYOUT_PAGE_PROFILE = LAYOUT_PAGE_PROFILE;
+  public LAYOUT_PAGE_SETTINGS = LAYOUT_PAGE_SETTINGS;
+  
   public CURRENT_YEAR = new Date().getFullYear();
 
   constructor(

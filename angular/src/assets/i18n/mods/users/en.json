@@ -15,6 +15,8 @@
   "EDIT_FINAL_TITLE": "Edit user final {{user_name}}", 
   "SEE_FINAL_TITLE": "See user final {{user_name}}",
 
+  "ASSIGMENT_ADMIN_TITLE": "Assign permissions to {{user_name}}",
+
   "SWAL_ARE_YOU_SURE_UPDATE_USER": "Are you sure you want to update the user {{user_name}}?",
   "SWAL_ARE_YOU_SURE_DELETE_USER": "Are you sure you want to delete the user{{plural}} {{user_name}}?",
   "SWAL_WARNING_REVERSE_CHANGE": "You cannot reverse this!",
@@ -70,5 +72,9 @@
   "COLUMN_LASTNAME": "Last names",
   "COLUMN_STATUS": "Status",
   "WORD_ACTIVED": "Active",
-  "WORD_INACTIVED": "Inactive"
+  "WORD_INACTIVED": "Inactive",
+
+  "CONSOLE_ERROR_INVALID_TOKEN": "",
+  "CONSOLE_MSJ_REDIRECTING_TO": "",
+  "CONSOLE_MSJ_FORBIDDEN_TO": ""
 }

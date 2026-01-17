@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '@environment/environment';
+import { TranslateService } from '@ngx-translate/core';
 import axios from 'axios';
 
 @Injectable({
@@ -7,24 +8,31 @@ import axios from 'axios';
 })
 export class ModulosService {
 
-  constructor() { }
+  constructor(
+    private translate: TranslateService
+  ) { }
 
   async getHasSubmodule(id: number){
-    let complemento = `modulos/getHasSubmodule?idModulo=${id}`
+    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
+    let complemento = `getHasSubmodule?idModulo=${id}&lang=${lang}`
     let urlCopleta = environment.apiUrl+complemento
+
     const data = axios.get(urlCopleta)
     return data
   }  
   
   async listaPermisos(id: number){
-    let complemento = `modulos/getPermisosPorUsuario?userId=${id}`
+    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
+    let complemento = `modulos/getPermisosPorUsuario?userId=${id}&lang=${lang}`
     let urlCopleta = environment.apiUrl+complemento
+
     const data = axios.get(urlCopleta)
     return data
   }
 
   async buscarPermiso(padreId:number, nombrePermiso: string){
-    let complemento = `modulos/getPermisoExistente?idModulo=${padreId}&nombre=${nombrePermiso}`
+    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
+    let complemento = `modulos/getPermisoExistente?idModulo=${padreId}&nombre=${nombrePermiso}&lang=${lang}`
     let urlCopleta = environment.apiUrl+complemento
 
     return await axios.request({
@@ -34,7 +42,8 @@ export class ModulosService {
   }
 
   async asignarPermiso(idPermiso: string, idPadre: string, opcion: string, userId: string){
-    let complemento = `asignacion/updateAsignacionPermiso?idPermiso=${idPermiso}&idPadre=${idPadre}&idUser=${userId}&opcion=${opcion}`
+    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
+    let complemento = `asignacion/updateAsignacionPermiso?idPermiso=${idPermiso}&idPadre=${idPadre}&idUser=${userId}&opcion=${opcion}&lang=${lang}`
     let urlCopleta = environment.apiUrl+complemento
 
     return await axios.request({
@@ -44,7 +53,8 @@ export class ModulosService {
   }
 
   async crearPermiso(data: any){
-    let complemento = `modulos/postModuloPermiso`
+    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
+    let complemento = `modulos/postModuloPermiso?lang=${lang}`
     let urlCopleta = environment.apiUrl+complemento
 
     return await axios.request({
@@ -55,9 +65,9 @@ export class ModulosService {
   }
 
   async eliminarPermiso(id: any){
-
-    let complemento = `modulos/deleteModuloPermiso`
-    let urlCopleta = environment.apiUrl+complemento+'?idPermiso='+id
+    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
+    let complemento = `modulos/deleteModuloPermiso?idPermiso=${+id}&lang=${lang}`
+    let urlCopleta = environment.apiUrl+complemento
 
     return await axios.request({
       method: 'delete',

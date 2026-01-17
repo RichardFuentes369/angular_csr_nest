@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router'
-import { _PAGE_BACK_HOME, STORAGE_KEY_TOKEN, STORAGE_KEY_TOKEN_ADMIN, STORAGE_KEY_TOKEN_FINAL } from '@const/app.const';
+import { _PAGE_BACK_HOME, STORAGE_KEY_TOKEN, STORAGE_KEY_TOKEN_ADMIN, STORAGE_KEY_TOKEN_FINAL, WORD_KEY_AUTHORIZATION_GLOBAL, WORD_KEY_BEARER_GLOBAL } from '@const/app.const';
 import { environment } from '@environment/environment';
 import { LAYOUT_ADMIN_PAGE_LOGOUT, LAYOUT_FINAL_PAGE_LOGOUT } from '@layout/const/layouts.const';
 import { TranslateService } from '@ngx-translate/core';
@@ -25,9 +25,11 @@ export class AuthService {
 
   async validarToken(rol: string){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let urlCopleta = environment.apiUrl+rol+'/profile'
+    let complemento = `${rol}/profile?lang=${lang}`
+    let urlCopleta = environment.apiUrl + complemento
+
     let headers = {
-      'Authorization': `Bearer ${this.getToken()}`
+      WORD_KEY_AUTHORIZATION_GLOBAL: `${WORD_KEY_BEARER_GLOBAL} ${this.getToken()}`
     }
 
     try {
@@ -40,10 +42,12 @@ export class AuthService {
 
   async getUser(rol: string){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let urlCopleta = environment.apiUrl+rol+'/profile'
+    let complemento = `${rol}/profile?lang=${lang}`
+    let urlCopleta = environment.apiUrl + complemento
+
     const data = await axios.get(urlCopleta, {
       headers: {
-        'Authorization': `Bearer ${this.getToken()}`
+        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${this.getToken()}`
       }
     });
 
@@ -73,15 +77,16 @@ export class AuthService {
     };
 
     if (!token) {
-      console.log('Token vacío o nulo detectado, limpiando...');
+      console.error('Token vacío o nulo detectado, limpiando...');
       removeToken();
       return false; 
     }
 
-    let urlCopleta = environment.apiUrl+rol+'/refresh'
+    let complemento = `${rol}/refresh?lang=${lang}`
+    let urlCopleta = environment.apiUrl+complemento
 
     try {
-      let data = (await axios.post(urlCopleta, {"token": token})).data
+      let data = (await axios.post(urlCopleta, {[STORAGE_KEY_TOKEN]: token})).data
       if(localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)){
         localStorage.setItem(STORAGE_KEY_TOKEN_ADMIN, data);
       }
@@ -96,20 +101,16 @@ export class AuthService {
   }
 
   async isAuth(rol: string){
-    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-
     if(this.getToken() == null){
       return false;
     }
-
     if(!this.getToken()){
       return false
     }
-
     if(await this.validarToken(rol)){
       return true;
     }
-   
+
     let refreshTokenResponse = await this.refreshToken(rol)
 
     if(refreshTokenResponse){

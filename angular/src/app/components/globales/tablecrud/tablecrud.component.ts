@@ -77,10 +77,11 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
       searching: false,
       serverSide: true,
       ajax: (dataTablesParameters: any, callback) => {
+        const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
         const page = Math.floor(dataTablesParameters.start / dataTablesParameters.length) + 1;
                 
         this.http.get<any[]>(
-          `${this.url}${this.endPoint}?page=${page}&limit=${dataTablesParameters.length}&field=id&order=asc${this.filters}&lang=${this.translate.currentLang}`
+          `${this.url}${this.endPoint}?page=${page}&limit=${dataTablesParameters.length}&field=id&order=asc${this.filters}&lang=${lang}`
         ).subscribe((post) => {
           const recordsTotal = post[0].pagination.totalRecord;
           const data = post[0].result.map((item: any) => {

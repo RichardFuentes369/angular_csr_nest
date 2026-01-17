@@ -10,10 +10,12 @@
   "EDIT_ADMIN_TITLE": "Editar usuario {{user_name}}",
   "SEE_ADMIN_TITLE": "Ver usuario {{user_name}}",
   "ASSIGN_ADMIN_TITLE": "Editar usuario {{user_name}}",
-
+  
   "CREATE_FINAL_TITLE": "Crear usuario final",
   "EDIT_FINAL_TITLE": "Editar usuario {{user_name}}",
   "SEE_FINAL_TITLE": "Ver usuario {{user_name}}",
+
+  "ASSIGMENT_ADMIN_TITLE": "Asignar permisos a {{user_name}}",
 
   "SWAL_ARE_YOU_SURE_UPDATE_USER": "¿Esta seguro de actualizar el usuario {{user_name}}?",
   "SWAL_ARE_YOU_SURE_DELETE_USER": "¿Esta seguro de eliminar {{art_the}} usuario{{plural}} {{user_name}}?",
@@ -73,5 +75,11 @@
   "COLUMN_STATUS": "Estado",
 
   "WORD_ACTIVED": "Activo",
-  "WORD_INACTIVED": "Inactivo"
+  "WORD_INACTIVED": "Inactivo",
+
+  "CONSOLE_ERROR_INVALID_TOKEN": "Token no valido",
+  "CONSOLE_MSJ_REDIRECTING_TO_ADMIN": "Redirigiendo a usuario administrador",
+  "CONSOLE_MSJ_REDIRECTING_TO_FINAL": "Redirigiendo a usuario final",
+  "CONSOLE_MSJ_FORBIDDEN_TO_ADMIN": "Acceso prohibido: Eres usuario final, no administrador",
+  "CONSOLE_MSJ_FORBIDDEN_TO_FINAL": "Acceso prohibido: Eres usuario administrador, no final"
 }

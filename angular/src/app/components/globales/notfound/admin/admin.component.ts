@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { _PAGE_BACK_ADMIN } from '@const/app.const';
+import { _PAGE_ADMIN_MOD } from '@const/app.const';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
@@ -18,6 +18,6 @@ export class AdminNotFoundComponent {
   constructor(
   ) {}
 
-  public _PAGE_BACK_ADMIN = _PAGE_BACK_ADMIN
+  public _PAGE_ADMIN_MOD = _PAGE_ADMIN_MOD
 
 }

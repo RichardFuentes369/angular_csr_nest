@@ -15,9 +15,9 @@ export class PermisosService {
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = ''
     if(modulo != ''){
-      complemento += `asignacion/mis-permisos?idUser=${idUsuario}&heredadosDe=${modulo}`
+      complemento += `asignacion/mis-permisos?idUser=${idUsuario}&heredadosDe=${modulo}&lang=${lang}`
     }else{
-      complemento = `asignacion/mis-permisos?idUser=${idUsuario}`
+      complemento = `asignacion/mis-permisos?idUser=${idUsuario}&lang=${lang}`
     }
     let urlCopleta = environment.apiUrl+complemento
     const data = axios.get(urlCopleta)
@@ -27,7 +27,7 @@ export class PermisosService {
   async permisoPage(idModulo: number | null, nombre: string, idUser: number){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = ''
-    complemento += `asignacion/getAsignacionMePertenece?idModulo=${idModulo}&nombre=${nombre}&idUser=${idUser}`
+    complemento += `asignacion/getAsignacionMePertenece?idModulo=${idModulo}&nombre=${nombre}&idUser=${idUser}&lang=${lang}`
     let urlCopleta = environment.apiUrl+complemento
     const data = axios.get(urlCopleta)
     return data

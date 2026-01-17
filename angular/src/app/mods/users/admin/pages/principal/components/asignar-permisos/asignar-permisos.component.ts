@@ -6,7 +6,8 @@ import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 
 import { swalert } from '@function/System'
-import { STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
+import { STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_FINAL_AUTH } from '@const/app.const';
+import { PrincipalService } from '../../service/principal.service';
 
 @Component({
   selector: 'app-asignar-permisos',
@@ -24,23 +25,26 @@ export class AsignarPermisosComponent implements OnInit{
     private route: ActivatedRoute,
     private userService :AuthService,
     private modulosService :ModulosService,
-    private PermisosService :PermisosService,
+    private principalService :PrincipalService,
     private translate: TranslateService
   ) { }
 
+  title: any = {}
   permisos: any[] = []
 
   sinModulo: any[] = [
     'modulos',
-    'mantenimiento',
-    'zona_comun',
-    'proveedor'
   ]
 
   async ngOnInit() {
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
-    const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
+    const response = await this.userService.validarToken(STORAGE_KEY_ADMIN_AUTH);
     let userId = this.route.snapshot.queryParams['id']
+
+    const datUser = await this.principalService.getDataUser(userId)
+    const { firstName, lastName } = datUser.data || { firstName: 'xxxx', lastName: 'yyyy' }
+    this.title = { user_name: `${firstName} ${lastName}` }
+
     const modulo = await this.modulosService.listaPermisos(+userId)
     this.permisos = modulo.data
   }
