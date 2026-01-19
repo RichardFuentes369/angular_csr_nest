@@ -38,9 +38,10 @@
 
   "ERROR_WORD": "Select",
   "ERROR_SELECT_ONE": "one option",
-  "ERROR_PERMISSION_NAME": "",
-  "ERROR_PERMISSION_NICKNAME": "",
-  "ERROR_PERMISSION_DESCRIPTION": "",
+  "ERROR_PERMISSION_NAME": "Permission must have a name",
+  "ERROR_PERMISSION_NICKNAME": "Permission must have an assigned identifier (no spaces)",
+  "ERROR_PERMISSION_DESCRIPTION": "Permission must have a description",
+  "ERROR_PERMISSION_HAS": "Must select an item",
 
   "BUTTON_CREATE_PERMISSION_MODULE": "Create module/permission",
   "BUTTON_EDIT_PERMISSION_MODULE": "Edit module/permission",

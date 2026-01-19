@@ -41,6 +41,13 @@ export class CrearModuloPermisoComponent implements OnInit{
     tiene_permisos: false
   }
 
+  validators = {
+    nombre: false,
+    permiso: false,
+    descripcion: false,
+    selectHas: false
+  }
+
   async ngOnInit() {
     if(!localStorage.getItem(STORAGE_KEY_MODULE) && !localStorage.getItem(STORAGE_KEY_SUBMODULE)){
       this.model.modulo_padre_id = 0
@@ -72,20 +79,19 @@ export class CrearModuloPermisoComponent implements OnInit{
   }
 
   async crearModuloPermiso(){
-    if(this.optionSelect == 0) {
-      this.translate.get('mod-modules.SWAL_ARE_YOU_SURE').subscribe((translatedTitle: string) => {
-        Swal.fire({
-          title: this.translate.instant('mod-modules.ERROR_WORD'),
-          text: this.translate.instant('mod-modules.ERROR_SELECT_ONE'),
-          icon: 'error',
-          confirmButtonText: 'Cool'
-        })
-      });
-    }
 
+    this.validators.nombre = (this.model.nombre === '') ? true : false
+    this.validators.permiso = (this.model.permiso === '') ? true : false
+    this.validators.descripcion = (this.model.descripcion === '') ? true : false
+    this.validators.selectHas = (this.optionSelect === 0 && this.showSelect === true) ? true : false
+
+    if(this.validators.nombre || this.validators.permiso || this.validators.descripcion || this.validators.selectHas){
+      return
+    }
+    
     this.model.tiene_submodulos = (this.optionSelect == 1) ? true : false
     this.model.tiene_permisos = (this.optionSelect == 2) ? true : false
-
+    
     const response = await this.modulosService.crearPermiso(this.model)
     if(response.data.status == 404){
       ocultarModalOscura()

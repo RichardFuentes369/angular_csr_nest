@@ -77,7 +77,8 @@ export class AuthService {
     };
 
     if (!token) {
-      console.error('Token vacío o nulo detectado, limpiando...');
+      const mensaje = this.translate.instant('mod-users.CONSOLE_ERROR_INVALID_TOKEN');
+      console.log(mensaje)
       removeToken();
       return false; 
     }

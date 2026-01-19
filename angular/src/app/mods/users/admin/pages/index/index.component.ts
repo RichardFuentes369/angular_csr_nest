@@ -41,7 +41,7 @@ export class IndexComponent implements OnInit{
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH)
     const submodulo = await this.permisosService.permisoPage(0,'usuarios',userData.data.id)
-    console.log(submodulo)
+
     if (submodulo.data === "") {
       this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
     } 

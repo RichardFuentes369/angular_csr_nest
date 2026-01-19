@@ -74,7 +74,7 @@
   "WORD_ACTIVED": "Active",
   "WORD_INACTIVED": "Inactive",
 
-  "CONSOLE_ERROR_INVALID_TOKEN": "",
+  "CONSOLE_ERROR_INVALID_TOKEN": "Empty or null token detected, clearing...",
   "CONSOLE_MSJ_REDIRECTING_TO": "",
   "CONSOLE_MSJ_FORBIDDEN_TO": ""
 }

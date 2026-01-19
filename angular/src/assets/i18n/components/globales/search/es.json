@@ -1,5 +1,7 @@
 {
   "TITTLE_COMPONENT": "Buscar",
   "BUTTON_FILTER": "Filtrar",
-  "BUTTON_CLEAR": "Limpiar"
+  "BUTTON_CLEAR": "Limpiar",
+  
+  "CONSOLE_ERROR_NOT_FOUND_COMPONENT": "Componente no encontrado"
 }

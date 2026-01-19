@@ -38,9 +38,10 @@
 
   "ERROR_WORD": "Seleccione",
   "ERROR_SELECT_ONE": "una opción",
-  "ERROR_PERMISSION_NAME": "",
-  "ERROR_PERMISSION_NICKNAME": "",
-  "ERROR_PERMISSION_DESCRIPTION": "",
+  "ERROR_PERMISSION_NAME": "El permiso debe tener un nombre",
+  "ERROR_PERMISSION_NICKNAME": "El permiso debe tener un identificador asignado. (sin espacios)",
+  "ERROR_PERMISSION_DESCRIPTION": "El permiso debe tener una descripción",
+  "ERROR_PERMISSION_HAS": "Debe seleccionar un elemento",
 
   "BUTTON_CREATE_PERMISSION": "Create modulo/permiso",
   "BUTTON_EDIT_PERMISSION": "Editar modulo/permiso",

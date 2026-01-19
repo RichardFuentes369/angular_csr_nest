@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, ViewChild, ViewContainerRef, ComponentFactoryResolver, OnInit, Output, EventEmitter, ElementRef, AfterViewInit } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { ListaComponentes } from '@mod/lista-componentes'
 
@@ -9,7 +9,7 @@ import { ListaComponentes } from '@mod/lista-componentes'
   standalone: true,
   imports: [
     CommonModule,
-    TranslateModule
+    TranslateModule,
   ],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss'
@@ -17,7 +17,10 @@ import { ListaComponentes } from '@mod/lista-componentes'
 export class SearchComponent{
   @ViewChild('contenedorFilter', { read: ViewContainerRef }) contenedorDinamico!: ViewContainerRef;
 
-  constructor(private resolver: ComponentFactoryResolver) {}
+  constructor(
+    private resolver: ComponentFactoryResolver,
+    private translate: TranslateService
+  ) {}
 
   listaDeComponentes = new ListaComponentes();
 
@@ -48,7 +51,8 @@ export class SearchComponent{
         this.isFilterVisible = false
       }
     }else{
-      console.log('componente no encontrado')
+      const mensaje = this.translate.instant('global-search.CONSOLE_ERROR_NOT_FOUND_COMPONENT')
+      console.error(mensaje)
     }
 
   }  

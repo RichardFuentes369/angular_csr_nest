@@ -7,7 +7,7 @@ import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { ModulosService } from '@mod/modules/admin/service/modulos.service';
 import Swal from 'sweetalert2'
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
-import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL } from '@const/app.const';
+import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
 import { CREAR_MODULO_PERMISO_COMPONENT, EDITAR_MODULO_PERMISO_COMPONENT, MOD_MODULES_PAGE_MODULES, MOD_MODULES_PAGE_PERMISSIONS_C, STORAGE_KEY_MODULE, STORAGE_KEY_SUBMODULE } from '@mod/modules/const/modules.const';
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { Subscription, timer } from 'rxjs';
@@ -144,7 +144,6 @@ export class SubmodulosComponent implements OnInit{
   }
 
   verData (_id: string){
-    console.log("verData "+_id)
     localStorage.setItem('submodulo', _id)
     this.router.navigate([MOD_MODULES_PAGE_PERMISSIONS_C]);
   }
@@ -163,7 +162,7 @@ export class SubmodulosComponent implements OnInit{
     this.cierreModal = "true"
     this.componentePrecargado = CREAR_MODULO_PERMISO_COMPONENT
 
-    const idButton = document.getElementById('miBoton')
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
@@ -184,12 +183,11 @@ export class SubmodulosComponent implements OnInit{
     this.cierreModal = "true"
     this.componentePrecargado = EDITAR_MODULO_PERMISO_COMPONENT
 
-    const idButton = document.getElementById('miBoton')
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
     }
-    console.log("editarData "+_id)
   }
 
   @ViewChild(TablecrudComponent)

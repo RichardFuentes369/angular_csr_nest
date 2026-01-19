@@ -35,10 +35,11 @@
   "PLACEHOLDER_PERMISSION_DESCRIPTION": "À quoi servira cette autorisation ?",
 
   "ERROR_WORD": "Sélectionnez",
-  "ERROR_SELECT_ONE": "une seule option",
-  "ERROR_PERMISSION_NAME": "",
-  "ERROR_PERMISSION_NICKNAME": "",
-  "ERROR_PERMISSION_DESCRIPTION": "",
+  "ERROR_SELECT_ONE": "Une seule option",
+  "ERROR_PERMISSION_NAME": "L'autorisation doit avoir un nom",
+  "ERROR_PERMISSION_NICKNAME": "L'autorisation doit avoir un identifiant (sans espaces)",
+  "ERROR_PERMISSION_DESCRIPTION": "L'autorisation doit avoir une description",
+  "ERROR_PERMISSION_HAS": "Vous devez sélectionner un élément",
 
   "BUTTON_CREATE_PERMISSION_MODULE": "Créer un module/une autorisation",
   "BUTTON_EDIT_PERMISSION_MODULE": "Modifier un module/une autorisation",

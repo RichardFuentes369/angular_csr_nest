@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, ViewChild, ViewContainerRef, ComponentFactoryResolver, OnInit, Output, EventEmitter } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { ListaComponentes } from '@mod/lista-componentes'
+import { WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
 
 
 @Component({
@@ -20,20 +21,24 @@ export class ModalBoostrapComponent {
 
   @ViewChild('contenedor', { read: ViewContainerRef, static: true }) contenedor!: ViewContainerRef;
 
-  constructor(private resolver: ComponentFactoryResolver) {}
+  constructor(
+    private resolver: ComponentFactoryResolver,
+    private translate: TranslateService
+  ) {}
 
   listaDeComponentes = new ListaComponentes();
 
   async openModal() {
-    const boton = document.getElementById('miBoton') as HTMLButtonElement
-    const metodoClickeado = boton.getAttribute('componente')
+    const boton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL) as HTMLButtonElement
+    const metodoClickeado = boton.getAttribute(WORD_KEY_COMPONENT_GLOBAL)
     if(metodoClickeado){
       let componente = await this.listaDeComponentes.obtenerComponentePorNombre(metodoClickeado);
       const factory = await this.resolver.resolveComponentFactory(componente.componente);
       this.contenedor.clear()
       this.contenedor.createComponent(factory);
     }else{
-      console.log('componente no encontrado')
+      const mensaje = this.translate.instant('global-modal.CONSOLE_ERROR_NOT_FOUND_COMPONENT')
+      console.error(mensaje)
     }
   }
 

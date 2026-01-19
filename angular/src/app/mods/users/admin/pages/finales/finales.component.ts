@@ -12,7 +12,7 @@ import { FinalService } from './service/final.service';
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
 import { SearchComponent } from '@component/globales/search/search.component';
 import { Subscription, timer } from 'rxjs';
-import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE, WORD_KEY_COMPONENT_GLOBAL } from '@const/app.const';
+import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
 import { CREAR_USUARIO_COMPONENT, EDITAR_USUARIO_COMPONENT, FILTRO_USUARIO_COMPONENT, STORAGE_KEY_PROFILE_FINAL, VER_USUARIO_COMPONENT } from '@mod/users/const/users.const'
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 
@@ -184,7 +184,7 @@ export class FinalesComponent implements OnInit{
     this.cierreModal = "true"
     this.componentePrecargado = CREAR_USUARIO_COMPONENT
 
-    const idButton = document.getElementById('miBoton')
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
@@ -207,7 +207,7 @@ export class FinalesComponent implements OnInit{
     this.cierreModal = "true"
     this.componentePrecargado = VER_USUARIO_COMPONENT
 
-    const idButton = document.getElementById('miBoton')
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
       this.router.navigate([], {
         queryParams: { rol: 'admin', id: _id },
@@ -234,7 +234,7 @@ export class FinalesComponent implements OnInit{
     this.buttonCancel = this.translate.instant('mod-users.BUTTON_CANCEL')
     this.componentePrecargado = EDITAR_USUARIO_COMPONENT
 
-    const idButton = document.getElementById('miBoton')
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
       this.router.navigate([], {
         queryParams: { rol: 'admin', id: _id },
@@ -247,8 +247,6 @@ export class FinalesComponent implements OnInit{
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
   async eliminarData (_id: string[]){
-    console.log("eliminarData "+_id)
-
     const response = await this.finalService.getDataUser(_id[0])
     const { firstName, lastName } = response.data || { firstName: 'xxxxxxx', lastName: 'yyyyyyy' }
     const name_user = (_id.length === 1) ? firstName+" "+lastName : "("+_id.length+")"
@@ -280,8 +278,6 @@ export class FinalesComponent implements OnInit{
   }
 
   activarData (_id: string[]){
-    console.log("activarData "+_id)
-
     let opcionesSelect = {
       0: this.translate.instant('mod-users.WORD_INACTIVED'),
       1: this.translate.instant('mod-users.WORD_ACTIVED'),

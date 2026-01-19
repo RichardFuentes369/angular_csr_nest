@@ -36,10 +36,11 @@
   "PLACEHOLDER_PERMISSION_DESCRIPTION": "Wofür wird diese Berechtigung verwendet?",
 
   "ERROR_WORD": "Auswählen",
-  "ERROR_SELECT_ONE": "eine Option",
-  "ERROR_PERMISSION_NAME": "",
-  "ERROR_PERMISSION_NICKNAME": "",
-  "ERROR_PERMISSION_DESCRIPTION": "",
+  "ERROR_SELECT_ONE": "Eine Option",
+  "ERROR_PERMISSION_NAME": "Die Berechtigung muss einen Namen haben",
+  "ERROR_PERMISSION_NICKNAME": "Die Berechtigung muss eine zugewiesene Kennung (ohne Leerzeichen) haben",
+  "ERROR_PERMISSION_DESCRIPTION": "Die Berechtigung muss eine Beschreibung haben",
+  "ERROR_PERMISSION_HAS": "Es muss ein Element ausgewählt werden",
 
   "BUTTON_CREATE_PERMISSION_MODULE": "Modul/Berechtigung erstellen",
   "BUTTON_EDIT_PERMISSION_MODULE": "Modul/Berechtigung bearbeiten",

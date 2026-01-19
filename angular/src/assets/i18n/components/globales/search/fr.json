@@ -1,5 +1,7 @@
 {
   "TITTLE_COMPONENT": "Rechercher",
   "BUTTON_FILTER": "Filtrer",
-  "BUTTON_CLEAR": "Effacer"
+  "BUTTON_CLEAR": "Effacer",
+  
+  "CONSOLE_ERROR_NOT_FOUND_COMPONENT": "Composant introuvable"
 }

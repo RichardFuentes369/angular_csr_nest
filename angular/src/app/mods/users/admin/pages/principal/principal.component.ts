@@ -14,7 +14,7 @@ import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boost
 import { PrincipalService } from './service/principal.service';
 import { SearchComponent } from '@component/globales/search/search.component';
 import { Subscription, timer } from 'rxjs';
-import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE, WORD_KEY_COMPONENT_GLOBAL } from '@const/app.const';
+import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
 import { CREAR_USUARIO_COMPONENT, EDITAR_USUARIO_COMPONENT, FILTRO_USUARIO_COMPONENT, MOD_USER_PAGE_ADMIN_ASSIGMENT, STORAGE_KEY_PROFILE_ADMIN, VER_USUARIO_COMPONENT } from '@mod/users/const/users.const'
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 
@@ -110,7 +110,6 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
 
     const submodulo = await this.permisosService.permisoPage(1,'administradores',userData.data.id)
-    console.log(submodulo)
     if (submodulo.data === "") {
       this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
     } 
@@ -184,7 +183,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     this.cierreModal = "true"
     this.componentePrecargado = CREAR_USUARIO_COMPONENT
 
-    const idButton = document.getElementById('miBoton')
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
@@ -207,7 +206,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     this.cierreModal = "true"
     this.componentePrecargado = VER_USUARIO_COMPONENT
 
-    const idButton = document.getElementById('miBoton')
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
       this.router.navigate([], {
         queryParams: { rol: 'user', id: _id },
@@ -234,7 +233,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     this.buttonCancel = this.translate.instant('mod-users.BUTTON_CANCEL')
     this.componentePrecargado = EDITAR_USUARIO_COMPONENT
 
-    const idButton = document.getElementById('miBoton')
+    const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
       this.router.navigate([], {
         queryParams: { rol: 'user', id: _id },
@@ -247,8 +246,6 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   @ViewChild(TablecrudComponent)
   someInput!: TablecrudComponent
   async eliminarData (_id: string[]){
-    console.log("eliminarData "+_id)
-
     const response = await this.principalService.getDataUser(_id[0])
     const { firstName, lastName } = response.data || { firstName: 'xxxxxxx', lastName: 'yyyyyyy' }
     const name_user = (_id.length === 1) ? firstName+" "+lastName : "("+_id.length+")"
@@ -280,8 +277,6 @@ export class PrincipalComponent implements OnInit, OnDestroy{
   }
   
   activarData (_id: string[]){
-    console.log("activarData "+_id)
-
     let opcionesSelect = {
       1: this.translate.instant('mod-users.WORD_ACTIVED'),
       0: this.translate.instant('mod-users.WORD_INACTIVED'),
