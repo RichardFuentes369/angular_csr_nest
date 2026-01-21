@@ -4,7 +4,6 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
-import { AdminService } from '@module/user/admin/user/admin.service';
 import { JwtService } from '@nestjs/jwt';
 import { jwtConstants } from '@guard/secret_key';
 import { Request } from 'express';
@@ -12,7 +11,6 @@ import { Request } from 'express';
 @Injectable()
 export class AdminGuard implements CanActivate {
   constructor(
-    private adminService: AdminService,
     private jwtService: JwtService
   ) { }
 

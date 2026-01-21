@@ -1,9 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards } from '@nestjs/common';
 import { ModulosService } from './modulos.service'
 import { CreateModuloDto } from './dto/create-modulo.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { PaginationDto } from '@global/dto/pagination.dto';
 import { EditModuloDto } from './dto/edit-modulo.dto';
+import { AdminGuard } from '@guard/admin/admin.guard';
 
 @Controller('modulos')
 export class ModulosController {
@@ -24,6 +25,7 @@ export class ModulosController {
   }
 
   @ApiTags('permisos_modulos')
+  @UseGuards(AdminGuard)
   @Get('getPermisosPorUsuario')
   findAllForUser(
     @Query('lang') lang:string,
@@ -36,6 +38,7 @@ export class ModulosController {
   }
 
   @ApiTags('permisos_modulos')
+  @UseGuards(AdminGuard)
   @Get('getModuloPermisoExistente')
   findOne(
     @Query('lang') lang:string,
@@ -49,6 +52,7 @@ export class ModulosController {
   }
 
   @ApiTags('permisos_modulos')
+  @UseGuards(AdminGuard)
   @Get('getHasSubmodule')
   findSubmodules(
     @Query('lang') lang:string,
@@ -61,6 +65,7 @@ export class ModulosController {
   }
 
   @ApiTags('permisos_modulos')
+  @UseGuards(AdminGuard)
   @Post('postModuloPermiso')
   create(
     @Query('lang') lang:string,
@@ -73,6 +78,7 @@ export class ModulosController {
   }
 
   @ApiTags('permisos_modulos')
+  @UseGuards(AdminGuard)
   @Patch('editModuloPermiso')
   updateModuloPermiso(
     @Query('lang') lang:string,
@@ -86,6 +92,7 @@ export class ModulosController {
   }  
   
   @ApiTags('permisos_modulos')
+  @UseGuards(AdminGuard)
   @Patch('updateModuloPermiso')
   update(
     @Query('lang') lang:string,
@@ -98,6 +105,7 @@ export class ModulosController {
   }
 
   @ApiTags('permisos_modulos')
+  @UseGuards(AdminGuard)
   @Delete('deleteModuloPermiso')
   remove(
     @Query('lang') lang:string,

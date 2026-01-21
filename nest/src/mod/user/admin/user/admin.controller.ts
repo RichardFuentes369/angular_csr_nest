@@ -14,6 +14,7 @@ export class AdminController {
   constructor(private readonly adminService: AdminService) {}
 
   @ApiTags('admin')
+  @UseGuards(AdminGuard)
   @Post('crear-admininistrador')
   create(
     @Query('lang') lang:string,
@@ -26,8 +27,8 @@ export class AdminController {
   }
   
   @ApiTags('admin')
-  @Get()
   // @UseGuards(AdminGuard)
+  @Get()
   findAll(
     @Query('lang') lang:string,
     @Query() filterUserDto: FilterUserDto
@@ -39,6 +40,7 @@ export class AdminController {
   }
 
   @ApiTags('admin')
+  @UseGuards(AdminGuard)
   @Get('obtener-administrador/:id')
   findOne(
     @Query('lang') lang:string,
@@ -51,6 +53,7 @@ export class AdminController {
   }
 
   @ApiTags('admin')
+  @UseGuards(AdminGuard)
   @Patch('editar-administrador/:id')
   update(
     @Query('lang') lang:string,
@@ -64,6 +67,7 @@ export class AdminController {
   }
 
   @ApiTags('admin')
+  @UseGuards(AdminGuard)
   @Patch('actualizar-estado-admininistrador')
   updateStatus(
     @Query('lang') lang:string,
@@ -74,6 +78,7 @@ export class AdminController {
   }
 
   @ApiTags('admin')
+  @UseGuards(AdminGuard)
   @Delete('eliminar-admininistrador/:id')
   remove(
     @Query('lang') lang:string,

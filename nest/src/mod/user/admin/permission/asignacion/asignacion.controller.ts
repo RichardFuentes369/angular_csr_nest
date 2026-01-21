@@ -1,14 +1,16 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, Put, UseGuards } from '@nestjs/common';
 import { AsignacionService } from './asignacion.service';
 import { CreateAsignacionDto } from './dto/create-asignacion.dto';
 import { UpdateAsignacionDto } from './dto/update-asignacion.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { AdminGuard } from '@guard/admin/admin.guard';
 
 @Controller('asignacion')
 export class AsignacionController {
   constructor(private readonly asignacionService: AsignacionService) {}
 
   @ApiTags('asignacion_permiso')
+  @UseGuards(AdminGuard)
   @Get('mis-permisos')
   findAll(
     @Query('lang') lang:string,
@@ -29,6 +31,7 @@ export class AsignacionController {
   }
 
   @ApiTags('asignacion_permiso')
+  @UseGuards(AdminGuard)
   @Get('getAsignacionMePertenece')
   findOne(
     @Query('lang') lang:string,
@@ -43,6 +46,7 @@ export class AsignacionController {
   }
 
   @ApiTags('asignacion_permiso')
+  @UseGuards(AdminGuard)
   @Put('updateAsignacionPermiso')
   updateAsignacion(
     @Query('lang') lang:string,

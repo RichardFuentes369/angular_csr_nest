@@ -6,7 +6,10 @@ export const STORAGE_KEY_PROFILE = 'profile';
 export const STORAGE_KEY_ADMIN_AUTH = 'authadmin';
 export const STORAGE_KEY_FINAL_AUTH = 'authuser';
 
+export const WORD_KEY_AUTHORIZATION_CONTENT_TYPE = 'Content-Type';
 export const WORD_KEY_AUTHORIZATION_GLOBAL = 'Authorization';
+export const WORD_KEY_AUTHORIZATION_APPLICATION_TYPE = 'application/json';
+
 export const WORD_KEY_BEARER_GLOBAL = 'Bearer';
 export const WORD_KEY_COMPONENT_GLOBAL = 'componente';
 export const WORD_KEY_ID_MI_BOTON_GLOBAL = 'miBoton';

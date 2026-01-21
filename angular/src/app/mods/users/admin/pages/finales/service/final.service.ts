@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { WORD_KEY_AUTHORIZATION_APPLICATION_TYPE, WORD_KEY_AUTHORIZATION_CONTENT_TYPE, WORD_KEY_AUTHORIZATION_GLOBAL, STORAGE_KEY_TOKEN_ADMIN, WORD_KEY_BEARER_GLOBAL } from '@const/app.const';
 import { environment } from '@environment/environment';
 import { TranslateService } from '@ngx-translate/core';
 import axios from 'axios';
@@ -14,8 +15,13 @@ export class FinalService {
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = 'user/obtener-usuario/'
     let urlCopleta = environment.apiUrl+complemento+id
+    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
     return await axios.request({
+      headers: {
+        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
+      },
       method: 'get',
       url: urlCopleta,
       params: {
@@ -28,8 +34,13 @@ export class FinalService {
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = 'user/crear-usuario/'
     let urlCopleta = environment.apiUrl+complemento
+    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
     return await axios.request({
+      headers: {
+        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
+      },
       method: 'post',
       url: urlCopleta,
       data: data,
@@ -43,8 +54,13 @@ export class FinalService {
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = `user/editar-usuario/${id}`
     let urlCopleta = environment.apiUrl+complemento
+    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
     return await axios.request({
+      headers: {
+        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
+      },
       method: 'patch',
       url: urlCopleta,
       data: data,
@@ -58,6 +74,7 @@ export class FinalService {
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = 'user/actualizar-estado-admininistrador/'
     let urlCopleta = environment.apiUrl+complemento
+    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
     let data = {
       'id': id,
@@ -65,6 +82,10 @@ export class FinalService {
     }
 
     return await axios.request({
+      headers: {
+        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
+      },
       method: 'patch',
       url: urlCopleta,
       data: data,
@@ -78,8 +99,13 @@ export class FinalService {
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = 'user/eliminar-usuario/'
     let urlCopleta = environment.apiUrl+complemento+id
+    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
     return await axios.request({
+      headers: {
+        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
+      },
       method: 'delete',
       url: urlCopleta,
       params: {

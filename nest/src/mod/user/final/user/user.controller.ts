@@ -3,18 +3,18 @@ import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
-import { PaginationDto } from '@global/dto/pagination.dto';
 import { ApiTags } from '@nestjs/swagger';
 
-import { FinalGuard } from '@guard/final/final.guard';
 import { FilterUserDto } from '@module/user/dto/filter-user.dto';
 import { UpdateStatusDto } from '@module/user/admin/user/dto/update-status.dto';
+import { AdminGuard } from '@guard/admin/admin.guard';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @ApiTags('user')
+  @UseGuards(AdminGuard)
   @Post('crear-usuario')
   create(
     @Query('lang') lang:string,
@@ -27,6 +27,7 @@ export class UserController {
   }
   
   @ApiTags('user')
+  // @UseGuards(AdminGuard)
   @Get()
   findAll(
     @Query('lang') lang:string,
@@ -39,6 +40,7 @@ export class UserController {
   }
   
   @ApiTags('user')
+  @UseGuards(AdminGuard)
   @Get('obtener-usuario/:id')
   findOne(
     @Query('lang') lang:string,
@@ -51,6 +53,7 @@ export class UserController {
   }
   
   @ApiTags('user')
+  @UseGuards(AdminGuard)
   @Patch('editar-usuario/:id')
   update(
     @Query('lang') lang:string,
@@ -64,8 +67,8 @@ export class UserController {
     );
   }
 
-
   @ApiTags('admin')
+  @UseGuards(AdminGuard)
   @Patch('actualizar-estado-admininistrador')
   updateStatus(
     @Query('lang') lang:string,
@@ -80,6 +83,7 @@ export class UserController {
   }
   
   @ApiTags('user')
+  @UseGuards(AdminGuard)
   @Delete('eliminar-usuario/:id')
   remove(
     @Query('lang') lang:string,

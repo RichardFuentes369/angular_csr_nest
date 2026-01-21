@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { STORAGE_KEY_TOKEN_ADMIN, WORD_KEY_AUTHORIZATION_APPLICATION_TYPE, WORD_KEY_AUTHORIZATION_CONTENT_TYPE, WORD_KEY_AUTHORIZATION_GLOBAL, WORD_KEY_BEARER_GLOBAL } from '@const/app.const';
 import { environment } from '@environment/environment';
 import { TranslateService } from '@ngx-translate/core';
 import axios from 'axios';
@@ -16,9 +17,19 @@ export class ModulosService {
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = `modulos/getHasSubmodule?idModulo=${id}&lang=${lang}`
     let urlCopleta = environment.apiUrl+complemento
+    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
-    const data = axios.get(urlCopleta)
-    return data
+    return await axios.request({
+      headers: {
+        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
+      },
+      method: 'get',
+      url: urlCopleta,
+      params: {
+        lang: lang,
+      }
+    })
   }  
   
   async listaPermisos(id: number){
@@ -26,8 +37,19 @@ export class ModulosService {
     let complemento = `modulos/getPermisosPorUsuario?userId=${id}&lang=${lang}`
     let urlCopleta = environment.apiUrl+complemento
 
-    const data = axios.get(urlCopleta)
-    return data
+    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
+
+    return await axios.request({
+      headers: {
+        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
+      },
+      method: 'get',
+      url: urlCopleta,
+      params: {
+        lang: lang,
+      }
+    })
   }
 
   async buscarPermiso(padreId:number, nombrePermiso: string){
@@ -46,9 +68,18 @@ export class ModulosService {
     let complemento = `asignacion/updateAsignacionPermiso?idPermiso=${idPermiso}&idPadre=${idPadre}&idUser=${userId}&opcion=${opcion}&lang=${lang}`
     let urlCopleta = environment.apiUrl+complemento
 
+    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
+
     return await axios.request({
+      headers: {
+        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
+      },
       method: 'put',
       url: urlCopleta,
+      params: {
+        lang: lang,
+      }
     })
   }
 
@@ -57,10 +88,18 @@ export class ModulosService {
     let complemento = `modulos/postModuloPermiso?lang=${lang}`
     let urlCopleta = environment.apiUrl+complemento
 
+    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
+
     return await axios.request({
+      headers: {
+        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
+      },
       method: 'post',
-      data: data,
       url: urlCopleta,
+      params: {
+        lang: lang,
+      }
     })
   }
 
@@ -69,9 +108,18 @@ export class ModulosService {
     let complemento = `modulos/deleteModuloPermiso?idPermiso=${+id}&lang=${lang}`
     let urlCopleta = environment.apiUrl+complemento
 
+    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
+
     return await axios.request({
+      headers: {
+        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
+      },
       method: 'delete',
       url: urlCopleta,
+      params: {
+        lang: lang,
+      }
     })
   }
 
