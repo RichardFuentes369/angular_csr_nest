@@ -15,35 +15,6 @@ export class AdminService {
     private i18n: I18nService
   ) {}
 
-  async create(
-    lang: string,
-    createAdminDto: CreateAdminDto
-  ) {
-    try {
-
-      const encontrarCorreo = await this.findUsernameEmail(createAdminDto.email)
-
-      if(encontrarCorreo) throw new NotFoundException(
-        this.i18n.t('user.MSJ_ERROR_USER_EXIST', { lang, args: { correo: createAdminDto.email } })
-      )      
-  
-      this.adminRepository.save(createAdminDto);
-      return {
-        'title': this.i18n.t('user.MSJ_USUARIO_TITTLE', { lang }),
-        'message': this.i18n.t('user.MSJ_USUARIO_CREADO_EXITOSAMENTE_TITTLE', { lang }),
-        'status': 200,
-      }
-
-    } catch (error) {
-      return {
-        'title': error.response.error,
-        'text': error.response.error,
-        'message': error.response.message,
-        'status': 404,
-      }
-    }
-  }
-  
   listarPropiedadesTabla(T) {
     const metadata = T.metadata;
     return metadata.columns.map((column) => column.propertyName);
@@ -139,10 +110,51 @@ export class AdminService {
     });
   }
 
+  async findUsernameEmail(
+    username: string
+  ): Promise<Admin>{
+    return this.adminRepository.findOne({
+      where: [ {email : username}]
+    });
+  }
+
+  // requieren permisos de usuario
+
+  async create(
+    lang: string,
+    createAdminDto: CreateAdminDto,
+    userId: number
+  ) {
+    try {
+
+      const encontrarCorreo = await this.findUsernameEmail(createAdminDto.email)
+
+      if(encontrarCorreo) throw new NotFoundException(
+        this.i18n.t('user.MSJ_ERROR_USER_EXIST', { lang, args: { correo: createAdminDto.email } })
+      )      
+  
+      this.adminRepository.save(createAdminDto);
+      return {
+        'title': this.i18n.t('user.MSJ_USUARIO_TITTLE', { lang }),
+        'message': this.i18n.t('user.MSJ_USUARIO_CREADO_EXITOSAMENTE_TITTLE', { lang }),
+        'status': 200,
+      }
+
+    } catch (error) {
+      return {
+        'title': error.response.error,
+        'text': error.response.error,
+        'message': error.response.message,
+        'status': 404,
+      }
+    }
+  }
+
   async update(
     lang: string, 
     id: number, 
-    updateAdminDto: UpdateAdminDto
+    updateAdminDto: UpdateAdminDto,
+    userId: number
   ) {
     const property = await this.adminRepository.findOne({
       where: { id }
@@ -171,7 +183,8 @@ export class AdminService {
   updateStatus(
     lang: string, 
     id: number[], 
-    isActiveo: boolean
+    isActiveo: boolean,
+    userId: number
   ) {
     return this.adminRepository.update(
         { id: In(id) },
@@ -181,16 +194,9 @@ export class AdminService {
   
   remove(
     lang: string,
-    id: number[]
+    id: number[],
+    userId: number
   ) {
     return this.adminRepository.delete({id: In(id)})
-  }
-
-  async findUsernameEmail(
-    username: string
-  ): Promise<Admin>{
-    return this.adminRepository.findOne({
-      where: [ {email : username}]
-    });
   }
 }

@@ -18,51 +18,6 @@ export class ModulosService {
     private i18n: I18nService
   ) {}
 
-  async remove(lang:string,idPermiso: number){
-    try {
-      const selectPermisoModulo = await this.moduloRepository.find({
-        where: {
-          id: idPermiso
-        }
-      });
-
-      const nombrePermiso = await selectPermisoModulo[0].nombre
-      const permiso = await selectPermisoModulo[0].permiso
-      const padre_id = await selectPermisoModulo[0].modulo_padre_id
-
-      const selectPermisosAsignados = await this.asignacionRepository.find({
-        where: {
-          nombre: nombrePermiso,
-          permiso: permiso,
-          modulo_padre_id: padre_id
-        }
-      })
-
-      if(selectPermisosAsignados.length > 0){
-        return {
-          'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE', { lang }),
-          'message': this.i18n.t('modulo.MSJ_ERROR_PERMISO_TIENE_IS_ASSIGNED', { lang }),
-          'status': 404,
-        }
-      }
-
-      const elimiarModulo = await this.moduloRepository.delete(+idPermiso);
-
-      return {
-        'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE', { lang }),
-        'message': this.i18n.t('modulo.MSN_PERMISO_REMOVIDO_OK', { lang }),
-        'status': 200,
-      }
-    } catch (error) {
-      return {
-        'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE', { lang }),
-        'message': this.i18n.t('modulo.MSJ_ERROR_PERMISO_TIENE_PERMISOS_HIJOS', { lang }),
-        'status': 404,
-      }
-    }
-  }
-
-  
   listarPropiedadesTabla(T) {
     const metadata = T.metadata;
     return metadata.columns.map((column) => column.propertyName);
@@ -100,7 +55,10 @@ export class ModulosService {
     return roots;
   }
 
-  async findAllForUser(lang:string, queryParams) {
+  async findAllForUser(
+    lang:string, 
+    queryParams,
+  ) {
 
     // Realizar la consulta
     const query = await this.moduloRepository.createQueryBuilder('mpm')
@@ -136,7 +94,12 @@ export class ModulosService {
     return result;
   }
 
-  async findPermiso(lang:string, moduloId?: number, permiso?: string, opcion?: string){
+  async findPermiso(
+    lang:string, 
+    moduloId?: number, 
+    permiso?: string, 
+    opcion?: string
+  ){
     
     let consulta = []
 
@@ -270,7 +233,10 @@ export class ModulosService {
     return consulta
   }
 
-  async getHasSubmodule(lang:string, moduloId?: number){
+  async getHasSubmodule(
+    lang:string, 
+    moduloId?: number
+  ){
     
     let consulta = []
 
@@ -285,53 +251,10 @@ export class ModulosService {
     return consulta
   }
 
-  async create(lang:string, createModuleDto: CreateModuloDto) {
-    try {
-      if(!createModuleDto.nombre) throw new NotFoundException(this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE', { lang }) })
-      if(!createModuleDto.descripcion) throw new NotFoundException(this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE', { lang }) })
-      if(!createModuleDto.permiso) throw new NotFoundException(this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE', { lang }) })
-      
-      await this.findPermiso(createModuleDto.modulo_padre_id, createModuleDto.permiso, 'CREATE')
-
-      let model = {
-        'modulo_padre_id': (createModuleDto.modulo_padre_id == 0) ? null : createModuleDto.modulo_padre_id,
-        'tiene_submodulos': createModuleDto.tiene_submodulos,
-        'tiene_permisos': createModuleDto.tiene_permisos,
-        'nombre': createModuleDto.nombre,
-        'permiso': createModuleDto.permiso,
-        'descripcion': createModuleDto.descripcion,
-      }
-
-      await this.moduloRepository.save(model);
-
-      return {
-        'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE', { lang }),
-        'message': this.i18n.t('modulo.MSJ_PERMISO_CREADO_OK', { lang }),
-        'status': 200,
-      }
-    } catch (error) {
-      return {
-        'title': error.response.message,
-        'message': error.response.error,
-        'status': 404,
-      }
-    }
-  }
-
-  async update(lang:string,query: any){
-
-    let idRegistro = await this.findPermiso(query.idModulo, query.permiso, 'SEARCH')
-    const elimiarModulo = this.moduloRepository.delete(idRegistro[0].id);
-    
-    return {
-      'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE', { lang }),
-      'message': this.i18n.t('modulo.MSN_PERMISO_REMOVIDO_OK', { lang }),
-      'status': 200,
-    }
-    
-  }  
-
-  async getPermisoModulo(lang:string, permisoId?: number){
+  async getPermisoModulo(
+    lang:string, 
+    permisoId?: number
+  ){
     let consulta = []
 
     consulta = await this.moduloRepository.createQueryBuilder("modulo")
@@ -357,69 +280,6 @@ export class ModulosService {
     })
     return cuentaAsignados
   }
-
-  async updateModulePermiso(lang:string,query: any, editModuloDto: EditModuloDto){
-    // query.idPermiso sera el id de la tabla mod_permisos_modulo
-    let modulo = await this.getPermisoModulo(lang, query.idPermiso)
-    let asignacion = await this.getPermisoModuloAsignacion(lang, modulo)  
-
-    // actualizar en mod_permisos_modulo
-    const moduloPermiso = await this.moduloRepository.findOne({
-      where: {
-        id: query.idPermiso,
-      }
-    });
-    const updateResult: UpdateResult = await this.moduloRepository.update(
-        {
-          // WHERE
-          nombre: moduloPermiso.nombre,
-          permiso: moduloPermiso.permiso,
-          descripcion: moduloPermiso.descripcion
-        },
-        {
-          // SET
-          nombre: editModuloDto.nombre,
-          permiso: editModuloDto.permiso,
-          descripcion: editModuloDto.descripcion
-        }
-    );
-
-    // actualizar en mod_permisos_modulo_asignacion
-    if(asignacion > 0){
-      const asignacion = await this.asignacionRepository.find({
-        where: {
-          nombre: moduloPermiso.nombre,
-          permiso: moduloPermiso.permiso,
-          descripcion: moduloPermiso.descripcion
-        }
-      });
-      if(asignacion.length > 0){
-        const updateResult: UpdateResult = await this.asignacionRepository.update(
-          {
-            // WHERE
-            nombre: moduloPermiso.nombre,
-            permiso: moduloPermiso.permiso,
-            descripcion: moduloPermiso.descripcion
-          },
-          {
-            //SET
-            nombre: editModuloDto.nombre,
-            permiso: editModuloDto.permiso,
-            descripcion: editModuloDto.descripcion
-          }
-      );
-      }
-    }
-    
-  
-
-    return {
-      'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE', { lang }),
-      'message': this.i18n.t('modulo.MSN_PERMISO_UPDATED_OK', { lang }),
-      'status': 200,
-    }
-  }
-
 
   async findPaginada(lang:string,padreId:number, paginationDto: PaginationDto){
 
@@ -487,5 +347,176 @@ export class ModulosService {
       }
     }]
 
+  }
+
+  // requieren permisos de usuario
+
+  async create(
+    lang:string, 
+    createModuleDto: CreateModuloDto,
+    userId: number
+  ) {
+    try {
+      if(!createModuleDto.nombre) throw new NotFoundException(this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE', { lang }) })
+      if(!createModuleDto.descripcion) throw new NotFoundException(this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE', { lang }) })
+      if(!createModuleDto.permiso) throw new NotFoundException(this.i18n.t('modulo.ERROR', { lang }), { cause: new Error(), description: this.i18n.t('modulo.MSJ_ERROR_PERMISO_NO_EXISTENTE', { lang }) })
+      
+      await this.findPermiso(createModuleDto.modulo_padre_id, createModuleDto.permiso, 'CREATE')
+
+      let model = {
+        'modulo_padre_id': (createModuleDto.modulo_padre_id == 0) ? null : createModuleDto.modulo_padre_id,
+        'tiene_submodulos': createModuleDto.tiene_submodulos,
+        'tiene_permisos': createModuleDto.tiene_permisos,
+        'nombre': createModuleDto.nombre,
+        'permiso': createModuleDto.permiso,
+        'descripcion': createModuleDto.descripcion,
+      }
+
+      await this.moduloRepository.save(model);
+
+      return {
+        'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE', { lang }),
+        'message': this.i18n.t('modulo.MSJ_PERMISO_CREADO_OK', { lang }),
+        'status': 200,
+      }
+    } catch (error) {
+      return {
+        'title': error.response.message,
+        'message': error.response.error,
+        'status': 404,
+      }
+    }
+  }
+
+  async update(
+    lang:string,
+    query: any,
+    userId: number
+  ){
+
+    let idRegistro = await this.findPermiso(query.idModulo, query.permiso, 'SEARCH')
+    const elimiarModulo = this.moduloRepository.delete(idRegistro[0].id);
+    
+    return {
+      'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE', { lang }),
+      'message': this.i18n.t('modulo.MSN_PERMISO_REMOVIDO_OK', { lang }),
+      'status': 200,
+    }
+    
+  }  
+
+  async remove(
+    lang:string,
+    idPermiso: number,
+    userId: number
+  ){
+    try {
+      const selectPermisoModulo = await this.moduloRepository.find({
+        where: {
+          id: idPermiso
+        }
+      });
+
+      const nombrePermiso = await selectPermisoModulo[0].nombre
+      const permiso = await selectPermisoModulo[0].permiso
+      const padre_id = await selectPermisoModulo[0].modulo_padre_id
+
+      const selectPermisosAsignados = await this.asignacionRepository.find({
+        where: {
+          nombre: nombrePermiso,
+          permiso: permiso,
+          modulo_padre_id: padre_id
+        }
+      })
+
+      if(selectPermisosAsignados.length > 0){
+        return {
+          'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE', { lang }),
+          'message': this.i18n.t('modulo.MSJ_ERROR_PERMISO_TIENE_IS_ASSIGNED', { lang }),
+          'status': 404,
+        }
+      }
+
+      const elimiarModulo = await this.moduloRepository.delete(+idPermiso);
+
+      return {
+        'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE', { lang }),
+        'message': this.i18n.t('modulo.MSN_PERMISO_REMOVIDO_OK', { lang }),
+        'status': 200,
+      }
+    } catch (error) {
+      return {
+        'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE', { lang }),
+        'message': this.i18n.t('modulo.MSJ_ERROR_PERMISO_TIENE_PERMISOS_HIJOS', { lang }),
+        'status': 404,
+      }
+    }
+  }
+
+  async updateModulePermiso(
+    lang:string,
+    query: any, 
+    editModuloDto: EditModuloDto,
+    userId: number
+  ){
+    // query.idPermiso sera el id de la tabla mod_permisos_modulo
+    let modulo = await this.getPermisoModulo(lang, query.idPermiso)
+    let asignacion = await this.getPermisoModuloAsignacion(lang, modulo)  
+
+    // actualizar en mod_permisos_modulo
+    const moduloPermiso = await this.moduloRepository.findOne({
+      where: {
+        id: query.idPermiso,
+      }
+    });
+    const updateResult: UpdateResult = await this.moduloRepository.update(
+        {
+          // WHERE
+          nombre: moduloPermiso.nombre,
+          permiso: moduloPermiso.permiso,
+          descripcion: moduloPermiso.descripcion
+        },
+        {
+          // SET
+          nombre: editModuloDto.nombre,
+          permiso: editModuloDto.permiso,
+          descripcion: editModuloDto.descripcion
+        }
+    );
+
+    // actualizar en mod_permisos_modulo_asignacion
+    if(asignacion > 0){
+      const asignacion = await this.asignacionRepository.find({
+        where: {
+          nombre: moduloPermiso.nombre,
+          permiso: moduloPermiso.permiso,
+          descripcion: moduloPermiso.descripcion
+        }
+      });
+      if(asignacion.length > 0){
+        const updateResult: UpdateResult = await this.asignacionRepository.update(
+          {
+            // WHERE
+            nombre: moduloPermiso.nombre,
+            permiso: moduloPermiso.permiso,
+            descripcion: moduloPermiso.descripcion
+          },
+          {
+            //SET
+            nombre: editModuloDto.nombre,
+            permiso: editModuloDto.permiso,
+            descripcion: editModuloDto.descripcion
+          }
+      );
+      }
+    }
+    
+  
+
+    return {
+      'title': this.i18n.t('modulo.MSJ_PERMISO_TITTLE', { lang }),
+      'message': this.i18n.t('modulo.MSN_PERMISO_UPDATED_OK', { lang }),
+      'status': 200,
+    }
   }
 }

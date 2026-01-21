@@ -16,33 +16,6 @@ export class UserService {
     private i18n: I18nService
   ) {}
 
- async create(
-  createUserDto: CreateUserDto,
-  lang: string
-) {
-    try{
-      const encontrarCorreo = await this.findUsernameEmail(createUserDto.email)
-  
-      if(encontrarCorreo) throw new NotFoundException(`
-        Este correo ${createUserDto.email}, ya esta registrado en nuestra base de datos
-      `)
-      await this.userRepository.save(createUserDto);
-
-      return {
-        'title': this.i18n.t('user.MSJ_USUARIO_TITTLE', { lang }),
-        'message': this.i18n.t('user.MSJ_USUARIO_CREADO_EXITOSAMENTE_TITTLE', { lang }),
-        'status': 200,
-      }
-    } catch (error) {
-      return {
-        'title': error.response.error,
-        'text': error.response.error,
-        'message': error.response.message,
-        'status': 404,
-      }
-    }
-  }
-  
   listarPropiedadesTabla(T) {
     const metadata = T.metadata;
     return metadata.columns.map((column) => column.propertyName);
@@ -130,7 +103,7 @@ export class UserService {
 
   findOne(
     id: number,
-    lang: string
+    lang: string,
   ) {
     return this.userRepository.findOne({
       where: [ {id : id}],
@@ -138,10 +111,47 @@ export class UserService {
     });
   }
 
+  async findUsernameEmail(username: string): Promise<User>{
+    return this.userRepository.findOne({
+      where: [ {email : username}]
+    });
+  }
+
+  // requieren permisos de usuario
+
+  async create(
+  createUserDto: CreateUserDto,
+  lang: string,
+  userId: number
+) {
+    try{
+      const encontrarCorreo = await this.findUsernameEmail(createUserDto.email)
+  
+      if(encontrarCorreo) throw new NotFoundException(`
+        Este correo ${createUserDto.email}, ya esta registrado en nuestra base de datos
+      `)
+      await this.userRepository.save(createUserDto);
+
+      return {
+        'title': this.i18n.t('user.MSJ_USUARIO_TITTLE', { lang }),
+        'message': this.i18n.t('user.MSJ_USUARIO_CREADO_EXITOSAMENTE_TITTLE', { lang }),
+        'status': 200,
+      }
+    } catch (error) {
+      return {
+        'title': error.response.error,
+        'text': error.response.error,
+        'message': error.response.message,
+        'status': 404,
+      }
+    }
+  }
+  
   async update(
     id: number, 
     updateUserDto: UpdateUserDto,
-    lang: string
+    lang: string,
+    userId: number
   ) {
     const property = await this.userRepository.findOne({
       where: { id }
@@ -170,7 +180,8 @@ export class UserService {
   updateStatus(
     id: number[], 
     isActiveo: boolean,
-    lang: string
+    lang: string,
+    userId: number
   ) {
     return this.userRepository.update(
         { id: In(id) },
@@ -180,14 +191,9 @@ export class UserService {
 
   remove(
     id: number[],
-    lang: string
+    lang: string,
+    userId: number
   ) {
     return this.userRepository.delete({id: In(id)})
-  }
-
-  async findUsernameEmail(username: string): Promise<User>{
-    return this.userRepository.findOne({
-      where: [ {email : username}]
-    });
   }
 }

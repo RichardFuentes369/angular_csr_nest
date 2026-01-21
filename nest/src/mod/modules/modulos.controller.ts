@@ -5,6 +5,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { PaginationDto } from '@global/dto/pagination.dto';
 import { EditModuloDto } from './dto/edit-modulo.dto';
 import { AdminGuard } from '@guard/admin/admin.guard';
+import { GetUser } from 'src/decorator/getIdUser.decorator';
 
 @Controller('modulos')
 export class ModulosController {
@@ -15,7 +16,8 @@ export class ModulosController {
   findPaginada(
     @Query('lang') lang:string,
     @Param('padreId') padreId: string, 
-    @Query() paginationDto: PaginationDto
+    @Query() paginationDto: PaginationDto,
+    @GetUser('id') userId: number
   ) {
     return this.modulosService.findPaginada(
       lang,
@@ -29,7 +31,8 @@ export class ModulosController {
   @Get('getPermisosPorUsuario')
   findAllForUser(
     @Query('lang') lang:string,
-    @Query() query
+    @Query() query,
+    @GetUser('id') userId: number
   ) {
     return this.modulosService.findAllForUser(
       lang,
@@ -42,7 +45,9 @@ export class ModulosController {
   @Get('getModuloPermisoExistente')
   findOne(
     @Query('lang') lang:string,
-    @Query() query) {
+    @Query() query,
+    @GetUser('id') userId: number
+  ) {
     return this.modulosService.findPermiso(
       lang,
       +query.idModulo, 
@@ -56,7 +61,8 @@ export class ModulosController {
   @Get('getHasSubmodule')
   findSubmodules(
     @Query('lang') lang:string,
-    @Query() query
+    @Query() query,
+    @GetUser('id') userId: number
   ) {
     return this.modulosService.getHasSubmodule(
       lang,
@@ -69,11 +75,13 @@ export class ModulosController {
   @Post('postModuloPermiso')
   create(
     @Query('lang') lang:string,
-    @Body() createModuloDto: CreateModuloDto
+    @Body() createModuloDto: CreateModuloDto,
+    @GetUser('id') userId: number
   ) {
     return this.modulosService.create(
       lang,
-      createModuloDto
+      createModuloDto,
+      userId
     );
   }
 
@@ -82,12 +90,14 @@ export class ModulosController {
   @Patch('editModuloPermiso')
   updateModuloPermiso(
     @Query('lang') lang:string,
-    @Query() queryParams, @Body() editModuloDto: EditModuloDto
+    @Query() queryParams, @Body() editModuloDto: EditModuloDto,
+    @GetUser('id') userId: number
   ) {
     return this.modulosService.updateModulePermiso(
       lang,
       queryParams, 
-      editModuloDto
+      editModuloDto,
+      userId
     );
   }  
   
@@ -96,11 +106,13 @@ export class ModulosController {
   @Patch('updateModuloPermiso')
   update(
     @Query('lang') lang:string,
-    @Query() queryParams
+    @Query() queryParams,
+    @GetUser('id') userId: number
   ) {
     return this.modulosService.update(
       lang,
-      queryParams
+      queryParams,
+      userId
     );
   }
 
@@ -109,11 +121,13 @@ export class ModulosController {
   @Delete('deleteModuloPermiso')
   remove(
     @Query('lang') lang:string,
-    @Query('idPermiso') idPermiso: string
+    @Query('idPermiso') idPermiso: string,
+    @GetUser('id') userId: number
   ) {
     return this.modulosService.remove(
       lang,
-      +idPermiso
+      +idPermiso,
+      userId
     );
   }
 }

@@ -4,6 +4,7 @@ import { CreateAsignacionDto } from './dto/create-asignacion.dto';
 import { UpdateAsignacionDto } from './dto/update-asignacion.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { AdminGuard } from '@guard/admin/admin.guard';
+import { GetUser } from 'src/decorator/getIdUser.decorator';
 
 @Controller('asignacion')
 export class AsignacionController {
@@ -14,7 +15,8 @@ export class AsignacionController {
   @Get('mis-permisos')
   findAll(
     @Query('lang') lang:string,
-    @Query() query
+    @Query() query,
+    @GetUser('id') userId: number
   ) {
     if(query.heredadosDe){
       return this.asignacionService.findAll(
@@ -35,7 +37,8 @@ export class AsignacionController {
   @Get('getAsignacionMePertenece')
   findOne(
     @Query('lang') lang:string,
-    @Query() query
+    @Query() query,
+    @GetUser('id') userId: number
   ) {
     return this.asignacionService.findOne(
       lang,
@@ -50,7 +53,8 @@ export class AsignacionController {
   @Put('updateAsignacionPermiso')
   updateAsignacion(
     @Query('lang') lang:string,
-    @Query() query
+    @Query() query,
+    @GetUser('id') userId: number
   ) {
     return this.asignacionService.updateAsignacion(
       lang,
@@ -60,7 +64,5 @@ export class AsignacionController {
       +query.idUser
     );
   }
-
-
 }
 

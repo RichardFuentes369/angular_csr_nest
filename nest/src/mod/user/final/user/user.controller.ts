@@ -8,6 +8,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { FilterUserDto } from '@module/user/dto/filter-user.dto';
 import { UpdateStatusDto } from '@module/user/admin/user/dto/update-status.dto';
 import { AdminGuard } from '@guard/admin/admin.guard';
+import { GetUser } from 'src/decorator/getIdUser.decorator';
 
 @Controller('user')
 export class UserController {
@@ -18,11 +19,13 @@ export class UserController {
   @Post('crear-usuario')
   create(
     @Query('lang') lang:string,
-    @Body() createUserDto: CreateUserDto
+    @Body() createUserDto: CreateUserDto,
+    @GetUser('id') userId: number
   ) {
     return this.userService.create(
       createUserDto,
-      lang
+      lang,
+      userId
     );
   }
   
@@ -31,7 +34,8 @@ export class UserController {
   @Get()
   findAll(
     @Query('lang') lang:string,
-    @Query() filterUserDto: FilterUserDto
+    @Query() filterUserDto: FilterUserDto,
+    @GetUser('id') userId: number
   ) {
     return this.userService.findAll(
       filterUserDto,
@@ -44,7 +48,8 @@ export class UserController {
   @Get('obtener-usuario/:id')
   findOne(
     @Query('lang') lang:string,
-    @Param('id') id: string
+    @Param('id') id: string,
+    @GetUser('id') userId: number
   ) {
     return this.userService.findOne(
       +id,
@@ -58,12 +63,14 @@ export class UserController {
   update(
     @Query('lang') lang:string,
     @Param('id') id: string, 
-    @Body() updateUserDto: UpdateUserDto
+    @Body() updateUserDto: UpdateUserDto,
+    @GetUser('id') userId: number
   ) {
     return this.userService.update(
       +id, 
       updateUserDto,
-      lang
+      lang,
+      userId
     );
   }
 
@@ -72,13 +79,15 @@ export class UserController {
   @Patch('actualizar-estado-admininistrador')
   updateStatus(
     @Query('lang') lang:string,
-    @Body() upsateStatus: UpdateStatusDto
+    @Body() upsateStatus: UpdateStatusDto,
+    @GetUser('id') userId: number
   ) {
     const option = (upsateStatus.option == '1') ? true : false
     return this.userService.updateStatus(
       upsateStatus.id, 
       option,
-      lang
+      lang,
+      userId
     );
   }
   
@@ -87,12 +96,14 @@ export class UserController {
   @Delete('eliminar-usuario/:id')
   remove(
     @Query('lang') lang:string,
-    @Param('id') id: string
+    @Param('id') id: string,
+    @GetUser('id') userId: number
   ) {
     const idsNumeros: number[] = id.split(',').map(str => parseInt(str.trim(), 10));
     return this.userService.remove(
       idsNumeros,
-      lang
+      lang,
+      userId
     );
   }
 }

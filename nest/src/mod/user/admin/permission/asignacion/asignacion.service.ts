@@ -70,6 +70,8 @@ export class AsignacionService {
     return Modulos;
   }
 
+  // requieren permisos de usuario
+
   async updateAsignacion(
     lang: string,
     idPermiso: number, 
@@ -129,5 +131,4 @@ export class AsignacionService {
     }
 
   }
-
 }
