@@ -96,6 +96,7 @@ export class ModulosService {
         [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
       },
       method: 'post',
+      data: data,
       url: urlCopleta,
       params: {
         lang: lang,

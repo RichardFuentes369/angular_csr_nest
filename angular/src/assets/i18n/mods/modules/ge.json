@@ -14,6 +14,8 @@
 
   "SWAL_ARE_YOU_SURE": "Möchten Sie die Berechtigung {{permission_name}} wirklich löschen?",
   "SWAL_WARNING_REVERSE_CHANGE": "Diese Änderung kann nicht rückgängig gemacht werden!",
+  "SWAL_ERROR": "Berechtigung!",
+  "SWAL_ERROR_RECORD": "Fehler.",
   "SWAL_CREATED": "Berechtigung!",
   "SWAL_CREATED_RECORD": "Erfolgreich erstellt.",
   "SWAL_UPDATED": "Berechtigung!",

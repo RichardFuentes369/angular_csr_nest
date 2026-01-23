@@ -13,6 +13,8 @@
 
   "SWAL_ARE_YOU_SURE": "Êtes-vous sûr de vouloir supprimer la permission {{permission_name}}?",
   "SWAL_WARNING_REVERSE_CHANGE": "Vous ne pourrez pas annuler cette action !",
+  "SWAL_ERROR": "Autorisation!",
+  "SWAL_ERROR_RECORD": "Erreur.",
   "SWAL_CREATED": "Autorisation !",
   "SWAL_CREATED_RECORD": "Créé avec succès.",
   "SWAL_UPDATED": "Autorisation !",

@@ -37,13 +37,13 @@
       </div>
       <div class="modal-footer">
         @if(cancel){
-          <button type="button" class="btn btn-secondary closeModalButton" data-dismiss="modal" (click)="buttonCloseM()">{{buttonCancel}}</button>
+          <button type="button" class="btn btn-secondary closeModalButton btnCancel" data-dismiss="modal" (click)="buttonCloseM()">{{buttonCancel}}</button>
         }
         @if(save){
-          <button type="button" class="btn btn-primary" (click)="buttonSaveM()">{{buttonSave}}</button>
+          <button type="button" class="btn btn-primary btnSave disabled" (click)="buttonSaveM()">{{buttonSave}}</button>
         }
         @if(edit){
-          <button type="button" class="btn btn-primary" (click)="buttonUpdateM()">{{buttonEdit}}</button>
+          <button type="button" class="btn btn-primary btnUpdate disabled" (click)="buttonUpdateM()">{{buttonEdit}}</button>
         }
       </div>
     </div>
