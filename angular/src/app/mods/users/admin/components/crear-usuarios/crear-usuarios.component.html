@@ -54,8 +54,8 @@
               </div>
             </div>
           </div>
-          @if(validators.email) {
-            <span class="text-danger small">{{ 'mod-users.ERROR_USER_EMAIL' | translate }}</span>
+          @if(validators.password) {
+            <span class="text-danger small">{{ 'mod-users.ERROR_USER_PASSWORD' | translate }}</span>
           }
         </div>
       </div>
@@ -75,6 +75,9 @@
               {{ 'mod-users.WORD_INACTIVED' | translate}}
             </option>
           </select>
+          @if(validators.selectHas) {
+            <span class="text-danger small">{{ 'mod-users.ERROR_USER_STATUS' | translate }}</span>
+          }
         </div>
         <div class="col-sm-6 form-group">
         </div>

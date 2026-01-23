@@ -194,7 +194,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     const response = await this.principalService.getDataUser(_id)
     const { firstName, lastName } = response.data || { firstName: 'xxxxxxx', lastName: 'yyyyyyy' }
     
-    this.translate.get('mod-users.SEE_FINAL_TITLE', { "user_name": firstName + ' ' + lastName }).subscribe((res: string) => {this.title = res});
+    this.translate.get('mod-users.SEE_ADMIN_TITLE', { "user_name": firstName + ' ' + lastName }).subscribe((res: string) => {this.title = res});
     this.tamano = "xl"
     this.scrollable = false
     this.save = false
@@ -209,7 +209,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
       this.router.navigate([], {
-        queryParams: { rol: 'user', id: _id },
+        queryParams: { rol: 'admin', id: _id },
       });
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
@@ -236,7 +236,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
       this.router.navigate([], {
-        queryParams: { rol: 'user', id: _id },
+        queryParams: { rol: 'admin', id: _id },
       });
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()

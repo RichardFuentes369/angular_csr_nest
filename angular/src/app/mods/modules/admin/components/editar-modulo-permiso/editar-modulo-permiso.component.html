@@ -1,34 +1,61 @@
 <div class="">
+  @for (item of permiso; track item; let  i = $index) {
   <div class="col-xl-12 col-sm-12 row">
     <div class="col-sm-12 row p-0">
       <div class="col-sm-12 form-group">
         <label for="exampleInputEmail1">
           {{ 'mod-modules.LABEL_PERMISSION_NAME' | translate}}
         </label>
-        <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.nombre" aria-describedby="emailHelp" placeholder="{{ 'mod-modules.PLACEHOLDER_PERMISSION_NAME' | translate}}">
-        <small id="emailHelp" class="form-text text-muted">{{ 'mod-modules.ERROR_PERMISSION_NAME' | translate}}</small>
+        <input type="text" class="form-control" [(ngModel)]="model.nombre" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.nombre" placeholder="{{ 'mod-modules.PLACEHOLDER_PERMISSION_NAME' | translate}}">
+        @if(validators.nombre) {
+          <span class="text-danger small">{{ 'mod-modules.ERROR_PERMISSION_NAME' | translate }}</span>
+        }
       </div>
       <div class="col-sm-12 form-group">
         <label for="exampleInputEmail1">
           {{ 'mod-modules.LABEL_PERMISSION_NICKNAME' | translate}}
         </label>
-        <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.permiso" aria-describedby="emailHelp" placeholder="{{ 'mod-modules.PLACEHOLDER_PERMISSION_NICKNAME' | translate}}" readonly>
-        <small id="emailHelp" class="form-text text-muted">{{ 'mod-modules.ERROR_PERMISSION_NICKNAME' | translate}}</small>
+        <input type="text" class="form-control" [(ngModel)]="model.permiso" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.permiso" placeholder="{{ 'mod-modules.PLACEHOLDER_PERMISSION_NICKNAME' | translate}}">
+        @if(validators.permiso) {
+          <span class="text-danger small">{{ 'mod-modules.ERROR_PERMISSION_NICKNAME' | translate }}</span>
+        }
       </div>
       <div class="col-sm-12 form-group">
         <label for="exampleInputEmail1">
           {{ 'mod-modules.LABEL_PERMISSION_DESCRIPTION' | translate}}
         </label>
-        <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.descripcion" aria-describedby="emailHelp" placeholder="{{ 'mod-modules.PLACEHOLDER_PERMISSION_DESCRIPTION' | translate}}">
-        <small id="emailHelp" class="form-text text-muted">{{ 'mod-modules.ERROR_PERMISSION_DESCRIPTION' | translate}}</small>
+        <input type="text" class="form-control" [(ngModel)]="model.descripcion" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.descripcion" placeholder="{{ 'mod-modules.PLACEHOLDER_PERMISSION_DESCRIPTION' | translate}}">
+        @if(validators.descripcion) {
+          <span class="text-danger small">{{ 'mod-modules.ERROR_PERMISSION_DESCRIPTION' | translate }}</span>
+        }
       </div>
-      @if(mostrarCheck){
-        <div class="col-sm-12 form-group">
-          <label for="exampleInputEmail1">
-            {{ 'mod-modules.LABEL_HAS_MODULES' | translate}}
-          </label>
-          <input type="checkbox" [(ngModel)]="model.tiene_submodulos">
-        </div>
+      
+      @if(showSelect){
+      <div class="col-sm-12 form-group">
+        <label for="exampleInputEmail1">
+          {{ 'mod-modules.LABEL_PERMISSION_HAS_' | translate}}
+        </label>
+        <select [(ngModel)]="optionSelect" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.selectHas" class="form-control">
+          @if(showSelectOption){
+            <option [value]="0">
+              {{ 'mod-modules.SELECT_STATUS_MODULE_OR_PERMISSION_SELECT_OPTION' | translate}}
+            </option>
+          }
+          @if(hasSubmodule){
+            <option [value]="1">
+              {{ 'mod-modules.LABEL_HAS_SUBMODULE' | translate}}
+            </option>
+          }
+          @if(hasPermission){
+            <option [value]="2">
+              {{ 'mod-modules.LABEL_HAS_PERMISSION' | translate}}
+            </option>
+          }
+        </select>
+        @if(validators.selectHas) {
+          <span class="text-danger small">{{ 'mod-modules.ERROR_PERMISSION_HAS' | translate }}</span>
+        }
+      </div>
       }
     </div>  
     <div class="col-sm-12 row p-0">
@@ -39,5 +66,5 @@
       </div>
     </div>
   </div>
-
+  }
 </div>

@@ -210,7 +210,7 @@ export class FinalesComponent implements OnInit{
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
       this.router.navigate([], {
-        queryParams: { rol: 'admin', id: _id },
+        queryParams: { rol: 'user', id: _id },
       });
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
@@ -237,7 +237,7 @@ export class FinalesComponent implements OnInit{
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
       this.router.navigate([], {
-        queryParams: { rol: 'admin', id: _id },
+        queryParams: { rol: 'user', id: _id },
       });
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()

@@ -10,15 +10,19 @@
             <label for="exampleInputEmail1">
               {{ 'mod-users.LABEL_USER_FIRSTNAME' | translate}}
             </label>
-            <input type="text" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.firstName" aria-describedby="emailHelp">
-            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            <input type="text" class="form-control" [(ngModel)]="model.firstName" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.firstName" placeholder="{{ 'mod-users.PLACEHOLDER_USER_FIRSTNAME' | translate}}">
+            @if(validators.firstName) {
+              <span class="text-danger small">{{ 'mod-users.ERROR_USER_FIRSTNAME' | translate }}</span>
+            }
           </div>
           <div class="col-sm-6 form-group">
             <label for="exampleInputEmail1">
               {{ 'mod-users.LABEL_USER_LASTNAME' | translate}}
             </label>
-            <input type="text" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.lastName" aria-describedby="emailHelp">
-            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            <input type="text" class="form-control" [(ngModel)]="model.lastName" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.lastName" placeholder="{{ 'mod-users.PLACEHOLDER_USER_LASTNAME' | translate}}">
+            @if(validators.lastName) {
+              <span class="text-danger small">{{ 'mod-users.ERROR_USER_LASTNAME' | translate }}</span>
+            }
           </div>
         </div>
         <div class="col-sm-12 row p-0">
@@ -26,32 +30,29 @@
             <label for="exampleInputEmail1">
               {{ 'mod-users.LABEL_USER_EMAIL' | translate}}
             </label>
-            <input type="text" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.email" aria-describedby="emailHelp">
-            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            <input type="email" class="form-control" [(ngModel)]="model.email" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.email" placeholder="{{ 'mod-users.PLACEHOLDER_USER_EMAIL' | translate}}">
+            @if(validators.email) {
+              <span class="text-danger small">{{ 'mod-users.ERROR_USER_EMAIL' | translate }}</span>
+            }
           </div>
           <div class="col-sm-6 form-group">
             <label for="exampleInputEmail1">
               {{ 'mod-users.LABEL_USER_PASSWORD' | translate}}
             </label>
-
-          <div class="input-group">
-            <input
-            [(type)]="typefield"
-            class="form-control form-control-user"
-            id="exampleInputPassword"
-            placeholder="{{ 'mod-users.PLACEHOLDER_USER_PASSWORD' | translate}}"
-            [(ngModel)]="model.password"
-            name="model.password"
-            >
-            <!--
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <input type="checkbox" aria-label="Checkbox for following text input" (click)="showPassword()" title="mostrar contraseña">
-              </div>
+            <div class="input-group">
+              <input
+              type="password"
+              class="form-control form-control-user"
+              [(ngModel)]="model.password"
+              (ngModelChange)="onInputChange()"
+              [class.is-invalid]="validators.password"
+              placeholder="{{ 'mod-users.PLACEHOLDER_USER_PASSWORD' | translate}}"
+              name="model.password"
+              >
             </div>
-            -->
-          </div>
-            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            @if(validators.password) {
+              <span class="text-danger small">{{ 'mod-users.ERROR_USER_PASSWORD' | translate }}</span>
+            }
           </div>
         </div>
         <div class="col-sm-12 row p-0">
@@ -59,15 +60,21 @@
             <label for="exampleInputEmail1">
               {{ 'mod-users.LABEL_USER_STATUS' | translate}}
             </label>
-            <select [(ngModel)]="model.isActive" class="form-control">
-              <option [ngValue]="true">
-                {{ 'mod-users.SELECT_STATUS_USER_ACTIVE_OPTION' | translate}}
+            <select [(ngModel)]="optionSelect" (ngModelChange)="onInputChange()" [class.is-invalid]="validators.selectHas" class="form-control">
+              <option [ngValue]="0">
+                {{ 'mod-users.SELECT_STATUS_USER_SELECT_OPTION' | translate}}
               </option>
-              <option [ngValue]="false">
-                {{ 'mod-users.SELECT_STATUS_USER_INACTIVE_OPTION' | translate}}
+              <option [ngValue]="1">
+                {{ 'mod-users.WORD_ACTIVED' | translate}}
+              </option>
+              <option [ngValue]="2">
+                {{ 'mod-users.WORD_INACTIVED' | translate}}
               </option>
             </select>
           </div>
+          @if(validators.selectHas) {
+            <span class="text-danger small">{{ 'mod-users.ERROR_USER_STATUS' | translate }}</span>
+          }
         </div>
         <div class="col-sm-12 row p-0">
           <div class="col-sm-12">
@@ -78,9 +85,7 @@
         </div>
       </div>
     </div>
-
   }
-
 </div>
 
 

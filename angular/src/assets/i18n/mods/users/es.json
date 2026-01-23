@@ -50,11 +50,11 @@
   "SELECT_STATUS_USER_ACTIVE_OPTION": "Activo",
   "SELECT_STATUS_USER_INACTIVE_OPTION": "Inactivo",
 
-  "ERROR_USER_FIRSTNAME": "",
-  "ERROR_USER_LASTNAME": "",
-  "ERROR_USER_EMAIL": "",
-  "ERROR_USER_PASSWORD": "",
-  "ERROR_USER_STATUS": "",
+  "ERROR_USER_FIRSTNAME": "Ingrese el/los nombres",
+  "ERROR_USER_LASTNAME": "Ingrese los apellidos",
+  "ERROR_USER_EMAIL": "Ingrese un correo valido",
+  "ERROR_USER_PASSWORD": "Ingrese una contraseña",
+  "ERROR_USER_STATUS": "Debe seleccionar un elemento",
 
   "BUTTON_USER_CREATE": "Crear usuario",
   "BUTTON_USER_EDIT": "Editar usuario",

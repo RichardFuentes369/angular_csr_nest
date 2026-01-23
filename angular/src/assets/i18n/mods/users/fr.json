@@ -50,11 +50,12 @@
   "SELECT_STATUS_USER_ACTIVE_OPTION": "Actif",
   "SELECT_STATUS_USER_INACTIVE_OPTION": "Inactif",
 
-  "ERROR_USER_FIRSTNAME": "",
-  "ERROR_USER_LASTNAME": "",
-  "ERROR_USER_EMAIL": "",
-  "ERROR_USER_PASSWORD": "",
-  "ERROR_USER_STATUS": "",
+  "ERROR_USER_FIRSTNAME": "Veuillez saisir le(s) prénom(s)",
+  "ERROR_USER_LASTNAME": "Veuillez saisir le(s) nom(s)",
+  "ERROR_USER_EMAIL": "Veuillez saisir une adresse e-mail valide",
+  "ERROR_USER_PASSWORD": "Veuillez saisir un mot de passe",
+  "ERROR_USER_STATUS": "Vous devez sélectionner un élément",
+
 
   "BUTTON_USER_CREATE": "Créer un utilisateur",
   "BUTTON_USER_EDIT": "Modifier l'utilisateur",
