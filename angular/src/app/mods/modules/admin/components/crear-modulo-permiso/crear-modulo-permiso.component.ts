@@ -59,6 +59,7 @@ export class CrearModuloPermisoComponent implements OnInit{
 
   async ngOnInit() {
     if(!localStorage.getItem(STORAGE_KEY_MODULE) && !localStorage.getItem(STORAGE_KEY_SUBMODULE)){
+      this.optionSelect = 0
       this.model.modulo_padre_id = 0
       this.showSelect = true
       this.showSelectOption = true
@@ -66,6 +67,7 @@ export class CrearModuloPermisoComponent implements OnInit{
       this.hasPermission = true
     }
     if(localStorage.getItem(STORAGE_KEY_MODULE) && !localStorage.getItem(STORAGE_KEY_SUBMODULE)){
+      this.optionSelect = 2
       this.model.modulo_padre_id = Number(localStorage.getItem(STORAGE_KEY_MODULE))
       this.showSelect = true
       this.showSelectOption = false
@@ -73,12 +75,14 @@ export class CrearModuloPermisoComponent implements OnInit{
       this.hasPermission = true
     }
     if(localStorage.getItem(STORAGE_KEY_MODULE) && localStorage.getItem(STORAGE_KEY_SUBMODULE)){
+      this.optionSelect = 2
       this.model.modulo_padre_id = Number(localStorage.getItem(STORAGE_KEY_SUBMODULE))
       this.showSelectOption = false
       this.hasSubmodule = false
       this.hasPermission = true
     }
     if(!localStorage.getItem(STORAGE_KEY_MODULE) && localStorage.getItem(STORAGE_KEY_SUBMODULE)){
+      this.optionSelect = 2
       this.model.modulo_padre_id = Number(localStorage.getItem(STORAGE_KEY_SUBMODULE))
       this.showSelectOption = false
       this.showSelect = false
@@ -99,9 +103,14 @@ export class CrearModuloPermisoComponent implements OnInit{
     this.validators.selectHas = (this.optionSelect == 0)
 
     const boton = document.querySelector('.btnSave') as HTMLButtonElement
-    (!this.validators.nombre && !this.validators.permiso && !this.validators.descripcion && !this.validators.selectHas) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
-    
-    return !this.validators.nombre && !this.validators.permiso && !this.validators.descripcion && !this.validators.selectHas
+
+    if(this.showSelect){
+      (!this.validators.nombre && !this.validators.permiso && !this.validators.descripcion && !this.validators.selectHas) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
+      return !this.validators.nombre && !this.validators.permiso && !this.validators.descripcion && !this.validators.selectHas
+    }else{
+      (!this.validators.nombre && !this.validators.permiso && !this.validators.descripcion) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
+      return !this.validators.nombre && !this.validators.permiso && !this.validators.descripcion
+    }
   }
 
   async crearModuloPermiso(){

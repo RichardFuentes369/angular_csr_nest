@@ -7,10 +7,11 @@ import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { ModulosService } from '@mod/modules/admin/service/modulos.service';
 import Swal from 'sweetalert2'
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
-import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
+import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
 import { CREAR_MODULO_PERMISO_COMPONENT, EDITAR_MODULO_PERMISO_COMPONENT, MOD_MODULES_PAGE_MODULES, STORAGE_KEY_SUBMODULE } from '@mod/modules/const/modules.const';
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { Subscription, timer } from 'rxjs';
+import { STORAGE_KEY_PROFILE_ADMIN } from '@mod/users/const/users.const';
 
 @Component({
   selector: 'app-permisos',
@@ -149,14 +150,17 @@ export class PermisosComponent implements OnInit{
   }
 
   async editarData (_id: string){
+    localStorage.setItem(STORAGE_KEY_PROFILE, STORAGE_KEY_PROFILE_ADMIN)
+
     const response = await this.modulosService.getHasSubmodule(+_id)
     const { nombre } = response.data?.[0] || { nombre: 'xxxxxxx' }
+
     this.translate.get('mod-modules.EDIT_PERMISSION_TITLE', { "permission_name": nombre }).subscribe((res: string) => {this.title = res});
     this.tamano = "xl"
     this.scrollable = false
-    this.save = true
+    this.save = false
     this.buttonSave = this.translate.instant('mod-modules.BUTTON_SAVE_')
-    this.edit = false
+    this.edit = true
     this.buttonEdit = this.translate.instant('mod-modules.BUTTON_UPDATE_')
     this.cancel = true
     this.buttonCancel = this.translate.instant('mod-modules.BUTTON_CANCEL')
@@ -165,6 +169,9 @@ export class PermisosComponent implements OnInit{
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
+      this.router.navigate([], {
+        queryParams: { id: _id },
+      });
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
     }

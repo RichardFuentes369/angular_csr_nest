@@ -480,7 +480,9 @@ export class ModulosService {
           // SET
           nombre: editModuloDto.nombre,
           permiso: editModuloDto.permiso,
-          descripcion: editModuloDto.descripcion
+          descripcion: editModuloDto.descripcion,
+          tiene_permisos: editModuloDto.tiene_permisos,
+          tiene_submodulos: editModuloDto.tiene_submodulos,
         }
     );
 

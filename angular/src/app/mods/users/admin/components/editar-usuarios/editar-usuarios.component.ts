@@ -116,16 +116,6 @@ export class EditarUsuariosComponent implements OnInit{
     this.optionSelect = (this.usuarioReal.data.isActive) ? 1 : 2
   }
 
-  goTo (url: string, _id: number){
-
-    if(_id != 0){
-      this.router.navigate([url], { queryParams: { id: _id } });
-    }else{
-      this.router.navigate([url]);
-    }
-
-  }
-
   async actualizarData(){
 
     if(this.isFormValid){

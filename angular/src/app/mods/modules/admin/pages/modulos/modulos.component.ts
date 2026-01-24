@@ -7,10 +7,11 @@ import { PermisosService } from '@service/globales/permisos/permisos.service';
 import Swal from 'sweetalert2'
 import { ModulosService } from '@mod/modules/admin/service/modulos.service';
 import { ModalBoostrapComponent } from '@component/globales/modal/boostrap/boostrap.component';
-import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
+import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_PROFILE, WORD_KEY_COMPONENT_GLOBAL, WORD_KEY_ID_MI_BOTON_GLOBAL } from '@const/app.const';
 import { CREAR_MODULO_PERMISO_COMPONENT, EDITAR_MODULO_PERMISO_COMPONENT, MOD_MODULES_PAGE_PERMISSIONS, MOD_MODULES_PAGE_SUBMODULES, STORAGE_KEY_MODULE, STORAGE_KEY_SUBMODULE } from '@mod/modules/const/modules.const';
 import { LoadingComponent } from '@component/globales/loading/loading.component';
 import { Subscription, timer } from 'rxjs';
+import { STORAGE_KEY_PROFILE_ADMIN } from '@mod/users/const/users.const';
 
 @Component({
   selector: 'app-modulos',
@@ -188,6 +189,7 @@ export class ModulosComponent implements OnInit{
   }
   
   async editarData (_id: string){
+    localStorage.setItem(STORAGE_KEY_PROFILE, STORAGE_KEY_PROFILE_ADMIN)
 
     const response = await this.modulosService.getHasSubmodule(+_id)
     const { nombre } = response.data?.[0] || { nombre: 'xxxxxxx' }
@@ -205,6 +207,9 @@ export class ModulosComponent implements OnInit{
 
     const idButton = document.getElementById(WORD_KEY_ID_MI_BOTON_GLOBAL)
     if(idButton){
+      this.router.navigate([], {
+        queryParams: { id: _id },
+      });
       idButton.setAttribute(WORD_KEY_COMPONENT_GLOBAL, this.componentePrecargado);
       idButton.click()
     }

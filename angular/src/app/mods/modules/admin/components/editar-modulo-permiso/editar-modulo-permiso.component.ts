@@ -14,11 +14,12 @@ import { ModulosService } from '../../service/modulos.service';
 
 interface PermisoInterface {
   'id': number,
-  'firstName': string,
-  'lastName': string,
-  'email': string,
-  'password': string,
-  'isActive': number,
+  'modulo_padre_id': number,
+  'nombre': string,
+  'permiso': string,
+  'descripcion': string,
+  'tiene_submodulos': boolean,
+  'tiene_permisos': boolean,
 }
 
 @Component({
@@ -52,10 +53,9 @@ export class EditarModuloPermisoComponent implements OnInit{
   hasSubmodule = false
   hasPermission = false
   optionSelect = 0
-  mostrarCheck = false
   
   model = {
-    modulo_padre_id: 0,
+    id: 0,
     nombre: '',
     permiso: '',
     descripcion: '',
@@ -78,33 +78,96 @@ export class EditarModuloPermisoComponent implements OnInit{
   }
 
   checkValidation(): boolean {
-    const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     this.validators.nombre = (this.model.nombre.length === 0)
     this.validators.permiso = (this.model.permiso.length === 0)
-    this.validators.descripcion = (this.model.descripcion.length === 0 || !regexEmail.test(this.model.descripcion))
+    this.validators.descripcion = (this.model.descripcion.length === 0)
     this.validators.selectHas = (this.optionSelect == 0)
 
     const boton = document.querySelector('.btnUpdate') as HTMLButtonElement
-    (!this.validators.nombre && !this.validators.permiso && !this.validators.descripcion && !this.validators.selectHas) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
-    
-    return !this.validators.nombre && !this.validators.permiso && !this.validators.descripcion && !this.validators.selectHas
+
+    if(this.showSelect){
+      (!this.validators.nombre && !this.validators.permiso && !this.validators.descripcion && !this.validators.selectHas) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
+      return !this.validators.nombre && !this.validators.permiso && !this.validators.descripcion && !this.validators.selectHas
+    }else{
+      (!this.validators.nombre && !this.validators.permiso && !this.validators.descripcion) ? boton.classList.remove('disabled') : boton.classList.add('disabled')
+      return !this.validators.nombre && !this.validators.permiso && !this.validators.descripcion
+    }
   }
 
   async ngOnInit() {
-    if(localStorage.getItem(STORAGE_KEY_MODULE) && localStorage.getItem(STORAGE_KEY_SUBMODULE)){
-      this.mostrarCheck = false
+    if(!localStorage.getItem(STORAGE_KEY_MODULE) && !localStorage.getItem(STORAGE_KEY_SUBMODULE)){
+      this.showSelect = true
+      this.showSelectOption = true
+      this.hasSubmodule = true
+      this.hasPermission = true
     }
     if(localStorage.getItem(STORAGE_KEY_MODULE) && !localStorage.getItem(STORAGE_KEY_SUBMODULE)){
-      this.mostrarCheck = false
+      this.showSelect = true
+      this.showSelectOption = false
+      this.hasSubmodule = false
+      this.hasPermission = true
     }
-    if(!localStorage.getItem(STORAGE_KEY_MODULE) && !localStorage.getItem(STORAGE_KEY_SUBMODULE)){
-      this.mostrarCheck = true
+    if(localStorage.getItem(STORAGE_KEY_MODULE) && localStorage.getItem(STORAGE_KEY_SUBMODULE)){
+      this.showSelectOption = false
+      this.hasSubmodule = false
+      this.hasPermission = true
+    }
+    if(!localStorage.getItem(STORAGE_KEY_MODULE) && localStorage.getItem(STORAGE_KEY_SUBMODULE)){
+      this.showSelectOption = false
+      this.showSelect = false
+      this.hasSubmodule = false
+      this.hasPermission = false
     }
 
-    this.permiso.push(this.permisoReal.data)
-    this.model.nombre = this.permisoReal.data.nombre
-    this.model.permiso = this.permisoReal.data.permiso
-    this.model.descripcion = this.permisoReal.data.descripcion
+    this.permisoReal = await this.modulosService.getHasSubmodule(
+      this.route.snapshot.queryParams?.['id']
+    )
+
+    this.permiso.push(this.permisoReal.data[0])
+    
+    this.optionSelect = (this.permisoReal.data[0].tiene_permisos == true) ? 2 : 1
+    this.model.id = this.route.snapshot.queryParams?.['id']
+    this.model.nombre = this.permisoReal.data[0].nombre
+    this.model.permiso = this.permisoReal.data[0].permiso
+    this.model.descripcion = this.permisoReal.data[0].descripcion
+    this.model.tiene_permisos = this.permisoReal.data[0].tiene_permisos
+    this.model.tiene_submodulos = this.permisoReal.data[0].tiene_submodulos
+  }
+
+  async actualizarData(){
+    if(this.isFormValid){
+
+      this.model.tiene_submodulos= (this.optionSelect == 1) ? true : false
+      this.model.tiene_permisos = (this.optionSelect == 2) ? true : false
+
+      let endPoint = this.modulosService
+      await endPoint.actualizarPermiso(
+        {
+          nombre: this.model.nombre,
+          permiso: this.model.permiso,
+          descripcion: this.model.descripcion,
+          tiene_submodulos: this.model.tiene_submodulos,
+          tiene_permisos: this.model.tiene_permisos
+        },
+        this.model.id
+      ).then((response) =>{
+        ocultarModalOscura()
+        this.translate.get('mod-modules.SWAL_ARE_YOU_SURE').subscribe((translatedTitle: string) => {
+          Swal.fire({
+            title: this.translate.instant('mod-modules.SWAL_UPDATED'),
+            text: this.translate.instant('mod-modules.SWAL_UPDATED_RECORD'),
+            icon: "success"
+          });
+        });
+      }).catch(async error => {
+        this.ngOnInit()
+        if(typeof(error.response.data.message) == 'string'){
+          Swal.fire(error.response.data.message);
+        }else{
+          Swal.fire(error.response.data.message[0]);
+        }
+      })
+    }
   }
 
 }

@@ -104,6 +104,28 @@ export class ModulosService {
     })
   }
 
+  async actualizarPermiso(data: any, id: number){
+    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
+    const permiso = id;
+    let complemento = `modulos/editModuloPermiso`
+    let urlCopleta = environment.apiUrl+complemento
+    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
+
+    return await axios.request({
+      headers: {
+        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
+      },
+      method: 'patch',
+      url: urlCopleta,
+      data: data,
+      params: {
+        lang: lang,
+        idPermiso: permiso
+      }
+    })
+  }
+
   async eliminarPermiso(id: any){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = `modulos/deleteModuloPermiso?idPermiso=${+id}&lang=${lang}`

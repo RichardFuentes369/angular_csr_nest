@@ -18,10 +18,11 @@ export class EditModuloDto {
   readonly descripcion;
 
   @IsOptional()
-  @IsNumber()
+  @IsBoolean()
   // @Transform(({value}) => value.trim())
   readonly tiene_submodulos;
 
+  @IsOptional()
   @IsBoolean()
   // @Transform(({value}) => value.trim())
   readonly tiene_permisos;
