@@ -6,21 +6,18 @@
                 {{ 'mod-users.LABEL_USER_EMAIL' | translate}}
             </label>
             <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.email" aria-describedby="emailHelp" placeholder="{{ 'mod-users.PLACEHOLDER_USER_EMAIL' | translate}}">
-            <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.ERROR_USER_EMAIL' | translate}}</small>
         </div>
         <div class="col-sm-12">
             <label for="exampleInputEmail1">
                 {{ 'mod-users.LABEL_USER_FIRSTNAME' | translate}}
             </label>
             <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.firstName" aria-describedby="emailHelp" placeholder="{{ 'mod-users.PLACEHOLDER_USER_FIRSTNAME' | translate}}">
-            <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.ERROR_USER_FIRSTNAME' | translate}}</small>
         </div>
         <div class="col-sm-12">
             <label for="exampleInputEmail1">
                 {{ 'mod-users.LABEL_USER_LASTNAME' | translate}}
             </label>
             <input type="email" class="form-control" id="exampleInputEmail1" [(ngModel)]="model.lastName" aria-describedby="emailHelp" placeholder="{{ 'mod-users.PLACEHOLDER_USER_LASTNAME' | translate}}">
-            <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.ERROR_USER_STATUS' | translate}}</small>
         </div>
         <div class="col-sm-12">
             <label for="exampleInputEmail1">
@@ -31,7 +28,6 @@
                 <option value="1">{{ 'mod-users.WORD_ACTIVED' | translate}}</option>
                 <option value="0">{{ 'mod-users.WORD_INACTIVED' | translate}}</option>
             </select>
-            <small id="emailHelp" class="form-text text-muted">{{ 'mod-users.ERROR_USER_STATUS' | translate}}</small>
         </div>
         <button class="d-none limpiar" (click)="limpiar()"></button>
         <button class="d-none filtrar" (click)="filtrar()"></button>
