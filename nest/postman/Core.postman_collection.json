@@ -19,7 +19,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"modulo_padre_id\": 0,\r\n    \"tiene_submodulos\": false,\r\n    \"nombre\": \"Modulos\",\r\n    \"permiso\": \"modulos\",\r\n    \"descripcion\": \"Habilita el modulo modulos\"\r\n}",
+									"raw": "{\r\n    \"modulo_padre_id\": 0,\r\n    \"tiene_submodulos\": false,\r\n    \"tiene_permisos\": false,\r\n    \"nombre\": \"Modulos\",\r\n    \"permiso\": \"modulos\",\r\n    \"descripcion\": \"Habilita el modulo modulos\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -198,11 +198,21 @@
 						{
 							"name": "editModuloPermiso",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenAdmin}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "PATCH",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"nombre\": \"Prueba\",\n    \"permiso\": \"prueba\",\n    \"descripcion\": \"prueba\",\n    \"tiene_submodulos\": 1\n}",
+									"raw": "{\n    \"nombre\": \"Eliminar (individual)\",\n    \"permiso\": \"eliminar_individual\",\n    \"descripcion\": \"Permiso eliminar_individual, modulo modulos\",\n    \"tiene_permisos\": false,\n    \"tiene_submodulos\": false\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -210,7 +220,7 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:3000/api/modulos/editModuloPermiso?idPermiso=43",
+									"raw": "localhost:3000/api/modulos/editModuloPermiso?idPermiso=21&lang=es",
 									"host": [
 										"localhost"
 									],
@@ -223,7 +233,11 @@
 									"query": [
 										{
 											"key": "idPermiso",
-											"value": "43"
+											"value": "21"
+										},
+										{
+											"key": "lang",
+											"value": "es"
 										}
 									]
 								}
@@ -277,7 +291,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"username\": \"admin1@correos.com\",\r\n    \"pass\": \"Qwerty9601\"\r\n}",
+											"raw": "{\r\n    \"username\": \"admin1@correo.com\",\r\n    \"pass\": \"Qwerty9601\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -285,7 +299,7 @@
 											}
 										},
 										"url": {
-											"raw": "localhost:3000/api/authadmin/login",
+											"raw": "localhost:3000/api/authadmin/login?lang=es",
 											"host": [
 												"localhost"
 											],
@@ -294,6 +308,12 @@
 												"api",
 												"authadmin",
 												"login"
+											],
+											"query": [
+												{
+													"key": "lang",
+													"value": "es"
+												}
 											]
 										}
 									},
@@ -314,7 +334,7 @@
 											}
 										},
 										"url": {
-											"raw": "localhost:3000/api/authadmin/refresh",
+											"raw": "localhost:3000/api/authadmin/refresh?lang=es",
 											"host": [
 												"localhost"
 											],
@@ -323,6 +343,12 @@
 												"api",
 												"authadmin",
 												"refresh"
+											],
+											"query": [
+												{
+													"key": "lang",
+													"value": "es"
+												}
 											]
 										}
 									},
@@ -344,7 +370,7 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "localhost:3000/api/authadmin/profile",
+											"raw": "localhost:3000/api/authadmin/profile?lang=es",
 											"host": [
 												"localhost"
 											],
@@ -353,6 +379,12 @@
 												"api",
 												"authadmin",
 												"profile"
+											],
+											"query": [
+												{
+													"key": "lang",
+													"value": "es"
+												}
 											]
 										}
 									},
@@ -515,7 +547,7 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "localhost:3000/api/admin?page=1&limit=2&field=id&order=asc&lang=es",
+											"raw": "localhost:3000/api/admin?page=1&limit=2&field=id&order=asc&lang=en",
 											"host": [
 												"localhost"
 											],
@@ -543,7 +575,7 @@
 												},
 												{
 													"key": "lang",
-													"value": "es"
+													"value": "en"
 												}
 											]
 										}
@@ -642,7 +674,7 @@
 											}
 										},
 										"url": {
-											"raw": "localhost:3000/api/admin/editar-administrador",
+											"raw": "localhost:3000/api/admin/editar-administrador/1",
 											"host": [
 												"localhost"
 											],
@@ -650,7 +682,8 @@
 											"path": [
 												"api",
 												"admin",
-												"editar-administrador"
+												"editar-administrador",
+												"1"
 											]
 										}
 									},
@@ -884,7 +917,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"username\": \"user1@gmail.com\",\r\n    \"pass\": \"Qwerty9601\"\r\n}",
+											"raw": "{\r\n    \"username\": \"final1@gmail.com\",\r\n    \"pass\": \"Qwerty9601\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
