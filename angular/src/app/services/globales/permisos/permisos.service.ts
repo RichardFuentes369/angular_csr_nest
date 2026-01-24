@@ -40,7 +40,7 @@ export class PermisosService {
   async permisoPage(idModulo: number | null, nombre: string, idUser: number){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = ''
-    complemento += `asignacion/getAsignacionMePertenece?idModulo=${idModulo}&nombre=${nombre}&idUser=${idUser}&lang=${lang}`
+    complemento += `asignacion/validar-acceso-permiso-usuario?idModulo=${idModulo}&nombre=${nombre}&idUser=${idUser}&lang=${lang}`
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
     let urlCopleta = environment.apiUrl+complemento
 
@@ -50,6 +50,46 @@ export class PermisosService {
         [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
       },
       method: 'get',
+      url: urlCopleta,
+      params: {
+        lang: lang,
+      }
+    })
+  }
+
+  async listaPermisos(id: number){
+    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
+    let complemento = `asignacion/obtener-permisos-por-usuario?userId=${id}&lang=${lang}`
+    let urlCopleta = environment.apiUrl+complemento
+
+    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
+
+    return await axios.request({
+      headers: {
+        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
+      },
+      method: 'get',
+      url: urlCopleta,
+      params: {
+        lang: lang,
+      }
+    })
+  }
+
+  async asignarPermiso(idPermiso: string, idPadre: string, opcion: string, userId: string){
+    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
+    let complemento = `asignacion/actualizar-asignacion-permiso?idPermiso=${idPermiso}&idPadre=${idPadre}&idUser=${userId}&opcion=${opcion}&lang=${lang}`
+    let urlCopleta = environment.apiUrl+complemento
+
+    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
+
+    return await axios.request({
+      headers: {
+        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
+        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
+      },
+      method: 'put',
       url: urlCopleta,
       params: {
         lang: lang,

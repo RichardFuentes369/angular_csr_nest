@@ -30,15 +30,15 @@ export class AdminController {
 
   @ApiTags('admin')
   @UseGuards(AdminGuard)
-  @Get('obtener-usuario-administrador/:id')
+  @Get('obtener-usuario-administrador')
   findOne(
+    @Query('_id') _id: string,
     @Query('lang') lang:string,
-    @Param('id') id: string,
     @GetUser('id') userId: number
   ) {
     return this.adminService.findOne(
       lang,
-      +id
+      +_id
     );
   }
 
@@ -59,15 +59,16 @@ export class AdminController {
 
   @ApiTags('admin')
   @UseGuards(AdminGuard)
-  @Patch('editar-usuario-administrador/:id')
+  @Patch('editar-usuario-administrador')
   update(
     @Query('lang') lang:string,
-    @Param('id') id: string, @Body() updateAdminDto: UpdateAdminDto,
+    @Query('_id') _id: string,
+    @Body() updateAdminDto: UpdateAdminDto,
     @GetUser('id') userId: number
   ) {
     return this.adminService.update(
       lang,
-      +id, 
+      +_id, 
       updateAdminDto,
       userId
     );
@@ -92,13 +93,13 @@ export class AdminController {
 
   @ApiTags('admin')
   @UseGuards(AdminGuard)
-  @Delete('eliminar-usuario-admininistrador/:id')
+  @Delete('eliminar-usuario-admininistrador')
   remove(
     @Query('lang') lang:string,
-    @Param('id') id: string,
+    @Query('_id') _id: string,
     @GetUser('id') userId: number
   ) {
-    const idsNumeros: number[] = id.split(',').map(str => parseInt(str.trim(), 10));
+    const idsNumeros: number[] = _id.split(',').map(str => parseInt(str.trim(), 10));
     return this.adminService.remove(
       lang,
       idsNumeros,

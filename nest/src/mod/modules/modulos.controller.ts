@@ -12,7 +12,7 @@ export class ModulosController {
   constructor(private readonly modulosService: ModulosService) {}
     
   @ApiTags('modulo_submodulo_permiso')
-  @Get('getPermisosSobrePadre/:padreId')
+  @Get('obtener-permisos-por-modulo/:padreId')
   findPaginada(
     @Query('lang') lang:string,
     @Param('padreId') padreId: string, 
@@ -25,21 +25,8 @@ export class ModulosController {
       paginationDto
     );
   }
-
-  @ApiTags('modulo_submodulo_permiso')
-  @UseGuards(AdminGuard)
-  @Get('obtener-permisos-por-usuario')
-  findAllForUser(
-    @Query('lang') lang:string,
-    @Query() query,
-    @GetUser('id') userId: number
-  ) {
-    return this.modulosService.findAllForUser(
-      lang,
-      query
-    );
-  }
-
+ 
+  // no se usa
   @ApiTags('modulo_submodulo_permiso')
   @UseGuards(AdminGuard)
   @Get('getModuloPermisoExistente')
@@ -56,10 +43,9 @@ export class ModulosController {
     );
   }
 
-  // no se usa
   @ApiTags('modulo_submodulo_permiso')
   @UseGuards(AdminGuard)
-  @Get('getHasSubmodule')
+  @Get('obtener-modulo-permiso')
   findSubmodules(
     @Query('lang') lang:string,
     @Query() query,
@@ -73,7 +59,7 @@ export class ModulosController {
 
   @ApiTags('modulo_submodulo_permiso')
   @UseGuards(AdminGuard)
-  @Post('postModuloPermiso')
+  @Post('crear-modulo-permiso')
   create(
     @Query('lang') lang:string,
     @Body() createModuloDto: CreateModuloDto,
@@ -88,7 +74,7 @@ export class ModulosController {
 
   @ApiTags('modulo_submodulo_permiso')
   @UseGuards(AdminGuard)
-  @Patch('editModuloPermiso')
+  @Patch('editar-modulo-permiso')
   updateModuloPermiso(
     @Query('lang') lang:string,
     @Query() queryParams, @Body() editModuloDto: EditModuloDto,
@@ -120,7 +106,7 @@ export class ModulosController {
 
   @ApiTags('modulo_submodulo_permiso')
   @UseGuards(AdminGuard)
-  @Delete('deleteModuloPermiso')
+  @Delete('eliminar-modulo-permiso')
   remove(
     @Query('lang') lang:string,
     @Query('idPermiso') idPermiso: string,

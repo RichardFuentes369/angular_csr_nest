@@ -3,10 +3,10 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AuthService } from '@guard/service/auth.service';
 import { ModulosService } from '@mod/modules/admin/service/modulos.service';
 import { PermisosService } from '@service/globales/permisos/permisos.service';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { swalert } from '@function/System'
-import { STORAGE_KEY_ADMIN_AUTH, STORAGE_KEY_FINAL_AUTH } from '@const/app.const';
+import { STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
 import { PrincipalService } from '../../service/principal.service';
 
 @Component({
@@ -21,12 +21,11 @@ import { PrincipalService } from '../../service/principal.service';
 export class AsignarPermisosComponent implements OnInit{
 
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
     private userService :AuthService,
     private modulosService :ModulosService,
+    private permisosService :PermisosService,
     private principalService :PrincipalService,
-    private translate: TranslateService
   ) { }
 
   title: any = {}
@@ -38,14 +37,13 @@ export class AsignarPermisosComponent implements OnInit{
 
   async ngOnInit() {
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
-    const response = await this.userService.validarToken(STORAGE_KEY_ADMIN_AUTH);
     let userId = this.route.snapshot.queryParams['id']
 
     const datUser = await this.principalService.getDataUser(userId)
     const { firstName, lastName } = datUser.data || { firstName: 'xxxx', lastName: 'yyyy' }
     this.title = { user_name: `${firstName} ${lastName}` }
 
-    const modulo = await this.modulosService.listaPermisos(+userId)
+    const modulo = await this.permisosService.listaPermisos(+userId)
     this.permisos = modulo.data
   }
 
@@ -61,7 +59,7 @@ export class AsignarPermisosComponent implements OnInit{
       opcion = '1'
     }
 
-    await this.modulosService.asignarPermiso(item.mpm_id, item.mpm_modulo_padre_id, opcion, userId)
+    await this.permisosService.asignarPermiso(item.mpm_id, item.mpm_modulo_padre_id, opcion, userId)
     .then(response=>{
       swalert(response.data.title, response.data.message, 'success')
     }).catch(err =>{

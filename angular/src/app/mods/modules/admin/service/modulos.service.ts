@@ -15,7 +15,7 @@ export class ModulosService {
 
   async getHasSubmodule(id: number){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let complemento = `modulos/getHasSubmodule?idModulo=${id}&lang=${lang}`
+    let complemento = `modulos/obtener-modulo-permiso?idModulo=${id}&lang=${lang}`
     let urlCopleta = environment.apiUrl+complemento
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
@@ -31,26 +31,6 @@ export class ModulosService {
       }
     })
   }  
-  
-  async listaPermisos(id: number){
-    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let complemento = `modulos/obtener-permisos-por-usuario?userId=${id}&lang=${lang}`
-    let urlCopleta = environment.apiUrl+complemento
-
-    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
-
-    return await axios.request({
-      headers: {
-        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
-        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
-      },
-      method: 'get',
-      url: urlCopleta,
-      params: {
-        lang: lang,
-      }
-    })
-  }
 
   async buscarPermiso(padreId:number, nombrePermiso: string){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
@@ -62,30 +42,10 @@ export class ModulosService {
       url: urlCopleta,
     })
   }
-
-  async asignarPermiso(idPermiso: string, idPadre: string, opcion: string, userId: string){
-    const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let complemento = `asignacion/updateAsignacionPermiso?idPermiso=${idPermiso}&idPadre=${idPadre}&idUser=${userId}&opcion=${opcion}&lang=${lang}`
-    let urlCopleta = environment.apiUrl+complemento
-
-    let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
-
-    return await axios.request({
-      headers: {
-        [WORD_KEY_AUTHORIZATION_GLOBAL]: `${WORD_KEY_BEARER_GLOBAL} ${token}`,
-        [WORD_KEY_AUTHORIZATION_CONTENT_TYPE]: `${WORD_KEY_AUTHORIZATION_APPLICATION_TYPE}`
-      },
-      method: 'put',
-      url: urlCopleta,
-      params: {
-        lang: lang,
-      }
-    })
-  }
-
+  
   async crearPermiso(data: any){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let complemento = `modulos/postModuloPermiso?lang=${lang}`
+    let complemento = `modulos/crear-modulo-permiso?lang=${lang}`
     let urlCopleta = environment.apiUrl+complemento
 
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
@@ -107,7 +67,7 @@ export class ModulosService {
   async actualizarPermiso(data: any, id: number){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     const permiso = id;
-    let complemento = `modulos/editModuloPermiso`
+    let complemento = `modulos/editar-modulo-permiso`
     let urlCopleta = environment.apiUrl+complemento
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
@@ -128,7 +88,7 @@ export class ModulosService {
 
   async eliminarPermiso(id: any){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let complemento = `modulos/deleteModuloPermiso?idPermiso=${+id}&lang=${lang}`
+    let complemento = `modulos/eliminar-modulo-permiso?idPermiso=${+id}&lang=${lang}`
     let urlCopleta = environment.apiUrl+complemento
 
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)

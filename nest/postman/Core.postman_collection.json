@@ -10,10 +10,10 @@
 			"name": "modules",
 			"item": [
 				{
-					"name": "CrudPersimosGeneral",
+					"name": "permisos",
 					"item": [
 						{
-							"name": "postModuloPermiso",
+							"name": "crear-modulo-permiso",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -43,7 +43,7 @@
 							"response": []
 						},
 						{
-							"name": "deleteModuloPermiso",
+							"name": "eliminar-modulo-permiso",
 							"request": {
 								"method": "DELETE",
 								"header": [],
@@ -72,6 +72,16 @@
 						{
 							"name": "getModuloPermisoEspecificos",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenAdmin}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -103,6 +113,16 @@
 						{
 							"name": "getModuloPermiso",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenAdmin}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -122,12 +142,12 @@
 							"response": []
 						},
 						{
-							"name": "getPermisosSobrePadre",
+							"name": "obtener-permisos-por-modulo",
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:3000/api/modulos/getPermisosSobrePadre/0?page=1&limit=10&field=id&order=asc&lang=es",
+									"raw": "localhost:3000/api/modulos/obtener-permisos-por-modulo/0?page=1&limit=1&field=id&order=asc&lang=es",
 									"host": [
 										"localhost"
 									],
@@ -135,7 +155,7 @@
 									"path": [
 										"api",
 										"modulos",
-										"getPermisosSobrePadre",
+										"obtener-permisos-por-modulo",
 										"0"
 									],
 									"query": [
@@ -145,7 +165,7 @@
 										},
 										{
 											"key": "limit",
-											"value": "10"
+											"value": "1"
 										},
 										{
 											"key": "field",
@@ -166,15 +186,22 @@
 							"response": []
 						},
 						{
-							"name": "getHasSubmodule",
+							"name": "obtener-modulo-permiso",
 							"request": {
 								"auth": {
-									"type": "noauth"
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{tokenAdmin}}",
+											"type": "string"
+										}
+									]
 								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:3000/api/modulos/getHasSubmodule?idModulo=1",
+									"raw": "localhost:3000/api/modulos/obtener-modulo-permiso?idModulo=1",
 									"host": [
 										"localhost"
 									],
@@ -182,7 +209,7 @@
 									"path": [
 										"api",
 										"modulos",
-										"getHasSubmodule"
+										"obtener-modulo-permiso"
 									],
 									"query": [
 										{
@@ -196,7 +223,7 @@
 							"response": []
 						},
 						{
-							"name": "editModuloPermiso",
+							"name": "editar-modulo-permiso",
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -245,33 +272,6 @@
 							"response": []
 						}
 					]
-				},
-				{
-					"name": "getPermisosAsignadosAUsuarios",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/api/modulos/getPermisosPorUsuario?userId=1",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"modulos",
-								"getPermisosPorUsuario"
-							],
-							"query": [
-								{
-									"key": "userId",
-									"value": "1"
-								}
-							]
-						},
-						"description": "Este enpoint servira para armar un merge entre los permisos disponibles y los que tiene el usuario habilitado para posteriormente asignar o no"
-					},
-					"response": []
 				}
 			]
 		},
@@ -396,8 +396,18 @@
 							"name": "permission",
 							"item": [
 								{
-									"name": "getMisPermisosMenu",
+									"name": "mis-permisos",
 									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
 										"method": "GET",
 										"header": [],
 										"url": {
@@ -422,12 +432,22 @@
 									"response": []
 								},
 								{
-									"name": "getAsignacionMePertenece",
+									"name": "validar-acceso-permiso-usuario",
 									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "localhost:3000/api/asignacion/getAsignacionMePertenece?idModulo=1&nombre=administradores&idUser=1",
+											"raw": "localhost:3000/api/asignacion/validar-acceso-permiso-usuario?idModulo=1&nombre=administradores&idUser=1",
 											"host": [
 												"localhost"
 											],
@@ -435,7 +455,7 @@
 											"path": [
 												"api",
 												"asignacion",
-												"getAsignacionMePertenece"
+												"validar-acceso-permiso-usuario"
 											],
 											"query": [
 												{
@@ -489,12 +509,22 @@
 									"response": []
 								},
 								{
-									"name": "updateAsignacionPermiso",
+									"name": "actualizar-asignacion-permiso",
 									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
 										"method": "PUT",
 										"header": [],
 										"url": {
-											"raw": "localhost:3000/api/asignacion/updateAsignacionPermiso?idUser=1&opcion=1&idPermiso=3&idPadre=1",
+											"raw": "localhost:3000/api/asignacion/actualizar-asignacion-permiso?idUser=1&opcion=1&idPermiso=3&idPadre=1",
 											"host": [
 												"localhost"
 											],
@@ -502,7 +532,7 @@
 											"path": [
 												"api",
 												"asignacion",
-												"updateAsignacionPermiso"
+												"actualizar-asignacion-permiso"
 											],
 											"query": [
 												{
@@ -525,14 +555,9 @@
 										}
 									},
 									"response": []
-								}
-							]
-						},
-						{
-							"name": "user",
-							"item": [
+								},
 								{
-									"name": "getAdmins",
+									"name": "obtener-permisos-por-usuario",
 									"request": {
 										"auth": {
 											"type": "bearer",
@@ -547,14 +572,57 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "localhost:3000/api/admin?page=1&limit=2&field=id&order=asc&lang=en",
+											"raw": "localhost:3000/api/asignacion/obtener-permisos-por-usuario?userId=1",
 											"host": [
 												"localhost"
 											],
 											"port": "3000",
 											"path": [
 												"api",
-												"admin"
+												"asignacion",
+												"obtener-permisos-por-usuario"
+											],
+											"query": [
+												{
+													"key": "userId",
+													"value": "1"
+												}
+											]
+										},
+										"description": "Este enpoint servira para armar un merge entre los permisos disponibles y los que tiene el usuario habilitado para posteriormente asignar o no"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "user",
+							"item": [
+								{
+									"name": "obtener-usuarios-administradores",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:3000/api/admin/obtener-usuarios-administradores?page=1&limit=2&field=id&order=asc&lang=en",
+											"host": [
+												"localhost"
+											],
+											"port": "3000",
+											"path": [
+												"api",
+												"admin",
+												"obtener-usuarios-administradores"
 											],
 											"query": [
 												{
@@ -583,12 +651,28 @@
 									"response": []
 								},
 								{
-									"name": "getAdmins-Id",
+									"name": "obtener-usuario-administrador",
 									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
 										"method": "GET",
-										"header": [],
+										"header": [
+											{
+												"key": "",
+												"value": "",
+												"type": "text"
+											}
+										],
 										"url": {
-											"raw": "localhost:3000/api/admin/obtener-administrador/1",
+											"raw": "localhost:3000/api/admin/obtener-usuario-administrador?_id=1",
 											"host": [
 												"localhost"
 											],
@@ -596,16 +680,31 @@
 											"path": [
 												"api",
 												"admin",
-												"obtener-administrador",
-												"1"
+												"obtener-usuario-administrador"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "1"
+												}
 											]
 										}
 									},
 									"response": []
 								},
 								{
-									"name": "postAdmin",
+									"name": "crear-usuario-admininistrador",
 									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
 										"method": "POST",
 										"header": [],
 										"body": {
@@ -618,7 +717,7 @@
 											}
 										},
 										"url": {
-											"raw": "localhost:3000/api/admin/crear-admininistrador?lang=es",
+											"raw": "localhost:3000/api/admin/crear-usuario-admininistrador?lang=es",
 											"host": [
 												"localhost"
 											],
@@ -626,7 +725,7 @@
 											"path": [
 												"api",
 												"admin",
-												"crear-admininistrador"
+												"crear-usuario-admininistrador"
 											],
 											"query": [
 												{
@@ -639,12 +738,22 @@
 									"response": []
 								},
 								{
-									"name": "deleteAdmin",
+									"name": "eliminar-usuario-admininistrador",
 									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "localhost:3000/api/admin/eliminar-admininistrador/22",
+											"raw": "localhost:3000/api/admin/eliminar-usuario-admininistrador?_id=5",
 											"host": [
 												"localhost"
 											],
@@ -652,16 +761,31 @@
 											"path": [
 												"api",
 												"admin",
-												"eliminar-admininistrador",
-												"22"
+												"eliminar-usuario-admininistrador"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "5"
+												}
 											]
 										}
 									},
 									"response": []
 								},
 								{
-									"name": "putAdmin",
+									"name": "editar-usuario-administrador",
 									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
 										"method": "PATCH",
 										"header": [],
 										"body": {
@@ -674,7 +798,7 @@
 											}
 										},
 										"url": {
-											"raw": "localhost:3000/api/admin/editar-administrador/1",
+											"raw": "localhost:3000/api/admin/editar-usuario-administrador?_id=1",
 											"host": [
 												"localhost"
 											],
@@ -682,21 +806,36 @@
 											"path": [
 												"api",
 												"admin",
-												"editar-administrador",
-												"1"
+												"editar-usuario-administrador"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "1"
+												}
 											]
 										}
 									},
 									"response": []
 								},
 								{
-									"name": "putEstadoAdmin",
+									"name": "actualizar-estado-admininistrador",
 									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
 										"method": "PATCH",
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"id\": [18,19],\r\n    \"option\": \"0\"\r\n}",
+											"raw": "{\r\n    \"id\": [3,4],\r\n    \"option\": \"0\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -729,7 +868,7 @@
 							"name": "user",
 							"item": [
 								{
-									"name": "getUsuarios",
+									"name": "obtener-usuarios-finales",
 									"request": {
 										"auth": {
 											"type": "bearer",
@@ -744,14 +883,15 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "localhost:3000/api/user?page=1&limit=10&field=id&order=asc",
+											"raw": "localhost:3000/api/user/obtener-usuarios-finales?page=1&limit=10&field=id&order=asc",
 											"host": [
 												"localhost"
 											],
 											"port": "3000",
 											"path": [
 												"api",
-												"user"
+												"user",
+												"obtener-usuarios-finales"
 											],
 											"query": [
 												{
@@ -776,12 +916,22 @@
 									"response": []
 								},
 								{
-									"name": "getUsuario-Id",
+									"name": "obtener-usuario-final",
 									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "localhost:3000/api/user/obtener-usuario/1",
+											"raw": "localhost:3000/api/user/obtener-usuario-final?_id=1",
 											"host": [
 												"localhost"
 											],
@@ -789,15 +939,20 @@
 											"path": [
 												"api",
 												"user",
-												"obtener-usuario",
-												"1"
+												"obtener-usuario-final"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "1"
+												}
 											]
 										}
 									},
 									"response": []
 								},
 								{
-									"name": "postUsuario",
+									"name": "crear-usuario-final",
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -811,7 +966,7 @@
 											}
 										},
 										"url": {
-											"raw": "localhost:3000/api/user/crear-usuario",
+											"raw": "localhost:3000/api/user/crear-usuario-final",
 											"host": [
 												"localhost"
 											],
@@ -819,19 +974,29 @@
 											"path": [
 												"api",
 												"user",
-												"crear-usuario"
+												"crear-usuario-final"
 											]
 										}
 									},
 									"response": []
 								},
 								{
-									"name": "deleteUsuario",
+									"name": "eliminar-usuario-final",
 									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "localhost:3000/api/user/eliminar-usuario/4",
+											"raw": "localhost:3000/api/user/eliminar-usuario-final?_id=43,44,45",
 											"host": [
 												"localhost"
 											],
@@ -839,16 +1004,31 @@
 											"path": [
 												"api",
 												"user",
-												"eliminar-usuario",
-												"4"
+												"eliminar-usuario-final"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "43,44,45"
+												}
 											]
 										}
 									},
 									"response": []
 								},
 								{
-									"name": "putUsuario",
+									"name": "actualizar-usuario-final",
 									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{tokenAdmin}}",
+													"type": "string"
+												}
+											]
+										},
 										"method": "PATCH",
 										"header": [],
 										"body": {
@@ -861,7 +1041,7 @@
 											}
 										},
 										"url": {
-											"raw": "localhost:3000/api/user/editar-usuario/50",
+											"raw": "localhost:3000/api/user/actualizar-usuario-final?_id=1",
 											"host": [
 												"localhost"
 											],
@@ -869,15 +1049,20 @@
 											"path": [
 												"api",
 												"user",
-												"editar-usuario",
-												"50"
+												"actualizar-usuario-final"
+											],
+											"query": [
+												{
+													"key": "_id",
+													"value": "1"
+												}
 											]
 										}
 									},
 									"response": []
 								},
 								{
-									"name": "putEstadoFinal",
+									"name": "actualizar-estado-usuario-final",
 									"request": {
 										"method": "PATCH",
 										"header": [],
@@ -891,7 +1076,7 @@
 											}
 										},
 										"url": {
-											"raw": "localhost:3000/api/user/actualizar-estado-admininistrador",
+											"raw": "localhost:3000/api/user/actualizar-estado-usuario-final",
 											"host": [
 												"localhost"
 											],
@@ -899,7 +1084,7 @@
 											"path": [
 												"api",
 												"user",
-												"actualizar-estado-admininistrador"
+												"actualizar-estado-usuario-final"
 											]
 										}
 									},

@@ -19,7 +19,7 @@
   "SWAL_ERROR_RECORD": "Error.",
   "SWAL_CREATED": "¡Permiso!",
   "SWAL_CREATED_RECORD": "Creado exitosamente.",
-  "SWAL_UPADTED": "¡Permiso!",
+  "SWAL_UPDATED": "¡Permiso!",
   "SWAL_UPDATED_RECORD": "Actualizado exitosamente.",
   "SWAL_BUTTON_DELETE": "Eliminar",
   "SWAL_BUTTON_CANCEL": "Cancelar",

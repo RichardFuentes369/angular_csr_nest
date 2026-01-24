@@ -14,7 +14,7 @@ export class PrincipalService {
   async getDataUser(id: string){
     let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = 'admin/obtener-usuario-administrador/'
-    let urlCopleta = environment.apiUrl+complemento+id
+    let urlCopleta = environment.apiUrl+complemento
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
     return await axios.request({
@@ -25,6 +25,7 @@ export class PrincipalService {
       method: 'get',
       url: urlCopleta,
       params: {
+        _id: id,
         lang: lang,
       }
     })
@@ -52,7 +53,7 @@ export class PrincipalService {
 
   async updateUser(data: any, id: string){
     let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let complemento = `admin/editar-usuario-administrador/${id}`
+    let complemento = `admin/editar-usuario-administrador`
     let urlCopleta = environment.apiUrl+complemento
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
@@ -65,6 +66,7 @@ export class PrincipalService {
       url: urlCopleta,
       data: data,
       params: {
+        _id: id,
         lang: lang,
       }
     })
@@ -98,7 +100,7 @@ export class PrincipalService {
   async deleteUser(id: string[]){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = 'admin/eliminar-usuario-admininistrador/'
-    let urlCopleta = environment.apiUrl+complemento+id
+    let urlCopleta = environment.apiUrl+complemento
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
     return await axios.request({
@@ -109,6 +111,7 @@ export class PrincipalService {
       method: 'delete',
       url: urlCopleta,
       params: {
+        _id: id,
         lang: lang,
       }
     })

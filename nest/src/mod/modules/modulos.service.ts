@@ -23,77 +23,6 @@ export class ModulosService {
     return metadata.columns.map((column) => column.propertyName);
   }
 
-  organizarJerarquia(data) {
-    // Crear un mapa de todos los elementos por ID para acceder fácilmente
-    const map = new Map();
-    const roots = [];
-  
-    // Crear los nodos base (padres, hijos, nietos)
-    data.forEach(item => {
-      if (!item.mpm_modulo_padre_id) {
-        map.set(item.mpm_id, { ...item, 'mpm_toogle': false, children: [] });
-      }else{
-        map.set(item.mpm_id, { ...item, children: [] });
-      }
-  
-      // Si no tiene 'mpm_modulo_padre_id', es un padre y lo agregamos a roots
-      if (!item.mpm_modulo_padre_id) {
-        roots.push(map.get(item.mpm_id));
-      }
-    });
-  
-    // Ahora asignamos a cada hijo a su correspondiente padre
-    data.forEach(item => {
-      if (item.mpm_modulo_padre_id) {
-        const parent = map.get(item.mpm_modulo_padre_id);
-        if (parent) {
-          parent.children.push(map.get(item.mpm_id));
-        }
-      }
-    });
-  
-    return roots;
-  }
-
-  async findAllForUser(
-    lang:string, 
-    queryParams,
-  ) {
-
-    // Realizar la consulta
-    const query = await this.moduloRepository.createQueryBuilder('mpm')
-    .select([
-      'mpm.modulo_padre_id',
-      'mpm.id',
-      'mpm.permiso',
-      'mpm.nombre',
-      'mpm.descripcion',
-    ])
-    .addSelect(subQuery => {
-      return subQuery
-        .select('CASE WHEN mpma.permiso IS NOT NULL THEN 1 ELSE 0 END as asignado')
-        .from('mod_permisos_modulo_asignacion', 'mpma')
-        .andWhere(`
-          CASE WHEN mpm.modulo_padre_id IS NULL THEN
-            mpma.modulo_padre_id IS NULL AND
-            mpma.permiso = mpm.permiso
-          ELSE
-            mpma.permiso = mpm.permiso AND
-            mpma.modulo_padre_id = mpm.modulo_padre_id
-          END
-        `)
-        .andWhere('mpma.user_id = :userId', { userId: queryParams.userId })
-    }, 'asignado')
-    .getRawMany();
-
-
-    console.log(query)
-
-    const result = this.organizarJerarquia(query)
-
-    return result;
-  }
-
   async findPermiso(
     lang:string, 
     moduloId?: number, 
@@ -281,7 +210,7 @@ export class ModulosService {
     return cuentaAsignados
   }
 
-  async findPaginada(lang:string,padreId:number, paginationDto: PaginationDto){
+  async findPaginada(lang:string, padreId:number, paginationDto: PaginationDto){
 
     const { limit, page, field = 'id' , order = 'Asc' } = paginationDto
     

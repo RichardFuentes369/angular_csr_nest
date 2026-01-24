@@ -1,7 +1,5 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Query, Put, UseGuards } from '@nestjs/common';
 import { AsignacionService } from './asignacion.service';
-import { CreateAsignacionDto } from './dto/create-asignacion.dto';
-import { UpdateAsignacionDto } from './dto/update-asignacion.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { AdminGuard } from '@guard/admin/admin.guard';
 import { GetUser } from 'src/decorator/getIdUser.decorator';
@@ -32,9 +30,22 @@ export class AsignacionController {
     );
   }
 
+  @UseGuards(AdminGuard)
+  @Get('obtener-permisos-por-usuario')
+  findAllForUser(
+    @Query('lang') lang:string,
+    @Query() query,
+    @GetUser('id') userId: number
+  ) {
+    return this.asignacionService.findAllForUser(
+      lang,
+      query
+    );
+  }
+
   @ApiTags('asignacion_permiso')
   @UseGuards(AdminGuard)
-  @Get('getAsignacionMePertenece')
+  @Get('validar-acceso-permiso-usuario')
   findOne(
     @Query('lang') lang:string,
     @Query() query,
@@ -50,7 +61,7 @@ export class AsignacionController {
 
   @ApiTags('asignacion_permiso')
   @UseGuards(AdminGuard)
-  @Put('updateAsignacionPermiso')
+  @Put('actualizar-asignacion-permiso')
   updateAsignacion(
     @Query('lang') lang:string,
     @Query() query,
