@@ -13,8 +13,8 @@ export class FinalService {
 
   async getDataUser(id: string){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let complemento = 'user/obtener-usuario/'
-    let urlCopleta = environment.apiUrl+complemento+id
+    let complemento = 'user/obtener-usuario-final/'
+    let urlCopleta = environment.apiUrl+complemento
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
     return await axios.request({
@@ -25,6 +25,7 @@ export class FinalService {
       method: 'get',
       url: urlCopleta,
       params: {
+        _id: id,
         lang: lang,
       }
     })
@@ -32,7 +33,7 @@ export class FinalService {
 
   async createUser(data: any){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let complemento = 'user/crear-usuario/'
+    let complemento = 'user/crear-usuario-final/'
     let urlCopleta = environment.apiUrl+complemento
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
@@ -52,7 +53,7 @@ export class FinalService {
 
   async updateUser(data: any, id: string){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let complemento = `user/editar-usuario/${id}`
+    let complemento = `user/actualizar-usuario-final`
     let urlCopleta = environment.apiUrl+complemento
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
@@ -65,14 +66,15 @@ export class FinalService {
       url: urlCopleta,
       data: data,
       params: {
+        _id: id,
         lang: lang,
       }
     })
   }
 
-  async updatestatusUser(id: string[], option: string){
+  async updateStatusUser(id: string[], option: string){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let complemento = 'user/actualizar-estado-admininistrador/'
+    let complemento = 'user/actualizar-estado-usuario-final/'
     let urlCopleta = environment.apiUrl+complemento
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
@@ -97,8 +99,8 @@ export class FinalService {
 
   async deleteUser(id: string[]){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let complemento = 'user/eliminar-usuario/'
-    let urlCopleta = environment.apiUrl+complemento+id
+    let complemento = 'user/eliminar-usuario-final/'
+    let urlCopleta = environment.apiUrl+complemento
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
     return await axios.request({
@@ -109,8 +111,9 @@ export class FinalService {
       method: 'delete',
       url: urlCopleta,
       params: {
+        _id: id.join(','),
         lang: lang,
-      }
+      },
     })
   }
 

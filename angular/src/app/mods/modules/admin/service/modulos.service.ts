@@ -34,7 +34,7 @@ export class ModulosService {
   
   async listaPermisos(id: number){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let complemento = `modulos/getPermisosPorUsuario?userId=${id}&lang=${lang}`
+    let complemento = `modulos/obtener-permisos-por-usuario?userId=${id}&lang=${lang}`
     let urlCopleta = environment.apiUrl+complemento
 
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)

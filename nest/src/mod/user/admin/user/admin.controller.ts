@@ -13,25 +13,10 @@ import { GetUser } from 'src/decorator/getIdUser.decorator';
 @Controller('admin')
 export class AdminController {
   constructor(private readonly adminService: AdminService) {}
-
-  @ApiTags('admin')
-  @UseGuards(AdminGuard)
-  @Post('crear-admininistrador')
-  create(
-    @Query('lang') lang:string,
-    @Body() createAdminDto: CreateAdminDto,
-    @GetUser('id') userId: number
-  ) {
-    return this.adminService.create(
-      lang,
-      createAdminDto,
-      userId
-    );
-  }
-  
+ 
   @ApiTags('admin')
   // @UseGuards(AdminGuard)
-  @Get()
+  @Get('obtener-usuarios-administradores')
   findAll(
     @Query('lang') lang:string,
     @Query() filterUserDto: FilterUserDto,
@@ -45,7 +30,7 @@ export class AdminController {
 
   @ApiTags('admin')
   @UseGuards(AdminGuard)
-  @Get('obtener-administrador/:id')
+  @Get('obtener-usuario-administrador/:id')
   findOne(
     @Query('lang') lang:string,
     @Param('id') id: string,
@@ -59,7 +44,22 @@ export class AdminController {
 
   @ApiTags('admin')
   @UseGuards(AdminGuard)
-  @Patch('editar-administrador/:id')
+  @Post('crear-usuario-admininistrador')
+  create(
+    @Query('lang') lang:string,
+    @Body() createAdminDto: CreateAdminDto,
+    @GetUser('id') userId: number
+  ) {
+    return this.adminService.create(
+      lang,
+      createAdminDto,
+      userId
+    );
+  }
+
+  @ApiTags('admin')
+  @UseGuards(AdminGuard)
+  @Patch('editar-usuario-administrador/:id')
   update(
     @Query('lang') lang:string,
     @Param('id') id: string, @Body() updateAdminDto: UpdateAdminDto,
@@ -92,7 +92,7 @@ export class AdminController {
 
   @ApiTags('admin')
   @UseGuards(AdminGuard)
-  @Delete('eliminar-admininistrador/:id')
+  @Delete('eliminar-usuario-admininistrador/:id')
   remove(
     @Query('lang') lang:string,
     @Param('id') id: string,

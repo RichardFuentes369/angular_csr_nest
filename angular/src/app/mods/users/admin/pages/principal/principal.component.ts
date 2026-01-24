@@ -54,7 +54,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
 
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
-  endPoint = 'admin'
+  endPoint = 'admin/obtener-usuarios-administradores'
   filters = ''
   columnas: any[] = [
     {
@@ -299,7 +299,7 @@ export class PrincipalComponent implements OnInit, OnDestroy{
         }
     }).then(async (result) => {
         if (result.isConfirmed) {
-          await this.principalService.updatestatusUser(_id, result.value)
+          await this.principalService.updateStatusUser(_id, result.value)
           await this.someInput.reload()
           Swal.fire({
             title: this.translate.instant('mod-users.SWAL_UPDATED'),

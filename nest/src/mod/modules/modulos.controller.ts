@@ -11,7 +11,7 @@ import { GetUser } from 'src/decorator/getIdUser.decorator';
 export class ModulosController {
   constructor(private readonly modulosService: ModulosService) {}
     
-  @ApiTags('permisos_modulos')
+  @ApiTags('modulo_submodulo_permiso')
   @Get('getPermisosSobrePadre/:padreId')
   findPaginada(
     @Query('lang') lang:string,
@@ -26,9 +26,9 @@ export class ModulosController {
     );
   }
 
-  @ApiTags('permisos_modulos')
+  @ApiTags('modulo_submodulo_permiso')
   @UseGuards(AdminGuard)
-  @Get('getPermisosPorUsuario')
+  @Get('obtener-permisos-por-usuario')
   findAllForUser(
     @Query('lang') lang:string,
     @Query() query,
@@ -40,7 +40,7 @@ export class ModulosController {
     );
   }
 
-  @ApiTags('permisos_modulos')
+  @ApiTags('modulo_submodulo_permiso')
   @UseGuards(AdminGuard)
   @Get('getModuloPermisoExistente')
   findOne(
@@ -56,7 +56,8 @@ export class ModulosController {
     );
   }
 
-  @ApiTags('permisos_modulos')
+  // no se usa
+  @ApiTags('modulo_submodulo_permiso')
   @UseGuards(AdminGuard)
   @Get('getHasSubmodule')
   findSubmodules(
@@ -70,7 +71,7 @@ export class ModulosController {
     );
   }
 
-  @ApiTags('permisos_modulos')
+  @ApiTags('modulo_submodulo_permiso')
   @UseGuards(AdminGuard)
   @Post('postModuloPermiso')
   create(
@@ -85,7 +86,7 @@ export class ModulosController {
     );
   }
 
-  @ApiTags('permisos_modulos')
+  @ApiTags('modulo_submodulo_permiso')
   @UseGuards(AdminGuard)
   @Patch('editModuloPermiso')
   updateModuloPermiso(
@@ -100,8 +101,9 @@ export class ModulosController {
       userId
     );
   }  
-  
-  @ApiTags('permisos_modulos')
+
+  // no se usa
+  @ApiTags('modulo_submodulo_permiso')
   @UseGuards(AdminGuard)
   @Patch('updateModuloPermiso')
   update(
@@ -116,7 +118,7 @@ export class ModulosController {
     );
   }
 
-  @ApiTags('permisos_modulos')
+  @ApiTags('modulo_submodulo_permiso')
   @UseGuards(AdminGuard)
   @Delete('deleteModuloPermiso')
   remove(

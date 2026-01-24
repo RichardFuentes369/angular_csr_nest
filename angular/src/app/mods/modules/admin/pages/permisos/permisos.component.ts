@@ -75,7 +75,7 @@ export class PermisosComponent implements OnInit{
 
   // inicio datos que envio al componente
   showcampoFiltro = true
-  endPoint = `modulos/getPermisosSobrePadre/${localStorage.getItem(STORAGE_KEY_SUBMODULE)}`
+  endPoint = `modulos/obtener-permisos-por-modulo/${localStorage.getItem(STORAGE_KEY_SUBMODULE)}`
   columnas = [
     {
       title: this.translate.instant('mod-modules.COLUMN_PERMISSION_NAME'),

@@ -13,25 +13,10 @@ import { GetUser } from 'src/decorator/getIdUser.decorator';
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
-
-  @ApiTags('user')
-  @UseGuards(AdminGuard)
-  @Post('crear-usuario')
-  create(
-    @Query('lang') lang:string,
-    @Body() createUserDto: CreateUserDto,
-    @GetUser('id') userId: number
-  ) {
-    return this.userService.create(
-      createUserDto,
-      lang,
-      userId
-    );
-  }
-  
+ 
   @ApiTags('user')
   // @UseGuards(AdminGuard)
-  @Get()
+  @Get('obtener-usuarios-finales')
   findAll(
     @Query('lang') lang:string,
     @Query() filterUserDto: FilterUserDto,
@@ -45,29 +30,44 @@ export class UserController {
   
   @ApiTags('user')
   @UseGuards(AdminGuard)
-  @Get('obtener-usuario/:id')
+  @Get('obtener-usuario-final')
   findOne(
-    @Query('lang') lang:string,
-    @Param('id') id: string,
-    @GetUser('id') userId: number
+    @Query('_id') _id: string,
+    @GetUser('id') userId: number,
+    @Query('lang') lang:string
   ) {
     return this.userService.findOne(
-      +id,
+      +_id,
       lang
+    );
+  }
+
+  @ApiTags('user')
+  @UseGuards(AdminGuard)
+  @Post('crear-usuario-final')
+  create(
+    @Query('lang') lang:string,
+    @Body() createUserDto: CreateUserDto,
+    @GetUser('id') userId: number
+  ) {
+    return this.userService.create(
+      createUserDto,
+      lang,
+      userId
     );
   }
   
   @ApiTags('user')
   @UseGuards(AdminGuard)
-  @Patch('editar-usuario/:id')
+  @Patch('actualizar-usuario-final')
   update(
     @Query('lang') lang:string,
-    @Param('id') id: string, 
+    @Query('_id') _id: string,
     @Body() updateUserDto: UpdateUserDto,
     @GetUser('id') userId: number
   ) {
     return this.userService.update(
-      +id, 
+      +_id, 
       updateUserDto,
       lang,
       userId
@@ -76,7 +76,7 @@ export class UserController {
 
   @ApiTags('admin')
   @UseGuards(AdminGuard)
-  @Patch('actualizar-estado-admininistrador')
+  @Patch('actualizar-estado-usuario-final')
   updateStatus(
     @Query('lang') lang:string,
     @Body() upsateStatus: UpdateStatusDto,
@@ -93,13 +93,13 @@ export class UserController {
   
   @ApiTags('user')
   @UseGuards(AdminGuard)
-  @Delete('eliminar-usuario/:id')
+  @Delete('eliminar-usuario-final')
   remove(
+    @Query('_id') _id: string,
     @Query('lang') lang:string,
-    @Param('id') id: string,
     @GetUser('id') userId: number
   ) {
-    const idsNumeros: number[] = id.split(',').map(str => parseInt(str.trim(), 10));
+    const idsNumeros: number[] = _id.split(',').map(str => parseInt(str.trim(), 10));
     return this.userService.remove(
       idsNumeros,
       lang,

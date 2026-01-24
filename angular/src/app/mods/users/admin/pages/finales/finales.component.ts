@@ -52,7 +52,7 @@ export class FinalesComponent implements OnInit{
 
   // inicio datos que envio al componente tabla
   showcampoFiltro = false
-  endPoint = 'user'
+  endPoint = 'user/obtener-usuarios-finales'
   filters = ''
   columnas = [
     {
@@ -300,7 +300,7 @@ export class FinalesComponent implements OnInit{
         }
     }).then(async (result) => {
         if (result.isConfirmed) {
-          await this.finalService.updatestatusUser(_id, result.value)
+          await this.finalService.updateStatusUser(_id, result.value)
           await this.someInput.reload()
           Swal.fire({
             title: this.translate.instant('mod-users.SWAL_UPDATED'),

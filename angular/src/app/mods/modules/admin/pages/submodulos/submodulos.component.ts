@@ -71,7 +71,7 @@ export class SubmodulosComponent implements OnInit{
 
   // inicio datos que envio al componente
   showcampoFiltro = true
-  endPoint = `modulos/getPermisosSobrePadre/${localStorage.getItem(STORAGE_KEY_MODULE)}`
+  endPoint = `modulos/obtener-permisos-por-modulo/${localStorage.getItem(STORAGE_KEY_MODULE)}`
   columnas = [
     {
       title: this.translate.instant('mod-modules.COLUMN_SUBMODULE_NAME'),

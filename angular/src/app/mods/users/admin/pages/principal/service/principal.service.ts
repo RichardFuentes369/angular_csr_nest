@@ -13,7 +13,7 @@ export class PrincipalService {
 
   async getDataUser(id: string){
     let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let complemento = 'admin/obtener-administrador/'
+    let complemento = 'admin/obtener-usuario-administrador/'
     let urlCopleta = environment.apiUrl+complemento+id
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
@@ -32,7 +32,7 @@ export class PrincipalService {
 
   async createUser(data: any){
     let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let complemento = 'admin/crear-admininistrador/'
+    let complemento = 'admin/crear-usuario-admininistrador/'
     let urlCopleta = environment.apiUrl+complemento
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
@@ -52,7 +52,7 @@ export class PrincipalService {
 
   async updateUser(data: any, id: string){
     let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let complemento = `admin/editar-administrador/${id}`
+    let complemento = `admin/editar-usuario-administrador/${id}`
     let urlCopleta = environment.apiUrl+complemento
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 
@@ -70,7 +70,7 @@ export class PrincipalService {
     })
   }
 
-  async updatestatusUser(id: string[], option: string){
+  async updateStatusUser(id: string[], option: string){
     let lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
     let complemento = 'admin/actualizar-estado-admininistrador/'
     let urlCopleta = environment.apiUrl+complemento
@@ -97,7 +97,7 @@ export class PrincipalService {
 
   async deleteUser(id: string[]){
     const lang = this.translate.currentLang || this.translate.getDefaultLang() || 'es';
-    let complemento = 'admin/eliminar-admininistrador/'
+    let complemento = 'admin/eliminar-usuario-admininistrador/'
     let urlCopleta = environment.apiUrl+complemento+id
     let token = localStorage.getItem(STORAGE_KEY_TOKEN_ADMIN)
 

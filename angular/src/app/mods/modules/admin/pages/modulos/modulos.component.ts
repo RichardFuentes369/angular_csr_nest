@@ -64,7 +64,7 @@ export class ModulosComponent implements OnInit{
 
   // inicio datos que envio al componente
   showcampoFiltro = true
-  endPoint = 'modulos/getPermisosSobrePadre/0'
+  endPoint = 'modulos/obtener-permisos-por-modulo/0'
   columnas = [
     {
       title: this.translate.instant('mod-modules.COLUMN_MODULE_NAME'),
