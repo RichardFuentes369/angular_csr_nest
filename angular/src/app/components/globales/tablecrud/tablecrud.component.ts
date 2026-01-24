@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, SimpleChanges, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, SimpleChanges, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@environment/environment';
 import { DataTableDirective, DataTablesModule } from 'angular-datatables';
@@ -7,6 +7,7 @@ import { Subject, Subscription } from 'rxjs';
 import { Config } from 'datatables.net';
 
 let haySeleccionados: any[] = [];
+
 @Component({
   selector: 'app-globales-tablecrud',
   standalone: true,
@@ -35,7 +36,8 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(
     private http: HttpClient,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
@@ -54,6 +56,9 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['filters'] && !changes['filters'].firstChange) {
       this.reload();
+    }
+    if (changes['permisosAcciones']) {
+      this.cdr.detectChanges();
     }
   }
 
@@ -96,6 +101,8 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
             recordsFiltered: recordsTotal,
             data: data,
           });
+
+          this.cdr.detectChanges();
         });
       },
       language: {
@@ -131,6 +138,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
             this.idsSeleccionados.push(data.id);
             $row.addClass('selected-row');
           }
+          this.cdr.detectChanges();
         });
         return row;
       }
@@ -140,7 +148,10 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
   reload() {
     this.limpiarSeleccion();
     this.datatableElement.dtInstance.then((dtInstance: any) => {
-      dtInstance.ajax.reload();
+      dtInstance.ajax.reload(() => {
+        this.cdr.markForCheck(); 
+        this.cdr.detectChanges();
+      });
     });
   }
 

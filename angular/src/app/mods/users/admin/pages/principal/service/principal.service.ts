@@ -111,7 +111,7 @@ export class PrincipalService {
       method: 'delete',
       url: urlCopleta,
       params: {
-        _id: id,
+        _id: id.join(','),
         lang: lang,
       }
     })
