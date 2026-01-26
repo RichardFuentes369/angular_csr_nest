@@ -6,6 +6,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subject, Subscription } from 'rxjs';
 import { Config } from 'datatables.net';
 
+let ultimaUrlConsultada: string = '';
 let haySeleccionados: any[] = [];
 
 @Component({
@@ -42,7 +43,7 @@ export class TablecrudComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit() {
     this.listar();
-    this.idsSeleccionados = [...haySeleccionados];
+    (ultimaUrlConsultada != this.endPoint) ? this.idsSeleccionados = [] : this.idsSeleccionados = [...haySeleccionados]
     this.langSub = this.translate.onLangChange.subscribe(() => {
       haySeleccionados = [...this.idsSeleccionados];
       this.recargarIdioma();
