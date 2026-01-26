@@ -1,23 +1,33 @@
 <div class="">
-  <button class="floating-button btn-sm btn btn-primary" id="miBotonF" componentef="" (click)="openFilter()">
+  <button 
+    class="floating-button btn-sm btn btn-primary" 
+    id="miBotonF" 
+    componentef="" 
+    (click)="openFilter()">
     <i [ngClass]="icon"></i>
   </button>
 
   <div class="animated-card" [class.is-visible]="isFilterVisible">
-    <h3 class="text-bg-primary">
+    <button class="btn-close-card" (click)="openFilter()">
+      <i class="fa fa-times"></i> 
+    </button>
+
+    <h3 class="header">
       {{ 'global-search.TITTLE_COMPONENT' | translate}}
     </h3>
 
-    <div class="card-body pl-0 pr-0">
-      <div #contenedorFilter></div>
-    </div>
+    <div class="card-body pl-0 p-0 pr-0">
+      <div class="pt-2 pb-2">
+        <div #contenedorFilter></div>
+      </div>
 
-    <button (click)="$event.stopPropagation(); limpiar()" class="btn-secondary btn btn-sm mt-2">
-      {{ 'global-search.BUTTON_CLEAR' | translate}}
-    </button>
-    <button (click)="$event.stopPropagation(); filtrar()" class="btn-primary btn btn-sm mt-2 mx-sm-2">
-      {{ 'global-search.BUTTON_FILTER' | translate}}
-    </button>
+      <button (click)="$event.stopPropagation(); limpiar()" class="btn-secondary btn btn-sm mt-2">
+        {{ 'global-search.BUTTON_CLEAR' | translate}}
+      </button>
+      <button (click)="$event.stopPropagation(); filtrar()" class="btn-primary btn btn-sm mt-2 mx-sm-2">
+        {{ 'global-search.BUTTON_FILTER' | translate}}
+      </button>
+    </div>
   </div>
 
 </div>

@@ -1,74 +1,82 @@
-/* Muestra una posición del boton */
-.absolute-search-button {
-  position: absolute; 
-  right: -25px;
-  top: 25%; 
-  transform: translateY(-50%);
-  z-index: 10;
-  :host ::ng-deep .floating-button {
-    position: static; 
-    right: auto;
-    top: auto;
-  }
+/* --- CABECERA --- */
+.header {
+  background: linear-gradient(180deg, rgb(34, 74, 190) 20%, rgb(45, 199, 237) 100%);
+  background-size: cover;
+  color: white;
 }
 
-/* Estilo del botón flotante */
-.floating-button {
-  position: fixed;
-  right: 5px;
-  top: 40%!important;
-  transform: translateY(-50%); /* Centra verticalmente */
-  background-color: #3f51b5; /* Color primario de Angular Material (puedes personalizarlo) */
+/* --- NUEVO: BOTÓN DENTRO DE LA CARD --- */
+.btn-close-card {
+  position: absolute;
+  top: 10px;
+  left: 10px; /* Esquina superior izquierda */
+  background: rgba(255, 255, 255, 0.2); /* Fondo semi-transparente para que resalte en el gradient */
+  border: none;
   color: white;
-  border-radius: 50%;
+  border-radius: 4px;
   width: 30px;
   height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
-              0 6px 10px 0 rgba(0, 0, 0, 0.14),
-              0 1px 18px 0 rgba(0, 0, 0, 0.12);
   cursor: pointer;
-  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+  z-index: 1010; /* Por encima del header de la card */
+  transition: background 0.3s ease;
+}
 
-  mat-icon {
-    font-size: 24px;
-  }
+/* --- BOTÓN FLOTANTE (Ajuste para ocultar) --- */
+.floating-button {
+  position: fixed;
+  right: 15px; 
+  top: 40%;
+  transform: translateY(-50%);
+  // z-index: 1002;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  opacity: 1; 
+  visibility: visible;
 
-  &:hover {
-    background-color: darken(#3f51b5, 10%);
-  }
-
-  &:focus {
-    outline: none; /* Opcional: personalizar el estilo del foco */
+  /* OCULTAR CUANDO LA CARD ESTÁ ACTIVA */
+  &.active {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-50%) scale(0); /* Se encoge hasta desaparecer */
+    pointer-events: none;
   }
 }
 
-
+/* --- CARD ANIMADA (Mantenemos tu base con un ajuste de posición relativa) --- */
 .animated-card {
-  position: fixed; /* O 'absolute', dependiendo del flujo de tu página */
-  top: 4rem;
+  position: fixed;
   right: 0;
-  width: 300px; /* Ancho deseado de la card */
-  height: auto; /* O la altura que necesites */
+  top: 40%;
+  transform: translateY(-50%) translateX(110%); 
+  width: 350px;
+  max-width: 90vw;
   background-color: white;
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  z-index: 100; /* Asegura que esté por encima de otros elementos */
+  z-index: 1000;
+  border-radius: 12px 0 0 12px;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden; 
 
-  // **TRANSITION:** Hace que el cambio de estado (la posición) sea suave
-  transition: transform 0.4s ease-out; 
+  &.is-visible {
+    transform: translateY(-50%) translateX(0);
+  }
 
-  // **ESTADO INICIAL (OCULTO):** // Mueve la card completamente hacia la derecha, fuera de la vista.
-  // El 100% significa el 100% de su propio ancho.
-  transform: translateX(100%); 
+  .header {
+    margin: 0;
+    padding: 15px;
+    font-size: 1.2rem;
+    text-align: center;
+    /* Tu gradiente anterior */
+    background: linear-gradient(180deg, rgb(34, 74, 190) 20%, rgb(45, 199, 237) 100%);
+    color: white;
+  }
+
+  .card-body {
+    padding: 20px !important;
+  }
 }
-
-.animated-card.is-visible {
-  // **ESTADO FINAL (VISIBLE):**
-  // Devuelve la card a su posición original (0) en la pantalla.
-  transform: translateX(0); 
-}
-
-

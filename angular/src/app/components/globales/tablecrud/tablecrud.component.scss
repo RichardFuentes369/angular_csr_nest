@@ -22,14 +22,24 @@ table {
   }
 }
 
-/* Clase para la fila seleccionada */
+/* Tu animación actual de entrada */
+@keyframes selectedPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.9); } /* Un poco menos agresivo para no romper la tabla */
+  100% { transform: scale(1); }
+}
+
 ::ng-deep .tableDatatable tbody tr.selected-row {
-  background-color: #e74c3c !important; /* Rojo */
-  color: white !important;
+  background: #224ABE; 
+  background: radial-gradient(circle, rgb(245, 76, 76) 16%, rgb(204, 30, 30) 100%) !important;
+  
+  /* Animación: dura 0.4s, entrada suave y se ejecuta una vez al seleccionar */
+  animation: selectedPulse 0.4s ease-out;
 
   td {
     background-color: transparent !important;
-    color: inherit !important;
+    color: #ebe6e6 !important;
+    transition: all 0.3s ease; /* Suaviza el cambio de color de texto */
   }
 }
 
@@ -38,18 +48,23 @@ table {
   transition: background-color 0.2s ease;
 }
 
+::ng-deep .tableDatatable thead tr {
+  background:  RGBA(45, 199, 237, 1);
+  background: radial-gradient(circle,rgb(89, 139, 204) 16%, rgba(34, 74, 190, 1) 100%)!important;
+}
+
 /* Cambiar color de fondo y texto del encabezado */
 ::ng-deep .tableDatatable thead th {
-    background-color: #1f68b1 !important; /* Azul oscuro (cámbialo al color que desees) */
+    background-color: transparent !important; /* Azul oscuro (cámbialo al color que desees) */
     color: #ffffff !important;           /* Texto blanco */
     text-align: center;                  /* Centrar títulos */
     padding: 12px 10px !important;       /* Espaciado interno */
-    border-bottom: 2px solid #1a252f !important; /* Línea divisoria inferior */
+    border-bottom: none !important; /* Línea divisoria inferior */
 }
 
 /* Opcional: Estilo para las flechas de ordenamiento (si las habilitas luego) */
 ::ng-deep .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-    background: #2c3e50 !important;
+    background: #224ABE !important;
     color: white !important;
-    border: 1px solid #2c3e50 !important;
+    border: 1px solid #224ABE !important;
 }
