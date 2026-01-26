@@ -3,13 +3,16 @@
     class="floating-button btn-sm btn btn-primary" 
     id="miBotonF" 
     componentef="" 
-    (click)="openFilter()">
+    (click)="openFilterMinimize()">
     <i [ngClass]="icon"></i>
   </button>
 
   <div class="animated-card" [class.is-visible]="isFilterVisible">
-    <button class="btn-close-card" (click)="openFilter()">
+    <button class="btn-close-card" (click)="$event.stopPropagation(); closeFilterEraser()">
       <i class="fa fa-times"></i> 
+    </button>    
+    <button class="btn-minimize-card" (click)="openFilterMinimize()">
+      <i class="fa fa-window-minimize"></i> 
     </button>
 
     <h3 class="header">
@@ -21,10 +24,10 @@
         <div #contenedorFilter></div>
       </div>
 
-      <button (click)="$event.stopPropagation(); limpiar()" class="btn-secondary btn btn-sm mt-2">
+      <button (click)="$event.stopPropagation(); clearFilter()" class="btn-secondary btn btn-sm mt-2">
         {{ 'global-search.BUTTON_CLEAR' | translate}}
       </button>
-      <button (click)="$event.stopPropagation(); filtrar()" class="btn-primary btn btn-sm mt-2 mx-sm-2">
+      <button (click)="$event.stopPropagation(); actionFilter()" class="btn-primary btn btn-sm mt-2 mx-sm-2">
         {{ 'global-search.BUTTON_FILTER' | translate}}
       </button>
     </div>

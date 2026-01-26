@@ -35,12 +35,11 @@ export class SearchComponent{
   @Output()
   filtroItem = new EventEmitter<string>()
 
-  async openFilter() {
+  async openFilterMinimize() {
     let componente = await this.listaDeComponentes.obtenerComponentePorNombre(this.componente);
     
     if(componente){
       const factory = await this.resolver.resolveComponentFactory(componente.componente);
-      
       this.clickeado = !this.clickeado
       if(this.clickeado == true){
         this.contenedorDinamico.clear()
@@ -54,14 +53,21 @@ export class SearchComponent{
       const mensaje = this.translate.instant('global-search.CONSOLE_ERROR_NOT_FOUND_COMPONENT')
       console.error(mensaje)
     }
-
   }  
 
-  async limpiar(){
+  async clearFilter(){
     $('.limpiar').click()
     this.filtroItem.emit()
   }
-  async filtrar(){
+  
+  async closeFilterEraser(){
+    $('.limpiar').click()
+    this.clickeado = !this.clickeado
+    this.filtroItem.emit()
+    this.isFilterVisible = false
+  }
+
+  async actionFilter(){
     $('.filtrar').click()
     this.filtroItem.emit()
   }
