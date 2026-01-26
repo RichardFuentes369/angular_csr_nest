@@ -6,7 +6,7 @@ import { PermisosService } from '@service/globales/permisos/permisos.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { swalert } from '@function/System'
-import { STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
+import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
 import { PrincipalService } from '../../service/principal.service';
 
 @Component({
@@ -21,9 +21,9 @@ import { PrincipalService } from '../../service/principal.service';
 export class AsignarPermisosComponent implements OnInit{
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private userService :AuthService,
-    private modulosService :ModulosService,
     private permisosService :PermisosService,
     private principalService :PrincipalService,
   ) { }
@@ -37,6 +37,16 @@ export class AsignarPermisosComponent implements OnInit{
 
   async ngOnInit() {
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
+    const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
+
+    const permiso_modulo = await this.permisosService.permisoPage(0,'usuarios',userData.data.id)
+    const permiso_submodulo = await this.permisosService.permisoPage(1,'administradores',userData.data.id)
+    const permiso_vista = await this.permisosService.permisoPage(2,'asignar_permisos',userData.data.id)
+
+    if (permiso_modulo.data === "" || permiso_submodulo.data === "" || permiso_vista.data === "") {
+      this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
+    } 
+    
     let userId = this.route.snapshot.queryParams['id']
 
     const datUser = await this.principalService.getDataUser(userId)

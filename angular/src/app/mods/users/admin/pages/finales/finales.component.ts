@@ -110,10 +110,12 @@ export class FinalesComponent implements OnInit{
     await this.userService.refreshToken(STORAGE_KEY_ADMIN_AUTH);
     const userData = await this.userService.getUser(STORAGE_KEY_ADMIN_AUTH);
 
-    const submodulo = await this.permisosService.permisoPage(1,'finales',userData.data.id)
-    if (submodulo.data === "") {
+    const permiso_modulo = await this.permisosService.permisoPage(0,'usuarios',userData.data.id)
+    const permiso_submodulo = await this.permisosService.permisoPage(1,'finales',userData.data.id)
+
+    if (permiso_modulo.data === "" || permiso_submodulo.data === "") {
       this.router.navigate([_PAGE_WITHOUT_PERMISSION_ADMIN]);
-    } 
+    }
 
     const permisos = await this.permisosService.permisos(userData.data.id,'finales')
     this.permisos = permisos.data
