@@ -1,0 +1,9 @@
+{
+  "build": {
+    "builder": "pnpm",
+    "command": "pnpm install --no-frozen-lockfile && pnpm run build"
+  },
+  "run": {
+    "command": "node dist/main"
+  }
+}

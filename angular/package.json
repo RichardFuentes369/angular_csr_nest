@@ -1,5 +1,5 @@
 {
-  "name": "template01",
+  "name": "angular",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -8,7 +8,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:template01": "node dist/template01/server/server.mjs"
+    "serve:ssr:angular": "node dist/angular/server/server.mjs"
   },
   "private": true,
   "dependencies": {
