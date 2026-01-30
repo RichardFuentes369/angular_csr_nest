@@ -6,12 +6,16 @@ import { IdiomaComponent } from '@component/globales/idioma/idioma.component';
 
 import { STORAGE_KEY_TOKEN_ADMIN, STORAGE_KEY_TOKEN_FINAL } from '@const/app.const';
 import { LAYOUT_FINAL_PAGE_LOGOUT, LAYOUT_PAGE_PROFILE, LAYOUT_PAGE_SETTINGS, NAME_PAGE } from '@layout/const/layouts.const';
+import { CommonModule } from '@angular/common';
+import { ColormodeComponent } from '@component/globales/colormode/colormode.component';
 
 @Component({
   selector: 'app-layout-final',
   standalone: true,
   imports: [
     IdiomaComponent,
+    ColormodeComponent,
+    CommonModule,
     TranslateModule,
     RouterModule
   ],

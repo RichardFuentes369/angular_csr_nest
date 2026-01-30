@@ -1,2 +1,19 @@
-.fondo {
+:root {
+  --fondo-navbar-principal: #007bff;
+  --tab-activa: #007bff;
+  --tab-select: #020080;
+  --fondo-navbar: #e0e0e0;
+  --contenido-index: transparent;
+  --texto-color-tab: #fff;
+  --texto-color: #000;
+}
+
+[data-theme='dark'] {
+  --fondo-navbar-principal: #0c0c0c;
+  --tab-activa: #008000;
+  --tab-select: #008000;
+  --fondo-navbar: #ec0202;
+  --contenido-index: #000;
+  --texto-color-tab: #fff;
+  --texto-color: #fff;
 }

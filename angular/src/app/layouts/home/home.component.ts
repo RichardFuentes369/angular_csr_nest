@@ -4,6 +4,7 @@ import { IdiomaComponent } from '@component/globales/idioma/idioma.component';
 import { RouterModule } from '@angular/router';
 
 import { NAME_PAGE, LAYOUT_HOME_PAGE_START, LAYOUT_HOME_PAGE_LOGIN_FINAL } from '@layout/const/layouts.const';
+import { ColormodeComponent } from '@component/globales/colormode/colormode.component';
 
 @Component({
   selector: 'app-layout-home',
@@ -11,6 +12,7 @@ import { NAME_PAGE, LAYOUT_HOME_PAGE_START, LAYOUT_HOME_PAGE_LOGIN_FINAL } from 
   imports: [
     IdiomaComponent,
     TranslateModule,
+    ColormodeComponent,
     RouterModule
   ],
   templateUrl: './home.component.html',
@@ -18,6 +20,7 @@ import { NAME_PAGE, LAYOUT_HOME_PAGE_START, LAYOUT_HOME_PAGE_LOGIN_FINAL } from 
 })
 export class HomeComponent {
 
+  public CURRENT_YEAR = new Date().getFullYear();
   public NAME_PAGE = NAME_PAGE;
   public LAYOUT_HOME_PAGE_START = LAYOUT_HOME_PAGE_START;
   public LAYOUT_HOME_PAGE_LOGIN_FINAL = LAYOUT_HOME_PAGE_LOGIN_FINAL;

@@ -125,7 +125,7 @@
             </li>
 
             <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
+            <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" id="alertsDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
@@ -176,7 +176,7 @@
             </li>
 
             <!-- Nav Item - Messages -->
-            <li class="nav-item dropdown no-arrow mx-1">
+            <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" id="messagesDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
@@ -237,11 +237,16 @@
               </div>
             </li>
 
+            <li class="nav-item dropdown no-arrow my-auto text-center">
+              <a href="javascript:void(0)">
+                <app-globales-colormode></app-globales-colormode>
+              </a>
+              <a href="javascript:void(0)">
+                <app-globales-idioma (cambioIdiomaEmitt)="idiomaCambiar($event)"></app-globales-idioma>
+              </a>
+            </li>
+            
             <div class="topbar-divider d-none d-sm-block"></div>
-
-            <div class="my-auto">
-              <app-globales-idioma (cambioIdiomaEmitt)="idiomaCambiar($event)"></app-globales-idioma>
-            </div>
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">

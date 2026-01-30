@@ -9,12 +9,14 @@ import { CommonModule } from '@angular/common';
 import { STORAGE_KEY_TOKEN_ADMIN, STORAGE_KEY_TOKEN_FINAL } from '@const/app.const'
 import { NAME_PAGE, LAYOUT_ADMIN_PAGE_LOGOUT, LAYOUT_PAGE_PROFILE, LAYOUT_PAGE_SETTINGS } from '@layout/const/layouts.const'
 import { LAYOUT_ADMIN_PAGE_MOD } from '@mod/me/const/me.const'
+import { ColormodeComponent } from '@component/globales/colormode/colormode.component';
 
 @Component({
   selector: 'app-layout-admin',
   standalone: true,
   imports: [
     BreadcrumbsComponent,
+    ColormodeComponent,
     IdiomaComponent,
     CommonModule,
     TranslateModule,

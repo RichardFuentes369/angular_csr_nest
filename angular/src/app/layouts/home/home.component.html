@@ -1,58 +1,59 @@
-<div class="prueba">
-  <!-- Encabezado 1 -->
-  <div class="fondo-encabezado arrastrarSeccion1">
-    <div class="d-flex justify-content-between container p-0">
-      <div class="p-2 bd-highlight">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-      </div>
-      <div class="p-2 ml-auto">
-        <app-globales-idioma (cambioIdiomaEmitt)="idiomaCambiar($event)"></app-globales-idioma>
-      </div>
-      <div class="p-2 bd-highlight">
-        <div class="sidebar-brand-text"> {{NAME_PAGE}} </div>
+<div class="layout-container">
+  <div class="sticky-top">
+    <div class="fondo-encabezado">
+      <div class="d-flex bd-highlight justify-content-between container p-0">
+        <div class="p-2 flex-grow-1 bd-highlight">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+        </div>
+        <div class="p-2 bd-highlight">
+          <app-globales-colormode></app-globales-colormode>
+        </div>
+        <div class="p-2 bd-highlight">
+          <app-globales-idioma (cambioIdiomaEmitt)="idiomaCambiar($event)"></app-globales-idioma>
+        </div>
+        <div class="p-2 bd-highlight">
+          <div class="sidebar-brand-text"> {{NAME_PAGE}} </div>
+        </div>
       </div>
     </div>
-  </div>
-  <!-- Navbar 1 -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white topbar static-top shadow menu p-0 mantenerSeccion2">
-    <marquee direction="left" class="container">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white topbar static-top shadow menu p-0">
+      <marquee direction="left" class="container">
+        <div class="container">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique veritatis...
+        </div>
+      </marquee>
+    </nav>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white topbar static-top shadow menu p-0">
       <div class="container">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique veritatis saepe dignissimos aliquid quod.
-        Commodi, qui! Totam non accusantium ex itaque facere, nisi illum tenetur! Suscipit ut ipsam magni corporis!
-      </div>
-    </marquee>
-  </nav>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-  <!-- Navbar 2 -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white topbar static-top shadow menu arrastrarSeccion3 p-0">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
-        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <div class="navbar-nav">
-          <div class="navbarPersonalizado">
-            <div class="col p-1">
-              <li routerLinkActive="activo">
-                <a class="nav-link text-center menuIndex borde-menu" routerLink="{{LAYOUT_HOME_PAGE_START}}">
-                  {{ 'layout-home.TAB_START' | translate}}
-                </a>
-              </li>
-            </div>
-            <div class="col p-1">
-              <li routerLinkActive="activo">
-                <a class="nav-link text-center menuIndex borde-menu" routerLink="{{LAYOUT_HOME_PAGE_LOGIN_FINAL}}">
-                  {{ 'layout-home.TAB_LOGIN' | translate}}
-                </a>
-              </li>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <div class="navbar-nav">
+            <div class="navbarPersonalizado">
+              <div class="col p-1">
+                <li routerLinkActive="activo">
+                  <a class="nav-link text-center menuIndex borde-menu" routerLink="{{LAYOUT_HOME_PAGE_START}}">
+                    {{ 'layout-home.TAB_START' | translate}}
+                  </a>
+                </li>
+              </div>
+              <div class="col p-1">
+                <li routerLinkActive="activo">
+                  <a class="nav-link text-center menuIndex borde-menu" routerLink="{{LAYOUT_HOME_PAGE_LOGIN_FINAL}}">
+                    {{ 'layout-home.TAB_LOGIN' | translate}}
+                  </a>
+                </li>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </div>
 
   <div class="contenido">
     <div class="container p-0">
@@ -60,4 +61,12 @@
     </div>
   </div>
 
+
+  <footer class="sticky-footer">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <span>Copyright &copy; {{CURRENT_YEAR}}</span>
+      </div>
+    </div>
+  </footer>
 </div>
