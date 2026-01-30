@@ -1,72 +1,80 @@
-<div class="layout-container">
-  <div class="sticky-top">
-    <div class="fondo-encabezado">
-      <div class="d-flex bd-highlight justify-content-between container p-0">
-        <div class="p-2 flex-grow-1 bd-highlight">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-        </div>
-        <div class="p-2 bd-highlight">
-          <app-globales-colormode></app-globales-colormode>
-        </div>
-        <div class="p-2 bd-highlight">
-          <app-globales-idioma (cambioIdiomaEmitt)="idiomaCambiar($event)"></app-globales-idioma>
-        </div>
-        <div class="p-2 bd-highlight">
-          <div class="sidebar-brand-text"> {{NAME_PAGE}} </div>
-        </div>
-      </div>
-    </div>
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white static-top shadow menu p-0">
-      <marquee direction="left" class="container">
-        <div class="container">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique veritatis...
-        </div>
-      </marquee>
-    </nav>
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-white static-top shadow menu p-0">
-      <div class="container">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <div class="navbar-nav">
-            <div class="navbarPersonalizado">
-              <div class="col p-1">
-                <li routerLinkActive="activo">
-                  <a class="nav-link text-center menuIndex borde-menu" routerLink="{{LAYOUT_HOME_PAGE_START}}">
-                    {{ 'layout-home.TAB_START' | translate}}
-                  </a>
-                </li>
-              </div>
-              <div class="col p-1">
-                <li routerLinkActive="activo">
-                  <a class="nav-link text-center menuIndex borde-menu" routerLink="{{LAYOUT_HOME_PAGE_LOGIN_FINAL}}">
-                    {{ 'layout-home.TAB_LOGIN' | translate}}
-                  </a>
-                </li>
-              </div>
+<div class="">
+  <!-- Page Wrapper -->
+   
+  <div id="wrapper">
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column u-final">
+      <div class="sticky-top">
+        <div class="fondo-encabezado">
+          <div class="d-flex bd-highlight justify-content-between container p-0">
+            <div class="p-2 flex-grow-1 bd-highlight">
+              <i class="fas fa-fw fa-tachometer-alt"></i>
+            </div>
+            <div class="p-2 bd-highlight">
+              <app-globales-colormode></app-globales-colormode>
+            </div>
+            <div class="p-2 bd-highlight">
+              <app-globales-idioma (cambioIdiomaEmitt)="idiomaCambiar($event)"></app-globales-idioma>
+            </div>
+            <div class="p-2 bd-highlight">
+              <div class="sidebar-brand-text"> {{NAME_PAGE}} </div>
             </div>
           </div>
         </div>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white static-top shadow menu p-0">
+          <marquee direction="left" class="container">
+            <div class="container">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique veritatis...
+            </div>
+          </marquee>
+        </nav>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-white static-top shadow menu p-0">
+          <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+              <div class="navbar-nav">
+                <div class="navbarPersonalizado">
+                  <div class="col p-1">
+                    <li routerLinkActive="activo">
+                      <a class="nav-link text-center menuIndex borde-menu" routerLink="{{LAYOUT_HOME_PAGE_START}}">
+                        {{ 'layout-home.TAB_START' | translate}}
+                      </a>
+                    </li>
+                  </div>
+                  <div class="col p-1">
+                    <li routerLinkActive="activo">
+                      <a class="nav-link text-center menuIndex borde-menu" routerLink="{{LAYOUT_HOME_PAGE_LOGIN_FINAL}}">
+                        {{ 'layout-home.TAB_LOGIN' | translate}}
+                      </a>
+                    </li>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
       </div>
-    </nav>
-  </div>
-
-  <div class="contenido">
-    <div class="container p-0">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-
-
-  <!-- <footer class="sticky-footer">
-    <div class="container my-auto">
-      <div class="copyright text-center my-auto">
-        <span>Copyright &copy; {{CURRENT_YEAR}}</span>
+      <!-- Main Content -->
+      <div id="content" class="container mt-4 mb-2">
+        <router-outlet></router-outlet>
       </div>
+      <!-- End of Main Content -->
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+          <div class="container my-auto">
+              <div class="copyright text-center my-auto">
+                  <span>Copyright &copy; {{CURRENT_YEAR}}</span>
+              </div>
+          </div>
+      </footer>
+      <!-- End of Footer -->
     </div>
-  </footer> -->
+    <!-- End of Content Wrapper -->
+  </div>
+  <!-- End of Page Wrapper -->
 </div>
