@@ -8,6 +8,7 @@ import { MeAdminPageSettingsComponent } from '@mod/me/admin/pages/settings/setti
 
 import { MenuAdminComponent } from '@mod/main/admin/pages/menu/menu.component'
 import { AdminPermissionComponent } from '@component/globales/permission/admin/admin.component';
+import { BREADCRUMB_PATH_PROFILE, BREADCRUMB_PATH_SETTINGS } from '@mod/main/const/main.const';
 
 
 export const AdminLayoutRoutes: Routes = [
@@ -23,6 +24,7 @@ export const AdminLayoutRoutes: Routes = [
   {
     path: 'me/perfil',
     title: 'Perfil',
+    data: { breadcrumb: BREADCRUMB_PATH_PROFILE },
     component: MeAdminPageProfileComponent,
     canActivate: [
       adminGuard
@@ -31,6 +33,7 @@ export const AdminLayoutRoutes: Routes = [
   {
     path: 'me/configuracion',
     title: 'Configuracion',
+    data: { breadcrumb: BREADCRUMB_PATH_SETTINGS },
     component: MeAdminPageSettingsComponent,
     canActivate: [
       adminGuard
@@ -51,6 +54,7 @@ export const AdminLayoutRoutes: Routes = [
   {
     path: 'mod',
     title: 'Menu',
+    data: { breadcrumb: 'Menu' },
     component: MenuAdminComponent,
     canActivate: [
       adminGuard

@@ -1,9 +1,23 @@
-.breadcrumb {
-  background-color: transparent;
-  padding: 0;
-  margin-bottom: 1rem;
-}
+/* Forzar que el separador sea blanco y tenga buen espacio */
 .breadcrumb-item + .breadcrumb-item::before {
-  content: ">";
-  padding: 0 0.5rem;
+  color: rgba(132, 128, 128, 0.7) !important;
+  content: "  >  " !important;
+  font-weight: bold;
+}
+
+/* Quitar el subrayado por defecto de los links */
+.link-light {
+  text-decoration: none !important;
+}
+
+.link-light:hover {
+  text-decoration: underline !important;
+  opacity: 0.9;
+}
+
+/* Reset de Bootstrap para asegurar que no haya márgenes extraños */
+.breadcrumb {
+  background-color: transparent !important;
+  display: flex;
+  align-items: center;
 }

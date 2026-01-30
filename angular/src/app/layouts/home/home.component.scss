@@ -1,58 +1,47 @@
-/* El contenedor principal se convierte en un flex-col */
-.layout-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Ocupa el 100% de la ventana */
-  width: 100%;
-}
+$navbarPrincipal: #007bff;
+$textoColor: #ffffff;
+
+$opcionNavbarActiva: #008000;
+$opcionNavbarSelect: #008000;
+$fondoNavbar: #e0e0e0;
+
+$fondoFooter: #008000;
+
+$bordeColor: coral;
 
 .fondo-encabezado {
-  background-color: var(--fondo-navbar-principal);
-  color: var(--texto-color-tab);
-  flex-shrink: 0; /* Evita que el header se encoja */
+  background-color: $navbarPrincipal;
+  color: $textoColor;
+}
+
+.borde-menu {
+  border-left-style: solid;
+  border-left-color: $bordeColor;
 }
 
 /* navbar */
 .menu {
-  background-color: var(--fondo-navbar);
-  color: var(--texto-color-tab);
-  flex-shrink: 0;
-  
+  background-color: $fondoNavbar;
+  color: $textoColor;
+  // top: 0;
   a:hover {
-    background-color: var(--tab-select);
-    color: var(--texto-color-tab);
+    background-color: $opcionNavbarSelect;
+    color: $textoColor;
   }
 }
 
 .activo {
-  background-color: var(--tab-activa);
+  background-color: $opcionNavbarActiva;
   .nav-link {
-    color: var(--texto-color-tab)
+    color: $textoColor
   }
   .borde-menu {
     border-left-style: inset;
   }
 }
+/* fin navbar */
 
-/* área de contenido */
-.contenido {
-  flex-grow: 1; 
-  margin-top: 0; 
-  padding-top: 2rem; 
-  background-color: var(--contenido-index);
-  color: var(--texto-color);
-  
-  display: block; 
-}
-
-/* Estilo adicional para los elementos de lista del menú */
-.navbarPersonalizado {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
+ /* fin contenido */
 .sticky-footer {
   background-color: var(--contenido-index);
   color: var(--texto-color);
