@@ -8,12 +8,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { swalert } from '@function/System'
 import { _PAGE_WITHOUT_PERMISSION_ADMIN, STORAGE_KEY_ADMIN_AUTH } from '@const/app.const';
 import { PrincipalService } from '../../service/principal.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-asignar-permisos',
   standalone: true,
   imports: [
-    TranslateModule
+    TranslateModule,
+    CommonModule
 ],
   templateUrl: './asignar-permisos.component.html',
   styleUrl: './asignar-permisos.component.scss'
