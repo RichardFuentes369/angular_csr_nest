@@ -5,13 +5,12 @@
     <div class="parent">
       @for (modulos of permisos; track modulos.mpm_permiso) {
       <div class="card mb-3">
-        <div class="card-header d-flex align-items-center">
+        <div class="card-header d-flex align-items-center bg-white">
           <input class="form-check-input static-check" type="checkbox" [checked]="modulos.asignado === 1"
             (change)="asignarPermiso(modulos)">
 
-          <a class="btn btn-link text-left p-0 ml-2 font-weight-bold" (click)="toggleCollapse(modulos.mpm_permiso, modulos.mpm_toogle)"
-            style="text-decoration: none">
-            <i class="fas fa-info-circle text-info ml-1 " [title]="modulos.mpm_descripcion"></i>
+          <a class="btn btn-link p-0 ml-2 nav-link" (click)="toggleCollapse(modulos.mpm_permiso, modulos.mpm_toogle)" >
+            <i class="fas fa-info-circle text-body-emphasis ml-1 " [title]="modulos.mpm_descripcion"></i>
             {{ modulos.mpm_nombre }}
           </a>
         </div>
@@ -28,8 +27,8 @@
                   <input class="form-check-input static-check" type="checkbox" [checked]="subModulos.asignado === 1"
                     (change)="asignarPermiso(subModulos)">
                   <label class="form-check-label ml-2">
-                    <i class="fas fa-info-circle text-info ml-1" [title]="subModulos.mpm_descripcion"></i>
-                    <span class="ml-2 font-weight-bold">{{ subModulos.mpm_nombre }}</span>
+                    <i class="fas fa-info-circle text-body-emphasis ml-1" [title]="subModulos.mpm_descripcion"></i>
+                    <span class="ml-2">{{ subModulos.mpm_nombre }}</span>
                   </label>
                 </div>
                 <div class="card-body">
@@ -38,7 +37,7 @@
                     <input class="form-check-input" type="checkbox" [checked]="acciones.asignado === 1"
                       (change)="asignarPermiso(acciones)">
                     <label class="form-check-label ml-2">
-                      <i class="fas fa-info-circle text-info ml-1" [title]="acciones.mpm_descripcion"></i>
+                      <i class="fas fa-info-circle text-body-emphasis ml-1" [title]="acciones.mpm_descripcion"></i>
                       {{ acciones.mpm_nombre }}
                     </label>
                   </div>
@@ -52,7 +51,7 @@
                 <input class="form-check-input" type="checkbox" [checked]="subModulos.asignado === 1"
                   (change)="asignarPermiso(subModulos)">
                 <label class="form-check-label ml-2">
-                  <i class="fas fa-info-circle text-info ml-1" [title]="subModulos.mpm_descripcion"></i>
+                  <i class="fas fa-info-circle text-body-emphasis ml-1" [title]="subModulos.mpm_descripcion"></i>
                   {{ subModulos.mpm_nombre }}
                 </label>
               </div>

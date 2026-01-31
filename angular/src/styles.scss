@@ -1,13 +1,5 @@
 /* Colores por defecto (Light) */
-:root {
-  --gradient-hover: linear-gradient(90deg,#2b87ff 0%, #5aa3f2 45%);
-  --gradient-table: radial-gradient(circle, #598bcc 16%, #224abe 100%);
-  --gradient-header-modal: linear-gradient(90deg, #007bff 20%, #2cc6ed 100%);
-  --gradient-header-search: linear-gradient(90deg, #007bff 20%, #2dc7ed 100%);
-  
-  .color-white {
-    color: white;
-  }
+[data-theme='light'] {
   .text-info {
     color: #36b9cc !important;
   }
@@ -20,13 +12,6 @@
   .text-gray-600 {
     color: #858796 !important;
   }
-  .text-gray-900 {
-    color: #3a3b45 !important;
-  }
-  .bg-gradient-primary {
-    background: linear-gradient(180deg, #007bff 20%, #007bff 100%);
-  }
-  
   .btn-primary, 
   .btn-primary:hover, 
   .btn-primary:disabled {
@@ -34,46 +19,18 @@
     border-color: #0d6efd;
     color: #fff !important;
   }
-
   .bg-primary {
     background-color: #0d6efd !important;
     color: #fff !important;
   }
   .bg-white {
+    color: #000;
     background-color: #fff !important;
   }
-  .card {
-    background-color: #fff;
-    color: #000;
-  }
-
-  .dt-container{
-
-  }
-  .dt-empty-footer{
-    
-  }
-
 }
 
 /* Colores para Dark Mode */
 [data-theme='dark'] {
-  --gradient-hover: linear-gradient(90deg,#a7a9ac 0%, #cbced1 45%);
-  --gradient-table: radial-gradient(circle, #919494 16%, #4f5050 100%);
-  --gradient-header-modal: linear-gradient(90deg, #4f5050 20%, #919494 100%);
-  --gradient-header-search: linear-gradient(90deg, #4f5050 20%, #919494 100%);
-
-  .color-white {
-    color: white;
-  }
-
-  .dt-container{
-    background-color: white;
-  }
-  .dt-empty-footer{
-    color: #000;
-  }
-
   .text-info {
     color: #43595d !important;
   }
@@ -86,13 +43,6 @@
   .text-gray-600 {
     color: #dbdce2 !important;
   }
-  .text-gray-900 {
-    color: #ffffff !important;
-  }
-  .bg-gradient-primary {
-    background: linear-gradient(180deg, #000 20%, #000 100%);
-  }
-
   .btn-primary, 
   .btn-primary:hover, 
   .btn-primary:disabled {
@@ -100,16 +50,12 @@
     border-color: #6b6a6a;
     color: #fff;
   }
-
   .bg-primary {
     background-color: #6b6a6a !important;
     color: #fff;
   }
   .bg-white {
-    background-color: #a19f9f !important;
-  }
-  .card {
-    background-color: #bdb4b4;
     color: #fff;
-  }
+    background-color: #a19f9f !important;
+  } 
 }

@@ -29,35 +29,9 @@ export class HomeComponent {
 
   @HostListener('window:resize', ['$event'])
   onResize(event:any) {
-    this.responsiveMenu()
   }
 
   ngOnInit(event:any) {
-    this.responsiveMenu()
-  }
-
-  responsiveMenu(){
-    if(window.innerWidth <= 991){
-      const elements = document.querySelectorAll('.menuIndex');
-      elements.forEach(element => {
-        this.renderer.removeClass(element, 'borde-menu');
-      });
-
-      const container = document.querySelectorAll('.navbarPersonalizado');
-      container.forEach(element => {
-        this.renderer.removeClass(element, 'row');
-      });
-    }else{
-      const elements = document.querySelectorAll('.menuIndex');
-      elements.forEach(element => {
-        this.renderer.addClass(element, 'borde-menu');
-      });
-
-      const container = document.querySelectorAll('.navbarPersonalizado');
-      container.forEach(element => {
-        this.renderer.addClass(element, 'row');
-      });
-    }
   }
 
   minimizarSliderbar: boolean = false;

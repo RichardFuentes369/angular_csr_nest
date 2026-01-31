@@ -1,3 +1,11 @@
+:host {
+  --gradient-hover: linear-gradient(90deg,#2b87ff 0%, #5aa3f2 45%);
+
+  &[data-theme='dark'], 
+  &:host-context([data-theme='dark']) {
+    --gradient-hover: linear-gradient(90deg,#a7a9ac 0%, #cbced1 45%);
+  }
+}
 
 .parent {
   display: flex;

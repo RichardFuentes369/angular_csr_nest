@@ -1,3 +1,15 @@
+:host {
+  --gradient-header-modal: linear-gradient(90deg, #007bff 20%, #2cc6ed 100%);
+
+  &[data-theme='dark'], 
+  &:host-context([data-theme='dark']) {
+    --gradient-header-modal: linear-gradient(90deg, #4f5050 20%, #919494 100%);
+  }
+}
+
+
+
+
 .modal-header {
   background: var(--gradient-header-modal);
 }

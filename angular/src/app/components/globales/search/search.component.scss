@@ -1,8 +1,10 @@
-/* --- CABECERA --- */
-.header {
-  background: linear-gradient(180deg, rgb(34, 74, 190) 20%, rgb(45, 199, 237) 100%);
-  background-size: cover;
-  color: white;
+:host {
+  --gradient-header-search: linear-gradient(90deg, #007bff 20%, #2dc7ed 100%);
+
+  &[data-theme='dark'], 
+  &:host-context([data-theme='dark']) {
+    --gradient-header-search: linear-gradient(90deg, #4f5050 20%, #919494 100%);
+  }
 }
 
 /* --- NUEVO: BOTÓN DENTRO DE LA CARD --- */
@@ -14,26 +16,30 @@
   border: none;
   color: white;
   border-radius: 4px;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   z-index: 1010; /* Por encima del header de la card */
   transition: background 0.3s ease;
+
+  .fa-times {
+    font-size: 0.5em;
+  }
 }
 
 .btn-minimize-card {
   position: absolute;
   top: 10px;
-  left: 10px; /* Esquina superior izquierda */
+  left: 5px; /* Esquina superior izquierda */
   background: rgba(255, 255, 255, 0.2); /* Fondo semi-transparente para que resalte en el gradient */
   border: none;
   color: white;
   border-radius: 4px;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,6 +47,10 @@
   z-index: 1010; /* Por encima del header de la card */
   transition: background 0.3s ease;
   margin-left: 7%;
+
+  .fa-window-minimize {
+    font-size: 0.5em;
+  }
 }
 
 /* --- BOTÓN FLOTANTE (Ajuste para ocultar) --- */
@@ -87,7 +97,7 @@
 
   .header {
     margin: 0;
-    padding: 15px;
+    padding: 8px;
     font-size: 1.2rem;
     text-align: center;
     /* Tu gradiente anterior */

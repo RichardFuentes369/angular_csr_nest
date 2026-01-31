@@ -1,70 +1,71 @@
+:host {
+  --gradient-table: radial-gradient(circle, #598bcc 16%, #224abe 100%);
+  --gradient-table-select: radial-gradient(circle, rgb(245, 76, 76) 16%, rgb(204, 30, 30) 100%);
+
+  &[data-theme='dark'], 
+  &:host-context([data-theme='dark']) {
+    --gradient-table: radial-gradient(circle, #919494 16%, #4f5050 100%);
+  }
+}
+
+::ng-deep {
+  .tableDatatable {
+    thead tr {
+      background: var(--gradient-table) !important;
+    }
+
+    thead th {
+      background-color: transparent !important;
+      color: #fff !important;
+      text-align: center;
+      padding: 12px 10px !important;
+      border-bottom: none !important;
+    }
+
+    tbody tr {
+      transition: background-color 0.2s ease;
+
+      &.selected-row {
+        background: var(--gradient-table-select) !important;
+        animation: selectedPulse 0.4s ease-out;
+
+        td {
+          background-color: transparent !important;
+          color: #ebe6e6 !important;
+          transition: all 0.3s ease;
+        }
+      }
+    }
+  }
+}
+
 table {
   cursor: pointer;
 }
 
 .botoneria {
   display: flex;
-  justify-content: flex-end; /* Alinea los botones a la derecha */
-  gap: 8px; /* Espaciado entre los botones */
-  margin-bottom: 10px; /* Espacio entre la botonera y la tabla */
+  justify-content: flex-end;
+  gap: 8px;
+  margin-bottom: 10px;
 }
 
 /* Estilos para pantallas pequeñas (responsive) */
-@media (max-width: 768px) { /* Ajusta el ancho según tus necesidades */
+@media (max-width: 768px) { 
   .botoneria {
-    justify-content: center; /* Centra los botones en pantallas pequeñas */
-    flex-wrap: wrap; /* Permite que los botones pasen a la siguiente línea si no hay suficiente espacio */
+    justify-content: center; 
+    flex-wrap: wrap; 
   }
 
   .botoneria button {
-    margin-bottom: 5px; /* Espacio entre los botones apilados */
-    width: auto; /* Permite que el ancho del botón se ajuste al contenido */
+    margin-bottom: 5px; 
+    width: auto; 
   }
 }
 
 /* Tu animación actual de entrada */
 @keyframes selectedPulse {
   0% { transform: scale(1); }
-  50% { transform: scale(0.9); } /* Un poco menos agresivo para no romper la tabla */
+  50% { transform: scale(0.9); } 
   100% { transform: scale(1); }
-}
-
-::ng-deep .tableDatatable tbody tr.selected-row {
-  background: #224ABE; 
-  background: radial-gradient(circle, rgb(245, 76, 76) 16%, rgb(204, 30, 30) 100%) !important;
-  
-  /* Animación: dura 0.4s, entrada suave y se ejecuta una vez al seleccionar */
-  animation: selectedPulse 0.4s ease-out;
-
-  td {
-    background-color: transparent !important;
-    color: #ebe6e6 !important;
-    transition: all 0.3s ease; /* Suaviza el cambio de color de texto */
-  }
-}
-
-/* Opcional: transición para que el color no cambie de golpe */
-::ng-deep .tableDatatable tbody tr {
-  transition: background-color 0.2s ease;
-}
-
-::ng-deep .tableDatatable thead tr {
-  background:  RGBA(45, 199, 237, 1);
-  background: var(--gradient-table)
-}
-
-/* Cambiar color de fondo y texto del encabezado */
-::ng-deep .tableDatatable thead th {
-    background-color: transparent !important; /* Azul oscuro (cámbialo al color que desees) */
-    color: #ffffff !important;           /* Texto blanco */
-    text-align: center;                  /* Centrar títulos */
-    padding: 12px 10px !important;       /* Espaciado interno */
-    border-bottom: none !important; /* Línea divisoria inferior */
-}
-
-/* Opcional: Estilo para las flechas de ordenamiento (si las habilitas luego) */
-::ng-deep .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-    background: #224ABE !important;
-    color: white !important;
-    border: 1px solid #224ABE !important;
 }
