@@ -9,15 +9,15 @@
           <input class="form-check-input static-check" type="checkbox" [checked]="modulos.asignado === 1"
             (change)="asignarPermiso(modulos)">
 
-          <a class="btn btn-link text-left p-0 ml-2" (click)="toggleCollapse(modulos.mpm_permiso, modulos.mpm_toogle)"
+          <a class="btn btn-link text-left p-0 ml-2 font-weight-bold" (click)="toggleCollapse(modulos.mpm_permiso, modulos.mpm_toogle)"
             style="text-decoration: none">
-            <i class="fas fa-info-circle text-info ml-1" [title]="modulos.mpm_descripcion"></i>
+            <i class="fas fa-info-circle text-info ml-1 " [title]="modulos.mpm_descripcion"></i>
             {{ modulos.mpm_nombre }}
           </a>
         </div>
 
         @if (modulos.mpm_toogle) {
-        <div class="card-body bg-light">
+        <div class="card-body" [class.bg-light]="modulos.mpm_id !== 17">
           <div class="row">
             @for (subModulos of modulos.children; track subModulos.mpm_permiso) {
 

@@ -24,7 +24,7 @@
 
   .card:hover {
     background: #2b87ff;
-    background: linear-gradient(90deg,rgba(43, 135, 255, 1) 0%, rgba(90, 163, 242, 1) 45%);
+    background: var(--gradient-hover);
     transition: transform 0.1s ease-in;
     transform: scale(1,1);
   }
@@ -41,7 +41,7 @@
 
   .card:hover {
     background: #2b87ff;
-    background: linear-gradient(90deg,rgba(43, 135, 255, 1) 0%, rgba(90, 163, 242, 1) 45%);
+    background: var(--gradient-hover);
     transition: transform 0.1s ease-in;
     transform: scale(1,1);
   }
@@ -59,7 +59,7 @@
 
   .card:hover {
     background: #2b87ff;
-    background: linear-gradient(90deg,rgba(43, 135, 255, 1) 0%, rgba(90, 163, 242, 1) 45%);
+    background: var(--gradient-hover);
     transition: transform 0.1s ease-in;
     transform: scale(1,1);
   }
@@ -76,7 +76,7 @@
 
   .card:hover {
     background: #2b87ff;
-    background: linear-gradient(90deg,rgba(43, 135, 255, 1) 0%, rgba(90, 163, 242, 1) 45%);
+    background: var(--gradient-hover);
     transition: transform 0.1s ease-in;
     transform: scale(1,1);
   }
@@ -94,7 +94,7 @@
 
   .card:hover {
     background: #2b87ff;
-    background: linear-gradient(90deg,rgba(43, 135, 255, 1) 0%, rgba(90, 163, 242, 1) 45%);
+    background: var(--gradient-hover);
     transition: transform 0.1s ease-in;
     transform: scale(1,1);
   }
@@ -111,7 +111,7 @@
 
   .card:hover {
     background: #2b87ff;
-    background: linear-gradient(90deg,rgba(43, 135, 255, 1) 0%, rgba(90, 163, 242, 1) 45%);
+    background: var(--gradient-hover);
     transition: transform 0.1s ease-in;
     transform: scale(1,1);
   }

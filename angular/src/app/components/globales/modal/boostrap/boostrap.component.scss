@@ -1,6 +1,5 @@
 .modal-header {
-  background: #007bff;
-  background: linear-gradient(90deg, #007bff 40%, rgba(45, 199, 237, 1) 80%);
+  background: var(--gradient-header-modal);
 }
 
 .modal-title {
