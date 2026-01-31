@@ -8,7 +8,9 @@
         <div class="bg-primary text-white">
           <div class="d-flex bd-highlight justify-content-between container p-0">
             <div class="p-2 flex-grow-1 bd-highlight">
-              <i class="fas fa-fw fa-tachometer-alt"></i>
+              <a class="nav-link" routerLink="{{LAYOUT_HOME_PAGE_START}}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+              </a>
             </div>
             <div class="p-2 bd-highlight">
               <app-globales-colormode></app-globales-colormode>
@@ -43,15 +45,18 @@
                     {{ 'layout-home.TAB_START' | translate}}
                   </a>
                 </li>
+                @if(showRouteIngreso){
                 <li routerLinkActive="activo">
                   <a class="nav-link text-center" routerLink="{{LAYOUT_HOME_PAGE_LOGIN_FINAL}}">
                     {{ 'layout-home.TAB_LOGIN' | translate}}
                   </a>
                 </li>
+                }
               </ul>
             </div>
           </div>
         </nav>
+
       </div>
       <!-- Main Content -->
       <div id="content" class="container mt-4 mb-2">

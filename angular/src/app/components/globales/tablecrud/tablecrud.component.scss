@@ -1,10 +1,11 @@
 :host {
   --gradient-table: radial-gradient(circle, #598bcc 16%, #224abe 100%);
-  --gradient-table-select: radial-gradient(circle, rgb(245, 76, 76) 16%, rgb(204, 30, 30) 100%);
+  --gradient-table-select: radial-gradient(circle, #f54c4c 16%, #cc1e1e 100%);
 
   &[data-theme='dark'], 
   &:host-context([data-theme='dark']) {
-    --gradient-table: radial-gradient(circle, #919494 16%, #4f5050 100%);
+    --gradient-table: linear-gradient(180deg, #000 20%, #000 100%);
+    --gradient-table-select: radial-gradient(circle, #919494 16%, #4f5050 100%);
   }
 }
 
