@@ -43,6 +43,10 @@
 table {
   cursor: pointer;
 }
+.table-container { /* O el nombre de tu clase principal */
+  position: relative; 
+  width: 100%;
+}
 
 .botoneria {
   display: flex;
