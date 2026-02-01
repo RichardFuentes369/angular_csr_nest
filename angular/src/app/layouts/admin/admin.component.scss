@@ -1,11 +1,12 @@
-:host-context([data-theme='light']) {
+:host {
   .bg-gradient-primary {
     background: linear-gradient(180deg, #007bff 20%, #007bff 100%) !important;
   }
-}
 
-:host-context([data-theme='dark']) {
-  .bg-gradient-primary {
-    background: linear-gradient(180deg, #000 20%, #000 100%) !important;
+  &[data-theme='dark'], 
+  &:host-context([data-theme='dark']) {
+    .bg-gradient-primary {
+      background: linear-gradient(180deg, #000 20%, #000 100%) !important;
+    }
   }
 }

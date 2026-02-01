@@ -1,13 +1,12 @@
 .flex-container {
     display: flex;
-    justify-content: center; /* Centrado horizontal */
-    align-items: center;     /* Centrado vertical */
-    min-height: 80vh;       /* Ocupa el 100% de la altura de la pantalla */
+    justify-content: center; 
+    align-items: center;    
+    min-height: 80vh;       
     width: 100%;
 }
 
 .card {
-    /* Opcional: define un ancho máximo para que no se estire demasiado */
     max-width: 800px;
     width: 100%;
 }

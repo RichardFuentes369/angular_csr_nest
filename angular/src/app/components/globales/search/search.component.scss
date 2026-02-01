@@ -53,28 +53,6 @@
   }
 }
 
-/* --- BOTÓN FLOTANTE (Ajuste para ocultar) --- */
-.floating-button {
-  position: absolute;
-  right: .8em !important;
-  top: 34% !important;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  z-index: 5;
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  opacity: 1;
-  visibility: visible;
-
-  /* OCULTAR CUANDO LA CARD ESTÁ ACTIVA */
-  &.active {
-    opacity: 0;
-    visibility: hidden;
-    transform: scale(0); 
-    pointer-events: none;
-  }
-}
-
 /* --- CARD ANIMADA (Mantenemos tu base con un ajuste de posición relativa) --- */
 .animated-card {
   position: fixed;
@@ -106,5 +84,60 @@
 
   .card-body {
     padding: 20px !important;
+  }
+}
+
+/* Este contenedor controla la posición de TODO el grupo en la pantalla */
+.filter-wrapper {
+  position: absolute;
+  right: 0.5em !important;
+  top: 37% !important;
+  z-index: 100;
+  display: inline-block;
+}
+
+.floating-button {
+  position: relative; /* Cambiado de absolute a relative */
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  
+  &.active {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0);
+  }
+}
+
+.floating-number-filter {
+  cursor: pointer;
+  position: absolute; /* Ahora es absoluto respecto a .filter-wrapper */
+  
+  /* POSICIONAMIENTO EN LA ESQUINA DEL BOTÓN */
+  right: -5px !important; 
+  top: -5px !important; 
+  
+  background-color: red;
+  color: #fff;
+  border-radius: 50%;
+  z-index: 101; /* Siempre por encima del botón */
+  
+  height: 18px; /* Un poquito más grande para mejor visibilidad en móvil */
+  width: 18px;
+  font-size: 10px !important;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  &.active {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0);
   }
 }

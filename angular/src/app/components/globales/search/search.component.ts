@@ -32,6 +32,8 @@ export class SearchComponent{
   isFilterVisible: boolean = false;
   clickeado:boolean = false
 
+  contador = 0
+
   @Output()
   filtroItem = new EventEmitter<string>()
 
@@ -58,6 +60,7 @@ export class SearchComponent{
   async clearFilter(){
     $('.limpiar').click()
     this.filtroItem.emit()
+    this.contador = await sessionStorage.length
   }
   
   async closeFilterEraser(){
@@ -65,11 +68,13 @@ export class SearchComponent{
     this.clickeado = !this.clickeado
     this.filtroItem.emit()
     this.isFilterVisible = false
+    this.contador = await sessionStorage.length
   }
 
   async actionFilter(){
     $('.filtrar').click()
     this.filtroItem.emit()
+    this.contador = await sessionStorage.length
   }
 
 }

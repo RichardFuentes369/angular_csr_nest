@@ -1,11 +1,16 @@
 <div class="">
-  <button 
-    class="floating-button btn-sm btn btn-primary" 
-    id="miBotonF" 
-    componentef="" 
-    (click)="openFilterMinimize()">
-    <i [ngClass]="icon"></i>
-  </button>
+  <div class="filter-wrapper">
+    <span class="floating-number-filter text-center" (click)="openFilterMinimize()" [title]="contador">
+      {{contador}}
+    </span>
+    
+    <button 
+      class="floating-button btn-sm btn btn-primary" 
+      id="miBotonF" 
+      (click)="openFilterMinimize()">
+      <i [ngClass]="icon"></i>
+    </button>
+  </div>
 
   <div class="animated-card" [class.is-visible]="isFilterVisible">
     <button class="btn-close-card" (click)="$event.stopPropagation(); closeFilterEraser()">

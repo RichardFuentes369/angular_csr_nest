@@ -1,0 +1,40 @@
+:host {
+  --fondo-select: #fff;
+  --fondo-font-select: #2c3e50;
+  --arrow-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234A90E2'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  
+  &[data-theme='dark'], 
+  &:host-context([data-theme='dark']) {
+    --fondo-select: #2c3e50;
+    --fondo-font-select: #fff;
+    --arrow-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234A90E2'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  }
+}
+
+.custom-select {
+  background-color: var(--fondo-select);
+  color: var(--fondo-font-select);
+  
+  /* 2. Quitar la flecha fea por defecto del navegador */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  /* 3. Poner nuestra propia flecha (barra) */
+  background-image: var(--arrow-image);
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 18px;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: var(--fondo-select);
+  }
+}
+
+.custom-select option {
+  background-color: var(--fondo-select); 
+  color: var(--fondo-font-select);
+}
