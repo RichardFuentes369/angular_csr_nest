@@ -1,4 +1,8 @@
 :host {
+  display: block;
+  height: 100vh;
+  overflow: hidden; // Bloquea el scroll de la ventana entera
+
   .bg-gradient-primary {
     background: linear-gradient(180deg, #007bff 20%, #007bff 100%) !important;
   }
@@ -7,6 +11,63 @@
   &:host-context([data-theme='dark']) {
     .bg-gradient-primary {
       background: linear-gradient(180deg, #000 20%, #000 100%) !important;
+    }
+  }
+}
+
+#wrapper {
+  display: flex;
+  height: 100vh; // Alto total de la pantalla
+  overflow: hidden;
+}
+
+#accordionSidebar {
+  height: 100vh;
+  overflow-y: auto; // Sidebar con scroll independiente si es necesario
+  flex-shrink: 0;
+}
+
+#content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+// Topbar siempre arriba y fijo
+.topbar {
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+// Nueva área de scroll
+#content-scroll-area {
+  flex: 1;
+  overflow-y: auto; // AQUÍ ES DONDE SE MUEVE LA PANTALLA
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fc;
+}
+
+#content {
+  flex: 1; // Empuja al footer hacia abajo
+}
+
+.sticky-footer {
+  flex-shrink: 0;
+  padding: 2rem 0;
+}
+
+// Estilos de Marquee y Navlinks (tus originales)
+marquee {
+  color: white;
+}
+
+.navbar-nav {
+  li {
+    .nav-link {
+      transition: all 0.3s ease;
     }
   }
 }

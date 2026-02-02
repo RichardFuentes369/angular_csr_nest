@@ -1,35 +1,39 @@
-<div class="">
-  <h1>{{ 'mod-users.MODULE_TITLE' | translate}}</h1>
+<div class="card shadow">
+  <h1 class="text-center m-0 mt-4 mb-2">
+    {{ 'mod-users.MODULE_TITLE' | translate}}
+  </h1>
 
-  <div class="parent">
-    @if(tienePermiso('administradores')){
-    <a [routerLink]="MOD_USER_PAGE_ADMIN" class="item" style="text-decoration: none; color: inherit; display: block;">
-      <div class="card">
-        <div class="card-body text-center p-0 pb-3 pt-3">
-          <img src="https://icons.iconarchive.com/icons/aha-soft/free-large-boss/256/Admin-icon.png" width="80px">
+  <div class="">
+    <div class="parent">
+      @if(tienePermiso('administradores')){
+      <a [routerLink]="MOD_USER_PAGE_ADMIN" class="item" style="text-decoration: none; color: inherit; display: block;">
+        <div class="card card-option">
+          <div class="card-body text-center p-0 pb-3 pt-3">
+            <img src="https://icons.iconarchive.com/icons/aha-soft/free-large-boss/256/Admin-icon.png" width="80px">
+          </div>
+          <div class="card-footer text-center">
+            <span>
+              {{ 'mod-users.BUTTON_ADMIN' | translate}}
+            </span>
+          </div>
         </div>
-        <div class="card-footer text-center bg-white">
-          <span>
-            {{ 'mod-users.BUTTON_ADMIN' | translate}}
-          </span>
+      </a>
+      }
+      @if(tienePermiso('finales')){
+      <a [routerLink]="MOD_USER_PAGE_FINAL" class="item" style="text-decoration: none; color: inherit; display: block;">
+        <div class="card card-option">
+          <div class="card-body text-center p-0 pb-3 pt-3">
+            <img src="https://icons.iconarchive.com/icons/iconshock/real-vista-general/256/administrator-icon.png" width="80px">
+          </div>
+          <div class="card-footer text-center">
+            <span>
+              {{ 'mod-users.BUTTON_FINAL' | translate}}
+            </span>
+          </div>
         </div>
-      </div>
-    </a>
-    }
-    @if(tienePermiso('finales')){
-    <a [routerLink]="MOD_USER_PAGE_FINAL" class="item" style="text-decoration: none; color: inherit; display: block;">
-      <div class="card">
-        <div class="card-body text-center p-0 pb-3 pt-3">
-          <img src="https://icons.iconarchive.com/icons/iconshock/real-vista-general/256/administrator-icon.png" width="80px">
-        </div>
-        <div class="card-footer text-center bg-white">
-          <span>
-            {{ 'mod-users.BUTTON_FINAL' | translate}}
-          </span>
-        </div>
-      </div>
-    </a>
-    }
+      </a>
+      }
+    </div>
   </div>
 
 </div>

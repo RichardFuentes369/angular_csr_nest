@@ -1,7 +1,9 @@
-<div class="">
-  <h1>{{ 'mod-modules.PERMISSION_TITLE' | translate}}</h1>
+<div class="card shadow">
+  <h1 class="text-center m-0 mt-4 mb-2">
+    {{ 'mod-modules.PERMISSION_TITLE' | translate}}
+  </h1>
 
-  <div class="card p-5">
+  <div class="p-5">
     @if (cargarTabla) {
     <app-globales-tablecrud
       [campoFiltro] = showcampoFiltro

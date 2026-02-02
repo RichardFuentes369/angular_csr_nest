@@ -1,35 +1,71 @@
-:host {
-  --tab: #224abe;
-  --tab-select: #598bcc;
-  --text-link-select: #a7a9ac;
+// Asegurar que el scroll ocurra en el contenedor correcto
+#wrapper {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
 
-  &[data-theme='dark'], 
-  &:host-context([data-theme='dark']) {
-    --tab: #4f5050;
-    --tab-select: #a7a9ac;
-    --text-link-select: #fff;
+#content-wrapper {
+  flex: 1;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;
+}
+
+// Configuración del Header Sticky
+.sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  background-color: #fff;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Animación de los elementos que desaparecen
+.header-transition {
+  .bg-primary, .menu {
+    max-height: 120px; // Altura máxima aproximada
+    opacity: 1;
+    overflow: hidden;
+    transition: all 0.35s ease-in-out;
   }
 }
 
-marquee {
-  color: white;
+// ESTADO COMPACTO (Cuando isScrolled es true)
+.header-compact {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  .bg-primary, .menu {
+    max-height: 0 !important;
+    opacity: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin: 0 !important;
+    pointer-events: none;
+  }
+
+  // Opcional: ajustar padding del menú blanco al compactarse
+  nav.bg-white {
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
 }
 
+// Tus estilos previos corregidos
+marquee { color: white; }
 .navbar-nav {
   li {
     .nav-link {
-      color: var(--text-link-select);
-      transition: all 0.3s ease;
-      &:hover {
-        background-color: var(--tab);
-        color: #fff !important;
-      }
+      color: #a7a9ac;
+      transition: 0.3s;
+      &:hover { background-color: #224abe; color: #fff !important; }
     }
-    &.activo {
-      .nav-link {
-        background-color: var(--tab-select);
-        color: #fff !important;
-      }
+    &.activo .nav-link {
+      background-color: #598bcc;
+      color: #fff !important;
     }
   }
 }

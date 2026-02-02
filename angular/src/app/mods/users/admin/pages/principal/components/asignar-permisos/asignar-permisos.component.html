@@ -1,7 +1,9 @@
-<div class="container-fluid">
-  <h1>{{ 'mod-users.ASSIGMENT_ADMIN_TITLE' | translate:title }}</h1>
+<div class="card shadow mb-4">
+  <h1 class="text-center m-0 mt-4 mb-2">
+    {{ 'mod-users.ASSIGMENT_ADMIN_TITLE' | translate:title }}
+  </h1>
 
-  <div class="p-4">
+  <div class="p-5">
     <div class="parent">
       @for (modulos of permisos; track modulos.mpm_permiso) {
       <div class="card mb-3">

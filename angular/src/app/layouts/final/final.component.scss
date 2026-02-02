@@ -1,0 +1,62 @@
+:host {
+  display: block;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+#wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  overflow: hidden;
+}
+
+#content-wrapper {
+  flex: 1;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+#content-main-area {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* El Topbar se mantiene arriba sin comprimirse */
+.topbar {
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+/* ZONA DE SCROLL CORREGIDA */
+#scrollable-content {
+  flex: 1;
+  overflow-y: auto !important;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fc;
+  
+  /* Esto asegura que el scroll sea fluido */
+  -webkit-overflow-scrolling: touch;
+}
+
+.container-fluid {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  flex: 1; /* Esto empuja al footer hacia abajo si hay poco contenido */
+}
+
+.sticky-footer {
+  flex-shrink: 0;
+  padding: 1.5rem 0;
+  border-top: 1px solid #e3e6f0;
+}
+
+/* Tus estilos de colores personalizados */
+.bg-gradient-primary {
+  background: linear-gradient(180deg, #007bff 20%, #007bff 100%) !important;
+}

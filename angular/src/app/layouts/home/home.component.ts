@@ -1,5 +1,6 @@
-import { Component, Renderer2, HostListener, OnInit, ViewChild } from '@angular/core';
-import { TranslateModule, TranslateService } from '@ngx-translate/core'
+import { Component, OnInit, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser, CommonModule } from '@angular/common';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { IdiomaComponent } from '@component/globales/idioma/idioma.component';
 import { Router, NavigationEnd, Event, RouterModule } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -11,6 +12,7 @@ import { ColormodeComponent } from '@component/globales/colormode/colormode.comp
   selector: 'app-layout-home',
   standalone: true,
   imports: [
+    CommonModule,
     IdiomaComponent,
     TranslateModule,
     ColormodeComponent,
@@ -19,20 +21,34 @@ import { ColormodeComponent } from '@component/globales/colormode/colormode.comp
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit{
-
+export class HomeComponent implements OnInit {
   public CURRENT_YEAR = new Date().getFullYear();
   public NAME_PAGE = NAME_PAGE;
   public LAYOUT_HOME_PAGE_START = LAYOUT_HOME_PAGE_START;
   public LAYOUT_HOME_PAGE_LOGIN_FINAL = LAYOUT_HOME_PAGE_LOGIN_FINAL;
 
-  showRouteIngreso: boolean = true
+  isScrolled = false;
+  showRouteIngreso: boolean = true;
 
-  constructor(private translate: TranslateService,private router: Router) {
-  }
+  constructor(
+    private translate: TranslateService, 
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event:any) {
+  // Escuchamos el evento de scroll directamente en el contenedor que lo genera
+  @HostListener('scroll', ['$event'])
+  onScroll(event: any) {
+    if (event.target.id === 'content-wrapper') {
+      const scrollPos = event.target.scrollTop;
+      
+      // Umbrales diferenciados para evitar fallos de parpadeo
+      if (!this.isScrolled && scrollPos > 80) {
+        this.isScrolled = true;
+      } else if (this.isScrolled && scrollPos < 10) {
+        this.isScrolled = false;
+      }
+    }
   }
 
   ngOnInit() {
@@ -48,15 +64,7 @@ export class HomeComponent implements OnInit{
     this.showRouteIngreso = !url.includes('ingreso/admin');
   }
 
-  minimizarSliderbar: boolean = false;
-
-  mostrarMenuLateral(){
-    this.minimizarSliderbar = !this.minimizarSliderbar
+  idiomaCambiar(valor: string) {
+    this.translate.use(valor);
   }
-
-  idiomaCambiar(valor: string){
-    this.translate.use(valor)
-  }
-
-
 }

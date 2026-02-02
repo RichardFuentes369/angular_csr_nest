@@ -45,7 +45,7 @@ export class AdminComponent implements OnInit {
   }
 
   upperFirst(texto: string) {
-    if (!texto) return texto; // Verifica si la cadena está vacía o es nula
+    if (!texto) return texto; 
     return texto.charAt(0).toUpperCase() + texto.slice(1);
   }
 
