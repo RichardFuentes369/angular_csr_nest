@@ -1,7 +1,7 @@
 :host {
   display: block;
   height: 100vh;
-  overflow: hidden; // Bloquea el scroll de la ventana entera
+  overflow: hidden;
 
   .bg-gradient-primary {
     background: linear-gradient(180deg, #007bff 20%, #007bff 100%) !important;
@@ -17,14 +17,15 @@
 
 #wrapper {
   display: flex;
-  height: 100vh; // Alto total de la pantalla
+  height: 100vh;
   overflow: hidden;
 }
 
 #accordionSidebar {
   height: 100vh;
-  overflow-y: auto; // Sidebar con scroll independiente si es necesario
+  overflow-y: auto;
   flex-shrink: 0;
+  z-index: 1040; // Sidebar por debajo del Topbar dropdown
 }
 
 #content-wrapper {
@@ -35,39 +36,48 @@
   overflow: hidden;
 }
 
-// Topbar siempre arriba y fijo
 .topbar {
   flex-shrink: 0;
-  z-index: 10;
+  z-index: 1030; // Nivel suficiente para estar sobre el contenido
+
+  .dropdown-menu {
+    z-index: 1060 !important; // Por encima de todo en el layout
+  }
 }
 
-// Nueva área de scroll
 #content-scroll-area {
   flex: 1;
-  overflow-y: auto; // AQUÍ ES DONDE SE MUEVE LA PANTALLA
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   background-color: #f8f9fc;
+  z-index: 1; 
+  position: relative;
+  -webkit-overflow-scrolling: touch;
 }
 
 #content {
-  flex: 1; // Empuja al footer hacia abajo
+  flex: 1;
 }
 
 .sticky-footer {
   flex-shrink: 0;
-  padding: 2rem 0;
+  padding: 1rem 0;
 }
 
-// Estilos de Marquee y Navlinks (tus originales)
-marquee {
-  color: white;
-}
+// Forzamos que el modal esté por encima de nuestro layout fijo
+::ng-deep {
+  .modal {
+    z-index: 2000 !important;
+  }
+  // El fondo oscuro del modal (backdrop) debe subir también
+  .modal-backdrop {
+    z-index: 1900 !important;
+  }
 
-.navbar-nav {
-  li {
-    .nav-link {
-      transition: all 0.3s ease;
-    }
+  // Evita que el cuerpo se mueva cuando el modal está abierto
+  .modal-open {
+    overflow: hidden !important;
+    padding-right: 0 !important;
   }
 }

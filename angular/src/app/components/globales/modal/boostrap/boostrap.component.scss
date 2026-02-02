@@ -1,16 +1,23 @@
-:host {
-  --gradient-header-modal: linear-gradient(90deg, #007bff 20%, #2cc6ed 100%);
-
-  &[data-theme='dark'], 
-  &:host-context([data-theme='dark']) {
+::ng-deep {
+  :root {
+    --gradient-header-modal: linear-gradient(90deg, #007bff 20%, #2cc6ed 100%);
+  }
+  [data-theme='dark'] {
     --gradient-header-modal: linear-gradient(90deg, #4f5050 20%, #919494 100%);
   }
-}
 
-.modal-header {
-  background: var(--gradient-header-modal);
-}
+  .modal-header {
+    background: var(--gradient-header-modal) !important;
+    border-bottom: none; 
+  }
 
-.modal-title {
-  color: white
+  .modal-title {
+    color: white !important;
+  }
+
+  .modal-header .close {
+    color: white;
+    opacity: 0.8;
+    &:hover { opacity: 1; }
+  }
 }
